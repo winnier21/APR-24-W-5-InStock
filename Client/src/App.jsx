@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import WarehousePage from '../WarehousePage/WarehousePage';
-import InventoryPage from '../InventoryPage/InventoryPage';
+import WarehousePage from './pages/WarehousePage/WarehousePage';
+import InventoryPage from './pages/InventoryPage/InventoryPage';
 import './App.css'
 function App() {
   return (
