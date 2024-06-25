@@ -1,5 +1,4 @@
 import React from 'react';
-import ItemDetails from '../../components/ItemDetails/ItemDetails';
 import './InventoryPage.scss';
 import InventoryList from '../../components/InventoryList/InventoryList';
 

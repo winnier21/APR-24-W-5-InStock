@@ -35,7 +35,7 @@ export class ApiClient {
   async getItemsArray() {
     const endpoint = 'api/inventories';
     const itemsArray = await this.get(endpoint);
-    this.logResponse(itemsArray, endpoint, 'GET');
+    // this.logResponse(itemsArray, endpoint, 'GET');
     return itemsArray;
   }
   
