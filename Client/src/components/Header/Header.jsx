@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss';
-import logo from '../../assets/logo/InStock-Logo_2x.png';
+import logo from '../../assets/logo/InStock-Logo_1x.png';
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -8,8 +8,8 @@ function Header() {
     <nav className='header'>
         <div className='header__container'>
         <div className="header__logo-container"> 
-        <Link to ="/">
-        <img src={logo} alt="InStock Logo" className="header__logo"/>
+        <Link className="header__logo" to ="/">
+        <img src={logo} alt="InStock Logo" />
         </Link>
         </div>
         <section className='header__wrapper'>

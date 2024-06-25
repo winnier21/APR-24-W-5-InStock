@@ -18,21 +18,39 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    @include tablet {
+      display: flex;
+      
+    }
+    @include desktop {
+      width: calc(100% - 2 * $padding-large);
+      padding: 2rem 8rem;
+    }
   }
   &__logo {
-    height: 1.75rem;
     padding-top: $padding-large;
     padding-bottom: $padding-large;
-    width: 8.03688rem;
     margin-left: 7.69rem;
     margin-right: 7.71rem;
-   
+
+    @include tablet {
+      margin: 0;
+    }
+
+    a {
+      margin: none;
+      padding: none;
+    }
   }
   &__logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+
+    @include tablet {
+      margin: 0;
+    }
   }
 
   &__wrapper {
@@ -41,13 +59,17 @@
     margin-left: $padding-med;
     margin-right: $padding-med;
 
+    @include tablet {
+        padding: 0;
+        justify-content: flex-end;
+      }
+
     h3 {
       color: $white;
       font-family: "Titillium Web";
       font-weight: 400;
       padding: 0 $padding-med 0 $padding-med;
       text-align: center;
-
     }
 
     .header__link {
