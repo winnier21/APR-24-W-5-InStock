@@ -12,48 +12,28 @@ const InventoryCard = ({ itemObject }) => {
           <h4 className="inventory__heading--table">
             Inventory Item
           </h4>
-          {/* <h3 className="inventory__item-name">
-            {item_name}
-          </h3> */}
           <h4 className="inventory__heading--table">
             Category
           </h4>
-          {/* <div className="inventory__text-container">
-            <p2>
-              Gear
-            </p2>
-          </div> */}
         </div>
         <div className="inventory__right">
-          <h4 className="inventory__heading--table">
+          <h4 className="inventory__heading--table inventory__text-container--status">
             Status
           </h4>
-          {/* <div className={statusClassName}>
-            {status}
-          </div>   */}
-          <h4 className="inventory__heading--table">
+          <h4 className="inventory__heading--table inventory__text-container--qty">
             Qty
           </h4>
-          {/* <div className="inventory__text-container">
-            <p2>
-              {quantity}
-            </p2>
-          </div> */}
           <h4 className="inventory__heading--table">
             Warehouse
           </h4>
-          {/* <div className="inventory__text-container">
-            <p2>
-              {warehouse_name}
-            </p2>
-          </div> */}
   
         </div>
   
         </div>
         <div className="inventory__icons">
-          {/* <img src={deleteIcon} />
-          <img src={editIcon} /> */}
+          <h4 className="inventory__heading--table">
+            Actions
+          </h4>
         </div>
       </div>
     )
@@ -84,7 +64,7 @@ const InventoryCard = ({ itemObject }) => {
         <h4 className="inventory__heading">
           Status
           </h4>
-        <div className="inventory__row">
+        <div className="inventory__text-container--status">
           <div className={statusClassName}>
             {status}
           </div>  
@@ -92,7 +72,7 @@ const InventoryCard = ({ itemObject }) => {
         <h4 className="inventory__heading">
           Qty
         </h4>
-        <div className="inventory__text-container">
+        <div className="inventory__text-container--qty">
           <p2>
             {quantity}
           </p2>
