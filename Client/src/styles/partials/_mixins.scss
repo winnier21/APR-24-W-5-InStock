@@ -2,7 +2,8 @@
 @use './globals' as *;
 
 @mixin tablet {
-    @media screen and (min-width: 48rem) and ( max-width: 80rem) {
+    // @media screen and (min-width: 48rem) and ( max-width: 80rem) {
+        @media screen and (min-width: 48rem) {
         @content;
     }
 }
@@ -50,6 +51,6 @@
     padding: 1rem 1.5rem;
 
     @include tablet {
-        padding: 1.125rem 2.5rem;
+        padding: 1.125rem $card-side-padding--tablet;
     }
 }
