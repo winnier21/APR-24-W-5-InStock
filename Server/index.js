@@ -5,8 +5,10 @@ import inventoryRoutes from './routes/inventories.js';
 import warehouseRoutes from './routes/warehouses.js';
 
 
+
 const app = express();
 app.use(cors());
+
 
 const PORT = process.env.PORT || 8080;
 const BACKEND_URL = process.env.BACKEND_URL;
@@ -14,6 +16,7 @@ const BACKEND_URL = process.env.BACKEND_URL;
 app.use(express.json());
 app.use('/api/inventories', inventoryRoutes);
 app.use('/api/warehouses', warehouseRoutes);
+
 
 
 // start Express on port 8080
