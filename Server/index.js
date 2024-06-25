@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import inventoryRoutes from './routes/inventories.js';
+import warehouseRoutes from './routes/warehouses.js';
 
 
 const app = express();
@@ -12,6 +13,7 @@ const BACKEND_URL = process.env.BACKEND_URL;
 
 app.use(express.json());
 app.use('/api/inventories', inventoryRoutes);
+app.use('/api/warehouses', warehouseRoutes);
 
 
 // start Express on port 8080
