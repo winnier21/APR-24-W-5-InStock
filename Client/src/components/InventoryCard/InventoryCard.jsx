@@ -1,5 +1,7 @@
 import React from 'react';
 import './InventoryCard.scss';
+import deleteIcon from '../../assets/icons/delete_outline-24px.svg';
+import editIcon from "../../assets/icons/edit-24px.svg";
 
 const InventoryCard = ({ itemObject }) => {
   
@@ -7,14 +9,15 @@ const InventoryCard = ({ itemObject }) => {
   const statusClassName = status.toLowerCase() === 'in stock' ? 'inventory__status--green' : 'inventory__status--red';
   return (
     <div className="inventory__card">
+      <div className="inventory__details">
       <div className="inventory__left">
-        <h4 className="inventory__header">
+        <h4 className="inventory__heading">
           Inventory Item
         </h4>
         <h3 className="inventory__item-name">
           {item_name}
         </h3>
-        <h4 className="inventory__header">
+        <h4 className="inventory__heading">
           Category
         </h4>
         <p2>
@@ -22,13 +25,13 @@ const InventoryCard = ({ itemObject }) => {
         </p2>
       </div>
       <div className="inventory__right">
-        <h4 className="inventory__header">
+        <h4 className="inventory__heading">
           Status
         </h4>
         <div className={statusClassName}>
           {status}
         </div>  
-        <h4 className="inventory__header">
+        <h4 className="inventory__heading">
           Qty
         </h4>
         <p2>
@@ -36,8 +39,11 @@ const InventoryCard = ({ itemObject }) => {
         </p2>
 
       </div>
-      <div className="inventory__icons">
 
+      </div>
+      <div className="inventory__icons">
+        <img src={deleteIcon} />
+        <img src={editIcon} />
       </div>
 
     </div>
