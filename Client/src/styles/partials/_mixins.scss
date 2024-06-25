@@ -1,3 +1,6 @@
+@use './variables' as *;
+@use './globals' as *;
+
 @mixin tablet {
     @media screen and (min-width: 48rem) and ( max-width: 80rem) {
         @content;
@@ -10,6 +13,7 @@
     }
 }
 @mixin flex-mixin($element-width) {
+    display: flex;
     position: relative;
     width: $element-width;
 }
@@ -29,4 +33,23 @@
     margin: 0;
     padding: 0;
     line-height: 100%;
+}
+
+@mixin table-heading {
+    @extend h4;
+    text-transform: uppercase;
+    color: $slate;
+}
+
+@mixin row-name {
+    @extend h3;
+    color: $instock-indigo;
+}
+
+@mixin card-padding {
+    padding: 1rem 1.5rem;
+
+    @include tablet {
+        padding: 1.125rem 2.5rem;
+    }
 }
