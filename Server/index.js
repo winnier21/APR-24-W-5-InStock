@@ -6,7 +6,6 @@ import inventoryRoutes from './routes/inventories.js';
 
 const app = express();
 app.use(cors());
-// console.log(inventoryRoutes)
 
 const PORT = process.env.PORT || 8080;
 const BACKEND_URL = process.env.BACKEND_URL;
