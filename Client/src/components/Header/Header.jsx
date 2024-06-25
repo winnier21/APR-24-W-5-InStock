@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
+    <header>
     <nav className="header">
       <div className="header__container">
         <div className="header__logo-container">
@@ -22,6 +23,7 @@ function Header() {
         </section>
       </div>
     </nav>
+    </header>
   );
 }
 
