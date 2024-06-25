@@ -5,7 +5,8 @@ $icons-width: 10rem;
 $card-width--tablet: calc(100% - 2 * $card-side-padding--tablet);
 $details-width: calc(100% - $icons-width);
 $column-gap: calc($card-side-padding--tablet * 2);
-$column-width: calc((50% - $card-side-padding--tablet));
+$column-width--half: calc((50% - $card-side-padding--tablet));
+$column-width--third: calc((33% - $card-side-padding--tablet));
 
 .inventory {
 
@@ -25,6 +26,7 @@ $column-width: calc((50% - $card-side-padding--tablet));
   &__details {
     @include flex-mixin--row(auto);
     justify-content: flex-start;
+    align-items: flex-start;
 
     @include tablet {
       width: $details-width;
@@ -32,22 +34,41 @@ $column-width: calc((50% - $card-side-padding--tablet));
     }
   }
 
-  &__left, &__right {
-    @include flex-mixin--column(100%);
+  &__left {
+    @include flex-mixin--column(calc($details-width / 2));
 
     @include tablet {
+      width: calc($details-width * 2 / 5);
       flex-direction: row;
       justify-content: space-between;
+    }
+  }
+
+  &__right {
+    @extend .inventory__left;
+    @include tablet {
+      width: calc($details-width * 3 / 5);
+
+      & inventory__heading, & inventory__text-container {
+        width: $column-width--third;
+      }
     }
   }
 
   &__heading {
     @include table-heading;
     margin-top: 1.25rem;
-    width: $column-width;
+    width: $column-width--half;
     
     &:first-of-type {
       margin-top: none;
+    }
+
+    &--table {
+      display: none;
+      @include tablet {
+        width: $column-width--half;
+      }
     }
 
     @include tablet {
@@ -57,11 +78,11 @@ $column-width: calc((50% - $card-side-padding--tablet));
 
   &__item-name {
     @include row-name;
-    width: $column-width;
+    width: $column-width--half;
   }
 
   &__text-container {
-    width: $column-width;
+    width: $column-width--half;
     align-items: flex-start;
   }
 
@@ -87,6 +108,7 @@ $column-width: calc((50% - $card-side-padding--tablet));
 
   &__icons {
     @include flex-mixin--row(auto);
+    gap: 1.1875rem;
 
     &__icon {
 

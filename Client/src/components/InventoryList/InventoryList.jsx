@@ -26,6 +26,7 @@ const InventoryList = () => {
 
   return (
     <section>
+      <InventoryCard itemObject="" />
       {
         inventoryArray.map(itemObject => {
           const { id, ...itemData } = itemObject;

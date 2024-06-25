@@ -5,10 +5,10 @@ import InventoryList from '../../components/InventoryList/InventoryList';
 
 function InventoryPage() {
   return (
-    <div>
+    <main>
       <h1>Inventory</h1>
       <InventoryList />
-    </div>
+    </main>
   );
 }
 
