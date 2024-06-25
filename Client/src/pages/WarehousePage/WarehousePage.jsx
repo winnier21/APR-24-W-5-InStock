@@ -4,10 +4,10 @@ import './WarehousePage.scss';
 
 function WarehousePage() {
   return (
-    <div>
+    <main>
       <h1>Warehouse Page</h1>
       <WarehouseDetails />
-    </div>
+    </main>
   );
 }
 
