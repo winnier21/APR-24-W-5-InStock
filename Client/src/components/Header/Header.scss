@@ -24,8 +24,9 @@
     padding-top: $padding-large;
     padding-bottom: $padding-large;
     width: 8.03688rem;
-    margin-left:7.69rem;
+    margin-left: 7.69rem;
     margin-right: 7.71rem;
+   
   }
   &__logo-container {
     display: flex;
@@ -37,12 +38,29 @@
   &__wrapper {
     display: flex;
     justify-content: center;
+    margin-left: $padding-med;
+    margin-right: $padding-med;
 
     h3 {
       color: $white;
       font-family: "Titillium Web";
       font-weight: 400;
       padding: 0 $padding-med 0 $padding-med;
+      text-align: center;
+
+    }
+
+    .header__link {
+      padding: 0.5rem 1rem;
+      color: $cloud;
+      width: 50%;
+      text-align: center;
+      text-decoration: none;
+      &:hover {
+        color: $white;
+        background-color: $instock-black;
+        border-radius: 1.5625rem;
+      }
     }
   }
 }
