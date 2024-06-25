@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import InventoryCard from '../InventoryCard/InventoryCard';
 import React from 'react';
 import apiInstance from '../../utils/ApiClient';
+import InventoryCard from '../InventoryCard/InventoryCard';
 
 
 const InventoryList = () => {
-  const [inventoryArray, setInventoryArray] = useState([]);
+  const [inventoryArray, setInventoryArray] = useState();
 
   const getAllInventory = async () => {
     const data = await apiInstance.getItemsArray();
@@ -18,9 +18,25 @@ const InventoryList = () => {
     getAllInventory();
   }, [])
 
+  if (!inventoryArray) {
+    return (
+      <section>Loading...</section>
+    )
+  }
+
   return (
     <section>
-      <p>hello</p>
+      {
+        inventoryArray.map(itemObject => {
+          const { id, ...itemData } = itemObject;
+          return <InventoryCard
+              key={id}
+              itemObject={itemData}
+            />
+          }
+        )
+      }
+      
     </section>
   )
 }

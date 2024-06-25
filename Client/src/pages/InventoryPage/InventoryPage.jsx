@@ -8,7 +8,6 @@ function InventoryPage() {
     <div>
       <h1>Inventory</h1>
       <InventoryList />
-      <ItemDetails />
     </div>
   );
 }
