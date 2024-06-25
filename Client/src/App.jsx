@@ -1,16 +1,18 @@
 import React from 'react';
-import './App.scss';
-import Header from './components/Header/Header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import WarehousePage from './pages/WarehousePage/WarehousePage';
+import InventoryPage from './pages/InventoryPage/InventoryPage';
+import './App.scss'
 
 function App() {
-  
-
   return (
-    <>
-      <Header />
-      
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<WarehousePage />} />
+        <Route path="/inventory" element={<InventoryPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

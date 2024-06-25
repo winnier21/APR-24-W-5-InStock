@@ -1,0 +1,50 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+.inventory {
+
+  &__card {
+    @include flex-mixin--row(auto);
+    @include card-padding;
+  }
+
+  &__left, &__right {
+    @include flex-mixin--column(100%);
+  }
+
+  &__heading {
+    @include table-heading;
+  }
+
+  &__item-name {
+    @include row-name;
+  }
+
+  &__status {
+    @extend h4;
+    border-radius: $status-radius;
+    text-transform: uppercase;
+    width: fit-content;
+    padding: .25rem .5rem;
+
+    &--green {
+      @extend .inventory__status;
+      background-color: $green-background;
+      color: $green;
+    }
+
+    &--red {
+      @extend .inventory__status;
+      background-color: $red-background;
+      color: $red;
+    }
+  }
+
+  &__icons {
+
+    &__icon {
+
+    }
+  }
+  
+}
