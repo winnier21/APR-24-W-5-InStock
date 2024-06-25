@@ -2,7 +2,8 @@
 @use './globals' as *;
 
 @mixin tablet {
-    @media screen and (min-width: 48rem) {
+    // @media screen and (min-width: 48rem) and ( max-width: 80rem) {
+        @media screen and (min-width: 48rem) {
         @content;
     }
 
@@ -83,21 +84,6 @@
     padding: 1rem 1.5rem;
 
     @include tablet {
-        padding: 1.125rem 2.5rem;
+        padding: 1.125rem $card-side-padding--tablet;
     }
 }
-@mixin p1{
-    font-size: .9375rem;
-    line-height: 1.625rem;
-    font-weight: 400;
-  }
-@mixin p2{
-    font-size: 0.8125rem;
-    line-height: 1.25rem;
-    font-weight: 400;
-  }
-@mixin p3{
-    font-size: .6875rem;
-    line-height: 1rem;
-    font-weight: 400;
-  }
