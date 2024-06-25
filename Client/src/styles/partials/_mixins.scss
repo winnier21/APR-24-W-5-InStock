@@ -2,14 +2,47 @@
 @use './globals' as *;
 
 @mixin tablet {
-    @media screen and (min-width: 48rem) and ( max-width: 80rem) {
+    @media screen and (min-width: 48rem) {
         @content;
     }
+
+    p1{
+        font-size: 1rem;
+        line-height: 1.75rem;
+        font-weight: 400; 
+    }
+    p2{
+        font-size: .875rem;
+        line-height: 1.375rem;
+        font-weight: 400;
+    }
+    p3{
+        font-size: .75rem;
+        line-height: 1.125rem;
+        font-weight: 400;
+    }
+    
 }
 
 @mixin desktop {
     @media screen and (min-width: 80rem) {
         @content;
+    }
+
+    p1{
+        font-size: 1rem;
+        line-height: 1.75rem;
+        font-weight: 400; 
+    }
+    p2{
+        font-size: .875rem;
+        line-height: 1.375rem;
+        font-weight: 400;
+    }
+    p3{
+        font-size: .75rem;
+        line-height: 1.125rem;
+        font-weight: 400;
     }
 }
 @mixin flex-mixin($element-width) {
@@ -53,3 +86,18 @@
         padding: 1.125rem 2.5rem;
     }
 }
+@mixin p1{
+    font-size: .9375rem;
+    line-height: 1.625rem;
+    font-weight: 400;
+  }
+@mixin p2{
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+  }
+@mixin p3{
+    font-size: .6875rem;
+    line-height: 1rem;
+    font-weight: 400;
+  }
