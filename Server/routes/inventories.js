@@ -2,7 +2,6 @@ import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 import express from 'express';
-// import inventoryItems from '../testData/inventories.js';
 
 
 const router = express.Router()
@@ -22,5 +21,3 @@ router.get('/', async (req, res) => {
 })
 
 export default router;
-
-// console.log(inventoryArray);

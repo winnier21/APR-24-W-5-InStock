@@ -30,3 +30,15 @@
     padding: 0;
     line-height: 100%;
 }
+
+@mixin table-heading {
+    @extend h4;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $slate;
+}
+
+@mixin row-name {
+    @extend h3;
+    color: $instock-indigo;
+}
