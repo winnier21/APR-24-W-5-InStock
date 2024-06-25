@@ -1,18 +1,26 @@
 import React from 'react';
 import './Header.scss';
-import logo from '../../assets/Logo/InStock-Logo_1x.png';
-// import {link} from 'react-router-dom';
+import logo from '../../assets/logo/InStock-Logo_2x.png';
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <nav className='header'>
-        {/* <link to ="/"> */}
+        <div className='header__container'>
+        <div className="header__logo-container"> 
+        <Link to ="/">
         <img src={logo} alt="InStock Logo" className="header__logo"/>
-        <section className='header__container'>
+        </Link>
+        </div>
+        <section className='header__wrapper'>
+        <Link className='header__link' to ='/warehouses'>
         <h3>Warehouse</h3>
+        </Link>
+        <Link className='header__link' to ='/inventory'>
         <h3>Inventory</h3>
+        </Link>
         </section>
-        {/* </link> */}
+        </div>
         </nav>
   )
 }
