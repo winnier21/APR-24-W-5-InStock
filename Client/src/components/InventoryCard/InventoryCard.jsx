@@ -20,9 +20,11 @@ const InventoryCard = ({ itemObject }) => {
         <h4 className="inventory__heading">
           Category
         </h4>
-        <p2>
-          Gear
-        </p2>
+        <div className="inventory__text-container">
+          <p2>
+            Gear
+          </p2>
+        </div>
       </div>
       <div className="inventory__right">
         <h4 className="inventory__heading">
@@ -34,9 +36,11 @@ const InventoryCard = ({ itemObject }) => {
         <h4 className="inventory__heading">
           Qty
         </h4>
-        <p2>
-          {quantity}
-        </p2>
+        <div className="inventory__text-container">
+          <p2>
+            {quantity}
+          </p2>
+        </div>
 
       </div>
 

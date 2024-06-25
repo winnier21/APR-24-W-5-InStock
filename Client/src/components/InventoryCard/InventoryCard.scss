@@ -1,6 +1,12 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
+$icons-width: 10rem;
+$card-width--tablet: calc(100% - 2 * $card-side-padding--tablet);
+$details-width: calc(100% - $icons-width);
+$column-gap: calc($card-side-padding--tablet * 2);
+$column-width: calc((50% - $card-side-padding--tablet));
+
 .inventory {
 
   &__card {
@@ -11,7 +17,7 @@
 
     @include tablet {
       flex-direction: row;
-      width: 100%;
+      width: $card-width--tablet;
       justify-content: space-between;
     }
   }
@@ -21,7 +27,8 @@
     justify-content: flex-start;
 
     @include tablet {
-      width: 100%;
+      width: $details-width;
+      gap: $column-gap;
     }
   }
 
@@ -30,13 +37,14 @@
 
     @include tablet {
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: space-between;
     }
   }
 
   &__heading {
     @include table-heading;
     margin-top: 1.25rem;
+    width: $column-width;
     
     &:first-of-type {
       margin-top: none;
@@ -49,6 +57,12 @@
 
   &__item-name {
     @include row-name;
+    width: $column-width;
+  }
+
+  &__text-container {
+    width: $column-width;
+    align-items: flex-start;
   }
 
   &__status {
