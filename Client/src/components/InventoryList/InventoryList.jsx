@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import apiInstance from '../../utils/ApiClient';
 import InventoryCard from '../InventoryCard/InventoryCard';
+import sortIcon from '../../assets/icons/sort-24px.svg';
 
-
-const InventoryList = () => {
+const InventoryList = ({warehouseId}) => {
   const [inventoryArray, setInventoryArray] = useState();
-  const warehouseId = useParams().videoId;
-  let getInventoryMethod;
-  (warehouseId === null) ? getInventoryMethod = apiInstance.getItemsArray : getInventoryMethod = null;
 
   const getAllInventory = async () => {
-    const data = await apiInstance.getItemsArray();
+    let data = null;
+    if (! warehouseId) {
+      data = await apiInstance.getItemsArray('inventories');
+    } else {
+      data = await apiInstance.getWarehouseItems(warehouseId);
+    }
     if (data) {
       setInventoryArray(data);
     }
@@ -28,15 +29,19 @@ const InventoryList = () => {
     )
   }
 
+  // If warehouseId exists, apply a className that allows for wider columns to account for fewer columns.
+  let sectionWidth;
+  warehouseId ? sectionWidth = "--wide" : sectionWidth = "";
   return (
     <section>
-      <InventoryCard itemObject="" />
+      <InventoryCard itemObject={warehouseId} sectionWidth={sectionWidth}/>
       {
         inventoryArray.map(itemObject => {
           const { id, ...itemData } = itemObject;
           return <InventoryCard
-              key={id}
-              itemObject={itemData}
+            key={id}
+            itemObject={itemData}
+            sectionWidth={sectionWidth}
             />
           }
         )

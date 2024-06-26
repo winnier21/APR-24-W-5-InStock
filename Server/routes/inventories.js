@@ -14,9 +14,8 @@ router.get('/', async (req, res) => {
         'inventories.id', 'warehouse_name', 'item_name', 'description', 'category', 'status', 'quantity', 
       ).join('warehouses', {'inventories.warehouse_id': 'warehouses.id'});
     res.status(200).json(data);
-    console.log('Inventories table requested');
   } catch (error) {
-    console.error(`Error with getting data: ${error}`)
+    res.status(400).send(`Error with getting data: ${error}`)
   }
 })
 
