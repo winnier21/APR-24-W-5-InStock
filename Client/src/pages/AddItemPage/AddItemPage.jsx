@@ -1,10 +1,13 @@
-// import './AddItemPage.scss';
+import React from 'react';
+import './AddItemPage.scss';
+import AddItemForm from '../../components/AddItemForm/AddItemForm'
 
-const AddItemPage = () => {
+function AddItemPage() {
   return (
-    <>
-    </>
-  )
+    <main>
+        <AddItemForm />
+    </main>
+  );
 }
 
-export default AddItemPage
+export default AddItemPage;
