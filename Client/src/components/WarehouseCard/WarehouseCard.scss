@@ -46,16 +46,13 @@ $column-width: 50%;
 
   &__text-container {
     @extend .inventory__text-container;
-    width: $column-width;
+    @include tablet {
+      width: $column-width;
+    }
   }
 
   &__index {
     @extend .inventory__item-name;
   }
 
-  &__address,
-  &__contact-info,
-  &__contact-name {
-    width: $column-width;
-  }
 }
