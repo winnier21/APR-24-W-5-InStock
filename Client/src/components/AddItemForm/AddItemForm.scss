@@ -1,0 +1,144 @@
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.main{
+    .main-header {
+        padding-bottom: 1.5rem;
+        padding-top: 1.5rem;
+        border-bottom: .0625rem solid $cloud;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        .arrow-back-icon{
+            font-size: 1.5rem;
+            margin-right: 0.625rem;
+        }    
+    }
+    .form {
+    display: flex;
+    flex-direction: column;
+    @include tablet{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    @include desktop{
+        display: flex;
+        flex-direction: row;
+    }
+        .item-details{
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+
+            h2{
+                padding-bottom: 1.5rem;
+                padding-top: 1.5rem;
+            }
+            .item-detail{
+            display: flex;
+            flex-direction: column;
+            @include form-field-spacing;
+                .item-input{
+                    @include form-field-spacing;
+                }
+                .item-input--name{
+                    @include form-fields;
+                    &.item-input--name-placeholder{
+                        @include input-select-placeholders;
+                    }
+                }
+                .item-input--description{
+                    border: .0625rem solid $cloud;
+                    border-radius: 1.25rem;
+                    height: 7.5rem;
+                    width: 100%;
+                    @include tablet{
+                        width: 17.9375rem;
+                    }
+                    @include desktop{
+                        width: 17.9375rem;
+                    }
+                    &.item-input--description-placeholder{
+                        @include input-select-placeholders;
+                    }
+                }
+                .item-select{
+                    @include form-field-spacing;
+                .item-select--category{
+                    @include form-fields;
+                    option:first-child {
+                        @include input-select-placeholders;
+                    }
+                }
+                border-bottom: .0625rem solid $cloud;
+                @include tablet{
+                    border-bottom: none;
+                }
+                @include desktop{
+                    border-bottom: none;
+                }
+                }
+            }
+        }
+        .item-availability{
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+
+            h2{
+                padding-bottom: 1.5rem;
+                padding-top: 1.5rem;
+            }
+            .item-availability-status{
+                @include form-field-spacing;
+                .item-status{
+                    display: flex;
+                    justify-content: flex-start;
+                    gap: 10rem;
+                    @include tablet{
+                        gap:4rem;
+                    }
+                    @include desktop{
+                        gap:4rem;
+                    }
+                    & .item-status__check{
+                        display: flex;
+                        gap: .25rem;
+                    }
+                }
+            }
+            .item-quantity{
+                @include form-field-spacing;
+                .item-input{
+                @include form-field-spacing;
+                }
+                .item-input--quantity{
+                    @include form-fields;
+                }
+            }
+            .item-warehouse{
+                @include form-field-spacing; 
+            .item-select{
+                @include form-field-spacing;
+                }
+                .item-select--warehouses{
+                    @include form-fields;
+                } 
+            }   
+        }
+    }
+    .button{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: $light-grey;
+        height:4.25rem;
+        & .button-cancel{
+            @include button-cancel;
+        }
+        & .button-add{
+            @include button-add;
+        }
+    }
+}
+    
