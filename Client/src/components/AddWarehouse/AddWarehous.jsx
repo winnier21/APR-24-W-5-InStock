@@ -6,6 +6,7 @@ import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsF
 
 function AddWarehouse() {
   return (
+    <main>
     <section className="card">
       <div className="card__title">
         <div className="card__title-container">
@@ -34,6 +35,7 @@ function AddWarehouse() {
         </div>
       </div>
     </section>
+    </main>
   );
 }
 
