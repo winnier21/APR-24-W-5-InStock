@@ -1,0 +1,11 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.footer {
+  color: $slate;
+  font-weight: 400;
+  text-align: center;
+  margin: 2.5rem 6.81rem;
+  font-size: 0.6875rem;
+}
