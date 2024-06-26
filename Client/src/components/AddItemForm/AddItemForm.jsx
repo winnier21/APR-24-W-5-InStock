@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import './AddItemForm.scss';
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import axios from 'axios';
@@ -11,7 +11,10 @@ const AddItemForm = ({ id }) => {
   const [quantity, setQuantity] = useState(1);
   const [warehouse, setWarehouse] = useState('');
   const [errors, setErrors] = useState({});
+  const [categories, setCategories] = useState([]);
+  const [warehouses, setWarehouses] = useState([]); 
 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!itemName ||!description ||!category ||!status ||!warehouse) {
@@ -34,7 +37,7 @@ const AddItemForm = ({ id }) => {
       quantity,
       warehouse,
     });try {
-        const response = await axios.put(`/api/inventories/${id}`, formData); // Update URL and method
+        const response = await axios.put(`/api/inventories`, formData); // Update URL and method
         console.log('Item updated successfully:', response.data);
         setItemName('');
         setDescription('');
@@ -81,7 +84,7 @@ const AddItemForm = ({ id }) => {
                 <div className="item-detail">
                     <label className='label-text'>Description </label>
                     <div className="item-input">
-                        <input
+                        <textarea
                         className='item-input--description item-input--description-placeholder '
                         id="description"
                         value={description}
@@ -99,8 +102,12 @@ const AddItemForm = ({ id }) => {
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                         >
-                        <option value="" placeholder="Please select" >Please select</option>
-                        {/* Add category options here */}
+                        <option value="" placeholder="Please select"> Please select </option>
+                        {categories.map((category, index) => (
+                             <option key={`category-${index}`} value={category}>
+                                {category}
+                            </option>
+                        ))}
                         </select>
                     </div>
                 </div>
@@ -138,6 +145,7 @@ const AddItemForm = ({ id }) => {
                         </div>
                     </div>
                 </div>
+                {status === 'in_stock' && (
                 <div className="item-quantity">
                     <label className='label-text'>Quantity</label>
                     <div className="item-input">
@@ -150,6 +158,7 @@ const AddItemForm = ({ id }) => {
                         />
                     </div>
                 </div>
+                )}
                 <div className="item-warehouse">
                     <label className='label-text'>Warehouse</label>
                     <div className="item-select">
@@ -158,9 +167,13 @@ const AddItemForm = ({ id }) => {
                         id="warehouse"
                         value={warehouse}
                         onChange={(e) => setWarehouse(e.target.value)}
-                        >
+                    >
                         <option value="">Please select</option>
-                        {/* Add warehouse options here */}
+                        {warehouses.map((warehouse, index) => (
+                        <option key={`warehouse-${index}`} value={warehouse}>
+                            {warehouse}
+                            </option>
+                          ))}
                         </select>
                     </div>
                 </div>

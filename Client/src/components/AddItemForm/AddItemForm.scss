@@ -73,12 +73,15 @@
                         width: 17.9375rem;
                     }
                     &.item-input--description-placeholder{
+                        font-family: 'Titillium Web', sans-serif;
                         @include input-select-placeholders;
                     }
                 }
                 .item-select{
                     @include form-field-spacing;
                 .item-select--category{
+                    // -webkit-appearance: none;
+                    // color: #BDC5D5;
                     @include form-fields;
                     option:first-child {
                         @include input-select-placeholders;
