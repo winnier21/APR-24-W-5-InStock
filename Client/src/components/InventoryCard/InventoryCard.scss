@@ -60,6 +60,7 @@ $column-width--qty: 19%;
   }
 
   &__left {
+    background-color: antiquewhite;
     @include flex-mixin--column(100%);
     @include tablet {
       width: $details-width--left;
@@ -78,6 +79,13 @@ $column-width--qty: 19%;
         }
       }
     }
+    
+    &--wide{
+      @extend .inventory__left;
+      @include tablet {
+        width: 50%;
+      }
+    }
   }
 
   &__right {
@@ -87,6 +95,14 @@ $column-width--qty: 19%;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
+    }
+    
+    &--wide{
+      background-color: aqua;
+      @extend .inventory__right;
+      @include tablet {
+        width: 50%;
+      }
     }
   }
 
@@ -121,20 +137,35 @@ $column-width--qty: 19%;
   &__item-name {
     @include row-name;
     width: $column-width--index;
+    background-color: lime;
   }
 
   &__text-container {
     align-items: flex-start;
 
+    &--name {
+      @include tablet {
+        width: $column-width--index;
+      }
+    }
+
+    &--category {
+      @include tablet {
+        width: $column-width--category;
+      }
+    }
+
     &--qty {
       @include tablet {
         width: $column-width--qty;
+        background-color: pink;
       }
     }
 
     &--status {
       @include tablet {
         width: $column-width--status;
+        background-color: yellow;
       }
     }
   }

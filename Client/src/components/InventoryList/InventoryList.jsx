@@ -6,7 +6,6 @@ import sortIcon from '../../assets/icons/sort-24px.svg';
 
 const InventoryList = ({warehouseId}) => {
   const [inventoryArray, setInventoryArray] = useState();
-  console.log(warehouseId)
 
   const getAllInventory = async () => {
     let data = null;
