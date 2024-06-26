@@ -1,8 +1,64 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 @use '../../components/InventoryCard/InventoryCard.scss' as *;
 
+$details-section-width: calc((100% - $icons-width) / 2);
+$column-width: 50%;
+
+.warehouse__header-row {
+  @extend .inventory__header-row;
+}
+
 .warehouse-card {
-  &__card {
-    @extend .inventory__card;
-    background-color: pink;
+  @extend .inventory__card;
+  
+  &__details {
+    @extend .inventory__details;
   }
+
+  &__left, &__right {
+    background-color: pink;
+    @include flex-mixin--column(100%);
+    @include tablet {
+      width: $details-section-width;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+  }
+
+  &__heading {
+    @extend .inventory__heading;
+
+    &--table {
+      @extend .inventory__heading--table;
+    }
+  }
+
+  &__text-container {
+    @extend .inventory__text-container;
+    width: $column-width;
+  }
+
+  &__index {
+    @extend .inventory__item-name;
+  }
+
+  &__address {
+    
+  }
+
+  &__contact-info {
+
+  }
+
+  &__contact-name {
+
+  }
+
+  &__icons {
+
+  }
+
 }

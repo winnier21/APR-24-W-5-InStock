@@ -33,7 +33,8 @@ const InventoryList = ({warehouseId}) => {
   warehouseId ? sectionWidth = "--wide" : sectionWidth = "";
   return (
     <section>
-      <InventoryCard itemObject={warehouseId} sectionWidth={sectionWidth}/>
+      <InventoryCard itemObject={warehouseId} sectionWidth={sectionWidth} />
+      <ul>
       {
         inventoryArray.map(itemObject => {
           const { id, ...itemData } = itemObject;
@@ -45,7 +46,7 @@ const InventoryList = ({warehouseId}) => {
           }
         )
       }
-      
+      </ul>
     </section>
   )
 }

@@ -63,9 +63,7 @@ $column-width--qty: 19%;
     @include flex-mixin--column(100%);
     @include tablet {
       width: $details-width--left;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+      @include align-left-top;
     }
 
     & .inventory__heading--table, & .inventory__text-container {
@@ -91,9 +89,7 @@ $column-width--qty: 19%;
     @include flex-mixin--column(100%);
     @include tablet {
       width: $details-width--right;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
+      @include align-left-top;
     }
     
     &--wide{
@@ -139,6 +135,7 @@ $column-width--qty: 19%;
 
   &__text-container {
     align-items: flex-start;
+    background-color: aliceblue;
 
     &--status {
       @include tablet {

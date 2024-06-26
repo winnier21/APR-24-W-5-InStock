@@ -66,9 +66,9 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
           Warehouse
         </h4>
         <div className="inventory__text-container">
-          <p2>
+          <p>
             {warehouse_name}
-          </p2>
+          </p>
         </div>
         </>
       )
@@ -78,7 +78,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
   }
   
   return (
-    <div className="inventory__card">
+    <li className="inventory__card">
       <div className="inventory__details">
       <div className={leftSectionClass}>
         <h4 className="inventory__heading">
@@ -91,9 +91,9 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
           Category
         </h4>
         <div className="inventory__text-container">
-          <p2>
+          <p>
             {category}
-          </p2>
+          </p>
         </div>
       </div>
       <div className={rightSectionClass}>
@@ -109,9 +109,9 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
           Qty
         </h4>
         <div className="inventory__text-container inventory__qty">
-          <p2>
+          <p>
             {quantity}
-          </p2>
+          </p>
         </div>
         {createWarehouseElements(warehouse_name)}
 
@@ -119,7 +119,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
 
       </div>
       <ActionIcons />
-    </div>
+    </li>
   )
 }
 

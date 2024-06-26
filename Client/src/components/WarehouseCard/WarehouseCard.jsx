@@ -12,21 +12,29 @@ const WarehouseCard = ({ warehouseObject }) => {
 
   if (typeof warehouseObject !== 'object') { // if it is a string or null
     return (
-      <div className="warehouse-card warehouse-card__header-row">
-        <div className=" ">
+      <div className="warehouse-card warehouse__header-row">
+        <div className="warehouse-card__details">
           <div className="warehouse-card__left">
-            <h4 className="warehouse-card__heading--table warehouse-card__text-container--index">
+            <h4 className=
+              "warehouse-card__heading--table warehouse-card__text-container warehouse-card__index"
+            >
               Warehouse
             </h4>
-            <h4 className="warehouse-card__heading--table warehouse-card__text-container--address">
+            <h4 className=
+              "warehouse-card__heading--table warehouse-card__text-container warehouse-card__address"
+            >
               Address
             </h4>
           </div>
           <div className="warehouse-card__right">
-            <h4 className="warehouse-card__heading--table warehouse-card__text-container--contact-name">
+            <h4 className=
+              "warehouse-card__heading--table warehouse-card__text-container warehouse-card__contact-name"
+            >
               Contact Name
             </h4>
-            <h4 className="warehouse-card__heading--table warehouse-card__text-container--contact-info">
+            <h4 className=
+              "warehouse-card__heading--table warehouse-card__text-container warehouse-card__contact-info"
+            >
               Contact Information
             </h4>
           </div>
@@ -41,10 +49,10 @@ const WarehouseCard = ({ warehouseObject }) => {
   }
 
   return (
-    <div className="warehouse-card">
+    <li className="warehouse-card">
       <div className="warehouse-card__details">
         <div className="warehouse-card__left">
-          <h4 className="warehouse-card__text-container--index">
+          <h4 className="warehouse-card__text-container warehouse-card__index">
             Warehouse
           </h4>
           <h3 className="warehouse-card__warehouse-name">
@@ -54,9 +62,9 @@ const WarehouseCard = ({ warehouseObject }) => {
             Address
           </h4>
           <div className="warehouse-card__text-container warehouse-card__address">
-            <p2>
-              {address}
-            </p2>
+            <p>
+              {address}, {city}, {country}
+            </p>
           </div>
         </div>
         <div className="warehouse-card__right">
@@ -71,10 +79,10 @@ const WarehouseCard = ({ warehouseObject }) => {
           <h4 className="warehouse-card__heading warehouse-card__contact-name">
             Contact Information
           </h4>
-            <div className="warehouse-card__text-container warehouse-card__contact-name">
-              <p2>
+            <div className="warehouse-card__text-container warehouse-card__contact-info">
+              <p>
                 {contact_phone}
-              </p2>
+              </p>
               <p>
                 {contact_email}
               </p>
@@ -82,7 +90,7 @@ const WarehouseCard = ({ warehouseObject }) => {
           </div>
         </div>
       <ActionIcons />
-    </div>
+    </li>
   )
 }
 

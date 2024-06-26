@@ -26,6 +26,7 @@ const WarehouseList = () => {
 
   return (
     <section>
+      <ul>
       {warehousesArray.map(warehouseObject => {
         const { id, ...warehouseData } = warehouseObject;
         return <WarehouseCard
@@ -33,6 +34,7 @@ const WarehouseList = () => {
           warehouseObject={warehouseData}
         />
       })}
+      </ul >
     </section>
   )
 }
