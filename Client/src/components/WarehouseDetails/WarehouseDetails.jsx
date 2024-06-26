@@ -1,7 +1,7 @@
 import React from 'react';
 import './WarehouseDetails.scss';
 
-function WarehouseDetails() {
+function WarehouseDetails({warehouseObject}) {
   return (
     <div>
       <h2>Warehouse Details</h2>

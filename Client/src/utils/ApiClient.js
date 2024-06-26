@@ -39,10 +39,10 @@ export class ApiClient {
     return itemsArray;
   }
   
-  async getItem(itemId) {
-    const endpoint = `api/inventories/${itemId}`
-    const itemObject = await this.get(endpoint);
-    return itemObject;
+  async getItem(route, id) {
+    const endpoint = `api/${route}/${id}`
+    const data = await this.get(endpoint);
+    return data;
   }
   
   async getWarehouseItems(warehouseId) {
