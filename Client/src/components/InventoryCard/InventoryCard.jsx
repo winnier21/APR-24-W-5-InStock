@@ -6,7 +6,7 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 const InventoryCard = ({ itemObject }) => {
   if (itemObject === '') {
     return (
-      <div className="inventory__card">
+      <div className="inventory__card inventory__header-row">
         <div className="inventory__details">
         <div className="inventory__left">
           <h4 className="inventory__heading--table">

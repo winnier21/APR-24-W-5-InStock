@@ -28,6 +28,13 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
     }
   }
 
+  &__header-row {
+    display: none;
+    @include tablet {
+      display: flex;
+    }
+  }
+
   &__details {
     @include flex-mixin--row(auto);
     justify-content: flex-start;

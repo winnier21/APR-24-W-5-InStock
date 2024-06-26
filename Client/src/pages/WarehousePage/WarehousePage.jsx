@@ -1,12 +1,14 @@
 import React from 'react';
-import WarehouseList from '../../components/WarehouseList/WarehouseList';
+import { useParams } from 'react-router-dom';
+import InventoryList from '../../components/InventoryList/InventoryList';
 import './WarehousePage.scss';
 
 function WarehousePage() {
+  const warehouseId = useParams().warehouseId;
   return (
     <main>
       <h1>Warehouse Page</h1>
-      <WarehouseList />
+      <InventoryList warehouseId={ warehouseId } />
     </main>
   );
 }
