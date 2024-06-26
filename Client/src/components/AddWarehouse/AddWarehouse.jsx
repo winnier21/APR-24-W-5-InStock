@@ -1,8 +1,9 @@
 import "./AddWarehouse.scss";
 import { Link } from "react-router-dom";
-import BackArrow from "../../assets/Icons/arrow_back-24px.svg";
+import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import WarehouseDetailsForm from "../FormFields/WarehouseDetailsForm/WarehouseDetailsForm";
 import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsForm";
+import React from 'react';
 
 function AddWarehouse() {
   return (
@@ -10,7 +11,7 @@ function AddWarehouse() {
     <section className="card">
       <div className="card__title">
         <div className="card__title-container">
-          <Link className="backarrow__link" to="/warehouses">
+          <Link className="backarrow__link" to="/warehouse">
             <img
               className="card__icon-arrow"
               src={BackArrow}
