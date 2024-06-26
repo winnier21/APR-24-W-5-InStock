@@ -11,10 +11,10 @@ const AddItemForm = ({ id }) => {
   const [quantity, setQuantity] = useState(1);
   const [warehouse, setWarehouse] = useState('');
   const [errors, setErrors] = useState({});
-  const [categories, setCategories] = useState([]);
-  const [warehouses, setWarehouses] = useState([]); 
+  const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
+  const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
 
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!itemName ||!description ||!category ||!status ||!warehouse) {
@@ -106,7 +106,7 @@ const AddItemForm = ({ id }) => {
                         {categories.map((category, index) => (
                              <option key={`category-${index}`} value={category}>
                                 {category}
-                            </option>
+                             </option>
                         ))}
                         </select>
                     </div>
@@ -170,8 +170,8 @@ const AddItemForm = ({ id }) => {
                     >
                         <option value="">Please select</option>
                         {warehouses.map((warehouse, index) => (
-                        <option key={`warehouse-${index}`} value={warehouse}>
-                            {warehouse}
+                            <option key={`warehouse-${index}`} value={warehouse}>
+                                {warehouse}
                             </option>
                           ))}
                         </select>

@@ -115,11 +115,8 @@
 }
 
 @mixin input-select-placeholders{
-    font-size: .8125rem;
-    line-height: 1.25rem;
-    font-weight: 400;
+  // /use p2
     padding-left: 1rem; 
-    font-size: .8125rem;
     color: $slate; 
 }
 @mixin button-add{
@@ -157,7 +154,7 @@
     border: 0.0625rem solid $cloud;
     position: relative;
     background-color: $white;
-    color:$cloud;
+    color:$slate;
    
     @include desktop{
         justify-content: center;
