@@ -1,0 +1,40 @@
+import "./AddWarehouse.scss";
+import { Link } from "react-router-dom";
+import BackArrow from "../../assets/Icons/arrow_back-24px.svg";
+import WarehouseDetailsForm from "../FormFields/WarehouseDetailsForm/WarehouseDetailsForm";
+import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsForm";
+
+function AddWarehouse() {
+  return (
+    <section className="card">
+      <div className="card__title">
+        <div className="card__title-container">
+          <Link className="backarrow__link" to="/warehouses">
+            <img
+              className="card__icon-arrow"
+              src={BackArrow}
+              alt="Back to Warehouse List Page"
+            />
+          </Link>
+          <h1>Add New Warehouse</h1>
+        </div>
+      </div>
+      <div className="forms">
+        <div className="forms__container">
+          <WarehouseDetailsForm />
+          <ContactDetailsForm />
+        </div>
+        <div className="form__ctas">
+          <button className="form__ctas-cancel" type="button">
+            <h3>Cancel</h3>
+          </button>
+          <button className="form__ctas-add" type="button">
+            <h3>+ Add Warehouse</h3>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default AddWarehouse;
