@@ -2,7 +2,7 @@
 @use '../../styles/partials/variables' as *;
 @use '../../components/InventoryCard/InventoryCard.scss' as *;
 
-$details-section-width: calc((100% - $icons-width) / 2);
+$column-gap: 1rem;
 $column-width: 50%;
 
 .warehouse__header-row {
@@ -14,18 +14,22 @@ $column-width: 50%;
   
   &__details {
     @extend .inventory__details;
+    gap: $column-gap;
   }
 
   &__left, &__right {
-    background-color: pink;
     @include flex-mixin--column(100%);
     @include tablet {
-      width: $details-section-width;
+      gap: $column-gap;
+      width: 50%;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
     }
 
+  }
+
+  &__right {
   }
 
   &__heading {
@@ -45,7 +49,10 @@ $column-width: 50%;
     @extend .inventory__item-name;
   }
 
-  &__address {
+  &__address,
+  &__contact-info,
+  &__contact-name {
+    width: $column-width;
     
   }
 

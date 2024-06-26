@@ -4,11 +4,6 @@ import './WarehouseCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
 
 const WarehouseCard = ({ warehouseObject }) => {
-  const {
-    id, warehouse_name, address, city,
-    country, contact_name, contact_position,
-    contact_phone, contact_email
-  } = warehouseObject;
 
   if (typeof warehouseObject !== 'object') { // if it is a string or null
     return (
@@ -16,7 +11,7 @@ const WarehouseCard = ({ warehouseObject }) => {
         <div className="warehouse-card__details">
           <div className="warehouse-card__left">
             <h4 className=
-              "warehouse-card__heading--table warehouse-card__text-container warehouse-card__index"
+              "warehouse-card__heading--table warehouse-card__text-container"
             >
               Warehouse
             </h4>
@@ -47,22 +42,27 @@ const WarehouseCard = ({ warehouseObject }) => {
       </div>
     )
   }
+  const {
+    id, warehouse_name, address, city,
+    country, contact_name, contact_position,
+    contact_phone, contact_email
+  } = warehouseObject;
 
   return (
     <li className="warehouse-card">
       <div className="warehouse-card__details">
         <div className="warehouse-card__left">
-          <h4 className="warehouse-card__text-container warehouse-card__index">
+          <h4 className="warehouse-card__heading">
             Warehouse
           </h4>
-          <h3 className="warehouse-card__warehouse-name">
+          <h3 className="warehouse-card__text-container warehouse-card__index">
             {warehouse_name}
           </h3>
           <h4 className="warehouse-card__heading warehouse-card__address">
             Address
           </h4>
           <div className="warehouse-card__text-container warehouse-card__address">
-            <p>
+            <p className="table-text">
               {address}, {city}, {country}
             </p>
           </div>
@@ -71,19 +71,19 @@ const WarehouseCard = ({ warehouseObject }) => {
           <h4 className="warehouse-card__heading warehouse-card__contact-name">
             Contact Name
           </h4>
-          <div className="warehouse-card__text-container--status">
-            <div className="warehouse-card__text-container warehouse-card__contact-name">
+          <div className="warehouse-card__text-container warehouse-card__contact-name">
+            <p className="table-text">
               {contact_name}
-            </div>  
+            </p>  
           </div>
           <h4 className="warehouse-card__heading warehouse-card__contact-name">
             Contact Information
           </h4>
             <div className="warehouse-card__text-container warehouse-card__contact-info">
-              <p>
+              <p className="table-text">
                 {contact_phone}
               </p>
-              <p>
+              <p className="table-text">
                 {contact_email}
               </p>
             </div>

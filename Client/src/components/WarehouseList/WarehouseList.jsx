@@ -26,6 +26,7 @@ const WarehouseList = () => {
 
   return (
     <section>
+      <WarehouseCard itemObject={null} />
       <ul>
       {warehousesArray.map(warehouseObject => {
         const { id, ...warehouseData } = warehouseObject;

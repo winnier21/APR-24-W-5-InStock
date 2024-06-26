@@ -3,7 +3,7 @@
 
 $icons-width: 7rem;
 $card-width--tablet: calc(100% - 2 * $card-side-padding--tablet);
-$details-width: calc(100% - $icons-width);
+$details-width: 100%;
 $details-width--left: 40%;
 $details-width--right: calc(100% - $details-width--left);
 
@@ -32,8 +32,8 @@ $column-width--qty: 19%;
       padding-top: .6875rem;
       padding-bottom: .6875rem;
       
-      &:nth-of-type(2) {
-        border: none;
+      &:first-of-type {
+        border-top: none;
       }
     }
   }
@@ -135,7 +135,6 @@ $column-width--qty: 19%;
 
   &__text-container {
     align-items: flex-start;
-    background-color: aliceblue;
 
     &--status {
       @include tablet {
