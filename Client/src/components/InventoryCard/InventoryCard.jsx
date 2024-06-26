@@ -74,8 +74,6 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
       return '';
     }
   }
-
-  console.log(leftSectionClass);
   
   return (
     <div className="inventory__card">
