@@ -140,28 +140,22 @@ $column-width--qty: 19%;
   &__text-container {
     align-items: flex-start;
 
-    &--name {
-      @include tablet {
-        width: $column-width--index;
-      }
-    }
-
-    &--category {
-      @include tablet {
-        width: $column-width--category;
-      }
-    }
-
-    &--qty {
-      @include tablet {
-        width: $column-width--qty;
-      }
-    }
-
     &--status {
       @include tablet {
         width: $column-width--status;
       }
+    }
+  }
+
+  &__name {
+    @include tablet {
+      width: $column-width--index;
+    }
+  }
+
+  &__category {
+    @include tablet {
+      width: $column-width--category;
     }
   }
 
@@ -182,6 +176,12 @@ $column-width--qty: 19%;
       @extend .inventory__status;
       background-color: $red-background;
       color: $red;
+    }
+  }
+
+  &__qty {
+    @include tablet {
+      width: $column-width--qty;
     }
   }
 

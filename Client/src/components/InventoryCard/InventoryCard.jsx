@@ -24,10 +24,12 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
       <div className="inventory__card inventory__header-row">
         <div className="inventory__details">
           <div className={leftSectionClass}>
-            <h4 className="inventory__heading--table inventory__text-container--name">
+            <h4 className="inventory__heading--table inventory__text-container inventory__name">
               Inventory Item
             </h4>
-            <h4 className="inventory__heading--table inventory__text-container--category">
+            <h4 className=
+              "inventory__heading--table inventory__text-container inventory__category"
+            >
               Category
             </h4>
           </div>
@@ -35,7 +37,9 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
             <h4 className="inventory__heading--table inventory__text-container--status">
               Status
             </h4>
-            <h4 className="inventory__heading--table inventory__text-container--qty">
+            <h4 className=
+              "inventory__heading--table inventory__text-container inventory__qty"
+            >
               Qty
             </h4>
             {createWarehouseHeading(warehouseId)}
@@ -104,7 +108,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
         <h4 className="inventory__heading">
           Qty
         </h4>
-        <div className="inventory__text-container--qty">
+        <div className="inventory__text-container inventory__qty">
           <p2>
             {quantity}
           </p2>
