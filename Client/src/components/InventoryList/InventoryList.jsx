@@ -12,7 +12,12 @@ const InventoryList = () => {
   (warehouseId === null) ? getInventoryMethod = apiInstance.getItemsArray : getInventoryMethod = null;
 
   const getAllInventory = async () => {
-    const data = await apiInstance.getItemsArray();
+    let data = null;
+    if (warehouseId !== null) {
+      data = await apiInstance.getItemsArray('inventories');
+    } else {
+      data = await apiInstance.getWarehouseItems(warehouseId);
+    }
     if (data) {
       setInventoryArray(data);
     }
