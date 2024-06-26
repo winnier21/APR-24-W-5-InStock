@@ -1,7 +1,6 @@
 import React from 'react';
 import './InventoryCard.scss';
-import deleteIcon from '../../assets/icons/delete_outline-24px.svg';
-import editIcon from "../../assets/icons/edit-24px.svg";
+import ActionIcons from '../ActionIcons/ActionIcons';
 
 const InventoryCard = ({ itemObject, sectionWidth }) => {
   const leftSectionClass = `inventory__left${sectionWidth}`;
@@ -116,10 +115,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
       </div>
 
       </div>
-      <div className="inventory__icons">
-        <img src={deleteIcon} />
-        <img src={editIcon} />
-      </div>
+      <ActionIcons />
     </div>
   )
 }

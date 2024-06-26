@@ -185,12 +185,4 @@ $column-width--qty: 19%;
     }
   }
 
-  &__icons {
-    @include flex-mixin--row(auto);
-    gap: 1.1875rem;
-    align-items: space-between;
-    @include tablet {
-      align-items: flex-start;
-    }
-  } 
 }
