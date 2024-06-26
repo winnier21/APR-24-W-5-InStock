@@ -60,7 +60,6 @@ $column-width--qty: 19%;
   }
 
   &__left {
-    background-color: antiquewhite;
     @include flex-mixin--column(100%);
     @include tablet {
       width: $details-width--left;
@@ -98,7 +97,6 @@ $column-width--qty: 19%;
     }
     
     &--wide{
-      background-color: aqua;
       @extend .inventory__right;
       @include tablet {
         width: 50%;
@@ -137,7 +135,6 @@ $column-width--qty: 19%;
   &__item-name {
     @include row-name;
     width: $column-width--index;
-    background-color: lime;
   }
 
   &__text-container {
@@ -158,14 +155,12 @@ $column-width--qty: 19%;
     &--qty {
       @include tablet {
         width: $column-width--qty;
-        background-color: pink;
       }
     }
 
     &--status {
       @include tablet {
         width: $column-width--status;
-        background-color: yellow;
       }
     }
   }

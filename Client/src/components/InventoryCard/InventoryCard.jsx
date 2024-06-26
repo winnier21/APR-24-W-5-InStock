@@ -3,15 +3,11 @@ import './InventoryCard.scss';
 import deleteIcon from '../../assets/icons/delete_outline-24px.svg';
 import editIcon from "../../assets/icons/edit-24px.svg";
 
-const InventoryCard = ({ itemObject }) => {
-  let leftSectionClass = "inventory__left";
-  let rightSectionClass = "inventory__right";
-  if (typeof itemObject !== 'object' || !itemObject?.warehouse_name) {
-    leftSectionClass = "inventory__left--wide";
-    rightSectionClass = "inventory__right--wide";
-  }
+const InventoryCard = ({ itemObject, sectionWidth }) => {
+  const leftSectionClass = `inventory__left${sectionWidth}`;
+  const rightSectionClass = `inventory__right${sectionWidth}`
 
-  if (typeof itemObject !== 'object') {
+  if (typeof itemObject !== 'object') { // if it is a string or null
     const warehouseId = itemObject;
 
     const createWarehouseHeading = (warehouseId) => {
@@ -22,7 +18,6 @@ const InventoryCard = ({ itemObject }) => {
           </h4>
         )
       } else {
-        console.log('no warehouse id')
         return '';
       }
     }
@@ -79,7 +74,9 @@ const InventoryCard = ({ itemObject }) => {
       return '';
     }
   }
-  console.log(rightSectionClass);
+
+  console.log(leftSectionClass);
+  
   return (
     <div className="inventory__card">
       <div className="inventory__details">
