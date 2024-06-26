@@ -4,7 +4,20 @@ import deleteIcon from '../../assets/icons/delete_outline-24px.svg';
 import editIcon from "../../assets/icons/edit-24px.svg";
 
 const InventoryCard = ({ itemObject }) => {
-  if (itemObject === '') {
+  if (typeof itemObject !== 'object') {
+    const warehouseId = itemObject;
+
+    const createWarehouseHeading = (warehouseId) => {
+      if (!warehouseId) {
+        return (
+          <h4 className="inventory__heading--table">
+            Warehouse
+          </h4>
+        )
+      } else {
+        return '';
+      }
+    }
     return (
       <div className="inventory__card inventory__header-row">
         <div className="inventory__details">
@@ -23,9 +36,7 @@ const InventoryCard = ({ itemObject }) => {
           <h4 className="inventory__heading--table inventory__text-container--qty">
             Qty
           </h4>
-          <h4 className="inventory__heading--table">
-            Warehouse
-          </h4>
+          {createWarehouseHeading(warehouseId)}
   
         </div>
   
@@ -41,6 +52,25 @@ const InventoryCard = ({ itemObject }) => {
   
   const { id, warehouse_name, item_name, description, category, status, quantity } = itemObject;
   const statusClassName = status.toLowerCase() === 'in stock' ? 'inventory__status--green' : 'inventory__status--red';
+
+  const createWarehouseElements = (warehouse_name) => {
+    if (warehouse_name) {
+      return (
+        <>
+        <h4 className="inventory__heading">
+          Warehouse
+        </h4>
+        <div className="inventory__text-container">
+            <p2>
+              {warehouse_name}
+          </p2>
+        </div>
+        </>
+      )
+    } else {
+      return '';
+    }
+  }
   return (
     <div className="inventory__card">
       <div className="inventory__details">
@@ -77,14 +107,7 @@ const InventoryCard = ({ itemObject }) => {
             {quantity}
           </p2>
         </div>
-        <h4 className="inventory__heading">
-          Warehouse
-        </h4>
-        <div className="inventory__text-container">
-          <p2>
-            {warehouse_name}
-          </p2>
-        </div>
+        {createWarehouseElements(warehouse_name)}
 
       </div>
 

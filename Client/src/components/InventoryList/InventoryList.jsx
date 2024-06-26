@@ -32,7 +32,7 @@ const InventoryList = ({warehouseId}) => {
 
   return (
     <section>
-      <InventoryCard itemObject="" />
+      <InventoryCard itemObject={warehouseId} />
       {
         inventoryArray.map(itemObject => {
           const { id, ...itemData } = itemObject;
