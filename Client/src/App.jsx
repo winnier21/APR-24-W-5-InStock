@@ -11,6 +11,7 @@ import AddItemPage from './pages/AddItemPage/AddItemPage';
 import "./App.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import AddWarehouse from "./components/AddWarehouse/AddWarehouse";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/warehouse" element={<WarehousePage />} />
       <Route path="/warehouse/:warehouseId" element={<WarehousePage />} />
       <Route path="/warehouse/:warehouseId/edit" element={<EditWarehousePage />} />
+      <Route path="/add-warehouse" element={<AddWarehouse />} />
       <Route path="/warehouse/add" element={<AddWarehousePage />} />
       <Route path="/inventory" element={<InventoryPage />} />
       <Route path="/inventory/:itemId" element={<ItemDetailsPage />} />
