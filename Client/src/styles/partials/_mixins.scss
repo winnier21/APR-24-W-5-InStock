@@ -1,17 +1,23 @@
 @use "./variables" as *;
 @use "./globals" as *;
 
+@mixin mobile {
+  @media (min-width: 375px) {
+    @content;
+  }
+}
+
 @mixin tablet {
-    @media screen and (min-width: 48rem) and (max-width: 79.9375rem) { // 48rem to 79.9375rem (1279px)
-      @content;
-    }
+  @media (min-width: 768px) {
+    @content;
   }
-  
-  @mixin desktop {
-    @media screen and (min-width: 80rem) { // 80rem and above (1280px and above)
-      @content;
-    }
+}
+
+@mixin desktop {
+  @media (min-width: 1280px) {
+    @content;
   }
+}
 
 @mixin flex-mixin($element-width) {
   display: flex;
