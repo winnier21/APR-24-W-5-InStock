@@ -3,7 +3,7 @@ import './AddItemForm.scss';
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import axios from 'axios';
 
-const AddItemForm = () => {
+const AddItemForm = ({ id }) => {
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');

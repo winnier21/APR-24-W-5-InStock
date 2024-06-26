@@ -5,7 +5,7 @@ import AddItemForm from '../../components/AddItemForm/AddItemForm'
 function AddItemPage() {
   return (
     <main>
-       <AddItemForm/> 
+        <AddItemForm id={inventoryItemId} />
     </main>
   );
 }
