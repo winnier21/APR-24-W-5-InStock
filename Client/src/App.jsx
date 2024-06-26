@@ -1,7 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import WarehouseDetailsPage from './pages/WarehouseDetailsPage/WarehouseDetailsPage';
 import WarehousePage from './pages/WarehousePage/WarehousePage';
 import InventoryPage from './pages/InventoryPage/InventoryPage';
+import ItemDetailsPage from './pages/ItemDetailsPage/ItemDetailsPage';
+import EditWarehousePage from './pages/EditWarehousePage/EditWarehousePage';
+import EditItemPage from './pages/EditItemPage/EditItemPage';
+import AddWarehousePage from './pages/AddWarehousePage/AddWarehousePage';
+import AddItemPage from './pages/AddItemPage/AddItemPage';
 import './App.scss'
 
 function App() {

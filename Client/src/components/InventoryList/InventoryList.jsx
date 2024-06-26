@@ -8,8 +8,8 @@ import InventoryCard from '../InventoryCard/InventoryCard';
 const InventoryList = () => {
   const [inventoryArray, setInventoryArray] = useState();
   const warehouseId = useParams().videoId;
-  let getInventoryMethod;
-  (warehouseId === null) ? getInventoryMethod = apiInstance.getItemsArray : getInventoryMethod = null;
+  // let getInventoryMethod;
+  // (warehouseId === null) ? getInventoryMethod = apiInstance.getItemsArray : getInventoryMethod = null;
 
   const getAllInventory = async () => {
     let data = null;

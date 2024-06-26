@@ -1,12 +1,12 @@
 import React from 'react';
-import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails';
+import WarehouseList from '../../components/WarehouseList/WarehouseList';
 import './WarehousePage.scss';
 
 function WarehousePage() {
   return (
     <main>
       <h1>Warehouse Page</h1>
-      <WarehouseDetails />
+      <WarehouseList />
     </main>
   );
 }
