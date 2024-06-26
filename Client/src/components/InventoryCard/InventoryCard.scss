@@ -1,18 +1,22 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
-$icons-width: 5rem;
+$icons-width: 7rem;
 $card-width--tablet: calc(100% - 2 * $card-side-padding--tablet);
 $details-width: calc(100% - $icons-width);
-$details-width--left: calc($details-width * 2 / 5);
-$details-width--right: calc($details-width - $details-width--left);
+$details-width--left: 40%;
+$details-width--right: calc(100% - $details-width--left);
 
 $column-gap: calc($card-side-padding--tablet * 2);
-$column-width--index: calc((70% - $card-side-padding--tablet));
-$column-width--category: calc((30% - $card-side-padding--tablet));
+$column-width--index: 60%;
+$column-width--category: calc((100% - $column-width--index));
+
 $column-width--third: calc((33% - $card-side-padding--tablet));
 $column-width--status: calc((48% - $card-side-padding--tablet));
 $column-width--qty: calc((19% - $card-side-padding--tablet));
+$column-width--third: 33%;
+$column-width--status: 48% ;
+$column-width--qty: 19%;
 
 .inventory {
   &__card {
@@ -25,6 +29,22 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
       flex-direction: row;
       width: $card-width--tablet;
       justify-content: space-between;
+      padding-top: .6875rem;
+      padding-bottom: .6875rem;
+      
+      &:nth-of-type(2) {
+        border: none;
+      }
+    }
+  }
+
+  &__header-row {
+    display: none;
+    @include tablet {
+      display: flex;
+      background-color: $light-grey;
+      height: 100%;
+      border: none;
     }
   }
 
@@ -41,10 +61,10 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
 
   &__left {
     @include flex-mixin--column(100%);
-
     @include tablet {
       width: $details-width--left;
       flex-direction: row;
+      align-items: center;
       justify-content: space-between;
     }
 
@@ -58,6 +78,13 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
         }
       }
     }
+    
+    &--wide{
+      @extend .inventory__left;
+      @include tablet {
+        width: 50%;
+      }
+    }
   }
 
   &__right {
@@ -65,7 +92,15 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
     @include tablet {
       width: $details-width--right;
       flex-direction: row;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    
+    &--wide{
+      @extend .inventory__right;
+      @include tablet {
+        width: 50%;
+      }
     }
   }
 
@@ -81,6 +116,14 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
       display: none;
       @include tablet {
         display: flex;
+        position: relative;
+        color: $slate;
+        top: .25rem;
+        &:after {
+          content: url('../../assets/icons/sort-24px.svg');
+          position: relative;
+          top: -.25rem;
+        }
       }
     }
 
@@ -96,6 +139,18 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
 
   &__text-container {
     align-items: flex-start;
+
+    &--name {
+      @include tablet {
+        width: $column-width--index;
+      }
+    }
+
+    &--category {
+      @include tablet {
+        width: $column-width--category;
+      }
+    }
 
     &--qty {
       @include tablet {
