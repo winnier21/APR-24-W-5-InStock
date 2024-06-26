@@ -47,7 +47,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
           </div>
         </div>
         <div className="inventory__icons">
-          <h4 className="inventory__heading--table">
+          <h4 className="inventory__heading--no-scroll">
             Actions
           </h4>
         </div>
@@ -86,6 +86,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
             Inventory Item
           </h4>
           <Cardlink 
+            id={warehouse_name}
             className="inventory__item-name"
             content={item_name}
           />

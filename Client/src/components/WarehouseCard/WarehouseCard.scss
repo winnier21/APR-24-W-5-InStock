@@ -38,6 +38,10 @@ $column-width: 50%;
     &--table {
       @extend .inventory__heading--table;
     }
+    
+    &--no-scroll {
+      @extend .inventory__heading--no-scroll;
+    }
   }
 
   &__text-container {

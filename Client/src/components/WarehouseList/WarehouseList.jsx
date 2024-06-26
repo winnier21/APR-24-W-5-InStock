@@ -32,7 +32,7 @@ const WarehouseList = () => {
         const { id, ...warehouseData } = warehouseObject;
         return <WarehouseCard
           key={id}
-          warehouseObject={warehouseData}
+          warehouseObject={warehouseObject}
         />
       })}
       </ul >

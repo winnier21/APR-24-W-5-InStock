@@ -1,5 +1,6 @@
 @use '../../styles/partials/mixins' as *;
 
+
 .action-icons {
   @include flex-mixin--row(auto);
   gap: 1.1875rem;

@@ -36,7 +36,7 @@ const WarehouseCard = ({ warehouseObject }) => {
           </div>
         </div>
         <div className="warehouse-card__icons">
-          <h4 className="warehouse-card__heading--table">
+          <h4 className="warehouse-card__heading--no-scroll">
             Actions
           </h4>
         </div>
@@ -57,6 +57,7 @@ const WarehouseCard = ({ warehouseObject }) => {
             Warehouse
           </h4>
           <Cardlink
+            id={id}
             className="warehouse-card__text-container warehouse-card__index"
             content={warehouse_name}
           />
