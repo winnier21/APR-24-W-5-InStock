@@ -1,6 +1,7 @@
 import React from 'react';
 import './InventoryCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
+import Cardlink from '../CardLink/CardLink';
 
 const InventoryCard = ({ itemObject, sectionWidth }) => {
   const leftSectionClass = `inventory__left${sectionWidth}`;
@@ -54,7 +55,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
     )
   }
   
-  const { id, warehouse_name, item_name, description, category, status, quantity } = itemObject;
+  const { warehouse_name, item_name, category, status, quantity } = itemObject;
   const statusClassName = status.toLowerCase() === 'in stock' ? 'inventory__status--green' : 'inventory__status--red';
   
 
@@ -66,7 +67,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
           Warehouse
         </h4>
         <div className="inventory__text-container">
-          <p>
+          <p className="table-text">
             {warehouse_name}
           </p>
         </div>
@@ -80,43 +81,43 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
   return (
     <li className="inventory__card">
       <div className="inventory__details">
-      <div className={leftSectionClass}>
-        <h4 className="inventory__heading">
-          Inventory Item
-        </h4>
-        <h3 className="inventory__item-name">
-          {item_name}
-        </h3>
-        <h4 className="inventory__heading">
-          Category
-        </h4>
-        <div className="inventory__text-container">
-          <p>
-            {category}
-          </p>
-        </div>
-      </div>
-      <div className={rightSectionClass}>
-        <h4 className="inventory__heading">
-          Status
+        <div className={leftSectionClass}>
+          <h4 className="inventory__heading">
+            Inventory Item
           </h4>
-        <div className="inventory__text-container--status">
-          <div className={statusClassName}>
-            {status}
-          </div>  
+          <Cardlink 
+            className="inventory__item-name"
+            content={item_name}
+          />
+          <h4 className="inventory__heading">
+            Category
+          </h4>
+          <div className="inventory__text-container">
+            <p className="table-text">
+              {category}
+            </p>
+          </div>
         </div>
-        <h4 className="inventory__heading">
-          Qty
-        </h4>
-        <div className="inventory__text-container inventory__qty">
-          <p>
-            {quantity}
-          </p>
+        <div className={rightSectionClass}>
+          <h4 className="inventory__heading">
+            Status
+            </h4>
+          <div className="inventory__text-container--status">
+            <div className={statusClassName}>
+              {status}
+            </div>  
+          </div>
+          <h4 className="inventory__heading">
+            Qty
+          </h4>
+          <div className="inventory__text-container inventory__qty">
+            <p className="table-text">
+              {quantity}
+            </p>
+          </div>
+          {createWarehouseElements(warehouse_name)}
+
         </div>
-        {createWarehouseElements(warehouse_name)}
-
-      </div>
-
       </div>
       <ActionIcons />
     </li>

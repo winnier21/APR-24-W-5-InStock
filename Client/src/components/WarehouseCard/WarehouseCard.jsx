@@ -2,6 +2,7 @@ import React from 'react';
 
 import './WarehouseCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
+import Cardlink from '../CardLink/CardLink';
 
 const WarehouseCard = ({ warehouseObject }) => {
 
@@ -55,9 +56,10 @@ const WarehouseCard = ({ warehouseObject }) => {
           <h4 className="warehouse-card__heading">
             Warehouse
           </h4>
-          <h3 className="warehouse-card__text-container warehouse-card__index">
-            {warehouse_name}
-          </h3>
+          <Cardlink
+            className="warehouse-card__text-container warehouse-card__index"
+            content={warehouse_name}
+          />
           <h4 className="warehouse-card__heading warehouse-card__address">
             Address
           </h4>
