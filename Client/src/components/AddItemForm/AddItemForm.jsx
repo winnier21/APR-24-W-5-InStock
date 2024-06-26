@@ -4,6 +4,7 @@ import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import axios from 'axios';
 
 const AddItemForm = ({ id }) => {
+    // const [item,setItem] = useState('');
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -13,7 +14,6 @@ const AddItemForm = ({ id }) => {
   const [errors, setErrors] = useState({});
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
   const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,7 +37,7 @@ const AddItemForm = ({ id }) => {
       quantity,
       warehouse,
     });try {
-        const response = await axios.put(`/api/inventories`, formData); // Update URL and method
+        const response = await axios.post(`/api/inventories`, formData); // Update URL and method
         console.log('Item updated successfully:', response.data);
         setItemName('');
         setDescription('');
@@ -57,15 +57,28 @@ const AddItemForm = ({ id }) => {
           setQuantity(null);
         }
       };
+      const handleCancel = () => {
+        resetForm();
+      };
+    
+      const resetForm = () => {
+        setItemName('');
+        setDescription('');
+        setCategory('');
+        setStatus('in_stock');
+        setQuantity(1);
+        setWarehouse('');
+        setErrors({});
+      };
     
   return (
-    <main className="main">            
+    <main className="main-additem">            
         <h1 className='main-header'>
             <img src ={ArrowBackIcon} className='arrow-back-icon'/>
             Add New Inventory Item
         </h1>
         <form className = "form" onSubmit={handleSubmit}>
-
+            <div className='form__divider'>
             <section className="item-details">
                 <h2>Item Details</h2>
                 <div className="item-detail">
@@ -178,15 +191,16 @@ const AddItemForm = ({ id }) => {
                     </div>
                 </div>
             </section>
+            </div>
+        <div className="button">
+            <button type="button" className="button button-cancel" onClick={handleCancel}>
+                Cancel
+            </button>
+            <button type="submit" className="button button-add" onSubmit={handleSubmit} >
+                + Add Item
+            </button>
+        </div>
     </form>
-    <div className="button">
-        <button type="button-cancel" className="button button-cancel">
-            Cancel
-        </button>
-        <button type="button-add" className="button button-add" >
-            + Add Item
-        </button>
-    </div>
 </main>
       
   );

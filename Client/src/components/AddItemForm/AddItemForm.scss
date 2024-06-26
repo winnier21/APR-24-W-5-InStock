@@ -3,7 +3,9 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.main{
+.main-additem{
+    margin-left:0rem;
+    margin-right:0rem;
     .main-header {
         padding-bottom: 1.5rem;
         padding-top: 1.5rem;
@@ -19,17 +21,21 @@
     .form {
     display: flex;
     flex-direction: column;
-    @include tablet{
+    .form__divider{
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding-top:1.5rem;
-        padding-bottom:1rem;
-    }
-    @include desktop{
-        display: flex;
-        flex-direction: row;
-        padding-top:1.5rem;
+        flex-direction: column;
+        @include tablet{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding-top:1.5rem;
+            padding-bottom:1rem;
+        }
+        @include desktop{
+            display: flex;
+            flex-direction: row;
+            padding-top:1.5rem;
+        }
     }
         .item-details{
             padding-left: 2.5rem;
@@ -83,11 +89,14 @@
                 .item-select{
                     @include form-field-spacing;
                 .item-select--category{
-                    
                     @include form-fields;
                     @include input-select-placeholders;
-                    
+                   
+                    &::-webkit-select-arrow {
+                    right: 1rem;
+                    }
                 }
+               
                 border-bottom: .0625rem solid $cloud;
                 @include tablet{
                     border-bottom: none;
@@ -117,7 +126,6 @@
                 .item-status{
                     display: flex;
                     justify-content: flex-start;
-                    gap: 10rem;
                     @include tablet{
                         gap:4rem;
                     }
@@ -157,7 +165,7 @@
                 } 
             }   
         }
-    }
+    
     .button{
         display: flex;
         align-items: center;
@@ -178,4 +186,4 @@
         }
     }
 }
-    
+}

@@ -19,15 +19,17 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
-  const id = req.params.id;
+
+router.put('/:id', async (req, res) => {
+  const id = parseInt(req.params.id, 10);
   const { warehouse_id, item_name, description, category, status, quantity } = req.body;
 
   if (!warehouse_id ||!item_name ||!description ||!category ||!status ||!quantity) {
     return res.status(400).send({ message: 'Missing properties in request body' });
   }
 
-  knex('warehouses').where({ id: warehouse_id }).then((warehouse) => {
+  try {
+    const warehouse = await knex('warehouses').where({ id: warehouse_id }).first();
     if (!warehouse) {
       return res.status(400).send({ message: 'Warehouse ID does not exist' });
     }
@@ -36,29 +38,65 @@ router.put('/:id', (req, res) => {
       return res.status(400).send({ message: 'Quantity must be a number' });
     }
 
-    knex('inventories').where({ id }).update({
+    const updatedInventory = await knex('inventories').where({ id }).update({
       warehouse_id,
       item_name,
       description,
       category,
       status,
       quantity,
-    }).then(() => {
-      knex('inventories').where({ id }).then((inventory) => {
-        res.send(inventory[0]);
-      }).catch((err) => {
-        console.error(err);
-        res.status(500).send({ message: 'Error updating inventory item' });
-      });
-    }).catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: 'Error updating inventory item' });
     });
-  }).catch((err) => {
+
+    if (!updatedInventory) {
+      return res.status(500).send({ message: 'Error updating inventory item' });
+    }
+
+    const inventory = await knex('inventories').where({ id }).first();
+    res.send(inventory);
+  } catch (err) {
     console.error(err);
-    res.status(500).send({ message: 'Error checking warehouse ID' });
-  });
+    res.status(500).send({ message: 'Error updating inventory item' });
+  }
 });
 
+router.post('/api/inventories', async (req, res) => {
+  const { warehouse_id, item_name, description, category, status, quantity } = req.body;
+
+  if (!warehouse_id ||!item_name ||!description ||!category ||!status ||!quantity) {
+    return res.status(400).send({ message: 'Missing properties in request body' });
+  }
+
+  try {
+    const warehouse = await knex('warehouses').where({ id: warehouse_id }).first();
+    if (!warehouse) {
+      return res.status(400).send({ message: 'Warehouse ID does not exist' });
+    }
+
+    if (typeof quantity!== 'number') {
+      return res.status(400).send({ message: 'Quantity must be a number' });
+    }
+
+    const newInventory = {
+      warehouse_id,
+      item_name,
+      description,
+      category,
+      status,
+      quantity,
+    };
+
+    const [id] = await knex('inventories').insert(newInventory).returning('id');
+
+    if (!id) {
+      return res.status(500).send({ message: 'Error creating inventory item' });
+    }
+
+    const inventory = await knex('inventories').where({ id }).first();
+    res.status(201).send(inventory);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: 'Error creating inventory item' });
+  }
+});
 
 export default router;
