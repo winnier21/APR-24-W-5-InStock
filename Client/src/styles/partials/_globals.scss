@@ -1,7 +1,7 @@
 @use './variables' as *;
 @use './typography' as *;
 
-:root{
+body {
     font-family: 'Titillium Web', sans-serif;
     color: $instock-black;
 }

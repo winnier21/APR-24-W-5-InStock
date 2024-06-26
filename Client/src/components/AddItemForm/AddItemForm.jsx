@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './AddItemForm.scss';
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
+import axios from 'axios';
 
 const AddItemForm = () => {
   const [itemName, setItemName] = useState('');
@@ -9,20 +10,22 @@ const AddItemForm = () => {
   const [status, setStatus] = useState('in_stock');
   const [quantity, setQuantity] = useState(1);
   const [warehouse, setWarehouse] = useState('');
-
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Submit the form data to the backend
+    if (!itemName ||!description ||!category ||!status ||!warehouse) {
+        setErrors({ error: 'All fields are required' });
+        return;
+      }
     const formData = {
         item_name: itemName,
         description,
         category,
         status,
         quantity: status === 'in_stock' ? quantity : null,
-        warehouse,
-      };
+        warehouse_id: warehouse,
+    };
     console.log('Form submitted:', {
       itemName,
       description,
@@ -30,9 +33,21 @@ const AddItemForm = () => {
       status,
       quantity,
       warehouse,
-    });
-  };
-    // Call API endpoint to add new item
+    });try {
+        const response = await axios.put(`/api/inventories/${id}`, formData); // Update URL and method
+        console.log('Item updated successfully:', response.data);
+        setItemName('');
+        setDescription('');
+        setCategory('');
+        setStatus('in_stock');
+        setQuantity(1);
+        setWarehouse('');
+      } catch (error) {
+        console.error('Error updating item:', error);
+        setErrors({ error: 'Error updating item' });
+      }
+    };
+    
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
         if (event.target.value === 'out_of_stock') {
