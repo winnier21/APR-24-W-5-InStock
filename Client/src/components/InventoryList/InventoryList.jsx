@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import apiInstance from '../../utils/ApiClient';
 import InventoryCard from '../InventoryCard/InventoryCard';
-
+import sortIcon from '../../assets/icons/sort-24px.svg';
 
 const InventoryList = ({warehouseId}) => {
   const [inventoryArray, setInventoryArray] = useState();

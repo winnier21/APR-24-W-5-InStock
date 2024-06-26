@@ -32,6 +32,7 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
     display: none;
     @include tablet {
       display: flex;
+      background-color: $light-grey;
     }
   }
 
@@ -52,6 +53,7 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
     @include tablet {
       width: $details-width--left;
       flex-direction: row;
+      align-items: center;
       justify-content: space-between;
     }
 
@@ -72,6 +74,7 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
     @include tablet {
       width: $details-width--right;
       flex-direction: row;
+      align-items: center;
       justify-content: space-between;
     }
   }
@@ -88,6 +91,10 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
       display: none;
       @include tablet {
         display: flex;
+        color: $slate;
+        &:after {
+          content: url('../../assets/icons/sort-24px.svg');
+        }
       }
     }
 
