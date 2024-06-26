@@ -2,7 +2,7 @@
 
 .warehouse {
   &__card {
-    @extend .inventory-card;
+    @extend .inventory__card;
     background-color: pink;
   }
 }

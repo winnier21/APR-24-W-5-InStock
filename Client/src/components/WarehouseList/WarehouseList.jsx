@@ -1,17 +1,13 @@
 import React from 'react'; 
 import { useEffect, useState } from 'react';
 import apiInstance from '../../utils/ApiClient';
+import Placeholder from '../Placeholder/Placeholder';
+import WarehouseCard from '../WarehouseCard/WarehouseCard';
 // import './WarehouseList.scss';
 
 const WarehouseList = () => {
 
   const [warehousesArray, setWarehousesArray] = useState(null);
-
-  if (!inventoryArray) {
-    return (
-      <section className="api-data-placeholder">Loading...</section>
-    )
-  }
 
   const getWarehouses = async () => {
     const data = await apiInstance.getItemsArray('warehouses');
@@ -19,9 +15,24 @@ const WarehouseList = () => {
       setWarehousesArray(data);
     }
   }
+  
+  useEffect(() => {
+    getWarehouses();
+  }, [])
+
+  if (!warehousesArray) {
+    return <Placeholder />
+  }
+
   return (
     <section>
-      {}
+      {warehousesArray.map(warehouseObject => {
+        const { id, ...warehouseData } = warehouseObject;
+        return <WarehouseCard
+          key={id}
+          warehouseObject={warehouseData}
+        />
+      })}
     </section>
   )
 }

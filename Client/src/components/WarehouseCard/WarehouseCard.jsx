@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './WarehouseCard.scss';
 
 const WarehouseCard = ({ warehouseObject }) => {
