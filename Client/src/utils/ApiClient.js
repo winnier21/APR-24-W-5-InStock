@@ -35,13 +35,13 @@ export class ApiClient {
   async getItemsArray(type) {
     const endpoint = `api/${type}`;
     const itemsArray = await this.get(endpoint);
-    // this.logResponse(itemsArray, endpoint, 'GET');
     return itemsArray;
   }
   
   async getItem(route, id) {
     const endpoint = `api/${route}/${id}`
     const data = await this.get(endpoint);
+    // this.logResponse(data, endpoint, 'GET');
     return data;
   }
   
