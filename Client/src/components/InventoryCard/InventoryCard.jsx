@@ -23,24 +23,23 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
     return (
       <div className="inventory__card inventory__header-row">
         <div className="inventory__details">
-        <div className={leftSectionClass}>
-          <h4 className="inventory__heading--table inventory__text-container--name">
-            Inventory Item
-          </h4>
-          <h4 className="inventory__heading--table inventory__text-container--category">
-            Category
-          </h4>
-        </div>
-        <div className={rightSectionClass}>
-          <h4 className="inventory__heading--table inventory__text-container--status">
-            Status
-          </h4>
-          <h4 className="inventory__heading--table inventory__text-container--qty">
-            Qty
-          </h4>
-          {createWarehouseHeading(warehouseId)}
-        </div>
-  
+          <div className={leftSectionClass}>
+            <h4 className="inventory__heading--table inventory__text-container--name">
+              Inventory Item
+            </h4>
+            <h4 className="inventory__heading--table inventory__text-container--category">
+              Category
+            </h4>
+          </div>
+          <div className={rightSectionClass}>
+            <h4 className="inventory__heading--table inventory__text-container--status">
+              Status
+            </h4>
+            <h4 className="inventory__heading--table inventory__text-container--qty">
+              Qty
+            </h4>
+            {createWarehouseHeading(warehouseId)}
+          </div>
         </div>
         <div className="inventory__icons">
           <h4 className="inventory__heading--table">
@@ -89,7 +88,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
         </h4>
         <div className="inventory__text-container">
           <p2>
-            Gear
+            {category}
           </p2>
         </div>
       </div>
