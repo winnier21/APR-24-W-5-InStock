@@ -1,0 +1,8 @@
+@use '../../components/InventoryCard/InventoryCard.scss' as *;
+
+.warehouse {
+  &__card {
+    @extend .inventory-card;
+    background-color: pink;
+  }
+}

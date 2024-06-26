@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import apiInstance from '../../utils/ApiClient';
 import InventoryCard from '../InventoryCard/InventoryCard';
+import Placeholder from '../Placeholder/Placeholder';
 import sortIcon from '../../assets/icons/sort-24px.svg';
 
 const InventoryList = ({warehouseId}) => {
@@ -24,9 +25,7 @@ const InventoryList = ({warehouseId}) => {
   }, [])
 
   if (!inventoryArray) {
-    return (
-      <section>Loading...</section>
-    )
+    return <Placeholder />
   }
 
   // If warehouseId exists, apply a className that allows for wider columns to account for fewer columns.
