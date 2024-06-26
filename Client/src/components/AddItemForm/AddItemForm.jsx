@@ -1,7 +1,7 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState } from 'react';
 import './AddItemForm.scss';
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
-import axios from 'axios';
+import apiInstance  from '../../utils/ApiClient';
 
 const AddItemForm = ({ id }) => {
     // const [item,setItem] = useState('');
@@ -36,40 +36,36 @@ const AddItemForm = ({ id }) => {
       status,
       quantity,
       warehouse,
-    });try {
-        const response = await axios.post(`/api/inventories`, formData); // Update URL and method
+    });  try {
+        const response = await apiInstance.postItem(formData);
         console.log('Item updated successfully:', response.data);
-        setItemName('');
-        setDescription('');
-        setCategory('');
-        setStatus('in_stock');
-        setQuantity(1);
-        setWarehouse('');
+        resetForm();
       } catch (error) {
         console.error('Error updating item:', error);
         setErrors({ error: 'Error updating item' });
       }
     };
-    
+  
     const handleStatusChange = (event) => {
-        setStatus(event.target.value);
-        if (event.target.value === 'out_of_stock') {
-          setQuantity(null);
-        }
-      };
-      const handleCancel = () => {
-        resetForm();
-      };
-    
-      const resetForm = () => {
-        setItemName('');
-        setDescription('');
-        setCategory('');
-        setStatus('in_stock');
-        setQuantity(1);
-        setWarehouse('');
-        setErrors({});
-      };
+      setStatus(event.target.value);
+      if (event.target.value === 'out_of_stock') {
+        setQuantity(null);
+      }
+    };
+  
+    const handleCancel = () => {
+      resetForm();
+    };
+  
+    const resetForm = () => {
+      setItemName('');
+      setDescription('');
+      setCategory('');
+      setStatus('in_stock');
+      setQuantity(1);
+      setWarehouse('');
+      setErrors({});
+    };
     
   return (
     <main className="main-additem">            
