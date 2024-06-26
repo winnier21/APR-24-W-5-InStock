@@ -94,11 +94,15 @@
     color:$white;
 
     @include desktop{
+        justify-content: center;
+        width: 6.125rem;
         height: 2.375rem;
         padding-left: 1rem;
         padding-right: 1rem;
     }
     @include tablet{
+        justify-content: center;
+        width: 6.125rem;
         height: 2.375rem;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -116,11 +120,15 @@
     color:$slate;
    
     @include desktop{
+        justify-content: center;
+        width: 4.5rem;
         height: 2.375rem;
         padding-left: 1rem;
         padding-right: 1rem;
     }
     @include tablet{
+        justify-content: center;
+        width: 4.5rem;
         height: 2.375rem;
         padding-left: 1rem;
         padding-right: 1rem;

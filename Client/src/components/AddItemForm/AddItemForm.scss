@@ -10,6 +10,7 @@
         border-bottom: .0625rem solid $cloud;
         padding-left: 2.5rem;
         padding-right: 2.5rem;
+    
         .arrow-back-icon{
             font-size: 1.5rem;
             margin-right: 0.625rem;
@@ -22,18 +23,30 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+        padding-top:1.5rem;
+        padding-bottom:1rem;
     }
     @include desktop{
         display: flex;
         flex-direction: row;
+        padding-top:1.5rem;
     }
         .item-details{
             padding-left: 2.5rem;
             padding-right: 2.5rem;
-
+            @include tablet{
+                border-right: .0625rem solid $cloud;
+            }
+           
             h2{
                 padding-bottom: 1.5rem;
                 padding-top: 1.5rem;
+                @include tablet{
+                    padding-top: 0rem;
+                }
+                @include desktop{
+                    padding-top: 0rem;
+                }
             }
             .item-detail{
             display: flex;
@@ -88,6 +101,12 @@
             h2{
                 padding-bottom: 1.5rem;
                 padding-top: 1.5rem;
+                @include tablet{
+                    padding-top: 0rem;
+                }
+                @include desktop{
+                    padding-top: 0rem;
+                }
             }
             .item-availability-status{
                 @include form-field-spacing;
@@ -120,6 +139,12 @@
                 @include form-field-spacing; 
             .item-select{
                 @include form-field-spacing;
+                @include tablet{
+                    padding-bottom: 0rem;
+                }
+                @include desktop{
+                    padding-bottom: 0rem;
+                }
                 }
                 .item-select--warehouses{
                     @include form-fields;
@@ -133,6 +158,12 @@
         justify-content: space-evenly;
         background-color: $light-grey;
         height:4.25rem;
+        @include tablet{
+            justify-content: flex-end;
+        }
+        @include desktop{
+            justify-content: flex-end;
+        }
         & .button-cancel{
             @include button-cancel;
         }
