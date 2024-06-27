@@ -3,15 +3,12 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.main-additem{
+.add-item-form {
+    
     margin-left:0rem;
     margin-right:0rem;
-    .main-header {
-        padding-bottom: 1.5rem;
-        padding-top: 1.5rem;
-        border-bottom: .0625rem solid $cloud;
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
+    .page-top__spacing {
+        justify-content: flex-start;
     
         .arrow-back-icon{
             font-size: 1.5rem;
@@ -126,6 +123,7 @@
                 .item-status{
                     display: flex;
                     justify-content: flex-start;
+                    gap:4rem;
                     @include tablet{
                         gap:4rem;
                     }
