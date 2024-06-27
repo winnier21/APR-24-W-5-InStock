@@ -197,3 +197,13 @@
     }
   }
 }
+
+@mixin header-row {
+  display: none;
+  @include tablet {
+    display: flex;
+    background-color: $light-grey;
+    height: 100%;
+    border: none;
+  }
+}

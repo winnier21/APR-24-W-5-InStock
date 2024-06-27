@@ -23,13 +23,7 @@ $icons-width: 4.2rem;
   }
 
   &__header-row {
-    display: none;
-    @include tablet {
-      display: flex;
-      background-color: $light-grey;
-      height: 100%;
-      border: none;
-    }
+    @include header-row;
   }
 
   &__details {
