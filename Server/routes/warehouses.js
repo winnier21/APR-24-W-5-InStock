@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
     const data = await knex.from("warehouses")
       .select(
         'warehouses.id', 'warehouse_name', 'address', 'city', 'country', 'contact_name', 'contact_position', 'contact_phone', 'contact_email'
-      ).where({id: warehouseId});
+      ).where({id: warehouseId}).first();
     res.status(200).json(data);
   } catch (error) {
     res.status(400).send(`Error with getting data: ${error}`)

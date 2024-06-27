@@ -1,9 +1,8 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
-$icons-width: 7rem;
 $card-width--tablet: calc(100% - 2 * $card-side-padding--tablet);
-$details-width: calc(100% - $icons-width);
+$details-width: 100%;
 $details-width--left: 40%;
 $details-width--right: calc(100% - $details-width--left);
 
@@ -17,6 +16,7 @@ $column-width--qty: calc((19% - $card-side-padding--tablet));
 $column-width--third: 33%;
 $column-width--status: 48% ;
 $column-width--qty: 19%;
+$icons-width: 4.2rem;
 
 .inventory {
   &__card {
@@ -32,8 +32,8 @@ $column-width--qty: 19%;
       padding-top: .6875rem;
       padding-bottom: .6875rem;
       
-      &:nth-of-type(2) {
-        border: none;
+      &:first-of-type {
+        border-top: none;
       }
     }
   }
@@ -63,9 +63,7 @@ $column-width--qty: 19%;
     @include flex-mixin--column(100%);
     @include tablet {
       width: $details-width--left;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+      @include align-left-top;
     }
 
     & .inventory__heading--table, & .inventory__text-container {
@@ -91,9 +89,7 @@ $column-width--qty: 19%;
     @include flex-mixin--column(100%);
     @include tablet {
       width: $details-width--right;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
+      @include align-left-top;
     }
     
     &--wide{
@@ -107,6 +103,10 @@ $column-width--qty: 19%;
   &__heading {
     @include table-heading;
     margin-top: 1.25rem;
+
+    @include tablet {
+      display: none;
+    }
     
     &:first-of-type {
       margin-top: none;
@@ -119,6 +119,7 @@ $column-width--qty: 19%;
         position: relative;
         color: $slate;
         top: .25rem;
+
         &:after {
           content: url('../../assets/icons/sort-24px.svg');
           position: relative;
@@ -126,9 +127,13 @@ $column-width--qty: 19%;
         }
       }
     }
-
-    @include tablet {
-      display: none;
+    &--no-scroll {
+      @extend .inventory__heading--table;
+      color: $slate;
+      width: $icons-width;
+      &:after {
+        content: "";
+      }
     }
   }
 
@@ -140,28 +145,22 @@ $column-width--qty: 19%;
   &__text-container {
     align-items: flex-start;
 
-    &--name {
-      @include tablet {
-        width: $column-width--index;
-      }
-    }
-
-    &--category {
-      @include tablet {
-        width: $column-width--category;
-      }
-    }
-
-    &--qty {
-      @include tablet {
-        width: $column-width--qty;
-      }
-    }
-
     &--status {
       @include tablet {
         width: $column-width--status;
       }
+    }
+  }
+
+  &__name {
+    @include tablet {
+      width: $column-width--index;
+    }
+  }
+
+  &__category {
+    @include tablet {
+      width: $column-width--category;
     }
   }
 
@@ -185,12 +184,10 @@ $column-width--qty: 19%;
     }
   }
 
-  &__icons {
-    @include flex-mixin--row(auto);
-    gap: 1.1875rem;
-    align-items: space-between;
+  &__qty {
     @include tablet {
-      align-items: flex-start;
+      width: $column-width--qty;
     }
-  } 
+  }
+
 }
