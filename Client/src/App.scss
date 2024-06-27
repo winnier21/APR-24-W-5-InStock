@@ -3,6 +3,13 @@
 @use "./styles/partials/typography" as *;
 @use "./styles/partials/globals" as *;
 
+$top-overlap--mobile: 3.5rem;
+$top-overlap--tablet: 5.75rem;
+
+@mixin header-overlap {
+  top: calc($top-overlap--mobile * -1);
+}
+
 main {
     background-color: $white;
     margin-left: $padding-med;
@@ -12,7 +19,7 @@ main {
     margin-bottom: 6rem;
     position: relative;
     z-index: 2;
-    transform: translateY(-0.4%);
+    @include header-overlap();
 
     @include tablet{
       margin-left:2rem;
@@ -32,5 +39,15 @@ main {
 
 .page-top {
   @include zero-spacing;
-  background-color: pink;
+  @include flex-mixin--row(100%);
+  padding: 0 $main-side-padding--tablet;
+  width: calc(100% - (2 * $main-side-padding--tablet));
+  align-items: center;
+  height: $top-overlap--tablet; 
+  @include tablet {
+  }
+
+  &__border {
+    border-bottom: $divider;
+  }
 }
