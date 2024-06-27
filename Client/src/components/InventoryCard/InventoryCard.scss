@@ -109,6 +109,7 @@ $icons-width: 4.2rem;
       @extend .inventory__heading--table;
       color: $slate;
       width: $icons-width;
+      justify-content: flex-end;
       &:after {
         content: "";
       }
@@ -168,4 +169,7 @@ $icons-width: 4.2rem;
     }
   }
 
+  &__icons {
+    justify-content: flex-end;
+  }
 }
