@@ -28,19 +28,11 @@ function AddWarehouse() {
             <ContactDetailsForm />
           </div>
           <div className="button">
-            <button
-              className="button-cancel"
-              type="button"
-              onClick={handleCancelClick}
-            >
-              <h3>Cancel</h3>
+            <button className="button-cancel" type="button">
+              Cancel
             </button>
-            <button
-              className="button-add"
-              type="submit"
-              onClick={handleAddClick}
-            >
-              <h3>+ Add Warehouse</h3>
+            <button className="button-add" type="submit">
+             + Add Warehouse
             </button>
           </div>
         </section>

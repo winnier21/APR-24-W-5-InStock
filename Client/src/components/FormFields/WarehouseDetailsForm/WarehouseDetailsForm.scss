@@ -2,7 +2,7 @@
 @use "../../../styles/partials/mixins" as *;
 
 .warehouse__form {
-    padding-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
   h2 {
     padding-top: 1rem;
     padding-bottom: 2.5rem;
@@ -18,9 +18,11 @@
     border: 1px solid $cloud;
     background-color: $white;
     font-size: 0.8125rem;
-    padding: 0.5rem 0 0.5rem 1rem;
     font-family: Titillium Web;
 
+    &::placeholder{
+      padding-left: 1rem;
+    }
     
   }
 }
