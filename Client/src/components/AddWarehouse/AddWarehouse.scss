@@ -1,210 +1,34 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.card {
-  flex-direction: column;
-  width: 100%;
-  border-radius: 3px;
+.addWarehouse {
+  &__main {
+    padding-bottom: 1.5rem;
+    padding-top: 2rem;
+    border-bottom: 0.0625rem solid $cloud;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
   &__header {
     width: 100%;
-    padding: 1.5rem 0;
     &-container {
       display: flex;
+
+      justify-content: center;
       align-items: center;
-      justify-content: start;
-      flex-direction: row;
-      padding: 0 1rem;
-      width: 90%;
+    }
+    .arrow-back-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      
+      
+    }
+    a {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
-
-  &__back-arrow {
-    border: none;
-    background-color: transparent;
-  }
-  &__divider {
-    width: 100%;
-    border-bottom: 1px solid $cloud;
-  }
-  &__forms {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    @include tablet {
-      flex-direction: row;
-      padding: 1.5rem 0rem;
-    }
-  }
-  &__forms-title {
-    padding-bottom: 2rem;
-  }
-  &__item-form {
-    flex: 1;
-    border-bottom: 1px solid $cloud;
-    padding: 1rem;
-    @include tablet {
-      padding-top: 0;
-      border-bottom: none;
-      border-right: 1px solid $cloud;
-      padding-right: 2rem;
-    }
-  }
-  &__vail-form {
-    flex: 1;
-    padding: 1rem;
-    @include tablet {
-      padding-top: 0;
-      padding-left: 2rem;
-      width: 41%;
-    }
-  }
-  &__input {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    width: 97%;
-    padding: $padding-sm;
-    font-size: 13px;
-    line-height: 20px;
-    font-family: "Titillium Regular";
-    color: $instock-black;
-    border-radius: 1.25rem;
-    border: 1px solid $cloud;
-    &:focus {
-      border-color: $instock-indigo;
-      outline: none;
-    }
-
-    &:active {
-      border: 1px solid $instock-indigo;
-      outline: none;
-    }
-  }
-  &__input-description {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    width: 97%;
-    padding: $padding-sm;
-    font-size: 13px;
-    font-family: "Titillium Regular";
-    color: $instock-black;
-    //border styles
-    border-radius: 1.25rem;
-    border: 1px solid $cloud;
-    &:focus {
-      border-color: $instock-indigo;
-      outline: none;
-    }
-
-    &:active {
-      border: 1px solid $instock-indigo;
-      outline: none;
-    }
-  }
-  &__input-select {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    width: 100%;
-    padding: $padding-sm $padding-med;
-    font-size: 13px;
-    line-height: 20px;
-    font-family: "Titillium Regular";
-    color: $instock-black;
-    //border styles
-    border-radius: 1.25rem;
-    border: 1px solid $cloud;
-    // drop down arrow
-    appearance: none;
-    background: url("../../assets/Icons/arrow_drop_down-24px.svg") no-repeat
-      right 0.75rem center;
-    background-size: 12px 12px;
-    padding-right: 2rem;
-    @include tablet {
-      width: 102%;
-    }
-    &:focus {
-      border-color: $instock-indigo;
-      outline: none;
-    }
-
-    &:active {
-      border: 1px solid $instock-indigo;
-      outline: none;
-    }
-  }
-  &__form-group-select {
-    display: flex;
-    flex-direction: column;
-  }
-  &__status-button.active {
-    margin-right: 5.5625rem;
-  }
-  &__status-button {
-    margin-right: 5.5625rem;
-  }
-  &__form-group-radio {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    font-size: 13px;
-    line-height: 20px;
-    font-family: "Titillium Regular";
-    color: $instock-black;
-    @include tablet {
-      width: 100%;
-    }
-  }
-  &__radio {
-    margin-right: 0.25rem;
-  }
-  &__radio-label {
-    margin-left: 0.5rem;
-  }
-  &__form_ctas {
-    width: 100%;
-    background-color: rgba(247, 248, 249, 0.7);
-    padding: $padding-sm 0;
-    justify-content: right;
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  &__button-add {
-    margin-left: 0.5rem;
-    margin-right: 1.75rem;
-    width: 10rem;
-    border: none;
-    padding: $padding-sm $padding-med;
-    border-radius: 1.25rem;
-    color: $white;
-    background-color: $instock-indigo;
-    &:hover {
-      background-color: $graphite;
-    }
-  }
-  &__button-cancel {
-    margin-left: 1.75rem;
-    margin-right: 0.5rem;
-    width: 10rem;
-    padding: $padding-sm $padding-med;
-    border-radius: 1.25rem;
-    border: 1px solid $cloud;
-    color: $slate;
-    background-color: $white;
-    &:hover {
-      color: $instock-indigo;
-      border: 1px solid $instock-indigo;
-    }
-  }
-
-  .error {
-    border: 1px solid $red;
-  }
-  .error-message {
-    display: flex;
-    align-items: center;
-    color: $red;
-    font-size: 12px;
-    padding-bottom: 0.5rem;
+  &__title{
+    padding-left: 0.5rem;
   }
 }

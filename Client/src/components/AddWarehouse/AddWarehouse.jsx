@@ -4,51 +4,40 @@ import { useState } from "react";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import WarehouseDetailsForm from "../FormFields/WarehouseDetailsForm/WarehouseDetailsForm";
 import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsForm";
-import React from 'react';
+import React from "react";
 
 function AddWarehouse() {
-
   return (
-    <section className="card">
-      <div className="card__title">
-        <div className="card__title-container">
-          <Link className="backarrow__link" to="/warehouse">
-            <img
-              className="card__icon-arrow"
-              src={BackArrow}
-              alt="Back to Warehouse List Page"
-            />
-          </Link>
-          <h1>Add New Warehouse</h1>
+    <main className="addWarehouse__main">
+      <section className="addWarehouse">
+        <div className="addWarehouse__header">
+          <div className="addWarehouse__header-container">
+            <Link to="/warehouse">
+              <img
+                className="arrow-back-icon"
+                src={BackArrow}
+                alt="Back to Warehouse List Page"
+              />
+            </Link>
+            <h1 className="addWarehouse__title">Add New Warehouse</h1>
+          </div>
         </div>
-      </div>
-      <div className="forms">
-        <div className="forms__container">
-          <WarehouseDetailsForm
-     
-          />
-          <ContactDetailsForm
-       
-          />
-        </div>
-        <div className="form__ctas">
-          <button
-            className="form__ctas-cancel"
-            type="button"
-            
-          >
-            <h3>Cancel</h3>
-          </button>
-          <button
-            className="form__ctas-add"
-            type="button"
-      
-          >
-            <h3>+ Add Warehouse</h3>
-          </button>
-        </div>
-      </div>
-    </section>
+        <section className="forms">
+          <div className="forms__container">
+            <WarehouseDetailsForm />
+            <ContactDetailsForm />
+          </div>
+          <div className="form__ctas">
+            <button className="form__ctas-cancel" type="button">
+              <h3>Cancel</h3>
+            </button>
+            <button className="form__ctas-add" type="button">
+              <h3>+ Add Warehouse</h3>
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
   );
 }
 
