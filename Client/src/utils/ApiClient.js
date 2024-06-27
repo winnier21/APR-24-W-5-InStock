@@ -20,8 +20,7 @@ export class ApiClient {
   }
   
   async get(endpoint) {
-    /* Helper method for making GET requests (following DRY principle). 
-    Called upon by the `.getVideo()` and `.getVideosArray()` methods. */
+    /* Helper method for making GET requests (following DRY principle). */
     const requestUrl = this.createRequestUrl(endpoint);
     try {
       const response = await axios.get(requestUrl);
@@ -31,14 +30,17 @@ export class ApiClient {
       return false;
     }
   }
-  
-  async getItemsArray(type) {
-    const endpoint = `api/${type}`;
+
+  async getItemsArray(route) {
+    const endpoint = `api/${route}`;
     const itemsArray = await this.get(endpoint);
     return itemsArray;
   }
   
   async getItem(route, id) {
+    /* 
+    A24W5-26 API to GET a Single Inventory Item 
+    */
     const endpoint = `api/${route}/${id}`
     const data = await this.get(endpoint);
     // this.logResponse(data, endpoint, 'GET');
@@ -46,12 +48,20 @@ export class ApiClient {
   }
   
   async getWarehouseItems(warehouseId) {
-    const endpoint = `api/warehouses/${warehouseId}/inventories`
+    const endpoint = `api/warehouses/${warehouseId}/inventories`;
     const data = await this.get(endpoint);
     return data;
   }
   
-  async post(endpoint, bodyObject) {
+  async post(route, bodyObject) {
+    /* 
+    A24W5-28 API to POST/CREATE a New Inventory Item
+      const response = apiInstance.postItem('inventories', itemObject);
+
+    A24W5-16 API to POST/CREATE a New Warehouse
+      const response = apiInstance.postItem('warehouses', warehouseObject);
+    */
+    const endpoint = `api/${route}`;
     const requestUrl = this.createRequestUrl(endpoint);
     const headers = {'Content-Type': 'application/json'};
     try {
@@ -62,16 +72,22 @@ export class ApiClient {
     }
   }
   
-  async postWarehouse(warehouseObject) {
-    const endpoint = 'api/warehouses'
-    const response = await this.post(endpoint, warehouseObject);
-    return response;
-  }
-  
-  async postItem(itemObject) {
-    const endpoint = `api/inventories`;
-    const response = await this.post(endpoint, itemObject);
-    return response;
+  async put(route, id, bodyObject) {
+    /* 
+    A24W5-18 PUT/EDIT a Warehouse 
+      const response = apiInstance.put('warehouses', warehouseId, warehouseObject);
+
+    A24W5-29 API to PUT/EDIT an Inventory Item
+      const response = apiInstance.put('inventories', itemId, itemObject);
+    */
+    try {
+      const endpoint = `api/${route}/${id}`;
+      const requestUrl = this.createRequestUrl(endpoint);
+      const response = await this.put(requestUrl, bodyObject);
+      return response;
+    } catch (error) {
+      return false;
+    }
   }
 }
 
