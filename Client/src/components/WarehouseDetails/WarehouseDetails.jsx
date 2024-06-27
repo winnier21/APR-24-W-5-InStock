@@ -14,18 +14,18 @@ function WarehouseDetails({ warehouseObject }) {
       </section>
       <section className="warehouse-info">
         <div className="warehouse-info__address-div">
-          <h3 className="warehouse-info__heading">
+          <h4 className="warehouse-info__heading">
             Warehouse Address:
-          </h3>
+          </h4>
           <p className="table-text">
             {address}, {city}, {country}
           </p>
         </div>
         <div className="warehouse-info__contact-div">
           <div className="warehouse-info__left">
-            <h3 className="warehouse-info__heading">
+            <h4 className="warehouse-info__heading">
               Contact Name:
-            </h3>
+            </h4>
             <p className="table-text">
               {contact_name}
             </p>
@@ -34,9 +34,9 @@ function WarehouseDetails({ warehouseObject }) {
             </p>
           </div>
           <div className="warehouse-info__right">
-            <h3 className="warehouse-info__heading">
+            <h4 className="warehouse-info__heading">
               Contact Information:
-            </h3>
+            </h4>
             <p className="table-text">
               {contact_name}
             </p>
