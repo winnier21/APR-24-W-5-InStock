@@ -6,10 +6,11 @@ import axios from 'axios';
 const EditForm = ({ id, itemId }) => {
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('Electronics');
+  const [warehouse, setWarehouse] = useState('Manhattan'); 
   const [status, setStatus] = useState('in_stock');
   const [quantity, setQuantity] = useState(1);
-  const [warehouseId, setWarehouseId] = useState(1); // assuming warehouse ID is 1
+  const [warehouseId, setWarehouseId] = useState(''); // assuming warehouse ID is 1
   const [errors, setErrors] = useState({});
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
   const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
@@ -78,7 +79,7 @@ const EditForm = ({ id, itemId }) => {
                   id="itemName"
                   value={itemName}
                   onChange={(e) => setItemName(e.target.value)}
-                  placeholder="Item Name" 
+                  placeholder="Television" 
                 />
               </div>
             </div>
@@ -90,7 +91,7 @@ const EditForm = ({ id, itemId }) => {
                   id="description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Please enter a brief item description..." 
+                  placeholder='This 50", 4K LED TV provides a crystal-clear picture and vivid colors.'
                 />
               </div>
             </div>
@@ -167,7 +168,7 @@ const EditForm = ({ id, itemId }) => {
                   className="item-select--warehouses"
                   id="warehouse"
                   value={warehouseId}
-                  onChange={(e) => setWarehouseId(parseInt(e.target.value, 10))}
+                  onChange={(e) => setWarehouseId(e.target.value)}
                 >
                   <option value="">Please select</option>
                   {warehouses.map((warehouse, index) => (
