@@ -20,6 +20,7 @@ function AddItemForm() {
   const [errors, setErrors] = useState({});
 
   //need to get from api data to populate dropdown
+  const [category, setCategory] = useState("");
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
   const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
 
@@ -29,11 +30,11 @@ function AddItemForm() {
      ...formData,
       [name]: value,
     });
-    if (value === 'out_of_stock') {
-      setFormData({
-       ...formData,
-        quantity: null,
-      });
+    if (name === 'category') {
+      setCategory(value);
+    }
+    if (name === 'warehouse') {
+      setWarehouse(value);
     }
     validateInput(name, value);
   };
@@ -92,11 +93,15 @@ function AddItemForm() {
       }
     }
   };
+  const [status, setStatus] = useState("in_stock"); 
   const handleStatusChange = (event) => {
     setFormData({...formData, status: event.target.value });
     if (event.target.value === 'out_of_stock') {
       setFormData({...formData, quantity: null });
     }
+    else {
+        setFormData({...formData, quantity: 1 });
+      }
   };
 
   const resetForm = () => {
@@ -178,7 +183,7 @@ function AddItemForm() {
                     <label className='label-text'>Status</label>
                     <div className="item-status">
                         <div className="item-status__check">
-                            <select
+                            {/* <select
                                 className='item-select--status item-select--status-placeholder'
                                 id="status"
                                 value={formData.status}
@@ -189,14 +194,17 @@ function AddItemForm() {
                                 <option value="in_stock">In Stock</option>
                                 <option value="out_of_stock">Out of Stock</option>
                             </select>
-                        </div>
-                            {/* <input
+                        </div> */}
+                            <input
                                 type="radio"
                                 className="item-status__check--instock"
                                 id="in_stock"
                                 value="in_stock"
-                                checked={status === 'in_stock'}
-                                onChange={() => setStatus('in_stock')}
+                                onChange={handleStatusChange}
+                                onFocus={() => handleFocus('status')}
+                                onBlur={() => handleBlur('status')}
+                                checked={formData.status === 'in_stock'}
+                                // onChange={() => setStatus('in_stock')}
                             />
                             <label className="item-status__check--instock-label" htmlFor="in_stock">
                                 In stock
@@ -208,13 +216,16 @@ function AddItemForm() {
                                 className="item-status__check--outofstock"
                                 id="out_of_stock"
                                 value="out_of_stock"
-                                checked={status === 'out_of_stock'}
-                                onChange={() => setStatus('out_of_stock')}
+                                onChange={handleStatusChange}
+                                onFocus={() => handleFocus('status')}
+                                onBlur={() => handleBlur('status')}
+                                checked={formData.status === 'out_of_stock'}
+                                // onChange={() => setStatus('out_of_stock')}
                             />
                             <label className="item-status__check--outofstock-label" htmlFor="out_of_stock">
                                 Out of stock
-                            </label> */}
-                        {/* </div> */}
+                            </label> 
+                        </div>
                     </div>
                 </div>
                 {status === 'in_stock' && (
