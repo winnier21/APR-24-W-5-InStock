@@ -1,9 +1,11 @@
-// import './AddWarehousePage.scss';
+import React from 'react';
+import AddWarehouse from '../../components/AddWarehouse/AddWarehouse';
 
-const AddWarehousePage = () => {
+
+
+function AddWarehousePage() {
   return (
-    <>
-    </>
+    <AddWarehouse />
   )
 }
 
