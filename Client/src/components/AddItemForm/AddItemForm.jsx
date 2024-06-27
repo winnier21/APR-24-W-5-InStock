@@ -1,65 +1,113 @@
 import React, { useState } from 'react';
-import './AddItemForm.scss';
+import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import apiInstance  from '../../utils/ApiClient';
+import './AddItemForm.scss';
 
-const AddItemForm = ({ id }) => {
-    // const [item,setItem] = useState('');
-  const [itemName, setItemName] = useState('');
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [status, setStatus] = useState('in_stock');
-  const [quantity, setQuantity] = useState(1);
-  const [warehouse, setWarehouse] = useState('');
+function AddItemForm() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    item_name: "",
+    description: "",
+    category: "",
+    status: "in_stock",
+    quantity: 1,
+    warehouse: "",
+  });
+  const [activeField, setActiveField] = useState(null);
   const [errors, setErrors] = useState({});
+
+  //need to get from api data to populate dropdown
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
   const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!itemName ||!description ||!category ||!status ||!warehouse) {
-        setErrors({ error: 'All fields are required' });
-        return;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+     ...formData,
+      [name]: value,
+    });
+    if (value === 'out_of_stock') {
+      setFormData({
+       ...formData,
+        quantity: null,
+      });
+    }
+    validateInput(name, value);
+  };
+  const handleFocus = (name) => {
+    setActiveField(name);
+  };
+
+  const handleBlur = (name) => {
+    setActiveField(null);
+    validateInput(name, formData[name]);
+  };
+
+  const validateInput = (name, value) => {
+    let error = "";
+    if (!value) {
+      error = "This field is required";
+    }
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
+  };
+  const handleCancel= (e) => {
+    e.preventDefault();
+    if (window.confirm("Are you sure you want to cancel?")) {
+      navigate("/items");
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (window.confirm("Are you ready to submit?")) {
+      let valid = true;
+      const newErrors = {};
+
+      Object.keys(formData).forEach((key) => {
+        if (!formData[key]) {
+          newErrors[key] = "This field is required";
+          valid = false;
+        } else {
+          validateInput(key, formData[key]);
+          if (errors[key]) {
+            valid = false;
+          }
+        }
+      });
+
+      setErrors(newErrors);
+
+      if (valid) {
+        try {
+          const response = await apiInstance.postItem(formData);
+          console.log('Item updated successfully:', response.data);
+          resetForm();
+        } catch (error) {
+          console.error('Error updating item:', error);
+          setErrors({ error: 'Error updating item' });
+        }
       }
-    const formData = {
-        item_name: itemName,
-        description,
-        category,
-        status,
-        quantity: status === 'in_stock' ? quantity : null,
-        warehouse_id: warehouse,
-    };
-  try {
-        const response = await apiInstance.postItem(formData);
-        console.log('Item updated successfully:', response.data);
-        resetForm();
-      } catch (error) {
-        console.error('Error updating item:', error);
-        setErrors({ error: 'Error updating item' });
-      }
-    };
-  
-    const handleStatusChange = (event) => {
-      setStatus(event.target.value);
-      if (event.target.value === 'out_of_stock') {
-        setQuantity(null);
-      }
-    };
-  
-    const handleCancel = () => {
-      resetForm();
-    };
-  
-    const resetForm = () => {
-      setItemName('');
-      setDescription('');
-      setCategory('');
-      setStatus('in_stock');
-      setQuantity(1);
-      setWarehouse('');
-      setErrors({});
-    };
-    
+    }
+  };
+  const handleStatusChange = (event) => {
+    setFormData({...formData, status: event.target.value });
+    if (event.target.value === 'out_of_stock') {
+      setFormData({...formData, quantity: null });
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      item_name: '',
+      description: '',
+      category: '',
+      status: 'in_stock',
+      quantity: 1,
+      warehouse: '',
+    });
+    setErrors({});
+  };
   return (
     <>            
         <section className='add-item-header'>
@@ -81,8 +129,10 @@ const AddItemForm = ({ id }) => {
                         className='item-input--name item-input--name-placeholder'
                         type="text"
                         id="itemName"
-                        value={itemName}
-                        onChange={(e) => setItemName(e.target.value)}
+                        value={formData.item_name}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus('item_name')}
+                        onBlur={() => handleBlur('item_name')}
                         placeholder="Item Name" 
                         />
                     </div>
@@ -93,10 +143,12 @@ const AddItemForm = ({ id }) => {
                         <textarea
                         className='item-input--description item-input--description-placeholder '
                         id="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder ="Please enter a brief item description..." 
-                        />
+                        value={formData.description}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus('description')}
+                        onBlur={() => handleBlur('description')}
+                        placeholder="Please enter a brief item description..." 
+                    />
                     </div>
                 </div>
                 <div className="item-detail">
@@ -124,7 +176,19 @@ const AddItemForm = ({ id }) => {
                     <label className='label-text'>Status</label>
                     <div className="item-status">
                         <div className="item-status__check">
-                            <input
+                            <select
+                                className='item-select--status item-select--status-placeholder'
+                                id="status"
+                                value={formData.status}
+                                onChange={handleStatusChange}
+                                onFocus={() => handleFocus('status')}
+                                onBlur={() => handleBlur('status')}
+                            >
+                                <option value="in_stock">In Stock</option>
+                                <option value="out_of_stock">Out of Stock</option>
+                            </select>
+                        </div>
+                            {/* <input
                                 type="radio"
                                 className="item-status__check--instock"
                                 id="in_stock"
@@ -147,8 +211,8 @@ const AddItemForm = ({ id }) => {
                             />
                             <label className="item-status__check--outofstock-label" htmlFor="out_of_stock">
                                 Out of stock
-                            </label>
-                        </div>
+                            </label> */}
+                        {/* </div> */}
                     </div>
                 </div>
                 {status === 'in_stock' && (
@@ -159,8 +223,11 @@ const AddItemForm = ({ id }) => {
                         type="number"
                         className="item-input--quantity"
                         id="quantity"
-                        value={quantity}
-                        onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
+                        value={formData.quantity}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus('quantity')}
+                        onBlur={() => handleBlur('quantity')}
+                        // onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
                         />
                     </div>
                 </div>
@@ -171,8 +238,11 @@ const AddItemForm = ({ id }) => {
                         <select
                         className="item-select--warehouses"
                         id="warehouse"
-                        value={warehouse}
-                        onChange={(e) => setWarehouse(e.target.value)}
+                        value={formData.warehouse}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus('warehouse')}
+                        onBlur={() => handleBlur('warehouse')}
+                        // onChange={(e) => setWarehouse(e.target.value)}
                     >
                         <option value="">Please select</option>
                         {warehouses.map((warehouse, index) => (
@@ -185,11 +255,11 @@ const AddItemForm = ({ id }) => {
                 </div>
             </section>
             </div>
-        <div className="button">
-            <button type="button" className="button button-cancel" onClick={handleCancel}>
+        <div className="form__actions">
+            <button type="button" className="button-cancel" onClick={handleCancel}>
                 Cancel
             </button>
-            <button type="submit" className="button button-add" onSubmit={handleSubmit} >
+            <button type="submit" className="button-add" onSubmit={handleSubmit} >
                 + Add Item
             </button>
         </div>
