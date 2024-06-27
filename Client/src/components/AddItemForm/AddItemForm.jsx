@@ -24,6 +24,19 @@ function AddItemForm() {
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
   const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
 
+  const [inventoryDetails, setInventoryDetails] = useState({}); // new state to store inventory details
+  const handleButtonClick = () => {
+    // update the formData with the inventory details
+    setFormData({
+      item_name: inventoryDetails.item_name,
+      description: inventoryDetails.description,
+      category: inventoryDetails.category,
+      status: inventoryDetails.status,
+      quantity: inventoryDetails.quantity,
+      warehouse: inventoryDetails.warehouse,
+    });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
