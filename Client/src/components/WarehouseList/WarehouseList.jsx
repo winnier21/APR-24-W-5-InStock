@@ -33,6 +33,7 @@ const WarehouseList = () => {
         return <WarehouseCard
           key={id}
           warehouseObject={warehouseObject}
+          dialogId="delete-warehouse-modal"
         />
       })}
       </ul >

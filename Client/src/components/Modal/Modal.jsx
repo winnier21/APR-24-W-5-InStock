@@ -1,3 +1,4 @@
+import React from 'react';
 import './Modal.scss';
 
 const Modal = ({modalProps}) => {
@@ -21,8 +22,11 @@ const Modal = ({modalProps}) => {
   `
   return (
     <dialog id={dialogId} className="modal">
-      <form method="dialog" className="modalForm">
+      <section className="page-top">
         <h1>{question}</h1>
+      </section>
+      <form method="dialog" className="modal-form">
+        
         <p>
           {disclaimer}
         </p>
