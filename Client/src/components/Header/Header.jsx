@@ -14,7 +14,7 @@ function Header() {
           </Link>
         </div>
         <section className="header__wrapper">
-          <Link className="header__link" to="/warehouses">
+          <Link className="header__link" to="/warehouse">
             <h3>Warehouse</h3>
           </Link>
           <Link className="header__link" to="/inventory">
