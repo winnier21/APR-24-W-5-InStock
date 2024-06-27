@@ -2,19 +2,27 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
-
-.add-item-form {
-    
-    margin-left:0rem;
-    margin-right:0rem;
-    .page-top__spacing {
-        justify-content: flex-start;
-    
-        .arrow-back-icon{
-            font-size: 1.5rem;
-            margin-right: 0.625rem;
+.add-item-header{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    line-height: 100%;
+    position: relative;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    height: 5.75rem;
+    border-bottom: 0.0625rem solid #BDC5D5;
+    .arrow-back-icon{
+        font-size: 1.5rem;
+        margin-right: 0.625rem;
         }    
     }
+.add-item-form {
+    margin-left:0rem;
+    margin-right:0rem;
+    
     .form {
     display: flex;
     flex-direction: column;
@@ -175,12 +183,6 @@
         }
         @include desktop{
             justify-content: flex-end;
-        }
-        & .button-cancel{
-            @include button-cancel;
-        }
-        & .button-add{
-            @include button-add;
         }
     }
 }

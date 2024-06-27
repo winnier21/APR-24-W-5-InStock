@@ -1,0 +1,31 @@
+@use "../../../styles/partials/globals" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.button-cancel{
+    width: 10.1875rem;
+    height: 2.25rem;
+    padding: 0.5rem 2.4375rem 0.5rem 2.4375rem; 
+    gap: 0.625rem;
+    border-radius: 1.25rem;
+    border: 0.0625rem solid $cloud;
+    position: relative;
+    background-color: $white;
+    color:$slate;
+   
+    @include desktop{
+        justify-content: center;
+        width: 4.5rem;
+        height: 2.375rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    @include tablet{
+        justify-content: center;
+        width: 4.5rem;
+        height: 2.375rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
