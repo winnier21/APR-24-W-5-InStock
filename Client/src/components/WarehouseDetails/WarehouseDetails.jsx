@@ -15,30 +15,32 @@ function WarehouseDetails({ warehouseObject }) {
       <section className="warehouse-info">
         <div className="warehouse-info__address-div">
           <h3 className="warehouse-info__heading">
-            Warehouse Address
+            Warehouse Address:
           </h3>
-          <p className="warehouse-info__p">
+          <p className="table-text">
             {address}, {city}, {country}
           </p>
         </div>
         <div className="warehouse-info__contact-div">
           <div className="warehouse-info__left">
-            <h3 className="warehouse_info__heading">
-              Contact Name
+            <h3 className="warehouse-info__heading">
+              Contact Name:
             </h3>
-            <p className="warehouse-info__p">
+            <p className="table-text">
               {contact_name}
             </p>
-            <p className="warehouse-info__p">
+            <p className="table-text">
               {contact_position}
             </p>
-            <h3 className="warehouse_info__heading">
-              Contact Information
+          </div>
+          <div className="warehouse-info__right">
+            <h3 className="warehouse-info__heading">
+              Contact Information:
             </h3>
-            <p className="warehouse-info__p">
+            <p className="table-text">
               {contact_name}
             </p>
-            <p className="warehouse-info__p">
+            <p className="table-text">
               {contact_email}
             </p>
           </div>

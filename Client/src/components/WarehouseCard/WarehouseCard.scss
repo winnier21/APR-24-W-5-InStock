@@ -7,10 +7,11 @@ $column-width: 50%;
 
 .warehouse__header-row {
   @extend .inventory__header-row;
+  display: none;
 }
 
 .warehouse-card {
-  @extend .inventory__card;
+  @include card-mixin;
   
   &__details {
     @extend .inventory__details;
@@ -26,7 +27,6 @@ $column-width: 50%;
       align-items: center;
       justify-content: flex-start;
     }
-
   }
 
   &__right {

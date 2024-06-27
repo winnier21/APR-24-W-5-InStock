@@ -7,7 +7,7 @@ $top-overlap--mobile: 3.5rem;
 $top-overlap--tablet: 5.75rem;
 
 @mixin header-overlap {
-  top: calc($top-overlap--mobile * -1);
+
 }
 
 main {
@@ -19,11 +19,12 @@ main {
     margin-bottom: 6rem;
     position: relative;
     z-index: 2;
-    @include header-overlap();
+    top: calc($top-overlap--mobile * -1);
 
     @include tablet{
       margin-left:2rem;
       margin-right: 2rem;
+      top: calc($top-overlap--tablet * -1);
     }
 
     @include desktop{
@@ -40,12 +41,10 @@ main {
 .page-top {
   @include zero-spacing;
   @include flex-mixin--row(100%);
-  padding: 0 $main-side-padding--tablet;
-  width: calc(100% - (2 * $main-side-padding--tablet));
+  @include card-padding;
+  box-sizing: border-box;
   align-items: center;
   height: $top-overlap--tablet; 
-  @include tablet {
-  }
 
   &__divider {
     border-bottom: $divider;
