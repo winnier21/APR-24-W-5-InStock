@@ -8,9 +8,43 @@ function WarehouseDetails({ warehouseObject }) {
   } = warehouseObject;
 
   return (
-    <section className="page-top">
-      <h1>{warehouse_name}</h1>
-    </section>
+    <>
+      <section className="page-top page-top__divider">
+        <h1>{warehouse_name}</h1>
+      </section>
+      <section className="warehouse-info">
+        <div className="warehouse-info__address-div">
+          <h3 className="warehouse-info__heading">
+            Warehouse Address
+          </h3>
+          <p className="warehouse-info__p">
+            {address}, {city}, {country}
+          </p>
+        </div>
+        <div className="warehouse-info__contact-div">
+          <div className="warehouse-info__left">
+            <h3 className="warehouse_info__heading">
+              Contact Name
+            </h3>
+            <p className="warehouse-info__p">
+              {contact_name}
+            </p>
+            <p className="warehouse-info__p">
+              {contact_position}
+            </p>
+            <h3 className="warehouse_info__heading">
+              Contact Information
+            </h3>
+            <p className="warehouse-info__p">
+              {contact_name}
+            </p>
+            <p className="warehouse-info__p">
+              {contact_email}
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 

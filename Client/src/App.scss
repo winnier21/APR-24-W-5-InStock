@@ -47,7 +47,7 @@ main {
   @include tablet {
   }
 
-  &__border {
+  &__divider {
     border-bottom: $divider;
   }
 }
