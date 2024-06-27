@@ -1,0 +1,77 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.editWarehouse {
+  &__header {
+    padding-bottom: 1.5rem;
+    padding-top: 2rem;
+    border-bottom: 0.0625rem solid $cloud;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    &-container {
+      display: flex;
+      align-items: center;
+    }
+    .arrow-back-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    a {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+  &__title {
+    padding-left: 0.5rem;
+  }
+}
+
+.forms {
+  &__container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    align-content: center;
+
+    @include tablet {
+      display: flex;
+      border-right: 0.0625rem solid $cloud;
+    }
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    background-color: $light-grey;
+    height: 4.25rem;
+
+    @include tablet {
+      justify-content: flex-end;
+    }
+    @include desktop {
+      justify-content: flex-end;
+    }
+    & .button-cancel {
+      margin-right: 1.5rem;
+      width: 8.68rem;
+      height: 2.25rem;
+      background-color: $white;
+      padding: 0.5rem 3.19rem;
+      border-radius: 1.25rem;
+      border: 1px solid $white;
+      color: $slate;
+      font-family: Titillium Web;
+    }
+    & .button-add {
+      margin-right: 1.5rem;
+      width: 8.68rem;
+      height: 2.25rem;
+      background-color: $instock-indigo;
+      padding: 0.5rem 0;
+      border-radius: 1.25rem;
+      border: 1px solid $cloud;
+      color: $white;
+      font-family: Titillium Web;
+    }
+  }
+}
