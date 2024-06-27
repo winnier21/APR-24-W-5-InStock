@@ -68,16 +68,18 @@ const AddItemForm = ({ id }) => {
     };
     
   return (
-    <main className="main-additem">            
-        <h1 className='main-header'>
+    <>            
+        <section className='page-top page-top__divider page-top__spacing'>
             <img src ={ArrowBackIcon} className='arrow-back-icon'/>
-            Add New Inventory Item
-        </h1>
+            <h1>Add New Inventory Item</h1>
+        </section>
+        <section className='add-item-form'>
         <form className = "form" onSubmit={handleSubmit}>
             <div className='form__divider'>
             <section className="item-details">
-                <h2>Item Details</h2>
+                
                 <div className="item-detail">
+                    <h2>Item Details</h2>
                     <label className='label-text'>Item Name </label>
                     <div className="item-input">
                         <input
@@ -197,7 +199,8 @@ const AddItemForm = ({ id }) => {
             </button>
         </div>
     </form>
-</main>
+    </section>
+</>
       
   );
 };
