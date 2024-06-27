@@ -4,7 +4,7 @@ import './Placeholder.scss';
 const Placeholder = () => {
   return (
     <section className="api-data-placeholder">
-      <p>Loading</p>
+      <p className="table-text">Loading</p>
     </section>
   )
 }

@@ -4,32 +4,34 @@
 
 $column-gap: 1rem;
 $column-width: 50%;
-
-.warehouse__header-row {
-  @extend .inventory__header-row;
-}
+$left-width: 40%;
+$right-width: calc(100% - $left-width);
 
 .warehouse-card {
-  @extend .inventory__card;
+  @include card-mixin;
   
   &__details {
     @extend .inventory__details;
     gap: $column-gap;
+    justify-content: flex-start;
   }
 
   &__left, &__right {
     @include flex-mixin--column(100%);
     @include tablet {
       gap: $column-gap;
-      width: 50%;
+      width: $left-width;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
     }
-
   }
 
   &__right {
+    @extend .warehouse-card__left;
+    @include tablet {
+      width: $right-width;
+    }
   }
 
   &__heading {
@@ -45,7 +47,7 @@ $column-width: 50%;
   }
 
   &__text-container {
-    @extend .inventory__text-container;
+    align-items: flex-start;
     @include tablet {
       width: $column-width;
     }
@@ -55,4 +57,11 @@ $column-width: 50%;
     @extend .inventory__item-name;
   }
 
+  &__contact-info {
+    width: 70%;
+  }
+}
+
+.warehouse__header-row {
+  @include header-row;
 }

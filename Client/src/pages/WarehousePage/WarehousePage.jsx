@@ -7,7 +7,9 @@ import WarehouseList from '../../components/WarehouseList/WarehouseList';
 function WarehousePage() {
   return (
     <main>
-      <h1>Warehouse Page</h1>
+      <section className="page-top">
+        <h1>Warehouses</h1>
+      </section>
       <WarehouseList />
     </main>
   );
