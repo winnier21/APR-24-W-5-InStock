@@ -14,7 +14,6 @@ function WarehouseDetailsPage() {
     const data = await apiInstance.getItem('warehouses', warehouseId);
     if (data) {
       setWarehouseObject(data);
-      console.log('data:', data)
     }
   }
 

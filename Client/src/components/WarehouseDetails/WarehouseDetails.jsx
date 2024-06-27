@@ -8,9 +8,9 @@ function WarehouseDetails({ warehouseObject }) {
   } = warehouseObject;
 
   return (
-    <div>
+    <section className="page-top">
       <h1>{warehouse_name}</h1>
-    </div>
+    </section>
   );
 }
 
