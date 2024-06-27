@@ -54,10 +54,10 @@
 }
 
 @mixin card-padding {
-  padding: 1rem 1.5rem;
+  padding: $padding-med $padding-large;
 
   @include tablet {
-    padding: 1.125rem $card-side-padding--tablet;
+    padding: 1.125rem $main-side-padding--tablet;
   }
 }
 
@@ -177,4 +177,33 @@
   align-items: center;
   justify-content: flex-start;
 
+}
+
+@mixin card-mixin {
+  @include flex-mixin--column(auto);
+  @include card-padding;
+  gap: $padding-med;
+  border-top: $divider;
+
+  @include tablet {
+    flex-direction: row;
+    width: $card-width--tablet;
+    justify-content: space-between;
+    padding-top: .6875rem;
+    padding-bottom: .6875rem;
+    
+    &:first-of-type {
+      border-top: none;
+    }
+  }
+}
+
+@mixin header-row {
+  display: none;
+  @include tablet {
+    display: flex;
+    background-color: $light-grey;
+    height: 100%;
+    border: none;
+  }
 }

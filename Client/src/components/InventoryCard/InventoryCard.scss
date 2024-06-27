@@ -1,18 +1,17 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
-$card-width--tablet: calc(100% - 2 * $card-side-padding--tablet);
 $details-width: 100%;
 $details-width--left: 40%;
 $details-width--right: calc(100% - $details-width--left);
 
-$column-gap: calc($card-side-padding--tablet * 2);
+$column-gap: calc($main-side-padding--tablet * 2);
 $column-width--index: 60%;
 $column-width--category: calc((100% - $column-width--index));
 
-$column-width--third: calc((33% - $card-side-padding--tablet));
-$column-width--status: calc((48% - $card-side-padding--tablet));
-$column-width--qty: calc((19% - $card-side-padding--tablet));
+$column-width--third: calc((33% - $main-side-padding--tablet));
+$column-width--status: calc((48% - $main-side-padding--tablet));
+$column-width--qty: calc((19% - $main-side-padding--tablet));
 $column-width--third: 33%;
 $column-width--status: 48% ;
 $column-width--qty: 19%;
@@ -20,32 +19,11 @@ $icons-width: 4.2rem;
 
 .inventory {
   &__card {
-    @include flex-mixin--column(auto);
-    @include card-padding;
-    gap: 1rem;
-    border-top: $divider;
-
-    @include tablet {
-      flex-direction: row;
-      width: $card-width--tablet;
-      justify-content: space-between;
-      padding-top: .6875rem;
-      padding-bottom: .6875rem;
-      
-      &:first-of-type {
-        border-top: none;
-      }
-    }
+    @include card-mixin;
   }
 
   &__header-row {
-    display: none;
-    @include tablet {
-      display: flex;
-      background-color: $light-grey;
-      height: 100%;
-      border: none;
-    }
+    @include header-row;
   }
 
   &__details {
@@ -131,6 +109,7 @@ $icons-width: 4.2rem;
       @extend .inventory__heading--table;
       color: $slate;
       width: $icons-width;
+      justify-content: flex-end;
       &:after {
         content: "";
       }
@@ -190,4 +169,7 @@ $icons-width: 4.2rem;
     }
   }
 
+  &__icons {
+    justify-content: flex-end;
+  }
 }
