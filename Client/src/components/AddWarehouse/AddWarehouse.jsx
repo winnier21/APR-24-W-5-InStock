@@ -168,7 +168,7 @@ function AddWarehouse() {
             <button className="button-cancel" type="button"onClick={handleCancelClick}>
               <h3>Cancel</h3>
             </button>
-            <button className="button-add" type="submit" onClick={handleCancelClick}>
+            <button className="button-add" type="submit" onClick={handleAddClick}>
              <h3>+ Add Warehouse</h3> 
             </button>
           </div>
