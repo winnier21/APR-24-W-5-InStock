@@ -7,7 +7,6 @@ import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsF
 import React from "react";
 
 function AddWarehouse() {
-  
   return (
     <main className="editWarehouse__main">
       <section className="editWarehouse">
@@ -25,18 +24,15 @@ function AddWarehouse() {
         </div>
         <section className="forms">
           <div className="forms__container">
-            <WarehouseDetailsForm 
-          
-            />
-            <ContactDetailsForm
-            />
+            <WarehouseDetailsForm />
+            <ContactDetailsForm />
           </div>
           <div className="button">
             <button className="button-cancel" type="button">
               <h3>Cancel</h3>
             </button>
-            <button className="button-add" type="submit" >
-             <h3>Save</h3> 
+            <button className="button-add" type="submit">
+              <h3>Save</h3>
             </button>
           </div>
         </section>
