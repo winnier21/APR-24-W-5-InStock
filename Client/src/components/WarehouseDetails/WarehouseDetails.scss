@@ -1,0 +1,36 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+// @use '../InventoryCard/InventoryCard' as *;
+
+.warehouse-info {
+  @include flex-mixin--column(auto);
+  @include card-padding;
+  gap: 2.25rem;
+  @include tablet {
+    flex-direction: row;
+  }
+
+  &__address-div {
+    @include tablet {
+      width: 80%;
+      border-right: $divider;
+    }
+
+  }
+
+  &__heading {
+    @include table-heading;
+  }
+
+  &__contact-div {
+    @include flex-mixin--row(100%);
+  }
+
+  &__left, &__right {
+    
+  }
+
+  &__contact-info {
+    width: 70%;
+  }
+}

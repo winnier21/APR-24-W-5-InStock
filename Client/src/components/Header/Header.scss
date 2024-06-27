@@ -13,7 +13,6 @@
 
   @include tablet {
     height: 11.625rem;
-    margin-bottom: -5rem;
   }
 
   @include desktop {
@@ -28,8 +27,8 @@
     @include tablet {
       display: flex;
       padding-top:2rem;
-
     }
+
     @include desktop {
       display: flex;
       padding-top:2rem;
