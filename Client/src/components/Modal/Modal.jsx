@@ -1,7 +1,7 @@
 import React from 'react';
 import './Modal.scss';
 
-const Modal = ({modalProps}) => {
+const Modal = ({modalProps, modalRef}) => {
   const {
     name, type,
     dialogId,
@@ -21,7 +21,7 @@ const Modal = ({modalProps}) => {
   Please confirm that you'd like to delete ${name2} from the ${list}. You won't be able to undo this action.
   `
   return (
-    <dialog id={dialogId} className="modal">
+    <dialog id={dialogId} className="modal" ref={modalRef}>
       <section className="page-top">
         <h1>{question}</h1>
       </section>

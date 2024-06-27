@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 
 import './WarehouseCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
@@ -6,6 +6,8 @@ import Cardlink from '../CardLink/CardLink';
 import Modal from '../../components/Modal/Modal';
 
 const WarehouseCard = ({ warehouseObject }) => {
+
+  const modalRef = useRef();
 
   if (typeof warehouseObject !== 'object') { // if it is a string or null
     return (
@@ -60,7 +62,7 @@ const WarehouseCard = ({ warehouseObject }) => {
   return (
     <>
     <li className="warehouse-card">
-      <Modal modalProps={modalProps} />
+      <Modal modalProps={modalProps} modalRef={modalRef}/>
       <div className="warehouse-card__details">
         <div className="warehouse-card__left">
           <h4 className="warehouse-card__heading">
@@ -103,8 +105,8 @@ const WarehouseCard = ({ warehouseObject }) => {
           </div>
         </div>
       <ActionIcons 
-        dialogId={dialogId}
         warehouseId={id}
+        modalRef={modalRef}
       />
     </li>
     </>
