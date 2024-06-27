@@ -31,7 +31,6 @@ $right-width: calc(100% - $left-width);
     @extend .warehouse-card__left;
     @include tablet {
       width: $right-width;
-      background-color: pink;
     }
   }
 
@@ -56,6 +55,10 @@ $right-width: calc(100% - $left-width);
 
   &__index {
     @extend .inventory__item-name;
+  }
+
+  &__contact-info {
+    width: 70%;
   }
 }
 
