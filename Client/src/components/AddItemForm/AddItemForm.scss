@@ -184,12 +184,6 @@
         @include desktop{
             justify-content: flex-end;
         }
-        & .button-cancel{
-            @include button-cancel;
-        }
-        & .button-add{
-            @include button-add;
-        }
     }
 }
 }

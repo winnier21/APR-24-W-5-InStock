@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import apiInstance  from '../../utils/ApiClient';
+import AddButton from '../Button/AddButton/AddButton';
+import CancelButton from '../Button/CancelButton/CancelButton';
 import './AddItemForm.scss';
 
 function AddItemForm() {
@@ -256,12 +258,8 @@ function AddItemForm() {
             </section>
             </div>
         <div className="form__actions">
-            <button type="button" className="button-cancel" onClick={handleCancel}>
-                Cancel
-            </button>
-            <button type="submit" className="button-add" onSubmit={handleSubmit} >
-                + Add Item
-            </button>
+            <CancelButton onClick={handleCancel} />
+            <AddButton onClick={handleSubmit} />
         </div>
     </form>
     </section>
