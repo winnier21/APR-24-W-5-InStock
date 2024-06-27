@@ -1,5 +1,6 @@
 // AddButton.jsx
-import React from 'eact';
+import React from 'react';
+import './AddButton.scss';
 
 const AddButton = ({ onClick }) => {
   return (

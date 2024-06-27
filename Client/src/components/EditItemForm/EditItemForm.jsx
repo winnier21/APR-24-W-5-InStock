@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './EditItemForm.scss';
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import axios from 'axios';
+import AddButton from '../Button/AddButton/AddButton';
+import CancelButton from '../Button/CancelButton/CancelButton';
 
 const EditForm = ({ id, itemId }) => {
   const [itemName, setItemName] = useState('');
@@ -181,13 +183,9 @@ const EditForm = ({ id, itemId }) => {
             </div>
           </section>
         </div>
-        <div className="button">
-          <button type="button" className="button-cancel" onClick={handleCancel}>
-            Cancel
-          </button>
-          <button type="submit" className="button-add" onSubmit={handleSubmit} >
-            Save
-          </button>
+        <div className="form__actions">
+            <CancelButton onClick={handleCancel} />
+            <AddButton onClick={handleSubmit} />
         </div>
       </form>
     </main>
