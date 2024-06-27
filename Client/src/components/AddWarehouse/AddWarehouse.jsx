@@ -27,12 +27,12 @@ function AddWarehouse() {
             <WarehouseDetailsForm />
             <ContactDetailsForm />
           </div>
-          <div className="form__ctas">
-            <button className="form__ctas-cancel" type="button">
+          <div className="button">
+            <button className="button-cancel" type="button">
               <h3>Cancel</h3>
             </button>
-            <button className="form__ctas-add" type="button">
-              <h3>+ Add Warehouse</h3>
+            <button className="button-add" type="submit">
+             <h3>+ Add Warehouse</h3> 
             </button>
           </div>
         </section>
