@@ -29,14 +29,7 @@ const AddItemForm = ({ id }) => {
         quantity: status === 'in_stock' ? quantity : null,
         warehouse_id: warehouse,
     };
-    console.log('Form submitted:', {
-      itemName,
-      description,
-      category,
-      status,
-      quantity,
-      warehouse,
-    });  try {
+  try {
         const response = await apiInstance.postItem(formData);
         console.log('Item updated successfully:', response.data);
         resetForm();
@@ -69,9 +62,11 @@ const AddItemForm = ({ id }) => {
     
   return (
     <>            
-        <section className='page-top page-top__divider page-top__spacing'>
-            <img src ={ArrowBackIcon} className='arrow-back-icon'/>
-            <h1>Add New Inventory Item</h1>
+        <section className='add-item-header'>
+             <img src ={ArrowBackIcon} className='arrow-back-icon'/>
+            <div className='page-top'>
+                <h1>Add New Inventory Item</h1>
+            </div>
         </section>
         <section className='add-item-form'>
         <form className = "form" onSubmit={handleSubmit}>
