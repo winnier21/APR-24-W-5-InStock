@@ -1,13 +1,14 @@
 import "./AddWarehouse.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import WarehouseDetailsForm from "../FormFields/WarehouseDetailsForm/WarehouseDetailsForm";
 import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsForm";
 import React from 'react';
 
 function AddWarehouse() {
+
   return (
-    <main>
     <section className="card">
       <div className="card__title">
         <div className="card__title-container">
@@ -23,20 +24,31 @@ function AddWarehouse() {
       </div>
       <div className="forms">
         <div className="forms__container">
-          <WarehouseDetailsForm />
-          <ContactDetailsForm />
+          <WarehouseDetailsForm
+     
+          />
+          <ContactDetailsForm
+       
+          />
         </div>
         <div className="form__ctas">
-          <button className="form__ctas-cancel" type="button">
+          <button
+            className="form__ctas-cancel"
+            type="button"
+            
+          >
             <h3>Cancel</h3>
           </button>
-          <button className="form__ctas-add" type="button">
+          <button
+            className="form__ctas-add"
+            type="button"
+      
+          >
             <h3>+ Add Warehouse</h3>
           </button>
         </div>
       </div>
     </section>
-    </main>
   );
 }
 
