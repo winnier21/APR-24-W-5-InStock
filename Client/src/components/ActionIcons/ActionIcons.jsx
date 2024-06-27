@@ -5,13 +5,10 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 
 import './ActionIcons.scss';
 
-const ActionIcons = ({dialogId, warehouseId}) => {
-  const dialogElement = document.getElementById(dialogId);
-  console.log(dialogId);
+const ActionIcons = ({ warehouseId, formRef }) => {
 
   const deleteHandler = (event) => {
-    dialogElement.showModal();
-    console.log('Delete button clicked.')
+    formRef.current.showModal();
   }
 
   return (

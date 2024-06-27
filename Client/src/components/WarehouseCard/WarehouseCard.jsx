@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRef } from "react";
 
 import './WarehouseCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
@@ -50,15 +51,14 @@ const WarehouseCard = ({ warehouseObject }) => {
     contact_phone, contact_email
   } = warehouseObject;
 
-  const dialogId = `delete-${warehouse_name}-modal`
+  const formRef = useRef();
   const modalProps = {
     name: warehouse_name,
     type: 'warehouse',
-    dialogId: dialogId
+    formRef: formRef
   }
 
   return (
-    <>
     <li className="warehouse-card">
       <Modal modalProps={modalProps} />
       <div className="warehouse-card__details">
@@ -103,11 +103,10 @@ const WarehouseCard = ({ warehouseObject }) => {
           </div>
         </div>
       <ActionIcons 
-        dialogId={dialogId}
         warehouseId={id}
+        formRef={formRef}
       />
     </li>
-    </>
   )
 }
 
