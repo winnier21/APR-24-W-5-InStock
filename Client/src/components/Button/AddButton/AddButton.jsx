@@ -4,7 +4,7 @@ import './AddButton.scss';
 
 const AddButton = ({ onClick }) => {
   return (
-    <button type="submit" className="button-add"  onClick={(e) => onClick(e)}>
+    <button type="submit" className="button-add"  onClick={onClick}>
       + Add Item
     </button>
   );
