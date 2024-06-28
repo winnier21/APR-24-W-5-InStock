@@ -1,7 +1,11 @@
 import React from 'react';
 import './ItemSelect.scss';
 
-const ItemSelect = ({ formData, setFormData, options, label, id , handleStatusChange}) => {
+const ItemSelect = ({ formData, setFormData, options, label, id }) => {
+  const handleChange = (event) => {
+    setFormData({ ...formData, [id]: event.target.value });
+  };
+
   return (
     <div className="item-detail">
       <label className='label-text'>{label} </label>
@@ -10,7 +14,8 @@ const ItemSelect = ({ formData, setFormData, options, label, id , handleStatusCh
           className={`item-select--${id}`}
           id={id}
           value={formData[id]}
-          onChange={handleStatusChange}
+          onChange={handleChange}
+
           >
           <option value="">Please select</option>
           {options.map((option, index) => (

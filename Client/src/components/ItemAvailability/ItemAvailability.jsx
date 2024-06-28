@@ -2,7 +2,7 @@ import React from 'react';
 import ItemSelect from '../FormFields/ItemSelect/ItemSelect';
 import QuantityForm from '../FormFields/QuantityForm/QuantityForm';
 import './ItemAvailability.scss';
-const ItemAvailability = ({ formData, setFormData, activeField, setActiveField, warehouses,errors }) => {
+const ItemAvailability = ({ formData, setFormData, activeField, setActiveField, warehouses,errors ,handleStatusChange}) => {
   return (
     <section className="item-availability">
       <h2>Item Availability</h2>
@@ -14,6 +14,8 @@ const ItemAvailability = ({ formData, setFormData, activeField, setActiveField, 
               type="radio"
               id="in_stock"
               value="in_stock"
+              onChange={handleStatusChange}
+              checked={formData.status === 'in_stock'}
               className="item-status__check--instock"
             />
             <label className="item-status__check--instock-label" htmlFor="in_stock">
@@ -25,6 +27,8 @@ const ItemAvailability = ({ formData, setFormData, activeField, setActiveField, 
               type="radio"
               id="out_of_stock"
               value="out_of_stock"
+              onChange={handleStatusChange}
+              checked={formData.status === 'out_of_stock'}
               className="item-status__check--outofstock"
             />
             <label className="item-status__check--outofstock-label" htmlFor="out_of_stock">
@@ -33,13 +37,14 @@ const ItemAvailability = ({ formData, setFormData, activeField, setActiveField, 
           </div>
         </div>
       </div>
+      {formData.status === 'in_stock' && (
       <QuantityForm 
         formData={formData} 
         setFormData={setFormData} 
         activeField={activeField} 
         setActiveField={setActiveField} 
         errors={errors} 
-      />
+      />)}
       <ItemSelect 
       formData={formData} 
       setFormData={setFormData} 
