@@ -16,7 +16,7 @@
         width: 100%;
     }
     &::placeholder{
-        font-family: 'Titillium Web', sans-serif;
+        font-family: 'Titillium', sans-serif;
         @include input-select-placeholders;
         @include p2;
         
