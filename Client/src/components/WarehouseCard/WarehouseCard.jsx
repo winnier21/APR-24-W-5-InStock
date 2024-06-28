@@ -4,7 +4,7 @@ import ActionIcons from '../ActionIcons/ActionIcons';
 import Cardlink from '../CardLink/CardLink';
 import Modal from '../../components/Modal/Modal';
 
-const WarehouseCard = ({ warehouseObject }) => {
+const WarehouseCard = ({ warehouseObject, totalEdits, setTotalEdits }) => {
 
   if (typeof warehouseObject !== 'object') { // if it is a string or null
     return (
@@ -51,9 +51,12 @@ const WarehouseCard = ({ warehouseObject }) => {
 
   const dialogRef = useRef();
   const modalProps = {
+    id: id,
     name: warehouse_name,
     type: 'warehouse',
-    dialogRef: dialogRef
+    dialogRef: dialogRef,
+    totalEdits: totalEdits,
+    setTotalEdits: setTotalEdits
   }
 
   return (

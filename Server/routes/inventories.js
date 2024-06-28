@@ -60,4 +60,20 @@ router.put('/:id', async (req, res) => {
 });
 
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const idToDelete = req.params.id;
+    const nDeletedRows = await knex('inventories')
+      .where({ id: idToDelete }).del();
+    if (nDeletedRows > 0) {
+      const message = `${nDeletedRows} records deleted: id ${idToDelete}.`;
+      res.status(204).send(message);
+    } else {
+      res.status(404).send(`Failed to delete item with id ${req.params.id}.`);
+    }
+  } catch (error) {
+    res.status(404).send(`Failed to delete item with id ${req.params.id}.`);
+  }
+})
+
 export default router;
