@@ -6,9 +6,13 @@ $details-width--left: 40%;
 $details-width--right: calc(100% - $details-width--left);
 
 $column-gap: calc($main-side-padding--tablet * 2);
+$column-gap: calc($main-side-padding--tablet * 2);
 $column-width--index: 60%;
 $column-width--category: calc((100% - $column-width--index));
 
+$column-width--third: calc((33% - $main-side-padding--tablet));
+$column-width--status: calc((48% - $main-side-padding--tablet));
+$column-width--qty: calc((19% - $main-side-padding--tablet));
 $column-width--third: calc((33% - $main-side-padding--tablet));
 $column-width--status: calc((48% - $main-side-padding--tablet));
 $column-width--qty: calc((19% - $main-side-padding--tablet));

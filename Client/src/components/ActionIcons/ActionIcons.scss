@@ -9,3 +9,9 @@
     align-items: flex-start;
   }
 } 
+
+.delete-icon {
+  &:hover {
+    cursor: pointer;
+  }
+}

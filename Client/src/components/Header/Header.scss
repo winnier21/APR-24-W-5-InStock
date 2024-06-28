@@ -11,11 +11,11 @@
   justify-content: center;
 
   @include tablet {
-    height: 11.625rem;
+    height: $header-height--tablet;
   }
 
   @include desktop {
-    height: 11.625rem;
+    height: $header-height--tablet;
   }
 
   &__container {

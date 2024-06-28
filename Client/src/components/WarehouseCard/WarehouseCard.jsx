@@ -1,8 +1,8 @@
-import React from 'react';
-
+import React, { useRef } from 'react';
 import './WarehouseCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
 import Cardlink from '../CardLink/CardLink';
+import Modal from '../../components/Modal/Modal';
 
 const WarehouseCard = ({ warehouseObject }) => {
 
@@ -49,8 +49,16 @@ const WarehouseCard = ({ warehouseObject }) => {
     contact_phone, contact_email
   } = warehouseObject;
 
+  const dialogRef = useRef();
+  const modalProps = {
+    name: warehouse_name,
+    type: 'warehouse',
+    dialogRef: dialogRef
+  }
+
   return (
     <li className="warehouse-card">
+      <Modal modalProps={modalProps} />
       <div className="warehouse-card__details">
         <div className="warehouse-card__left">
           <h4 className="warehouse-card__heading">
@@ -92,7 +100,10 @@ const WarehouseCard = ({ warehouseObject }) => {
             </div>
           </div>
         </div>
-      <ActionIcons />
+      <ActionIcons 
+        warehouseId={id}
+        dialogRef={dialogRef}
+      />
     </li>
   )
 }
