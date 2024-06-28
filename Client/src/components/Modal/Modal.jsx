@@ -7,8 +7,8 @@ import apiInstance from '../../utils/ApiClient';
 
 const Modal = ({modalProps}) => {
   const {
-    id, name, type,
-    dialogRef
+    id, name, type, dialogRef,
+    totalEdits, setTotalEdits
   } = modalProps;
 
   const question = `Delete ${name} ${type}?`;
@@ -26,8 +26,10 @@ const Modal = ({modalProps}) => {
   }
 
   const buttonHandler = async (event) => {
-    console.log(`Attempting to delete ${type} ${name}...`)
     const response = await apiInstance.delete(route, id);
+    if (response) {
+      setTotalEdits(totalEdits + 1 )
+    }
   }
 
   const disclaimer = `
