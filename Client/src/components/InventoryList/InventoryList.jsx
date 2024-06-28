@@ -37,10 +37,10 @@ const InventoryList = ({warehouseId}) => {
       <ul>
       {
         inventoryArray.map(itemObject => {
-          const { id, ...itemData } = itemObject;
+          const { id } = itemObject;
           return <InventoryCard
             key={id}
-            itemObject={itemData}
+            itemObject={itemObject}
             sectionWidth={sectionWidth}
             />
           }

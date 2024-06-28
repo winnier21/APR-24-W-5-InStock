@@ -24,6 +24,7 @@
   position: relative;
   width: $element-width;
 }
+
 @mixin flex-mixin--row($element-width) {
   @include flex-mixin($element-width);
   align-items: center;

@@ -27,6 +27,7 @@ export class ApiClient {
       const data = response.data;
       return data;
     } catch (error) {
+      this.logResponse(data, endpoint, 'GET');
       return false;
     }
   }
