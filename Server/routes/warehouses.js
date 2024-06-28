@@ -137,8 +137,7 @@ router.post("/add", async (req, res) => {
   } = req.body;
 
   try {
-    console.log("Received data:", req.body); // Log the received data
-
+    console.log("Received data:", req.body); 
     const [id] = await knex("warehouses").insert({
       warehouse_name: warehouseName,
       address,
@@ -150,7 +149,7 @@ router.post("/add", async (req, res) => {
       contact_email: contactEmail,
     });
 
-    console.log("Inserted warehouse ID:", id); // Log the inserted ID
+    console.log("Inserted warehouse ID:", id); 
     res.status(201).json({ message: "Warehouse added successfully", id });
   } catch (error) {
     console.error("Error adding warehouse:", error);
