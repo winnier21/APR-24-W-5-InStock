@@ -4,6 +4,8 @@ import { useState } from "react";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import WarehouseDetailsForm from "../FormFields/WarehouseDetailsForm/WarehouseDetailsForm";
 import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsForm";
+import AddButton from '../Button/AddButton/AddButton';
+import CancelButton from '../Button/CancelButton/CancelButton';
 import React from "react";
 
 function AddWarehouse() {
@@ -28,12 +30,9 @@ function AddWarehouse() {
             <ContactDetailsForm />
           </div>
           <div className="button">
-            <button className="button-cancel" type="button">
-              Cancel
-            </button>
-            <button className="button-add" type="submit">
-             + Add Warehouse
-            </button>
+          <CancelButton  />
+          <AddButton  buttonText="+ Add Warehouse" />
+            
           </div>
         </section>
       </section>

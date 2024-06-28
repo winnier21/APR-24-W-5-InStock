@@ -281,9 +281,9 @@ function AddItemForm() {
                 </div>
             </section>
             </div>
-        <div className="form__actions">
+        <div className="button">
             <CancelButton onClick={handleCancel} />
-            <AddButton onClick={handleSubmit} />
+            <AddButton buttonText="+ Add Item" onClick={handleSubmit} />
         </div>
     </form>
     </section>

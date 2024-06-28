@@ -2,10 +2,10 @@
 import React from 'react';
 import './AddButton.scss';
 
-const AddButton = ({ onClick }) => {
+const AddButton = ({ onClick, buttonText }) => {
   return (
-    <button type="submit" className="button-add"  onClick={onClick}>
-      + Add Item
+    <button type="submit" className="button button-add"  onClick={onClick}>
+      {buttonText}
     </button>
   );
 };

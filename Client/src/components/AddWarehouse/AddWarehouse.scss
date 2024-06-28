@@ -37,51 +37,6 @@
       border-right: 0.0625rem solid $cloud;
     }
   }
-
-  .button {
-    display: flex;
-    align-items: center;
-    padding: 0 1.5rem;
-    background-color: $light-grey;
-    height: 4.25rem;
-
-    @include tablet {
-      justify-content: flex-end;
-    }
-    @include desktop {
-      justify-content: flex-end;
-    }
-    & .button-cancel {
-      margin-right: 1.5rem;
-      width: 8.68rem;
-      height: 2.25rem;
-      background-color: $white;
-      padding: 0.5rem 3.19rem;
-      border-radius: 1.25rem;
-      border: 1px solid $white;
-      color: $slate;
-      font-family: Titillium Web;
-      margin-right: 1.5rem;
-      padding: 0.5rem 3.19rem;
-      font-size: 0.8125rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 1.25rem;
-    }
-    & .button-add {
-      width: auto;
-      min-width: 8.68rem;
-      height: 2.25rem;
-      background-color: $instock-indigo;
-      border-radius: 1.25rem;
-      border: 1px solid $cloud;
-      color: $white;
-      padding: 0.5rem 1.31rem;
-      font-family: "Titillium Web";
-      font-size: 0.8125rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 1.25rem;
-    }
-  }
+ 
 }
+

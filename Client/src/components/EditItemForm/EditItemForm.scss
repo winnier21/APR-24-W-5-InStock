@@ -171,18 +171,5 @@
       }   
     }
     
-    .button {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        background-color: $light-grey;
-        height: 4.25rem;
-        @include tablet {
-            justify-content: flex-end;
-        }
-        @include desktop {
-            justify-content: flex-end;
-        }
-    }
   }
 }
