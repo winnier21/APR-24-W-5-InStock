@@ -1,9 +1,10 @@
 import React from 'react';
-// import './EditWarehousePage.scss';
+import EditWarehouse from '../../components/EditWarehouse/EditWarehouse';
 
 const EditWarehousePage = () => {
   return (
     <>
+    <EditWarehouse />
     </>
   )
 }
