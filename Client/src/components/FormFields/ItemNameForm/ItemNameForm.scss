@@ -1,0 +1,29 @@
+@use "../../../styles/partials/globals" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.item-detail{
+    display: flex;
+    flex-direction: column;
+    // @include form-field-spacing;
+        .item-input{
+            @include form-field-spacing;
+        }
+        .item-input--name{
+            @include form-fields;
+            width:100%;
+            @include tablet{
+                width: 17.9375rem;
+            }
+            @include desktop{
+                width: 26.8125rem;
+            }
+            &.item-input--name-placeholder{
+                @include p2;
+                @include input-select-placeholders;
+            }
+        }
+    }
+
+ 

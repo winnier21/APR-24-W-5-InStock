@@ -1,0 +1,14 @@
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.item-details{
+    @include tablet{
+        border-right: .0625rem solid $cloud;
+    }
+   
+    h2{
+        padding-bottom: 1.5rem;
+        padding-top: 1.5rem;
+    }
+}

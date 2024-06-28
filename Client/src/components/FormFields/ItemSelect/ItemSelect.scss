@@ -1,0 +1,28 @@
+@use "../../../styles/partials/globals" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.item-select{
+    width: 100%;
+    @include form-field-spacing;
+    @include tablet{
+        width:18rem;
+    }
+    @include desktop{
+        width:26.8125rem;
+    }
+    
+    .item-select--category{
+        @include form-fields;
+        @include input-select-placeholders;
+    
+        &::-webkit-select-arrow {
+        right: 1rem;
+        }
+    }
+     .item-select--warehouse{
+        @include form-fields;
+        @include input-select-placeholders;
+    } 
+}   

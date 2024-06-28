@@ -1,9 +1,12 @@
+
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import apiInstance  from '../../utils/ApiClient';
 import AddButton from '../Button/AddButton/AddButton';
 import CancelButton from '../Button/CancelButton/CancelButton';
+import ItemDetailsForm from '../ItemDetailsForm/ItemDetailsForm';
+import ItemAvailability from '../ItemAvailability/ItemAvailability';
 import './AddItemForm.scss';
 
 function AddItemForm() {
@@ -18,46 +21,35 @@ function AddItemForm() {
   });
   const [activeField, setActiveField] = useState(null);
   const [errors, setErrors] = useState({});
-
   //need to get from api data to populate dropdown
   const [category, setCategory] = useState("");
+  const [warehouse, setWarehouse] = useState("");
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
   const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
-
-  const [inventoryDetails, setInventoryDetails] = useState({}); // new state to store inventory details
-  const handleButtonClick = () => {
-    // update the formData with the inventory details
-    setFormData({
-      item_name: inventoryDetails.item_name,
-      description: inventoryDetails.description,
-      category: inventoryDetails.category,
-      status: inventoryDetails.status,
-      quantity: inventoryDetails.quantity,
-      warehouse: inventoryDetails.warehouse,
-    });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-     ...formData,
-      [name]: value,
-    });
-    if (name === 'category') {
-      setCategory(value);
-    }
-    if (name === 'warehouse') {
-      setWarehouse(value);
-    }
-    validateInput(name, value);
-  };
-  const handleFocus = (name) => {
-    setActiveField(name);
-  };
-
+//   const [inventoryDetails, setInventoryDetails] = useState({}); // new state to store inventory details
+//   const handleButtonClick = () => {
+//     // update the formData with the inventory details
+//     setFormData({
+//       item_name: inventoryDetails.item_name,
+//       description: inventoryDetails.description,
+//       category: inventoryDetails.category,
+//       status: inventoryDetails.status,
+//       quantity: inventoryDetails.quantity,
+//       warehouse: inventoryDetails.warehouse,
+//     });
+//   };
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+//     validateInput(name, value);
+//   };
+  
   const handleBlur = (name) => {
     setActiveField(null);
     validateInput(name, formData[name]);
+  };
+  const handleFocus = (name) => {
+    setActiveField(name);
   };
 
   const validateInput = (name, value) => {
@@ -73,50 +65,48 @@ function AddItemForm() {
       navigate("/items");
     }
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (window.confirm("Are you ready to submit?")) {
-      let valid = true;
-      const newErrors = {};
-
-      Object.keys(formData).forEach((key) => {
-        if (!formData[key]) {
-          newErrors[key] = "This field is required";
-          valid = false;
-        } else {
-          validateInput(key, formData[key]);
-          if (errors[key]) {
-            valid = false;
-          }
-        }
-      });
-
-      setErrors(newErrors);
-
-      if (valid) {
-        try {
-          const response = await apiInstance.postItem(formData);
-          console.log('Item updated successfully:', response.data);
-          resetForm();
-        } catch (error) {
-          console.error('Error updating item:', error);
-          setErrors({ error: 'Error updating item' });
-        }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  
+    const requiredFields = ['item_name', 'description', 'category', 'status', 'warehouse'];
+    let hasErrors = false;
+  
+    requiredFields.forEach((field) => {
+      if (!formData[field]) {
+        hasErrors = true;
+        setErrors((prevErrors) => ({...prevErrors, [field]: 'This field is required' }));
       }
+    });
+  
+    if (hasErrors) return;
+  
+    const formDataToSend = {...formData };
+    if (formDataToSend.status === 'out_of_stock') {
+      formDataToSend.quantity = '0';
     }
+  
+    console.log('Form submitted successfully!');
+    console.log('Form data:', formDataToSend);
   };
+  
+    // try {
+    //   // const response = await apiInstance.postItem(formDataToSend);
+    //   console.log('Form submitted successfully!');
+    //   resetForm();
+    // } catch (error) {
+    //   console.error('Error submitting form:', error);
+    //   setErrors({ error: 'Error submitting form' });
+    // }
+//   };
   const [status, setStatus] = useState("in_stock"); 
   const handleStatusChange = (event) => {
-    setFormData({...formData, status: event.target.value });
+    setStatus(event.target.value);
     if (event.target.value === 'out_of_stock') {
-      setFormData({...formData, quantity: null });
+      setFormData({...formData, status: event.target.value, quantity: null });
+    } else {
+      setFormData({...formData, status: event.target.value, quantity: 1 });
     }
-    else {
-        setFormData({...formData, quantity: 1 });
-      }
   };
-
   const resetForm = () => {
     setFormData({
       item_name: '',
@@ -128,168 +118,48 @@ function AddItemForm() {
     });
     setErrors({});
   };
-  return (
-    <>            
-        <section className='add-item-header'>
-             <img src ={ArrowBackIcon} className='arrow-back-icon'/>
-            <div className='page-top'>
-                <h1>Add New Inventory Item</h1>
-            </div>
-        </section>
-        <section className='add-item-form'>
-        <form className = "form" onSubmit={handleSubmit}>
-            <div className='form__divider'>
-            <section className="item-details">
-                
-                <div className="item-detail">
-                    <h2>Item Details</h2>
-                    <label className='label-text'>Item Name </label>
-                    <div className="item-input">
-                        <input
-                        className='item-input--name item-input--name-placeholder'
-                        type="text"
-                        id="itemName"
-                        value={formData.item_name}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus('item_name')}
-                        onBlur={() => handleBlur('item_name')}
-                        placeholder="Item Name" 
-                        />
-                    </div>
-                </div>
-                <div className="item-detail">
-                    <label className='label-text'>Description </label>
-                    <div className="item-input">
-                        <textarea
-                        className='item-input--description item-input--description-placeholder '
-                        id="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus('description')}
-                        onBlur={() => handleBlur('description')}
-                        placeholder="Please enter a brief item description..." 
-                    />
-                    </div>
-                </div>
-                <div className="item-detail">
-                    <label className='label-text'>Category </label>
-                    <div className="item-select">   
-                        <select
-                        className='item-select--category item-select--category-placeholder'
-                        id="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        >
-                        <option value="" placeholder="Please select"> Please select </option>
-                        {categories.map((category, index) => (
-                             <option key={`category-${index}`} value={category}>
-                                {category}
-                             </option>
-                        ))}
-                        </select>
-                    </div>
-                </div>
-            </section>
-            <section className="item-availability">
-                <h2>Item Availability</h2>
-                <div className="item-availability-status">
-                    <label className='label-text'>Status</label>
-                    <div className="item-status">
-                        <div className="item-status__check">
-                            {/* <select
-                                className='item-select--status item-select--status-placeholder'
-                                id="status"
-                                value={formData.status}
-                                onChange={handleStatusChange}
-                                onFocus={() => handleFocus('status')}
-                                onBlur={() => handleBlur('status')}
-                            >
-                                <option value="in_stock">In Stock</option>
-                                <option value="out_of_stock">Out of Stock</option>
-                            </select>
-                        </div> */}
-                            <input
-                                type="radio"
-                                className="item-status__check--instock"
-                                id="in_stock"
-                                value="in_stock"
-                                onChange={handleStatusChange}
-                                onFocus={() => handleFocus('status')}
-                                onBlur={() => handleBlur('status')}
-                                checked={formData.status === 'in_stock'}
-                                // onChange={() => setStatus('in_stock')}
-                            />
-                            <label className="item-status__check--instock-label" htmlFor="in_stock">
-                                In stock
-                            </label>
-                        </div>
-                        <div className="item-status__check">
-                            <input
-                                type="radio"
-                                className="item-status__check--outofstock"
-                                id="out_of_stock"
-                                value="out_of_stock"
-                                onChange={handleStatusChange}
-                                onFocus={() => handleFocus('status')}
-                                onBlur={() => handleBlur('status')}
-                                checked={formData.status === 'out_of_stock'}
-                                // onChange={() => setStatus('out_of_stock')}
-                            />
-                            <label className="item-status__check--outofstock-label" htmlFor="out_of_stock">
-                                Out of stock
-                            </label> 
-                        </div>
-                    </div>
-                </div>
-                {status === 'in_stock' && (
-                <div className="item-quantity">
-                    <label className='label-text'>Quantity</label>
-                    <div className="item-input">
-                        <input
-                        type="number"
-                        className="item-input--quantity"
-                        id="quantity"
-                        value={formData.quantity}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus('quantity')}
-                        onBlur={() => handleBlur('quantity')}
-                        // onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
-                        />
-                    </div>
-                </div>
-                )}
-                <div className="item-warehouse">
-                    <label className='label-text'>Warehouse</label>
-                    <div className="item-select">
-                        <select
-                        className="item-select--warehouses"
-                        id="warehouse"
-                        value={formData.warehouse}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus('warehouse')}
-                        onBlur={() => handleBlur('warehouse')}
-                        // onChange={(e) => setWarehouse(e.target.value)}
-                    >
-                        <option value="">Please select</option>
-                        {warehouses.map((warehouse, index) => (
-                            <option key={`warehouse-${index}`} value={warehouse}>
-                                {warehouse}
-                            </option>
-                          ))}
-                        </select>
-                    </div>
-                </div>
-            </section>
-            </div>
-        <div className="form__actions">
-            <CancelButton onClick={handleCancel} />
-            <AddButton onClick={handleSubmit} />
+
+    return (
+      <section className="addItemForm">
+        <div className="addItemForm__header">
+          <div className="addItemForm__header-container">
+            <Link to="/inventory">
+              <img
+                className="arrow-back-icon"
+                src={ArrowBackIcon}
+                alt="Back to Item List Page"
+              />
+            </Link>
+            <h1 className="addItemForm__title">Add New Item</h1>
+          </div>
         </div>
-    </form>
-    </section>
-</>
-      
+        <section className="forms">
+          <section className="forms__container">
+            <ItemDetailsForm
+                formData={formData}
+                setFormData={setFormData}
+                activeField={activeField}
+                setActiveField={setActiveField}
+                categories={categories}
+                errors={errors}
+             />
+            <ItemAvailability
+                formData={formData}
+                setFormData={setFormData}
+                activeField={activeField}
+                setActiveField={setActiveField}
+                warehouses={warehouses}
+                errors={errors}
+                />
+          </section>
+          <div className="button">
+            <CancelButton />
+            <div className="addItemForm__button"><AddButton buttonText="+ Add Item" />
+            </div>
+          </div>
+        </section>
+      </section>
   );
-};
+}
 
 export default AddItemForm;
