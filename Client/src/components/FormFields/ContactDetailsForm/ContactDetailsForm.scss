@@ -9,9 +9,8 @@
     padding-left: 0;
     padding-top: 1.5rem;
   }
-  @include desktop{
-    padding-right:0;
-    
+  @include desktop {
+    padding-right: 0;
   }
 
   h2 {
@@ -48,12 +47,11 @@
     }
   }
   &-wrapper {
-    @include tablet{
-        padding-left: 2rem;
+    @include tablet {
+      padding-left: 2rem;
     }
-    @include desktop{
-        padding-left:2.5rem;
+    @include desktop {
+      padding-left: 2.5rem;
     }
-    
   }
 }
