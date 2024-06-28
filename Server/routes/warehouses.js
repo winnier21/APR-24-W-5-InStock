@@ -90,7 +90,6 @@ router.delete('/:id', async (req, res) => {
       .where({ id: idToDelete }).del();
     if (nDeletedRows > 0) {
       const message = `${nDeletedRows} records deleted: id ${idToDelete}.`;
-      console.log(message);
       res.status(204).send(message);
     } else {
       res.status(404).send(`Failed to delete warehouse with id ${req.params.id}.`);
@@ -101,17 +100,6 @@ router.delete('/:id', async (req, res) => {
 })
 
 export default router;
-
-
-  // const warehouse_name = requestBody.warehouse_name;
-  // const address = requestBody.address;
-  // const city = requestBody.city;
-  // const country = requestBody.country;
-  // const contact_name = requestBody.contact_name;
-  // const contact_position = requestBody.contact_position;
-  // const contact_phone = requestBody.contact_phone;
-  // const contact_email = requestBody.contact_email;
-  // const requestBodyKeys = new Set(Object.keys(requestBody));
 
 
   // const warehouse_name = requestBody.warehouse_name;
