@@ -14,6 +14,9 @@ router.get('/', async (req, res) => {
     .select(
       'warehouses.id', 'warehouse_name', 'address', 'city', 'country', 'contact_name', 'contact_position', 'contact_phone', 'contact_email'
     );
+    .select(
+      'warehouses.id', 'warehouse_name', 'address', 'city', 'country', 'contact_name', 'contact_position', 'contact_phone', 'contact_email'
+    );
     res.status(200).json(data);
   } catch (error) {
     res.status(400).send(`Error with getting data: ${error}`)
@@ -27,6 +30,9 @@ router.get('/:id', async (req, res) => {
     .select(
       'warehouses.id', 'warehouse_name', 'address', 'city', 'country', 'contact_name', 'contact_position', 'contact_phone', 'contact_email'
     ).where({id: warehouseId}).first();
+    .select(
+      'warehouses.id', 'warehouse_name', 'address', 'city', 'country', 'contact_name', 'contact_position', 'contact_phone', 'contact_email'
+    ).where({id: warehouseId}).first();
     res.status(200).json(data);
   } catch (error) {
     res.status(400).send(`Error with getting data: ${error}`)
@@ -37,6 +43,9 @@ router.get('/:id/inventories', async (req, res) => {
   try {
     const warehouseId = req.params.id
     const data = await knex.from("inventories")
+    .select(
+      'id', 'item_name', 'category', 'status', 'quantity', 
+    ).where({warehouse_id: warehouseId});
     .select(
       'id', 'item_name', 'category', 'status', 'quantity', 
     ).where({warehouse_id: warehouseId});
@@ -85,6 +94,17 @@ router.post('/', async (req, res) => {
 })
 
 export default router;
+
+
+  // const warehouse_name = requestBody.warehouse_name;
+  // const address = requestBody.address;
+  // const city = requestBody.city;
+  // const country = requestBody.country;
+  // const contact_name = requestBody.contact_name;
+  // const contact_position = requestBody.contact_position;
+  // const contact_phone = requestBody.contact_phone;
+  // const contact_email = requestBody.contact_email;
+  // const requestBodyKeys = new Set(Object.keys(requestBody));
 
 
   // const warehouse_name = requestBody.warehouse_name;
