@@ -19,6 +19,10 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  
+})
+
 
 router.put('/:id', async (req, res) => {
   const id = parseInt(req.params.id, 10);
