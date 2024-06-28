@@ -183,9 +183,9 @@ const EditForm = ({ id, itemId }) => {
             </div>
           </section>
         </div>
-        <div className="form__actions">
+        <div className="button">
             <CancelButton onClick={handleCancel} />
-            <AddButton onClick={handleSubmit} />
+            <AddButton buttonText="Save"onClick={handleSubmit} />
         </div>
       </form>
     </main>
