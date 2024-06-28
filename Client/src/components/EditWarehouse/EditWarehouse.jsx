@@ -26,9 +26,10 @@ function EditWarehousePage() {
 
   useEffect(() => {
     const fetchWarehouse = async () => {
+      const BASE_URL = import.meta.env.VITE_API_URL;
       try {
         const response = await fetch(
-          `http://localhost:8080/api/warehouse/${warehouseId}`
+          `${BASE_URL}/api/warehouses/${warehouseId}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch warehouse");
@@ -64,7 +65,7 @@ function EditWarehousePage() {
     event.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8080/api/warehouse/${warehouseId}/edit`,
+        `http://localhost:8080/api/warehouses/${warehouseId}/edit`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
