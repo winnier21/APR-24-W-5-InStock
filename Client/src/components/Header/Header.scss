@@ -9,6 +9,7 @@
   background-color: $graphite;
   align-items: center;
   justify-content: center;
+  
 
   @include tablet {
     height: $header-height--tablet;
