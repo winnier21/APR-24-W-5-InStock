@@ -3,12 +3,8 @@ import './Button.scss';
 
 const Button = (props) => {
   const {
-    className, text
+    className, text, buttonHandler
   } = props;
-
-  const buttonHandler = (event) => {
-    console.log('delete clicked')
-  }
   return (
     <button
       onClick={buttonHandler}

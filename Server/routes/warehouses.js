@@ -89,7 +89,9 @@ router.delete('/:id', async (req, res) => {
     const nDeletedRows = await knex('warehouses')
       .where({ id: idToDelete }).del();
     if (nDeletedRows > 0) {
-      res.status(204).send(`${nDeletedRows} records deleted: id ${idToDelete}.`);
+      const message = `${nDeletedRows} records deleted: id ${idToDelete}.`;
+      console.log(message);
+      res.status(204).send(message);
     } else {
       res.status(404).send(`Failed to delete warehouse with id ${req.params.id}.`);
     }

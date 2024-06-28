@@ -3,21 +3,31 @@ import React from 'react';
 import './Modal.scss';
 import CloseIcon from '../CloseIcon/CloseIcon';
 import Button from '../Button/Button';
+import apiInstance from '../../utils/ApiClient';
 
 const Modal = ({modalProps}) => {
   const {
     id, name, type,
     dialogRef
   } = modalProps;
+
   const question = `Delete ${name} ${type}?`;
   let name2;
   let list;
+  let route;
   if (type === 'warehouse') {
     name2 = `the ${name}`;
-    list = `the list of ${type}s`;
+    route = 'warehouses';
+    list = `the list of ${type}`;
   } else {
     name2 = name;
-    list = `${type} list`
+    list = `${type} list`;
+    route = 'inventories';
+  }
+
+  const buttonHandler = async (event) => {
+    console.log(`Attempting to delete ${type} ${name}...`)
+    const response = await apiInstance.delete(route, id);
   }
 
   const disclaimer = `
@@ -43,6 +53,7 @@ const Modal = ({modalProps}) => {
           <Button 
             className="button--delete"
             text="Delete"
+            buttonHandler={buttonHandler}
           />
         </div>
       </form>
