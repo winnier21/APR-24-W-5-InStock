@@ -25,9 +25,10 @@ function AddWarehouse() {
   };
 
   const handleSubmit = async (event) => {
+    const BASE_URL = import.meta.env.VITE_API_URL;
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/api/warehouse/add", {
+      const response = await fetch(`${BASE_URL}/api/warehouses/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(warehouseDetails),

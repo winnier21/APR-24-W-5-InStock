@@ -44,7 +44,6 @@ export class ApiClient {
     */
     const endpoint = `api/${route}/${id}`
     const data = await this.get(endpoint);
-    // this.logResponse(data, endpoint, 'GET');
     return data;
   }
   
@@ -84,9 +83,22 @@ export class ApiClient {
     try {
       const endpoint = `api/${route}/${id}`;
       const requestUrl = this.createRequestUrl(endpoint);
-      const response = await this.put(requestUrl, bodyObject);
+      const response = await axios.put(requestUrl, bodyObject);
       return response;
     } catch (error) {
+      return false;
+    }
+  }
+
+  async delete(route, id) {
+    try {
+      const endpoint = `api/${route}/${id}`;
+      const requestUrl = this.createRequestUrl(endpoint);
+      const response = await axios.delete(requestUrl);
+      // this.logResponse(response, endpoint, 'DELETE');
+      return response;
+    } catch (error) {
+      console.error(error);
       return false;
     }
   }

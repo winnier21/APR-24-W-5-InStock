@@ -7,6 +7,7 @@ import WarehouseCard from '../WarehouseCard/WarehouseCard';
 const WarehouseList = () => {
 
   const [warehousesArray, setWarehousesArray] = useState(null);
+  const [totalEdits, setTotalEdits] = useState(0);
 
   const getWarehouses = async () => {
     const data = await apiInstance.getItemsArray('warehouses');
@@ -17,7 +18,7 @@ const WarehouseList = () => {
   
   useEffect(() => {
     getWarehouses();
-  }, [])
+  }, [totalEdits])
 
   if (!warehousesArray) {
     return <Placeholder />
@@ -32,7 +33,8 @@ const WarehouseList = () => {
         return <WarehouseCard
           key={id}
           warehouseObject={warehouseObject}
-          dialogId="delete-warehouse-modal"
+          totalEdits={totalEdits}
+          setTotalEdits={setTotalEdits}
         />
       })}
       </ul >
