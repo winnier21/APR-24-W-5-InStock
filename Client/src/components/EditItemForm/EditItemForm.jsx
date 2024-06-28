@@ -12,6 +12,7 @@ const EditForm = ({ id, itemId }) => {
   const [warehouse, setWarehouse] = useState('Manhattan'); 
   const [status, setStatus] = useState('in_stock');
   const [quantity, setQuantity] = useState(1);
+
   const [warehouseId, setWarehouseId] = useState(''); // assuming warehouse ID is 1
   const [errors, setErrors] = useState({});
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
