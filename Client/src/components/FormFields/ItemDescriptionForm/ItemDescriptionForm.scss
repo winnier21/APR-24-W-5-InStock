@@ -10,14 +10,15 @@
     width: 100%;
     
     @include tablet{
-        width: 17.9375rem;
+        width: 100%;
     }
     @include desktop{
-        width: 26.8125rem;
+        width: 100%;
     }
-    .item-input--description-placeholder{
+    &::placeholder{
         font-family: 'Titillium Web', sans-serif;
         @include input-select-placeholders;
         @include p2;
+        
     }
 }

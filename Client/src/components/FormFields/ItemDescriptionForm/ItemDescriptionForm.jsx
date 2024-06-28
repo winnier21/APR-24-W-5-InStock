@@ -7,17 +7,10 @@ const ItemDescriptionForm = ({ formData, setFormData, activeField, setActiveFiel
       <label className='label-text'>Description </label>
       <div className="item-input">
         <textarea
-          className='item-input--description item-input--description-placeholder '
+          className='item-input--description'
           id="description"
           value={formData.description}
-        //   onChange={(e) => setFormData({...formData, description: e.target.value })}
-          onChange={(e) => {
-            setFormData({
-              ...formData,
-              description: e.target.value,
-            });
-          }}
-    
+          onChange={(e) => setFormData({...formData, description: e.target.value })}
           onFocus={() => setActiveField('description')}
           onBlur={() => setActiveField(null)}
           placeholder="Please enter a brief item description..." 

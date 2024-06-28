@@ -13,10 +13,10 @@
         @include input-select-placeholders;
         width: 100% ;
         @include tablet{
-            width: 17.9375rem;
+            width: auto;
         }
         @include desktop{
-            width: 26.8125rem;
+            width: auto;
         };
     }
 }
