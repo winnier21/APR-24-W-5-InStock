@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import apiInstance from '../../utils/ApiClient';
 import Placeholder from '../Placeholder/Placeholder';
 import WarehouseCard from '../WarehouseCard/WarehouseCard';
-// import './WarehouseList.scss';
 
 const WarehouseList = () => {
 
@@ -29,7 +28,7 @@ const WarehouseList = () => {
       <WarehouseCard itemObject={null} />
       <ul>
       {warehousesArray.map(warehouseObject => {
-        const { id, ...warehouseData } = warehouseObject;
+        const { id } = warehouseObject;
         return <WarehouseCard
           key={id}
           warehouseObject={warehouseObject}

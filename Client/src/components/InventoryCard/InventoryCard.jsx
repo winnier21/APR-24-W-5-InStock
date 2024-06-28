@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './InventoryCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
 import Cardlink from '../CardLink/CardLink';
+import Modal from '../../components/Modal/Modal';
 
 const InventoryCard = ({ itemObject, sectionWidth }) => {
   const leftSectionClass = `inventory__left${sectionWidth}`;
@@ -55,7 +56,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
     )
   }
   
-  const { warehouse_name, item_name, category, status, quantity } = itemObject;
+  const { id, warehouse_name, item_name, category, status, quantity } = itemObject;
   const statusClassName = status.toLowerCase() === 'in stock' ? 'inventory__status--green' : 'inventory__status--red';
   
 
@@ -77,9 +78,16 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
       return '';
     }
   }
+  const dialogRef = useRef();
+  const modalProps = {
+    name: item_name,
+    type: 'inventory item',
+    dialogRef: dialogRef
+  }
   
   return (
     <li className="inventory__card">
+      <Modal modalProps={modalProps} />
       <div className="inventory__details">
         <div className={leftSectionClass}>
           <h4 className="inventory__heading">
@@ -120,7 +128,10 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
 
         </div>
       </div>
-      <ActionIcons />
+      <ActionIcons 
+        inventoryId={id}
+        dialogRef={dialogRef}
+      />
     </li>
   )
 }

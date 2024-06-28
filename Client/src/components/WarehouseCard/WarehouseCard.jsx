@@ -1,6 +1,4 @@
-import React from 'react';
-import { useRef } from "react";
-
+import React, { useRef } from 'react';
 import './WarehouseCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
 import Cardlink from '../CardLink/CardLink';

@@ -5,7 +5,17 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 
 import './ActionIcons.scss';
 
-const ActionIcons = ({ warehouseId, dialogRef }) => {
+const ActionIcons = ({ warehouseId, itemId, dialogRef }) => {
+
+  let id;
+  let route;
+  if (itemId) {
+    id = itemId
+    route = 'inventory';
+  } else {
+    id = warehouseId
+    route = 'warehouse';
+  }
 
   const deleteHandler = (event) => {
     dialogRef.current.showModal();
@@ -19,7 +29,7 @@ const ActionIcons = ({ warehouseId, dialogRef }) => {
         className="delete-icon"
         alt="delete icon"
       />
-      <Link to={`/warehouse/${warehouseId}/edit`}>
+      <Link to={`/${route}/${warehouseId}/edit`}>
         <img
           src={editIcon}
           alt="edit icon"

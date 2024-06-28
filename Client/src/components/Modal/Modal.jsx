@@ -13,9 +13,9 @@ const Modal = ({modalProps}) => {
   let list;
   if (type === 'warehouse') {
     name2 = `the ${name}`;
-    list = `the list of ${name}s`;
+    list = `the list of ${type}s`;
   } else {
-    name2 = question;
+    name2 = name;
     list = `${type} list`
   }
 
@@ -30,7 +30,7 @@ const Modal = ({modalProps}) => {
     >
       <form method="dialog" className="modal__form">
         <h1>{question}</h1>
-        <p>
+        <p className="modal__body">
           {disclaimer}
         </p>
         <div className="modal__buttons">
