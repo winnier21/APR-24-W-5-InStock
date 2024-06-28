@@ -14,3 +14,4 @@ export function isValidEmailAddress(emailAddress) {
 }
 
 export default getTimestamp;
+
