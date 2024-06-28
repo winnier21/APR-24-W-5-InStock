@@ -1,0 +1,25 @@
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.contact__form{
+    padding-bottom: 1.5rem;
+    h2{
+        padding-top: 1rem;
+        padding-bottom: 1.5rem;
+    }
+    h3{
+        padding-bottom: 0.25rem;
+    }
+
+    &-input {
+        width: 18.4375rem;
+        height: 2.25rem;
+        border-radius: 1.25rem;
+        border: 1px solid $cloud;
+        background-color: $white;
+        font-size: 0.8125rem;
+        padding:0.5rem 0 0.5rem 1rem;
+        font-family: Titillium Web;
+        @include p2
+      }
+}

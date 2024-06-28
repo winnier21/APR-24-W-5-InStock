@@ -2,22 +2,27 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
-
-.main-additem{
-    margin-left:0rem;
-    margin-right:0rem;
-    .main-header {
-        padding-bottom: 1.5rem;
-        padding-top: 1.5rem;
-        border-bottom: .0625rem solid $cloud;
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-    
-        .arrow-back-icon{
-            font-size: 1.5rem;
-            margin-right: 0.625rem;
+.add-item-header{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    line-height: 100%;
+    position: relative;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    height: 5.75rem;
+    border-bottom: 0.0625rem solid #BDC5D5;
+    .arrow-back-icon{
+        font-size: 1.5rem;
+        margin-right: 0.625rem;
         }    
     }
+.add-item-form {
+    margin-left:0rem;
+    margin-right:0rem;
+    
     .form {
     display: flex;
     flex-direction: column;
@@ -126,6 +131,7 @@
                 .item-status{
                     display: flex;
                     justify-content: flex-start;
+                    gap:4rem;
                     @include tablet{
                         gap:4rem;
                     }
@@ -165,25 +171,5 @@
                 } 
             }   
         }
-    
-    .button{
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        background-color: $light-grey;
-        height:4.25rem;
-        @include tablet{
-            justify-content: flex-end;
-        }
-        @include desktop{
-            justify-content: flex-end;
-        }
-        & .button-cancel{
-            @include button-cancel;
-        }
-        & .button-add{
-            @include button-add;
-        }
-    }
 }
 }
