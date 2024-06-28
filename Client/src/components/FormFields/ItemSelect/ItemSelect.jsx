@@ -1,7 +1,7 @@
 import React from 'react';
 import './ItemSelect.scss';
 
-const ItemSelect = ({ formData, setFormData, options, label, id }) => {
+const ItemSelect = ({ formData, setFormData, options, label, id , handleStatusChange}) => {
   return (
     <div className="item-detail">
       <label className='label-text'>{label} </label>
@@ -10,8 +10,8 @@ const ItemSelect = ({ formData, setFormData, options, label, id }) => {
           className={`item-select--${id}`}
           id={id}
           value={formData[id]}
-          onChange={(e) => setFormData({...formData, [id]: e.target.value })}
-        >
+          onChange={handleStatusChange}
+          >
           <option value="">Please select</option>
           {options.map((option, index) => (
             <option key={`option-${index}`} value={option}>

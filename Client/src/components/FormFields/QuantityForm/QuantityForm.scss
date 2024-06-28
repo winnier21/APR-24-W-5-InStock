@@ -4,10 +4,7 @@
 @use "../../../styles/partials/mixins" as *;
 
 .item-quantity{
-    @include form-field-spacing;
-    .item-input{
-    @include form-field-spacing;
-    }
+
     .item-input--quantity{
         @include form-fields;
         @include input-select-placeholders;

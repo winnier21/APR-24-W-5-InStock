@@ -103,23 +103,18 @@
     
     @include tablet{
         height: 2.375rem;
-        // width:17.9375rem;
+        width:100%;
     }
     @include desktop{
         height: 2.375rem;
-        // width:17.9375rem;
+        width:100%;
     }
-}
-@mixin form-field-spacing{
-    // padding-top: 0.25rem;
-    // padding-bottom: 0.5rem;
 }
 
 @mixin input-select-placeholders{
   // /use p2
     color: $slate; 
-    padding-left: 0.5rem;
-    
+    // padding-left: 0.5rem;  
 }
 
 @mixin align-left-top {

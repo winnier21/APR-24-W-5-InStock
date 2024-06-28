@@ -37,6 +37,8 @@
     .forms {
       &__container {
         align-content: center;
+        padding-left: 2rem;
+        padding-right: 2rem;
     
         @include tablet {
           display: flex;

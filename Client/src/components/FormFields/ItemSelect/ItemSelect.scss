@@ -5,7 +5,6 @@
 
 .item-select{
     width: 100%;
-    @include form-field-spacing;
     padding-bottom: 1.5rem;
 
     @include tablet{

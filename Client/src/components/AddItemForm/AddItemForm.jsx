@@ -21,29 +21,13 @@ function AddItemForm() {
   });
   const [activeField, setActiveField] = useState(null);
   const [errors, setErrors] = useState({});
+  
   //need to get from api data to populate dropdown
   const [category, setCategory] = useState("");
   const [warehouse, setWarehouse] = useState("");
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
   const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
-//   const [inventoryDetails, setInventoryDetails] = useState({}); // new state to store inventory details
-//   const handleButtonClick = () => {
-//     // update the formData with the inventory details
-//     setFormData({
-//       item_name: inventoryDetails.item_name,
-//       description: inventoryDetails.description,
-//       category: inventoryDetails.category,
-//       status: inventoryDetails.status,
-//       quantity: inventoryDetails.quantity,
-//       warehouse: inventoryDetails.warehouse,
-//     });
-//   };
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-//     validateInput(name, value);
-//   };
-  
+
   const handleBlur = (name) => {
     setActiveField(null);
     validateInput(name, formData[name]);
@@ -140,6 +124,7 @@ function AddItemForm() {
                 setFormData={setFormData}
                 activeField={activeField}
                 setActiveField={setActiveField}
+                handleStatusChange={handleStatusChange}
                 categories={categories}
                 errors={errors}
              />
@@ -148,6 +133,7 @@ function AddItemForm() {
                 setFormData={setFormData}
                 activeField={activeField}
                 setActiveField={setActiveField}
+                handleStatusChange={handleStatusChange}
                 warehouses={warehouses}
                 errors={errors}
                 />
