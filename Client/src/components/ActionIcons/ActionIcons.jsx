@@ -29,7 +29,7 @@ const ActionIcons = ({ warehouseId, itemId, dialogRef }) => {
         className="delete-icon"
         alt="delete icon"
       />
-      <Link to={`/${route}/${warehouseId}/edit`}>
+      <Link to={`/${route}/${id}/edit`}>
         <img
           src={editIcon}
           alt="edit icon"

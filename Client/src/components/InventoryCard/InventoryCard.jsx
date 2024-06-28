@@ -129,7 +129,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
         </div>
       </div>
       <ActionIcons 
-        inventoryId={id}
+        itemId={id}
         dialogRef={dialogRef}
       />
     </li>
