@@ -2,12 +2,23 @@
 @use "../../../styles/partials/mixins" as *;
 
 .contact__form {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   padding-bottom: 1.5rem;
+  @include tablet {
+    padding-left: 0;
+    padding-top: 1.5rem;
+  }
+  
   h2 {
     padding-top: 1rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    @include tablet {
+      padding-top: 0;
+    }
   }
   h3 {
+    padding-top: 1rem;
     padding-bottom: 0.25rem;
   }
 
@@ -19,8 +30,16 @@
     background-color: $white;
     font-size: 0.8125rem;
     font-family: Titillium Web;
-    &::placeholder{
-        padding-left: 1rem;
-      }
+
+    @include tablet{
+        width: 17.96875rem;
+height: 2.375rem;
+    }
+    &::placeholder {
+      padding-left: 1rem;
+    }
+  }
+  &-wrapper{
+    padding-left:2rem;
   }
 }

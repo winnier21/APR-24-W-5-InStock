@@ -4,8 +4,8 @@ import { useState } from "react";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import WarehouseDetailsForm from "../FormFields/WarehouseDetailsForm/WarehouseDetailsForm";
 import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsForm";
-import AddButton from '../Button/AddButton/AddButton';
-import CancelButton from '../Button/CancelButton/CancelButton';
+import AddButton from "../Button/AddButton/AddButton";
+import CancelButton from "../Button/CancelButton/CancelButton";
 import React from "react";
 
 function AddWarehouse() {
@@ -25,14 +25,13 @@ function AddWarehouse() {
           </div>
         </div>
         <section className="forms">
-          <div className="forms__container">
-            <WarehouseDetailsForm />
+          <section className="forms__container">
+            <div className="forms__bottom" ><WarehouseDetailsForm /></div>
             <ContactDetailsForm />
-          </div>
+          </section>
           <div className="button">
-          <CancelButton  />
-          <AddButton  buttonText="+ Add Warehouse" />
-            
+            <CancelButton />
+            <AddButton buttonText="+ Add Warehouse" />
           </div>
         </section>
       </section>

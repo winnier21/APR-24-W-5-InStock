@@ -28,15 +28,20 @@
 
 .forms {
   &__container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
     align-content: center;
 
     @include tablet {
       display: flex;
-      border-right: 0.0625rem solid $cloud;
+      padding-left:2rem;
+      padding-right:2rem;
+    }
+    .forms__bottom {
+      border-bottom: 0.0625rem solid $cloud;
+
+      @include tablet {
+        border-bottom: none;
+        
+      }
     }
   }
- 
 }
-
