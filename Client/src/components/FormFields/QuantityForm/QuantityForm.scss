@@ -1,0 +1,19 @@
+@use "../../../styles/partials/globals" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.item-quantity{
+
+    .item-input--quantity{
+        @include form-fields;
+        @include input-select-placeholders;
+        width: 100% ;
+        @include tablet{
+            width: auto;
+        }
+        @include desktop{
+            width: auto;
+        };
+    }
+}

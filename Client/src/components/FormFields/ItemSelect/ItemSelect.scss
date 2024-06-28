@@ -1,0 +1,44 @@
+@use "../../../styles/partials/globals" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.item-select{
+    width: 100%;
+    padding-bottom: 1.5rem;
+
+    @include tablet{
+        width:100%;
+        padding-bottom: 0rem;
+    }
+    @include desktop{
+        width:100%;
+        padding-bottom:0rem;
+
+    }
+    
+    .item-select--category{
+        @include form-fields;
+        @include input-select-placeholders;
+    
+        &::-webkit-select-arrow {
+        right: 1rem;
+        }
+       @include tablet{
+            width: 100%;
+        }
+        @include desktop{
+            width: 100%;
+        }
+    }
+     .item-select--warehouse{
+        @include form-fields;
+        @include input-select-placeholders;
+        @include tablet{
+            width: 100%;
+        }
+        @include desktop{
+            width: 100%;
+        }
+    } 
+}   

@@ -1,11 +1,11 @@
 import React from 'react';
 import './AddItemPage.scss';
-import AddItemForm from '../../components/AddItemForm/AddItemForm'
+import AddItem from '../../components/AddItemForm/AddItemForm'
 
 function AddItemPage() {
   return (
     <main>
-        <AddItemForm />
+        <AddItem/>
     </main>
   );
 }

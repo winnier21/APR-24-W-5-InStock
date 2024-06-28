@@ -1,0 +1,20 @@
+@use "../../../styles/partials/globals" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.item-detail{
+    display: flex;
+    flex-direction: column;
+
+        .item-input--name{
+            @include form-fields;
+
+            &.item-input--name-placeholder{
+                @include p2;
+                @include input-select-placeholders;
+            }
+        }
+    }
+
+ 
