@@ -45,28 +45,6 @@ router.get('/:id/inventories', async (req, res) => {
     res.status(400).send(`Error with getting data: ${error}`)
   }
 })
-router.post('/add', async (req, res) => {
-  const { warehouseName, address, city, country, contactName, contactPosition, contactPhone, contactEmail } = req.body;
-
-  try {
-    const [id] = await knex('warehouses').insert({
-      warehouse_name: warehouseName,
-      address,
-      city,
-      country,
-      contact_name: contactName,
-      contact_position: contactPosition,
-      contact_phone: contactPhone,
-      contact_email: contactEmail
-    });
-
-    res.status(201).json({ message: 'Warehouse added successfully', id });
-  } catch (error) {
-    console.error('Error adding warehouse:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
 router.put('/:id/edit', async (req, res) => {
   const { id } = req.params;
   const { warehouseName, address, city, country, contactName, contactPosition, contactPhone, contactEmail } = req.body;
@@ -95,4 +73,31 @@ router.put('/:id/edit', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+router.post('/add', async (req, res) => {
+  const { warehouseName, address, city, country, contactName, contactPosition, contactPhone, contactEmail } = req.body;
+
+  try {
+    console.log('Received data:', req.body);  // Log the received data
+
+    const [id] = await knex('warehouses').insert({
+      warehouse_name: warehouseName,
+      address,
+      city,
+      country,
+      contact_name: contactName,
+      contact_position: contactPosition,
+      contact_phone: contactPhone,
+      contact_email: contactEmail
+    });
+
+    console.log('Inserted warehouse ID:', id);  // Log the inserted ID
+    res.status(201).json({ message: 'Warehouse added successfully', id });
+  } catch (error) {
+    console.error('Error adding warehouse:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 export default router;
