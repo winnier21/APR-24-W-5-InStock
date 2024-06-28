@@ -2,7 +2,7 @@ import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 import express from 'express';
-
+import { isValidEmailAddress } from "../../Client/src/utils/utils.js";
 
 
 const router = express.Router()
@@ -46,4 +46,63 @@ router.get('/:id/inventories', async (req, res) => {
   }
 })
 
+router.post('/', async (req, res) => {
+  try {
+    let requestBody = req.body;
+
+    const propertiesToValidateWithRegex = ['contact_phone', 'contact_email'];
+    const remainingProperties = [
+      'warehouse_name', 'address', 'city', 'country',
+      'contact_name', 'contact_position', 
+    ]
+    const requiredProperties = propertiesToValidateWithRegex.concat(remainingProperties);
+    const newObject = {};
+
+    // Validate email address
+    if (!isValidEmailAddress(requestBody.contact_email)) {
+      res.status(400).send(`Invalid email value.`);
+      return;
+    } 
+
+    // Validate form values and add to new object for insertion
+    for (let i = 0; i < requiredProperties.length; i++) {
+      const property = requiredProperties[i];
+      const value = requestBody[property]
+      if (value && value.length > 2) {
+        newObject[property] = requestBody[property];
+      } else {
+        res.status(400).send(`Invalid ${property} value.`);
+        return;
+      }
+    }
+    const newId = await knex('warehouses').insert(newObject);
+    newObject.id = newId[0];
+    res.status(201).json(newObject);
+  } catch (error) {
+    res.status(400).send(`Unable to post new warehouse`);
+  }
+})
+
 export default router;
+
+
+  // const warehouse_name = requestBody.warehouse_name;
+  // const address = requestBody.address;
+  // const city = requestBody.city;
+  // const country = requestBody.country;
+  // const contact_name = requestBody.contact_name;
+  // const contact_position = requestBody.contact_position;
+  // const contact_phone = requestBody.contact_phone;
+  // const contact_email = requestBody.contact_email;
+  // const requestBodyKeys = new Set(Object.keys(requestBody));
+
+
+  // const warehouse_name = requestBody.warehouse_name;
+  // const address = requestBody.address;
+  // const city = requestBody.city;
+  // const country = requestBody.country;
+  // const contact_name = requestBody.contact_name;
+  // const contact_position = requestBody.contact_position;
+  // const contact_phone = requestBody.contact_phone;
+  // const contact_email = requestBody.contact_email;
+  // const requestBodyKeys = new Set(Object.keys(requestBody));
