@@ -1,33 +1,12 @@
-import { useEffect, useState } from 'react';
-import React from 'react';
-import apiInstance from '../../utils/ApiClient';
+import React, { useEffect, useState } from 'react';
 import InventoryCard from '../InventoryCard/InventoryCard';
-import Placeholder from '../Placeholder/Placeholder';
 import sortIcon from '../../assets/icons/sort-24px.svg';
+import { useParams } from 'react-router-dom';
 
-const InventoryList = ({warehouseId}) => {
-  const [inventoryArray, setInventoryArray] = useState();
-
-  const getAllInventory = async () => {
-    let data = null;
-    if (! warehouseId) {
-      data = await apiInstance.getItemsArray('inventories');
-    } else {
-      data = await apiInstance.getWarehouseItems(warehouseId);
-    }
-    if (data) {
-      setInventoryArray(data);
-    }
-  }
-
-  useEffect(() => {
-    getAllInventory();
-  }, [])
-
-  if (!inventoryArray) {
-    return <Placeholder />
-  }
-
+const InventoryList = (props) => {
+  const {
+    warehouseId, inventoryArray, setInventoryArray, 
+  } = props;
   // If warehouseId exists, apply a className that allows for wider columns to account for fewer columns.
   let sectionWidth;
   warehouseId ? sectionWidth = "--wide" : sectionWidth = "";

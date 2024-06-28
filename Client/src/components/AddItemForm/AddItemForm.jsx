@@ -82,9 +82,8 @@ function AddItemForm() {
     //   setErrors({ error: 'Error submitting form' });
     // }
 //   };
-  const [status, setStatus] = useState("in_stock"); 
   const handleStatusChange = (event) => {
-    setStatus(event.target.value);
+    setFormData(event.target.value);
     if (event.target.value === 'out_of_stock') {
       setFormData({...formData, status: event.target.value, quantity: null });
     } else {
@@ -117,7 +116,7 @@ function AddItemForm() {
             <h1 className="addItemForm__title">Add New Item</h1>
           </div>
         </div>
-        <section className="forms">
+        <form onSubmit={handleSubmit} className="forms">
           <section className="forms__container">
             <ItemDetailsForm
                 formData={formData}
@@ -140,10 +139,9 @@ function AddItemForm() {
           </section>
           <div className="button">
             <CancelButton />
-            <div className="addItemForm__button"><AddButton buttonText="+ Add Item" />
-            </div>
+            <AddButton buttonText="+ Add Item" />
           </div>
-        </section>
+        </form>
       </section>
   );
 }
