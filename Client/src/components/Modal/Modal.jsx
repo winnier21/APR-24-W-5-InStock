@@ -2,10 +2,11 @@ import React from 'react';
 
 import './Modal.scss';
 import CloseIcon from '../CloseIcon/CloseIcon';
+import Button from '../Button/Button';
 
 const Modal = ({modalProps}) => {
   const {
-    name, type,
+    id, name, type,
     dialogRef
   } = modalProps;
   const question = `Delete ${name} ${type}?`;
@@ -39,11 +40,10 @@ const Modal = ({modalProps}) => {
           >
             Cancel
           </button>
-          <button 
+          <Button 
             className="button--delete"
-          >
-            Delete
-          </button>
+            text="Delete"
+          />
         </div>
       </form>
       <CloseIcon dialogRef={dialogRef} />

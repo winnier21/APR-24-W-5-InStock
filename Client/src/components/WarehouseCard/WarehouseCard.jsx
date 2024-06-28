@@ -51,6 +51,7 @@ const WarehouseCard = ({ warehouseObject }) => {
 
   const dialogRef = useRef();
   const modalProps = {
+    id: id,
     name: warehouse_name,
     type: 'warehouse',
     dialogRef: dialogRef
