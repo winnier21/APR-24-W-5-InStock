@@ -1,11 +1,12 @@
 import React from 'react';
 
 import './Modal.scss';
+import CloseIcon from '../CloseIcon/CloseIcon';
 
 const Modal = ({modalProps}) => {
   const {
     name, type,
-    formRef
+    dialogRef
   } = modalProps;
   const question = `Delete ${name} ${type}?`;
   let name2;
@@ -21,30 +22,31 @@ const Modal = ({modalProps}) => {
   const disclaimer = `
   Please confirm that you'd like to delete ${name2} from the ${list}. You won't be able to undo this action.
   `
+
   return (
     <dialog
-      ref={formRef}
+      ref={dialogRef}
       className="modal"
     >
-      <section className="page-top">
+      <form method="dialog" className="modal__form">
         <h1>{question}</h1>
-      </section>
-      <form method="dialog" className="modal-form">
-        
         <p>
           {disclaimer}
         </p>
-        <button 
-          className="button--cancel"
-        >
-          Cancel
-        </button>
-        <button 
-          className="button--delete"
-        >
-          Delete
-        </button>
+        <div className="modal__buttons">
+          <button 
+            className="button--cancel"
+          >
+            Cancel
+          </button>
+          <button 
+            className="button--delete"
+          >
+            Delete
+          </button>
+        </div>
       </form>
+      <CloseIcon dialogRef={dialogRef} />
     </dialog>
   )
 }

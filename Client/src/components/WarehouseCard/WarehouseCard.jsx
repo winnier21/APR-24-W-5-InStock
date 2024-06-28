@@ -51,11 +51,11 @@ const WarehouseCard = ({ warehouseObject }) => {
     contact_phone, contact_email
   } = warehouseObject;
 
-  const formRef = useRef();
+  const dialogRef = useRef();
   const modalProps = {
     name: warehouse_name,
     type: 'warehouse',
-    formRef: formRef
+    dialogRef: dialogRef
   }
 
   return (
@@ -104,7 +104,7 @@ const WarehouseCard = ({ warehouseObject }) => {
         </div>
       <ActionIcons 
         warehouseId={id}
-        formRef={formRef}
+        dialogRef={dialogRef}
       />
     </li>
   )
