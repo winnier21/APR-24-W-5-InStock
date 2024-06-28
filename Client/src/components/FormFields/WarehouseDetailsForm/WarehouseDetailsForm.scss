@@ -36,6 +36,10 @@
       width: 17.96875rem;
       height: 2.375rem;
     }
+    @include desktop {
+      width: 26.8125rem;
+      height: 2.375rem;
+    }
     &::placeholder {
       padding-left: 1rem;
     }

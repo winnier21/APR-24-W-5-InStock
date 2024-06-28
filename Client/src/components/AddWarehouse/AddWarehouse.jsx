@@ -31,7 +31,9 @@ function AddWarehouse() {
           </section>
           <div className="button">
             <CancelButton />
-            <AddButton buttonText="+ Add Warehouse" />
+            <div className="addWarehouse__button"><AddButton buttonText="+ Add Warehouse" />
+            </div>
+            
           </div>
         </section>
       </section>

@@ -3,7 +3,7 @@
 
 .addWarehouse {
   &__header {
-    padding-bottom: 1.5rem;
+    padding-bottom: 1.46rem;
     padding-top: 2rem;
     border-bottom: 0.0625rem solid $cloud;
     padding-left: 1.5rem;
@@ -24,6 +24,10 @@
   &__title {
     padding-left: 0.5rem;
   }
+
+  &__button {
+    margin-right: 1.44rem;
+  }
 }
 
 .forms {
@@ -32,15 +36,18 @@
 
     @include tablet {
       display: flex;
-      padding-left:2rem;
-      padding-right:2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @include desktop {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
     .forms__bottom {
       border-bottom: 0.0625rem solid $cloud;
 
       @include tablet {
         border-bottom: none;
-        
       }
     }
   }

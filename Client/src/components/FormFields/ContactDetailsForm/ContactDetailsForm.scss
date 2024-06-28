@@ -9,7 +9,11 @@
     padding-left: 0;
     padding-top: 1.5rem;
   }
-  
+  @include desktop{
+    padding-right:0;
+    
+  }
+
   h2 {
     padding-top: 1rem;
     padding-bottom: 0.5rem;
@@ -31,15 +35,25 @@
     font-size: 0.8125rem;
     font-family: Titillium Web;
 
-    @include tablet{
-        width: 17.96875rem;
-height: 2.375rem;
+    @include tablet {
+      width: 17.96875rem;
+      height: 2.375rem;
+    }
+    @include desktop {
+      width: 26.8125rem;
+      height: 2.375rem;
     }
     &::placeholder {
       padding-left: 1rem;
     }
   }
-  &-wrapper{
-    padding-left:2rem;
+  &-wrapper {
+    @include tablet{
+        padding-left: 2rem;
+    }
+    @include desktop{
+        padding-left:2.5rem;
+    }
+    
   }
 }
