@@ -4,11 +4,11 @@ import { useState } from "react";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import WarehouseDetailsForm from "../FormFields/WarehouseDetailsForm/WarehouseDetailsForm";
 import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsForm";
+import AddButton from "../Button/AddButton/AddButton";
+import CancelButton from "../Button/CancelButton/CancelButton";
 import React from "react";
 
 function AddWarehouse() {
- 
-
   return (
     <main className="addWarehouse__main">
       <section className="addWarehouse">
@@ -25,30 +25,15 @@ function AddWarehouse() {
           </div>
         </div>
         <section className="forms">
-          <div className="forms__container">
-            <WarehouseDetailsForm 
-            formData={formData}
-            handleChange={handleChange}
-            handleFocus={handleFocus}
-            handleBlur={handleBlur}
-            activeField={activeField}
-            errors={errors}
-            />
-            <ContactDetailsForm
-            formData={formData}
-            handleChange={handleChange}
-            handleFocus={handleFocus}
-            handleBlur={handleBlur}
-            activeField={activeField}
-            errors={errors} />
-          </div>
+          <section className="forms__container">
+            <div className="forms__bottom" ><WarehouseDetailsForm /></div>
+            <ContactDetailsForm />
+          </section>
           <div className="button">
-            <button className="button-cancel" type="button"onClick={handleCancelClick}>
-              <h3>Cancel</h3>
-            </button>
-            <button className="button-add" type="submit" onClick={handleAddClick}>
-             <h3>+ Add Warehouse</h3> 
-            </button>
+            <CancelButton />
+            <div className="addWarehouse__button"><AddButton buttonText="+ Add Warehouse" />
+            </div>
+            
           </div>
         </section>
       </section>
