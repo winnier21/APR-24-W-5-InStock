@@ -33,6 +33,7 @@
     background-color: $white;
     font-size: 0.8125rem;
     font-family: Titillium Web;
+    padding-left: 1rem;
 
     @include tablet {
       width: 17.96875rem;
@@ -41,9 +42,6 @@
     @include desktop {
       width: 26.8125rem;
       height: 2.375rem;
-    }
-    &::placeholder {
-      padding-left: 1rem;
     }
   }
   &-wrapper {
