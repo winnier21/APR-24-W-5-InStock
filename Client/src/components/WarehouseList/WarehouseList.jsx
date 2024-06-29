@@ -1,24 +1,11 @@
 import React from 'react'; 
-import { useEffect, useState } from 'react';
-import apiInstance from '../../utils/ApiClient';
 import Placeholder from '../Placeholder/Placeholder';
 import WarehouseCard from '../WarehouseCard/WarehouseCard';
 
-const WarehouseList = () => {
-
-  const [warehousesArray, setWarehousesArray] = useState(null);
-  const [totalEdits, setTotalEdits] = useState(0);
-
-  const getWarehouses = async () => {
-    const data = await apiInstance.getItemsArray('warehouses');
-    if (data) {
-      setWarehousesArray(data);
-    }
-  }
-  
-  useEffect(() => {
-    getWarehouses();
-  }, [totalEdits])
+const WarehouseList = (props) => {
+  const {
+    warehousesArray, totalEdits, setTotalEdits
+  } = props;
 
   if (!warehousesArray) {
     return <Placeholder />
