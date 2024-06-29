@@ -3,10 +3,10 @@ import "./ContactDetailsForm.scss";
 
 function ContactDetailsForm({ onChange, details }) {
   const [contactDetails, setContactDetails] = useState({
-    contactName: "",
-    contactPosition: "",
-    contactPhone: "",
-    contactEmail: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
   });
 
   useEffect(() => {
