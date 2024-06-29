@@ -11,14 +11,14 @@ import { isValidEmailAddress } from "../../utils/utils";
 function AddWarehouse() {
   const navigate = useNavigate();
   const [warehouseDetails, setWarehouseDetails] = useState({
-    warehouseName: "",
+    warehouse_name: "",
     address: "",
     city: "",
     country: "",
-    contactName: "",
-    contactPosition: "",
-    contactPhone: "",
-    contactEmail: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
   });
 
   const handleWarehouseDetailsChange = (details) => {
