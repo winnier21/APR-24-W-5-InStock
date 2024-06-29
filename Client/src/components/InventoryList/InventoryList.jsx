@@ -7,6 +7,14 @@ const InventoryList = (props) => {
   const {
     warehouseId, inventoryArray, setInventoryArray, 
   } = props;
+  const pathParamsWarehouseId = useParams().warehouseId;
+  let editPath;
+  if (pathParamsWarehouseId) {
+    editPath = `warehouse/${warehouseId}`
+  } else {
+    editPath = `inventory`;
+  }
+
   // If warehouseId exists, apply a className that allows for wider columns to account for fewer columns.
   let sectionWidth;
   warehouseId ? sectionWidth = "--wide" : sectionWidth = "";
@@ -21,6 +29,7 @@ const InventoryList = (props) => {
             key={id}
             itemObject={itemObject}
             sectionWidth={sectionWidth}
+            editPath={editPath}
             />
           }
         )
