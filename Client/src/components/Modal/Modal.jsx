@@ -4,6 +4,8 @@ import './Modal.scss';
 import CloseIcon from '../CloseIcon/CloseIcon';
 import Button from '../Button/Button';
 import apiInstance from '../../utils/ApiClient';
+import CancelButton from "../Button/CancelButton/CancelButton";
+import AddButton from "../Button/AddButton/AddButton";
 
 const Modal = ({modalProps}) => {
   const {
@@ -47,13 +49,9 @@ const Modal = ({modalProps}) => {
           {disclaimer}
         </p>
         <div className="modal__buttons">
-          <button 
-            className="button--cancel"
-          >
-            Cancel
-          </button>
+        <CancelButton className="button-cancel"/>
           <Button 
-            className="button--delete"
+            className="button-delete"
             text="Delete"
             buttonHandler={buttonHandler}
           />
