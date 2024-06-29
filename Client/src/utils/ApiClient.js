@@ -95,7 +95,7 @@ export class ApiClient {
       const endpoint = `api/${route}/${id}`;
       const requestUrl = this.createRequestUrl(endpoint);
       const response = await axios.delete(requestUrl);
-      // this.logResponse(response, endpoint, 'DELETE');
+      this.logResponse(response, endpoint, 'DELETE');
       return response;
     } catch (error) {
       console.error(error);
