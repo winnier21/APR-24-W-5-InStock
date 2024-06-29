@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import InventoryCard from '../InventoryCard/InventoryCard';
 import sortIcon from '../../assets/icons/sort-24px.svg';
-import { useParams } from 'react-router-dom';
 
 const InventoryList = (props) => {
   const {
