@@ -5,7 +5,8 @@ import axios from 'axios';
 import AddButton from '../Button/AddButton/AddButton';
 import CancelButton from '../Button/CancelButton/CancelButton';
 
-const EditForm = ({ id, itemId }) => {
+const EditForm = ({ id, itemId, warehousesProps }) => {
+  const warehouses = warehousesProps.warehousesArray.map(object => object.warehouse_name);
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('Electronics');
@@ -16,7 +17,6 @@ const EditForm = ({ id, itemId }) => {
   const [warehouseId, setWarehouseId] = useState(''); // assuming warehouse ID is 1
   const [errors, setErrors] = useState({});
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
-  const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
 
   const handleSubmit = async (event) => {
     event.preventDefault();

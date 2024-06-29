@@ -103,9 +103,10 @@ const InventoryCard = ({ itemObject, sectionWidth, editPath }) => {
             Inventory Item
           </h4>
           <Cardlink 
-            id={warehouse_name}
+            id={id}
             className="inventory__item-name"
             content={item_name}
+            route="inventory"
           />
           <h4 className="inventory__heading">
             Category

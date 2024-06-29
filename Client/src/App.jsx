@@ -12,7 +12,7 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import apiInstance from './utils/ApiClient';
-
+import Placeholder from './components/Placeholder/Placeholder';
 
 function App() {
 
@@ -29,6 +29,16 @@ function App() {
   useEffect(() => {
     getWarehouses();
   }, [totalEdits])
+
+  if (!warehousesArray) {
+    return <Placeholder/>
+  }
+
+  const warehousesProps = {
+    warehousesArray: warehousesArray,
+    totalEdits: totalEdits,
+    setTotalEdits: setTotalEdits
+  }
 
   return (
     <BrowserRouter>
@@ -48,9 +58,16 @@ function App() {
         <Route path="/warehouse/add" element={<AddWarehousePage />} />
         <Route path="/inventory" element={<InventoryPage />} />
         <Route path="/inventory/:itemId" element={<ItemDetailsPage />} />
-        <Route path="/warehouse/:warehouseId/:itemId/edit" element={<EditItemPage />} />
-        <Route path="/inventory/:itemId/edit" element={<EditItemPage />} />
-        <Route path="/inventory/add" element={<AddItemPage />} />
+        <Route
+          path="/warehouse/:warehouseId/:itemId/edit"
+          element={<EditItemPage warehousesProps={warehousesProps} />}
+        />
+        <Route path="/inventory/:itemId/edit"
+          element={<EditItemPage warehousesProps={warehousesProps} />} />
+        <Route
+          path="/inventory/add"
+          element={<AddItemPage warehousesProps={warehousesProps} />}
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
