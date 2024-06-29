@@ -5,7 +5,6 @@ import InventoryList from '../../components/InventoryList/InventoryList';
 import Placeholder from '../../components/Placeholder/Placeholder';
 import apiInstance from '../../utils/ApiClient';
 import Button from '../../components/Button/Button';
-import AddItemPage from '../AddItemPage/AddItemPage';
 
 function InventoryPage() {
   const [inventoryArray, setInventoryArray] = useState(null);
@@ -20,7 +19,7 @@ function InventoryPage() {
 
   useEffect(() => {
     getAllInventory();
-  }, [inventoryArray])
+  }, [])
 
   const redirectToAddInventory = (event) => {
     console.log('handler clicked')

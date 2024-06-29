@@ -6,7 +6,6 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import './ActionIcons.scss';
 
 const ActionIcons = ({ warehouseId, itemId, dialogRef }) => {
-
   let id;
   let route;
   if (itemId) {
