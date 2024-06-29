@@ -31,6 +31,8 @@
         display: flex;
         justify-content: flex-start;
         gap:4rem;
+        padding-top: .25rem;;
+        padding-bottom: 1rem;
         @include tablet{
             gap:4rem;
         }
@@ -40,6 +42,7 @@
         & .item-status__check{
             display: flex;
             gap: .25rem;
+            @include p2;
         }
     }
 }

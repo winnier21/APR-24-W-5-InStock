@@ -49,12 +49,5 @@
         @include desktop {
           width: 100%;
         }
-        .forms__bottom {
-          border-bottom: 0.0625rem solid $cloud;
-    
-          @include tablet {
-            border-bottom: none;
-          }
-        }
       }
     }

@@ -7,7 +7,7 @@ const ItemNameForm = ({ formData, setFormData, setActiveField, errors }) => {
       <label className='label-text'>Item Name </label>
       <div className="item-input">
         <input
-          className='item-input--name item-input--name-placeholder'
+          className='item-input--name'
           type="text"
           id="itemName"
           value={formData.item_name}

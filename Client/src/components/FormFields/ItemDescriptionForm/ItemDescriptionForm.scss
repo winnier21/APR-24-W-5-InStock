@@ -8,6 +8,7 @@
     border-radius: 1.25rem;
     height: 7.5rem;
     width: 100%;
+    padding-bottom: 1rem;
     
     @include tablet{
         width: 100%;
@@ -16,9 +17,14 @@
         width: 100%;
     }
     &::placeholder{
-        font-family: 'Titillium', sans-serif;
+        font-family: 'Titillium';
         @include input-select-placeholders;
         @include p2;
-        
+    }
+    &:active{
+        color: $instock-indigo;
+    }
+    .error{
+        color:$red;
     }
 }
