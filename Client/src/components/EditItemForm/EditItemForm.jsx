@@ -41,12 +41,15 @@ const EditForm = ({ itemObject, warehousesProps }) => {
     if (!warehouse_name) {
       alert('Please select a warehouse');
     }
+    const quantity = event.target.quantity?.value || 0;
+    if (quantity < 0 || !Number.isInteger(quantity)) {
+      alert('Please enter a valid non-negative whole number.');
+    }
     const item_name = event.target.item_name.value;
     const description = event.target.description.value;
-    const quantity = event.target.quantity?.value || 0;
 
     const formTextFields = [
-      warehouse_name, item_name, description, category
+      'item_name', 'description', 'category'
     ]
     const submittedItem = {
       id: id,
@@ -71,11 +74,12 @@ const EditForm = ({ itemObject, warehousesProps }) => {
     const formData = {
       warehouse_id: warehouseId,
       item_name: item_name,
-      description,
-      category,
-      status,
-      quantity: instockStatus === 'in_stock' ? quantity : null,
+      description: description,
+      category: category,
+      status: status,
+      quantity: instockStatus === 'in_stock' ? quantity : 0,
     };
+    console.log(formData);
     try {
       // const response = await axios.put(`/inventories/${itemId}`, formData);
       // console.log('Item updated successfully:', response.data);
