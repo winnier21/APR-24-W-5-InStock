@@ -3,6 +3,7 @@
 @use "../../../styles/partials/variables" as *;
 @use "../../../styles/partials/mixins" as *;
 
+
 .item-select{
     width: 100%;
     padding-bottom: 1rem;
@@ -15,10 +16,15 @@
     @include desktop{
         width:100%;
         padding-bottom:0rem;
-
     }
-    
-    .item-select--category{
+
+    & select {
+        appearance: none; 
+        -webkit-appearance: none; 
+        background: url('../../../assets/icons/arrow_drop_down-24px.svg') no-repeat right 1rem center;
+      }
+
+    &--category{
         height: 2.25rem;
         width: 100%;
         border: .0625rem solid $cloud;
@@ -50,7 +56,7 @@
             width: 100%;
         }
     }
-     .item-select--warehouse{
+     &--warehouse{
         @include p2;
         height:2.25rem;
         width: 100%;
@@ -72,18 +78,5 @@
         .error{
             color:$red;
         }
-    
-    & select {
-        appearance: none; /* Remove default dropdown arrow */
-        -webkit-appearance: none; /* Remove default dropdown arrow for Chrome */
-        -moz-appearance: none; 
-    }
-    & .custom-select-arrow img {
-        position: absolute;
-        top: 50%;
-        padding-right: 1rem;
-        transform: translateY(-50%);
-        pointer-events: none;
-      }
     }
 }   
