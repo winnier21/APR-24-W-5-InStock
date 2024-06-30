@@ -19,10 +19,64 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
-  
-})
 
+router.get("/:id", async (req, res) => {
+  try {
+    const itemId = req.params.id;
+    const data = await knex("inventories")
+      .select(
+        "inventories.id",
+        "warehouse_name",
+        "item_name",
+        "description",
+        "category",
+        "status",
+        "quantity"
+      ).join('warehouses', {'inventories.warehouse_id': 'warehouses.id'})
+      .where({ 'inventories.id': itemId })
+      .first();
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(404).json({ error: "Intentory item not found" });
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// router.post('/', async (req, res) => {
+//   const {
+//     warehouse_id,
+//     item_name,
+//     description,
+//     category,
+//     status,
+//     quantity
+//   } = req.body;
+
+//   try {
+//     console.log("Received data:", req.body); 
+//     const [id] = await knex("warehouses").insert({
+//       warehouse_name: warehouseName,
+//       address,
+//       city,
+//       country,
+//       contact_name: contactName,
+//       contact_position: contactPosition,
+//       contact_phone: contactPhone,
+//       contact_email: contactEmail,
+//     });
+
+//     console.log("Inserted warehouse ID:", id); 
+//     res.status(201).json({ message: "Warehouse added successfully", id });
+//   } catch (error) {
+//     console.error("Error adding warehouse:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+  
+// })
 
 router.put('/:id', async (req, res) => {
   const id = parseInt(req.params.id, 10);
