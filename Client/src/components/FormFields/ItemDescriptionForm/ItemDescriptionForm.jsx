@@ -14,7 +14,7 @@ const ItemDescriptionForm = ({ formData, setFormData, activeField, setActiveFiel
           onFocus={() => setActiveField('description')}
           onBlur={() => setActiveField(null)}
           placeholder="Please enter a brief item description..." 
-        />
+          />
         {errors.description && <div className="error">{errors.description}</div>}
       </div>
     </div>

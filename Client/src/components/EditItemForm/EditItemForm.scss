@@ -59,7 +59,6 @@
         flex-direction: column;
 
         .item-input--name {
-          @include form-fields;
           &.item-input--name-placeholder {
             @include p2;
             @include input-select-placeholders;
@@ -85,7 +84,6 @@
         }
         .item-select {
           .item-select--category {
-            @include form-fields;
             @include input-select-placeholders;
             
             &::-webkit-select-arrow {
@@ -141,7 +139,6 @@
       .item-quantity {
 
         .item-input--quantity {
-          @include form-fields;
           @include input-select-placeholders;
         }
       }
@@ -155,7 +152,6 @@
           }
         }
         .item-select--warehouses {
-          @include form-fields;
           @include input-select-placeholders;
         } 
       }   

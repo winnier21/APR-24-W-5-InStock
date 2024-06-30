@@ -5,7 +5,8 @@
 
 .item-select{
     width: 100%;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    display: flex;
 
     @include tablet{
         width:100%;
@@ -18,8 +19,26 @@
     }
     
     .item-select--category{
-        @include form-fields;
+        height: 2.25rem;
+        width: 100%;
+        border: .0625rem solid $cloud;
+        border-radius: 1.25rem;
         @include input-select-placeholders;
+        @include p2;
+        @include tablet{
+            height: 2.375rem;
+            width:100%;
+        }
+        @include desktop{
+            height: 2.375rem;
+            width:100%;
+        }    
+        &:active{
+            color: $instock-indigo;
+        }
+        .error{
+            color:$red;
+        }
     
         &::-webkit-select-arrow {
         right: 1rem;
@@ -32,13 +51,39 @@
         }
     }
      .item-select--warehouse{
-        @include form-fields;
+        @include p2;
+        height:2.25rem;
+        width: 100%;
+        border: .0625rem solid $cloud;
+        border-radius: 1.25rem;
         @include input-select-placeholders;
+        @include p2;
         @include tablet{
             width: 100%;
+            height: 2.375rem;
         }
         @include desktop{
             width: 100%;
+            height: 2.375rem;;
         }
-    } 
+        &:active{
+            color: $instock-indigo;
+        }
+        .error{
+            color:$red;
+        }
+    
+    & select {
+        appearance: none; /* Remove default dropdown arrow */
+        -webkit-appearance: none; /* Remove default dropdown arrow for Chrome */
+        -moz-appearance: none; 
+    }
+    & .custom-select-arrow img {
+        position: absolute;
+        top: 50%;
+        padding-right: 1rem;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+    }
 }   
