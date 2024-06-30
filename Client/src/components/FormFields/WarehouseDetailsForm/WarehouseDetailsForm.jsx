@@ -26,7 +26,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
             name="warehouse_name"
             type="text"
             placeholder="Warehouse Name"
-            value={localDetails.warehouseName}
+            value={localDetails.warehouse_name}
             onChange={handleChange}
           />
           <h3>Street Address</h3>

@@ -10,21 +10,20 @@
 
   &__form {
     width: 100%;
-    display: flex;
-    justify-content: center;
     margin-bottom: 1rem;
   }
 
   &__container {
+    width: 100%;
     display: flex;
     align-items: center;
-    width: 18.4375rem;
     height: 2.25rem;
     border-radius: 1.25rem;
-    border: 1px solid $cloud;
+    border: .0625rem solid $cloud;
   }
 
   &__search {
+    width: 100%;
     border: none;
     font-size: 0.8125rem;
     font-weight: 400;
