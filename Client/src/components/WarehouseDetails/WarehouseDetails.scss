@@ -1,6 +1,5 @@
-@use '../../styles/partials/mixins' as *;
-@use '../../styles/partials/variables' as *;
-// @use '../InventoryCard/InventoryCard' as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 .warehouse-info {
   @include flex-mixin--column(auto);
@@ -15,7 +14,6 @@
       width: 80%;
       border-right: $divider;
     }
-
   }
 
   &__heading {
