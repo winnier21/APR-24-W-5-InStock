@@ -7,6 +7,7 @@ import AddButton from "../Button/AddButton/AddButton";
 import CancelButton from "../Button/CancelButton/CancelButton";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import { isValidEmailAddress } from "../../utils/utils";
+import Placeholder from "../../components/Placeholder/Placeholder"
 
 function AddWarehouse() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function AddWarehouse() {
     contactPhone: "",
     contactEmail: "",
   });
-
+  const [loading, setLoading] = useState(false);
   const handleWarehouseDetailsChange = (details) => {
     setWarehouseDetails((prevDetails) => ({ ...prevDetails, ...details }));
   };
@@ -33,6 +34,7 @@ function AddWarehouse() {
         alert("Invalid email address format.");
         return;
     }
+    setLoading(true);
     const BASE_URL = import.meta.env.VITE_API_URL;
     try {
       const response = await fetch(`${BASE_URL}/api/warehouses`, {
@@ -41,6 +43,8 @@ function AddWarehouse() {
         body: JSON.stringify(warehouseDetails),
       });
       if (response.ok) {
+        const newWarehouse = await response.json();
+        setWarehousesArray(prevWarehouses => [...prevWarehouses, newWarehouse]);
         alert("Warehouse added successfully!");
         navigate("/warehouse");
       } else {
@@ -48,8 +52,14 @@ function AddWarehouse() {
       }
     } catch (error) {
       alert(error.message);
+    } finally {
+      setLoading(false); // Set loading to false after the submission is complete
     }
   };
+
+  if (loading) {
+    return <Placeholder />; // Render the Placeholder component while loading
+  }
 
   return (
     <main className="addWarehouse__main">
