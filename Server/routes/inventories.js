@@ -35,7 +35,7 @@ router.get("/:id", async (req, res) => {
       ).join('warehouses', {'inventories.warehouse_id': 'warehouses.id'})
       .where({ 'inventories.id': itemId })
       .first();
-    if (data) {
+    if (data.length > 0) {
       res.status(200).json(data);
     } else {
       res.status(404).json({ error: "Intentory item not found" });
@@ -109,11 +109,16 @@ router.put('/:id', async (req, res) => {
       return res.status(500).send({ message: 'Error updating inventory item' });
     }
 
-    const inventory = await knex('inventories').where({ id }).first();
+    const inventory = await knex('inventories')
+      .select(
+        "id", "warehouse_id", "item_name", "description",
+        "category", "status", "quantity"
+      )
+      .where({ id }).first();
     res.send(inventory);
   } catch (err) {
     console.error(err);
-    res.status(500).send({ message: 'Error updating inventory item' });
+    res.status(400).send({ message: 'Error updating inventory item' });
   }
 });
 
