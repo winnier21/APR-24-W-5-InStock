@@ -23,13 +23,15 @@ router.get("/", async (req, res) => {
       );
     res.status(200).json(data);
   } catch (error) {
-    res.status(400).send(`Error with getting data: ${error}`);
+    const errorMessage = `Error with getting warehouses data.`;
+    res.status(400).send(errorMessage);
   }
 });
 
 router.get("/:id", async (req, res) => {
+  const warehouseId = req.params.id;
+  const errorMessage = `Item with id ${id} in ${warehouseId} does not exist.`;
   try {
-    const warehouseId = req.params.id;
     const data = await knex
       .from("warehouses")
       .select(
@@ -45,24 +47,30 @@ router.get("/:id", async (req, res) => {
       )
       .where({ id: warehouseId })
       .first();
-    res.status(200).json(data);
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(400).send(errorMessage);
+    }
   } catch (error) {
-    res.status(400).send(`Error with getting data: ${error}`);
+    res.status(400).send(`Error with getting data: ${errorMessage}`);
   }
 });
 
 router.get("/:id/inventories", async (req, res) => {
+  const warehouseId = req.params.id;
+  const errorMessage = `Error with getting inventory for warehouse ${id}`;
   try {
-    const warehouseId = req.params.id;
     const data = await knex
       .from("inventories")
       .select("id", "item_name", "category", "status", "quantity")
       .where({ warehouse_id: warehouseId });
     res.status(200).json(data);
   } catch (error) {
-    res.status(400).send(`Error with getting data: ${error}`);
+    res.status(400).send(errorMessage);
   }
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const warehouseId = req.params.id;
