@@ -4,11 +4,7 @@ const knex = initKnex(configuration);
 import express from "express";
 import { isValidEmailAddress } from "../../Client/src/utils/utils.js";
 
-
 const router = express.Router();
-
-
-
 
 router.get("/", async (req, res) => {
   try {
@@ -129,39 +125,6 @@ router.put("/:id/edit", async (req, res) => {
   }
 });
 
-router.post("/add", async (req, res) => {
-  const {
-    warehouseName,
-    address,
-    city,
-    country,
-    contactName,
-    contactPosition,
-    contactPhone,
-    contactEmail,
-  } = req.body;
-
-  try {
-    console.log("Received data:", req.body); 
-    const [id] = await knex("warehouses").insert({
-      warehouse_name: warehouseName,
-      address,
-      city,
-      country,
-      contact_name: contactName,
-      contact_position: contactPosition,
-      contact_phone: contactPhone,
-      contact_email: contactEmail,
-    });
-
-    console.log("Inserted warehouse ID:", id); 
-    res.status(201).json({ message: "Warehouse added successfully", id });
-  } catch (error) {
-    console.error("Error adding warehouse:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
 router.post('/', async (req, res) => {
   try {
     let requestBody = req.body;
@@ -169,7 +132,7 @@ router.post('/', async (req, res) => {
     const propertiesToValidateWithRegex = ['contact_phone', 'contact_email'];
     const remainingProperties = [
       'warehouse_name', 'address', 'city', 'country',
-      'contact_name', 'contact_position', 
+      'contact_name', 'contact_position',
     ]
     const requiredProperties = propertiesToValidateWithRegex.concat(remainingProperties);
     const newObject = {};
@@ -178,7 +141,7 @@ router.post('/', async (req, res) => {
     if (!isValidEmailAddress(requestBody.contact_email)) {
       res.status(400).send(`Invalid email value.`);
       return;
-    } 
+    }
 
     // Validate form values and add to new object for insertion
     for (let i = 0; i < requiredProperties.length; i++) {
@@ -199,31 +162,74 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const idToDelete = req.params.id;
-    const nDeletedRows = await knex('warehouses')
-      .where({ id: idToDelete }).del();
+    const nDeletedRows = await knex("warehouses")
+      .where({ id: idToDelete })
+      .del();
     if (nDeletedRows > 0) {
       const message = `${nDeletedRows} records deleted: id ${idToDelete}.`;
       res.status(204).send(message);
     } else {
-      res.status(404).send(`Failed to delete warehouse with id ${req.params.id}.`);
+      res
+        .status(404)
+        .send(`Failed to delete warehouse with id ${req.params.id}.`);
     }
   } catch (error) {
-    res.status(404).send(`Failed to delete warehouse with id ${req.params.id}.`);
+    res
+      .status(404)
+      .send(`Failed to delete warehouse with id ${req.params.id}.`);
   }
-})
+});
 
 export default router;
 
+// router.post("/", async (req, res) => {
+//   const {
+//     warehouse_name,
+//     address,
+//     city,
+//     country,
+//     contact_name,
+//     contact_position,
+//     contact_phone,
+//     contact_email,
+//   } = req.body;
 
-  // const warehouse_name = requestBody.warehouse_name;
-  // const address = requestBody.address;
-  // const city = requestBody.city;
-  // const country = requestBody.country;
-  // const contact_name = requestBody.contact_name;
-  // const contact_position = requestBody.contact_position;
-  // const contact_phone = requestBody.contact_phone;
-  // const contact_email = requestBody.contact_email;
-  // const requestBodyKeys = new Set(Object.keys(requestBody));
+//   if (!isValidEmailAddress(contact_email)) {
+//     console.log("Invalid email detected");
+//     res.status(400).send(`Invalid email value.`);
+//     return;
+//   }
+//   try {
+//     console.log("Received data:", req.body);
+//     const [id] = await knex("warehouses").insert({
+//       warehouse_name,
+//       address,
+//       city,
+//       country,
+//       contact_name,
+//       contact_position,
+//       contact_phone,
+//       contact_email,
+//     });
+
+//     console.log("Inserted warehouse ID:", id);
+//     res.status(201).json({ message: "Warehouse added successfully", id });
+//   } catch (error) {
+//     console.error("Error adding warehouse:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
+
+
+// const warehouse_name = requestBody.warehouse_name;
+// const address = requestBody.address;
+// const city = requestBody.city;
+// const country = requestBody.country;
+// const contact_name = requestBody.contact_name;
+// const contact_position = requestBody.contact_position;
+// const contact_phone = requestBody.contact_phone;
+// const contact_email = requestBody.contact_email;
+// const requestBodyKeys = new Set(Object.keys(requestBody));

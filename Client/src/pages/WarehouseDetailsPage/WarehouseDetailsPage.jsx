@@ -27,7 +27,7 @@ function WarehouseDetailsPage() {
 
   useEffect(() => {
     getWarehouseInventory();
-  }, [warehouseInventory])
+  }, [])
 
   useEffect(() => {
     getWarehouseDetails(warehouseId);

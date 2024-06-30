@@ -23,7 +23,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
           <h3>Warehouse Name</h3>
           <input
             className="warehouse__form-input"
-            name="warehouseName"
+            name="warehouse_name"
             type="text"
             placeholder="Warehouse Name"
             value={localDetails.warehouseName}

@@ -4,21 +4,30 @@ import ActionIcons from '../ActionIcons/ActionIcons';
 import Cardlink from '../CardLink/CardLink';
 import Modal from '../../components/Modal/Modal';
 
-const InventoryCard = ({ itemObject, sectionWidth }) => {
+const InventoryCard = ({ itemObject, sectionWidth, editPath }) => {
   const leftSectionClass = `inventory__left${sectionWidth}`;
   const rightSectionClass = `inventory__right${sectionWidth}`
 
-  if (typeof itemObject !== 'object') { // if it is a string or null
-    const warehouseId = itemObject;
+  /* This code block is used to determine if a column header needs
+  to be created for the warehouse name. 
+  The total inventory list has a column for the warehouse name. 
+  The warehouse-specific inventory list (`WarehouseDetailsPage)
+  does not have this column. 
+  */
+  if (typeof itemObject !== 'object') { // if it is a string (warehouseId from `InventoryList`) or null
+    const isWarehouseSpecific = itemObject;
+    // This value is undefined if inventory list is for all inventory
 
-    const createWarehouseHeading = (warehouseId) => {
-      if (!warehouseId) {
+    const createWarehouseHeading = (isWarehouseSpecific) => {
+      if (!isWarehouseSpecific) {
+      // Create the "warehouse" column if this is the total inventory page
         return (
           <h4 className="inventory__heading--table">
             Warehouse
           </h4>
         )
       } else {
+        // Do not create the "warehouse" column if this is for the Warehouse Details page
         return '';
       }
     }
@@ -44,7 +53,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
             >
               Qty
             </h4>
-            {createWarehouseHeading(warehouseId)}
+            {createWarehouseHeading(isWarehouseSpecific)}
           </div>
         </div>
         <div className="inventory__icons">
@@ -94,9 +103,10 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
             Inventory Item
           </h4>
           <Cardlink 
-            id={warehouse_name}
+            id={id}
             className="inventory__item-name"
             content={item_name}
+            route="inventory"
           />
           <h4 className="inventory__heading">
             Category
@@ -131,6 +141,7 @@ const InventoryCard = ({ itemObject, sectionWidth }) => {
       <ActionIcons 
         itemId={id}
         dialogRef={dialogRef}
+        editPath={editPath}
       />
     </li>
   )

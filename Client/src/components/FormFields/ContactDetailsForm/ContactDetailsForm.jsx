@@ -3,10 +3,10 @@ import "./ContactDetailsForm.scss";
 
 function ContactDetailsForm({ onChange, details }) {
   const [contactDetails, setContactDetails] = useState({
-    contactName: "",
-    contactPosition: "",
-    contactPhone: "",
-    contactEmail: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
   });
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function ContactDetailsForm({ onChange, details }) {
         <input
           className="contact__form-input"
           type="text"
-          name="contactName"
+          name="contact_name"
           placeholder="Contact Name"
           value={contactDetails.contactName}
           onChange={handleChange}
@@ -39,7 +39,7 @@ function ContactDetailsForm({ onChange, details }) {
         <input
           className="contact__form-input"
           type="text"
-          name="contactPosition"
+          name="contact_position"
           placeholder="Position"
           value={contactDetails.contactPosition}
           onChange={handleChange}
@@ -48,7 +48,7 @@ function ContactDetailsForm({ onChange, details }) {
         <input
           className="contact__form-input"
           type="text"
-          name="contactPhone"
+          name="contact_phone"
           placeholder="Phone Number"
           value={contactDetails.contactPhone}
           onChange={handleChange}
@@ -57,7 +57,7 @@ function ContactDetailsForm({ onChange, details }) {
         <input
           className="contact__form-input"
           type="text"
-          name="contactEmail"
+          name="contact_email"
           placeholder="Email"
           value={contactDetails.contactEmail}
           onChange={handleChange}
