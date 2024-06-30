@@ -24,11 +24,7 @@ const ItemSelect = ({ formData, setFormData, options, label, id }) => {
               {option}
             </option>
           ))}
-         <div className="custom-select-arrow">
-          <img src={DropDownArrow} alt="Arrow" />
-        </div> 
         </select>
-        
       </div>
     </div>
   );
