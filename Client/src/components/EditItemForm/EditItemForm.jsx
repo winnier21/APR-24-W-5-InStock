@@ -111,7 +111,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
         Edit Inventory Item
       </h1>
       <form className="form" onSubmit={handleSubmit}>
-        <div className='form__divider'>
+        <div className='forms__container'>
           <section className="item-details">
             <h2>Item Details</h2>
             <div className="item-detail">
@@ -126,7 +126,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                 />
               </div>
             </div>
-            <div className="item-detail">
+            <div className="item-input">
               <label className='label-text'>Description </label>
               <div className="item-input">
                 <textarea
@@ -145,7 +145,6 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                   value={selectedCategory}
                   name="category"
                   onChange={handleCategoryChange}
-                  // onChange={(e) => setCategory(e.target.value)}
                 >
                   <option value="" placeholder="Please select"> Please select </option>
                   {categories.map((category, index) => (
@@ -208,7 +207,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
               <label className='label-text'>Warehouse</label>
               <div className="item-select">
                 <select
-                  className="item-select--warehouses"
+                  className="item-select--warehouse"
                   id="warehouse"
                   name="warehouse_name"
                   defaultValue={selectedWarehouse}
