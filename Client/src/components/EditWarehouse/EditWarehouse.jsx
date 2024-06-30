@@ -102,7 +102,7 @@ function EditWarehousePage() {
           </div>
         </div>
         <form onSubmit={handleSubmit} className="forms">
-          <section className="forms__container">
+          <section className="form__container">
             <WarehouseDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
