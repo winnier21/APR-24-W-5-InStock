@@ -70,7 +70,7 @@ router.post('/', async (req, res) => {
   for (let i = 0; i < requiredProperties.length; i++) {
     const property = requiredProperties[i];
     const value = requestBody?.[property];
-    if (!value) {
+    if (!value && property !== 'quantity') {
       console.log('missing value', property)
       const message = `Missing "${property}" property in request body.`
       res.status(400).send(message);
@@ -99,21 +99,29 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+  console.log(req.body);
   const id = parseInt(req.params.id, 10);
   const { warehouse_id, item_name, description, category, status, quantity } = req.body;
+  if (quantity < 0) {
+    res.status(400).send('Quantity must be a non-negative number.')
+    return;
+  }
 
-  if (!warehouse_id ||!item_name ||!description ||!category ||!status ||!quantity) {
-    return res.status(400).send('Missing properties in request body');
+  if (!warehouse_id ||!item_name ||!description ||!category ||!status) {
+    res.status(400).send('Missing properties in request body');
+    return;
   }
 
   try {
     const warehouse = await knex('warehouses').where({ id: warehouse_id }).first();
     if (!warehouse) {
-      return res.status(400).send('Warehouse ID does not exist');
+      res.status(400).send('Warehouse ID does not exist');
+      return;
     }
 
     if (typeof quantity!== 'number') {
-      return res.status(400).send('Quantity must be a number');
+      res.status(400).send('Quantity must be a number');
+      return;
     }
 
     const updatedInventory = await knex('inventories').where({ id }).update({
@@ -126,7 +134,8 @@ router.put('/:id', async (req, res) => {
     });
 
     if (!updatedInventory) {
-      return res.status(404).send(`Unable to update inventory item with ID of ${id}.`);
+      res.status(404).send(`Unable to update inventory item with ID of ${id}.`);
+      return;
     }
 
     const inventory = await knex('inventories')

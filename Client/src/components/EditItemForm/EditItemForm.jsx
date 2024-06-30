@@ -74,10 +74,11 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
       responseData = await apiInstance.post('inventories', submittedItem);
     }
     if (typeof responseData === 'object') {
-      alert(`${item_name} updated successfully`);
+      alert(`${item_name} successfully ${requestMethod === 'put' ? 'edited' : 'added'}`);
       navigate(-1);
     } else {
-      alert('Failed to edit item:', responseData)
+      const message = `Failed to ${requestMethod === 'put' ? 'edit' : 'add'}: ${responseData}`;
+      alert(message);
     }
   };
 
