@@ -6,8 +6,9 @@ import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsF
 import AddButton from "../Button/AddButton/AddButton";
 import CancelButton from "../Button/CancelButton/CancelButton";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
+import Placeholder from "../Placeholder/Placeholder";
 
-function EditWarehousePage() {
+function EditWarehouse() {
   const { warehouseId } = useParams();
   const navigate = useNavigate();
   const [warehouseDetails, setWarehouseDetails] = useState({
@@ -21,8 +22,7 @@ function EditWarehousePage() {
     contactEmail: "",
   });
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchWarehouse = async () => {
@@ -46,10 +46,8 @@ function EditWarehousePage() {
           contactEmail: data.contact_email,
         });
         setIsLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setIsLoading(false);
-      }
+      } catch (error) {}
+      
     };
 
     if (warehouseId) {
@@ -82,10 +80,9 @@ function EditWarehousePage() {
       alert(error.message);
     }
   };
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
+  if (!warehouseDetails) {
+    return <Placeholder/>
+  }
   return (
     <main className="editWarehouse__main">
       <section className="editWarehouse">
@@ -122,4 +119,4 @@ function EditWarehousePage() {
   );
 }
 
-export default EditWarehousePage;
+export default EditWarehouse;
