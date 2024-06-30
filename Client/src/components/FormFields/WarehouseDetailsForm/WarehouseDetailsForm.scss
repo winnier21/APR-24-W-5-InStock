@@ -34,10 +34,11 @@
     background-color: $white;
     font-size: 0.8125rem;
     font-family: Titillium;
+    padding-left: 1rem;
+    box-sizing: border-box;
 
-    &::placeholder {
-      padding-left: 1rem;
-    }
+ 
+
 
     @include tablet {
       width: 100%;
