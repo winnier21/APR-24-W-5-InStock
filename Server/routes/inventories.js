@@ -35,7 +35,6 @@ router.get("/:id", async (req, res) => {
       ).join('warehouses', {'inventories.warehouse_id': 'warehouses.id'})
       .where({ 'inventories.id': itemId })
       .first();
-    console.log(data);
     if (data) {
       res.status(200).json(data);
     } else {
