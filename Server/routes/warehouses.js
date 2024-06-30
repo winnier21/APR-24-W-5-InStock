@@ -125,6 +125,44 @@ router.put("/:id/edit", async (req, res) => {
   }
 });
 
+// router.post("/", async (req, res) => {
+//   const {
+//     warehouseName,
+//     address,
+//     city,
+//     country,
+//     contactName,
+//     contactPosition,
+//     contactPhone,
+//     contactEmail,
+//   } = req.body;
+
+//   if (!isValidEmailAddress(contactEmail)) {
+//     console.log("Invalid email detected"); 
+//     res.status(400).send('Invalid email value.');
+//     return;
+//   }
+
+//   try {
+//     console.log("Received data:", req.body);
+//     const [id] = await knex("warehouses").insert({
+//       warehouse_name: warehouseName,
+//       address,
+//       city,
+//       country,
+//       contact_name: contactName,
+//       contact_position: contactPosition,
+//       contact_phone: contactPhone,
+//       contact_email: contactEmail,
+//     });
+
+//     console.log("Inserted warehouse ID:", id);
+//     res.status(201).json({ message: "Warehouse added successfully", id });
+//   } catch (error) {
+//     console.error("Error adding warehouse:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 router.post("/", async (req, res) => {
   const {
     warehouseName,
@@ -142,7 +180,6 @@ router.post("/", async (req, res) => {
     res.status(400).send('Invalid email value.');
     return;
   }
-
   try {
     console.log("Received data:", req.body);
     const [id] = await knex("warehouses").insert({
@@ -163,8 +200,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
 // router.post('/', async (req, res) => {
 //   try {
 //     let requestBody = req.body;

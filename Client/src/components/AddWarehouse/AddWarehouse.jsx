@@ -29,10 +29,9 @@ function AddWarehouse() {
     event.preventDefault();
     const { contactEmail } = warehouseDetails;
 
-    // Client-side validation for the email address
     if (!isValidEmailAddress(contactEmail)) {
-      alert("Invalid email address format.");
-      return;
+        alert("Invalid email address format.");
+        return;
     }
     const BASE_URL = import.meta.env.VITE_API_URL;
     try {
