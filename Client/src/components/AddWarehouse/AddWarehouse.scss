@@ -3,11 +3,13 @@
 
 .addWarehouse {
   &__header {
-    padding-bottom: 1.46rem;
-    padding-top: 2rem;
     border-bottom: 0.0625rem solid $cloud;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+
+    .page-top {
+      @include tablet {
+        justify-content: flex-start;
+      }
+    }
     &-container {
       display: flex;
       align-items: center;
@@ -23,6 +25,7 @@
   }
   &__title {
     padding-left: 0.5rem;
+    padding-bottom: 0;
   }
 
   &__button {
@@ -33,6 +36,7 @@
 .forms {
   &__container {
     align-content: center;
+    
 
     @include tablet {
       display: flex;
@@ -40,8 +44,9 @@
       padding-right: 2rem;
     }
     @include desktop {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
+      width: 100%;
+      
+      
     }
     .forms__bottom {
       border-bottom: 0.0625rem solid $cloud;
