@@ -35,7 +35,6 @@ function AddWarehouse() {
       return;
     }
     const BASE_URL = import.meta.env.VITE_API_URL;
-    event.preventDefault();
     try {
       const response = await fetch(`${BASE_URL}/api/warehouses`, {
         method: "POST",

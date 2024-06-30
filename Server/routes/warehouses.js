@@ -225,6 +225,45 @@ router.delete("/:id", async (req, res) => {
 
 export default router;
 
+// router.post("/", async (req, res) => {
+//   const {
+//     warehouse_name,
+//     address,
+//     city,
+//     country,
+//     contact_name,
+//     contact_position,
+//     contact_phone,
+//     contact_email,
+//   } = req.body;
+
+//   if (!isValidEmailAddress(contact_email)) {
+//     console.log("Invalid email detected");
+//     res.status(400).send(`Invalid email value.`);
+//     return;
+//   }
+//   try {
+//     console.log("Received data:", req.body);
+//     const [id] = await knex("warehouses").insert({
+//       warehouse_name,
+//       address,
+//       city,
+//       country,
+//       contact_name,
+//       contact_position,
+//       contact_phone,
+//       contact_email,
+//     });
+
+//     console.log("Inserted warehouse ID:", id);
+//     res.status(201).json({ message: "Warehouse added successfully", id });
+//   } catch (error) {
+//     console.error("Error adding warehouse:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
+
+
 // const warehouse_name = requestBody.warehouse_name;
 // const address = requestBody.address;
 // const city = requestBody.city;

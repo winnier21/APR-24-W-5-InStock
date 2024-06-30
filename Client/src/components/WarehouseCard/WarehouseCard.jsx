@@ -71,6 +71,7 @@ const WarehouseCard = ({ warehouseObject, totalEdits, setTotalEdits }) => {
             id={id}
             className="warehouse-card__text-container warehouse-card__index"
             content={warehouse_name}
+            route="warehouse"
           />
           <h4 className="warehouse-card__heading warehouse-card__address">
             Address
@@ -106,6 +107,7 @@ const WarehouseCard = ({ warehouseObject, totalEdits, setTotalEdits }) => {
       <ActionIcons 
         warehouseId={id}
         dialogRef={dialogRef}
+        editPath="warehouse"
       />
     </li>
   )
