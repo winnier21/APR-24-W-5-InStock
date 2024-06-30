@@ -9,8 +9,6 @@
     border-radius: 1.25rem;
     height: 7.5rem;
     width: 100%;
-    padding: 0.5rem 1rem;
-    @include input-select-placeholders;
     @include p2;
 
     @include tablet{
@@ -19,10 +17,11 @@
     @include desktop{
         width: 100%;
     }
-    // &::placeholder{
-    //     @include input-select-placeholders;
-    //     @include p2;
-    // }
+    &::placeholder{
+        @include input-select-placeholders;
+        @include p2;
+        padding-top: 0.5rem;
+    }
     &:active{
         color: $instock-indigo;
     }
