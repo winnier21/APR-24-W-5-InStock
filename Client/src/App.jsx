@@ -44,7 +44,14 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<WarehousePage />} />
+        <Route
+          path="/"
+          element={<WarehousePage
+            warehousesArray={warehousesArray}
+            totalEdits={totalEdits}
+            setTotalEdits={setTotalEdits}
+          />}
+        />
         <Route 
           path="/warehouse"
           element={<WarehousePage

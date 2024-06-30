@@ -1,8 +1,6 @@
-import React from 'react'; 
-import { useEffect, useState } from 'react';
-import apiInstance from '../../utils/ApiClient';
-import WarehouseList from '../../components/WarehouseList/WarehouseList';
-// import './WarehousePage.scss';
+import React from "react";
+import WarehouseList from "../../components/WarehouseList/WarehouseList";
+import PageTop from "../../components/PageTop/PageTop";
 
 function WarehousePage(props) {
   const {
@@ -10,8 +8,11 @@ function WarehousePage(props) {
   } = props;
   return (
     <main>
-      <section className="page-top">
-        <h1>Warehouses</h1>
+      <section className="page-top-container">
+        
+          <h1>Warehouses</h1>
+          <PageTop link="/warehouse/add" buttonText="+ Add New Warehouse" />
+        
       </section>
       <WarehouseList
         warehousesArray={warehousesArray}

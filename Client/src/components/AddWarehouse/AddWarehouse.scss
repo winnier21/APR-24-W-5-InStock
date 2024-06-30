@@ -3,11 +3,11 @@
 
 .addWarehouse {
   &__header {
-    padding-bottom: 1.46rem;
-    padding-top: 2rem;
     border-bottom: 0.0625rem solid $cloud;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+
+    .page-top {
+      justify-content: flex-start;
+    }
     &-container {
       display: flex;
       align-items: center;
@@ -23,6 +23,7 @@
   }
   &__title {
     padding-left: 0.5rem;
+    padding-bottom: 0;
   }
 
   &__button {
@@ -30,9 +31,11 @@
   }
 }
 
-.forms {
+.form {
   &__container {
     align-content: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 
     @include tablet {
       display: flex;
@@ -40,15 +43,9 @@
       padding-right: 2rem;
     }
     @include desktop {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
-    }
-    .forms__bottom {
-      border-bottom: 0.0625rem solid $cloud;
-
-      @include tablet {
-        border-bottom: none;
-      }
+      width: 100%;
+      padding-left: 0rem;
+      padding-right: 0rem;
     }
   }
 }
