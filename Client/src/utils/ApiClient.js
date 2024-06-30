@@ -68,9 +68,12 @@ export class ApiClient {
     const headers = {'Content-Type': 'application/json'};
     try {
       const response = await axios.post(requestUrl, bodyObject, headers);
-      return response
+      if (Math.floor(response.status / 100) === 2) {
+        return response.data;
+      }
     } catch (error) {
-      return false;
+      const responseMessage = error.response.data;
+      return responseMessage;
     }
   }
   

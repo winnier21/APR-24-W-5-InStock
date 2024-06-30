@@ -6,7 +6,7 @@ import AddButton from '../Button/AddButton/AddButton';
 import CancelButton from '../Button/CancelButton/CancelButton';
 import apiInstance from '../../utils/ApiClient';
   
-const EditForm = ({ itemObject, warehousesProps }) => {
+const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
   const navigate = useNavigate();
   const {
     id, warehouse_name, item_name, description, category, status, quantity
@@ -19,10 +19,10 @@ const EditForm = ({ itemObject, warehousesProps }) => {
   const [errors, setErrors] = useState({});
   const [selectedCategory, setSelectedCategory] = useState(category || null);
   const [editedItem, setEditItem] = useState(null);
+  const [formQuantity, setFormQuantity] = useState(quantity || 0);
   const [selectedStatus, setSelectedStatus] = useState(
-    quantity > 0 ? 'In Stock' : 'Out of Stock'
+    formQuantity > 0 ? 'In Stock' : 'Out of Stock'
   );
-  const [formQuantity, setFormQuantity] = useState(quantity);
   const [selectedWarehouse, setSelectedWarehouse] = useState(warehouse_name);
   
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
@@ -38,9 +38,8 @@ const EditForm = ({ itemObject, warehousesProps }) => {
       alert('Please select a warehouse');
     }
     const quantity = parseInt(event.target.quantity?.value) || 0;
-    if (quantity < 0) {
-      console.log(quantity < 0, !Number.isInteger(quantity));
-      alert('Please enter a valid non-negative whole number.');
+    if (quantity < 1 && selectedStatus === 'In Stock') {
+      alert('Please enter a non-zero number.');
     }
     const item_name = event.target.item_name.value;
     const description = event.target.description.value;
@@ -56,7 +55,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
       item_name: item_name,
       description: description,
       category: category,
-      status: status,
+      status: selectedStatus,
       quantity: quantity
     }
     for (let i = 0; i < formTextFields.length; i++) {
@@ -68,15 +67,12 @@ const EditForm = ({ itemObject, warehousesProps }) => {
       }
 
     }
-    const requestObject = {
-      warehouse_id: warehouseId,
-      item_name: item_name,
-      description: description,
-      category: category,
-      status: status,
-      quantity: formQuantity,
-    };
-    const responseData = await apiInstance.put('inventories', id, requestObject);
+    let responseData;
+    if (requestMethod === 'put') {
+      responseData = await apiInstance.put('inventories', id, submittedItem);
+    } else {
+      responseData = await apiInstance.post('inventories', submittedItem);
+    }
     if (typeof responseData === 'object') {
       alert(`${item_name} updated successfully`);
       navigate(-1);
@@ -88,7 +84,6 @@ const EditForm = ({ itemObject, warehousesProps }) => {
   const handleStatusChange = (event) => {
     const newStatus = event.target.value;
     setSelectedStatus(newStatus);
-    console.log(event.target.value)
     if (newStatus === 'Out of Stock') {
       setFormQuantity(0);
     } 
@@ -139,7 +134,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                 <select
                   className='item-select--category item-select--category-placeholder'
                   id="category"
-                  value={selectedCategory}
+                  value={selectedCategory || undefined}
                   name="category"
                   onChange={handleCategoryChange}
                 >

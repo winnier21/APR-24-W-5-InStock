@@ -1,7 +1,7 @@
 import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
-import express from 'express';
+import express, { request } from 'express';
 
 
 const router = express.Router()
@@ -46,37 +46,57 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// router.post('/', async (req, res) => {
-//   const {
-//     warehouse_id,
-//     item_name,
-//     description,
-//     category,
-//     status,
-//     quantity
-//   } = req.body;
+router.post('/', async (req, res) => {
+  const requestBody = req.body;
+  const {warehouse_id} = requestBody;
+  const quantity = parseInt(requestBody.quantity);
+  let itemToInsert = {};
 
-//   try {
-//     console.log("Received data:", req.body); 
-//     const [id] = await knex("warehouses").insert({
-//       warehouse_name: warehouseName,
-//       address,
-//       city,
-//       country,
-//       contact_name: contactName,
-//       contact_position: contactPosition,
-//       contact_phone: contactPhone,
-//       contact_email: contactEmail,
-//     });
+  if (typeof quantity !== 'number' || quantity < 0) {
+    res.status(400).send('"Quantity" must be numeric value.')
+  } else if (quantity === 0) {
+    itemToInsert.quantity = 0;
+  }
 
-//     console.log("Inserted warehouse ID:", id); 
-//     res.status(201).json({ message: "Warehouse added successfully", id });
-//   } catch (error) {
-//     console.error("Error adding warehouse:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
+  const requiredProperties = [
+    'warehouse_id',
+    'item_name',
+    'description',
+    'category',
+    'status',
+    'quantity'
+  ];
   
-// })
+  for (let i = 0; i < requiredProperties.length; i++) {
+    const property = requiredProperties[i];
+    const value = requestBody?.[property];
+    if (!value) {
+      console.log('missing value', property)
+      const message = `Missing "${property}" property in request body.`
+      res.status(400).send(message);
+      return;
+    } else {
+      itemToInsert[property] = value;
+    }  
+  }
+
+  let warehouseIds = await knex('warehouses')
+    .select('id')
+  warehouseIds = warehouseIds.map(object => object.id);
+  if (!(warehouseIds).includes(warehouse_id)) {
+    const message = `Warehouse ID ${warehouse_id} does not exist.`
+    res.status(400).send(message)
+  }
+  try {
+    console.log("Received data:", req.body); 
+    const [id] = await knex("inventories").insert(itemToInsert);
+
+    const responseObject = { id: id, ...itemToInsert };
+    res.status(201).json(responseObject);
+  } catch (error) {
+    res.status(500).send('Unable to add new item to inventory.');
+  }
+})
 
 router.put('/:id', async (req, res) => {
   const id = parseInt(req.params.id, 10);

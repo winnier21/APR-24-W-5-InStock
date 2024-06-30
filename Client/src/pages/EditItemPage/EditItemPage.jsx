@@ -32,6 +32,7 @@ const EditItemPage = ({ warehousesProps }) => {
       <EditItemForm
         warehousesProps={warehousesProps}
         itemObject={itemObject}
+        requestMethod={'put'}
       />
     </main>
   )
