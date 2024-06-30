@@ -35,10 +35,11 @@ router.get("/:id", async (req, res) => {
       ).join('warehouses', {'inventories.warehouse_id': 'warehouses.id'})
       .where({ 'inventories.id': itemId })
       .first();
-    if (data.length > 0) {
+    console.log(data);
+    if (data) {
       res.status(200).json(data);
     } else {
-      res.status(404).json({ error: "Intentory item not found" });
+      res.status(404).json({ error: "Inventory item not found" });
     }
   } catch (error) {
     console.log(error)
@@ -83,17 +84,17 @@ router.put('/:id', async (req, res) => {
   const { warehouse_id, item_name, description, category, status, quantity } = req.body;
 
   if (!warehouse_id ||!item_name ||!description ||!category ||!status ||!quantity) {
-    return res.status(400).send({ message: 'Missing properties in request body' });
+    return res.status(400).send('Missing properties in request body');
   }
 
   try {
     const warehouse = await knex('warehouses').where({ id: warehouse_id }).first();
     if (!warehouse) {
-      return res.status(400).send({ message: 'Warehouse ID does not exist' });
+      return res.status(400).send('Warehouse ID does not exist');
     }
 
     if (typeof quantity!== 'number') {
-      return res.status(400).send({ message: 'Quantity must be a number' });
+      return res.status(400).send('Quantity must be a number');
     }
 
     const updatedInventory = await knex('inventories').where({ id }).update({
@@ -106,7 +107,7 @@ router.put('/:id', async (req, res) => {
     });
 
     if (!updatedInventory) {
-      return res.status(500).send({ message: 'Error updating inventory item' });
+      return res.status(404).send(`Unable to update inventory item with ID of ${id}.`);
     }
 
     const inventory = await knex('inventories')
@@ -115,10 +116,9 @@ router.put('/:id', async (req, res) => {
         "category", "status", "quantity"
       )
       .where({ id }).first();
-    res.send(inventory);
+    res.json(inventory);
   } catch (err) {
-    console.error(err);
-    res.status(400).send({ message: 'Error updating inventory item' });
+    res.status(400).send(`Unable to update inventory item with ID of ${id}.`);
   }
 });
 
