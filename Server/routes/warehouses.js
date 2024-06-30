@@ -139,9 +139,10 @@ router.post("/", async (req, res) => {
 
   if (!isValidEmailAddress(contactEmail)) {
     console.log("Invalid email detected"); 
-    res.status(400).send(`Invalid email value.`);
+    res.status(400).send('Invalid email value.');
     return;
   }
+
   try {
     console.log("Received data:", req.body);
     const [id] = await knex("warehouses").insert({
@@ -162,6 +163,7 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 // router.post('/', async (req, res) => {
 //   try {

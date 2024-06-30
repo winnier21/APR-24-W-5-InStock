@@ -6,6 +6,7 @@ import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsF
 import AddButton from "../Button/AddButton/AddButton";
 import CancelButton from "../Button/CancelButton/CancelButton";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
+import { isValidEmailAddress } from "../../utils/utils";
 
 function AddWarehouse() {
   const navigate = useNavigate();
@@ -25,10 +26,18 @@ function AddWarehouse() {
   };
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { contactEmail } = warehouseDetails;
+
+    // Client-side validation for the email address
+    if (!isValidEmailAddress(contactEmail)) {
+      alert("Invalid email address format.");
+      return;
+    }
     const BASE_URL = import.meta.env.VITE_API_URL;
     event.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL}/api/warehouses/add`, {
+      const response = await fetch(`${BASE_URL}/api/warehouses`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(warehouseDetails),
