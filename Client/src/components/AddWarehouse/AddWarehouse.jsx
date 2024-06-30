@@ -43,8 +43,6 @@ function AddWarehouse() {
         body: JSON.stringify(warehouseDetails),
       });
       if (response.ok) {
-        const newWarehouse = await response.json();
-        setWarehousesArray(prevWarehouses => [...prevWarehouses, newWarehouse]);
         alert("Warehouse added successfully!");
         navigate("/warehouse");
       } else {

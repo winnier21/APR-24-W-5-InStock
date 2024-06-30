@@ -4,7 +4,7 @@ import AddWarehouse from "../../components/AddWarehouse/AddWarehouse";
 const AddWarehousePage = ({ setWarehousesArray }) => {
   return (
     <>
-      <AddWarehouse setWarehousesArray={setWarehousesArray} />
+      <AddWarehouse />
     </>
   );
 };

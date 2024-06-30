@@ -42,7 +42,6 @@ main {
   @include card-padding;
   box-sizing: border-box;
   align-items: center;
-  
 
   @include tablet {
     height: $top-overlap--tablet;
@@ -50,25 +49,27 @@ main {
   &__divider {
     border-bottom: $divider;
   }
-  &-container{
+    
+  
+&-container{
       padding: 2rem 1.5rem 1.5rem 1.5rem;
     
       @include tablet{
-        padding: 2rem;
+        padding: 0rem 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
-    
+        height: 5.88rem;
         h1{
           padding: 0;
           flex-grow: 1;
         }
+        }
+    
+        
       }
+
     }
-  }
-
-
-
 
 .form__actions {
   display: flex;
