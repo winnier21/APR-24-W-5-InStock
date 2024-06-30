@@ -6,18 +6,19 @@ import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsF
 import AddButton from "../Button/AddButton/AddButton";
 import CancelButton from "../Button/CancelButton/CancelButton";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
+import { isValidEmailAddress } from "../../utils/utils";
 
 function AddWarehouse() {
   const navigate = useNavigate();
   const [warehouseDetails, setWarehouseDetails] = useState({
-    warehouseName: "",
+    warehouse_name: "",
     address: "",
     city: "",
     country: "",
-    contactName: "",
-    contactPosition: "",
-    contactPhone: "",
-    contactEmail: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
   });
 
   const handleWarehouseDetailsChange = (details) => {
@@ -35,11 +36,12 @@ function AddWarehouse() {
     }
     const BASE_URL = import.meta.env.VITE_API_URL;
     try {
-      const response = await fetch(`${BASE_URL}/api/warehouses/add`, {
+      const response = await fetch(`${BASE_URL}/api/warehouses`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(warehouseDetails),
       });
+
       if (response.ok) {
         alert("Warehouse added successfully!");
         navigate("/warehouse");
