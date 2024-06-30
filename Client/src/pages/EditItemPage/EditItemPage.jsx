@@ -4,6 +4,7 @@ import './EditItemPage.scss';
 import EditItemForm from '../../components/EditItemForm/EditItemForm'
 import Placeholder from '../../components/Placeholder/Placeholder';
 import apiInstance from '../../utils/ApiClient';
+import FormHeader from '../../components/FormHeader/FormHeader';
 
 const EditItemPage = ({ warehousesProps }) => {
   const itemId = useParams().itemId;
@@ -26,12 +27,13 @@ const EditItemPage = ({ warehousesProps }) => {
 
 
   return (
-    <>
+    <main>
+      <FormHeader title="Edit Inventory Item" />
       <EditItemForm
         warehousesProps={warehousesProps}
         itemObject={itemObject}
       />
-    </>
+    </main>
   )
 }
 

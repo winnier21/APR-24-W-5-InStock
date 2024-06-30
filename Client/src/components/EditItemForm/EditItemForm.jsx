@@ -5,7 +5,6 @@ import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import AddButton from '../Button/AddButton/AddButton';
 import CancelButton from '../Button/CancelButton/CancelButton';
 import apiInstance from '../../utils/ApiClient';
-import FormHeader from '../FormHeader/FormHeader';
   
 const EditForm = ({ itemObject, warehousesProps }) => {
   const navigate = useNavigate();
@@ -105,8 +104,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
     setSelectedCategory(selectedValue);
   }
   return (
-    <main>            
-      <FormHeader title="Edit Inventory Item" />
+    <section>            
       <form className="form" onSubmit={handleSubmit}>
         <div className='forms__container'>
           <section className="item-details">
@@ -120,6 +118,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                   id="item_name"
                   name="item_name"
                   defaultValue={item_name}
+                  placeholder="Item Name"
                 />
               </div>
             </div>
@@ -130,6 +129,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                   className='item-input--description item-input--description-placeholder '
                   id="description"
                   defaultValue={description}
+                  placeholder="Please enter a brief item description..."
                 />
               </div>
             </div>
@@ -226,7 +226,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
           <AddButton buttonText="Save"/>
         </div>
       </form>
-    </main>
+    </section>
   );
 };
 
