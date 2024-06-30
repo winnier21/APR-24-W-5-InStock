@@ -45,9 +45,9 @@
           justify-content: center;
           padding-top: 1.5rem;
           padding-bottom: 1.5rem;
+          padding-right: 0rem;
+          padding-left: 0rem;
         }
-        @include desktop {
-          width: 100%;
-        }
+       
       }
     }

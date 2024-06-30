@@ -72,21 +72,18 @@
         .error{
             color:$red;
         }
-    }
+    
     & select {
         appearance: none; /* Remove default dropdown arrow */
         -webkit-appearance: none; /* Remove default dropdown arrow for Chrome */
         -moz-appearance: none; 
     }
-    & custom-select-arrow {
+    & .custom-select-arrow img {
         position: absolute;
         top: 50%;
-        right: 1rem;
+        padding-right: 1rem;
         transform: translateY(-50%);
         pointer-events: none;
       }
-      
-      .item-select select::-ms-expand { /* Remove default dropdown arrow for IE */
-        display: none;
-      }
+    }
 }   

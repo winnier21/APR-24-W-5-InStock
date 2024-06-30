@@ -4,23 +4,25 @@
 @use "../../../styles/partials/mixins" as *;
 
 .item-input--description{
+    font-family: 'Titillium';
     border: .0625rem solid $cloud;
     border-radius: 1.25rem;
     height: 7.5rem;
     width: 100%;
-    padding-bottom: 1rem;
-    
+    padding: 0.5rem 1rem;
+    @include input-select-placeholders;
+    @include p2;
+
     @include tablet{
         width: 100%;
     }
     @include desktop{
         width: 100%;
     }
-    &::placeholder{
-        font-family: 'Titillium';
-        @include input-select-placeholders;
-        @include p2;
-    }
+    // &::placeholder{
+    //     @include input-select-placeholders;
+    //     @include p2;
+    // }
     &:active{
         color: $instock-indigo;
     }
