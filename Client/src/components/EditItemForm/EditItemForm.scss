@@ -2,6 +2,7 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+@use "../FormHeader/FormHeader.scss" as *;
 
 .main-edititem {
   margin-left: 0rem;

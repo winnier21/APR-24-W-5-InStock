@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './EditItemForm.scss';
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
-import axios from 'axios';
 import AddButton from '../Button/AddButton/AddButton';
 import CancelButton from '../Button/CancelButton/CancelButton';
 import apiInstance from '../../utils/ApiClient';
+import FormHeader from '../FormHeader/FormHeader';
   
 const EditForm = ({ itemObject, warehousesProps }) => {
   const navigate = useNavigate();
@@ -105,11 +105,8 @@ const EditForm = ({ itemObject, warehousesProps }) => {
     setSelectedCategory(selectedValue);
   }
   return (
-    <main className="main-edititem">            
-      <h1 className='main-header'>
-        <img src={ArrowBackIcon} className='arrow-back-icon'/>
-        Edit Inventory Item
-      </h1>
+    <main>            
+      <FormHeader title="Edit Inventory Item" />
       <form className="form" onSubmit={handleSubmit}>
         <div className='forms__container'>
           <section className="item-details">
