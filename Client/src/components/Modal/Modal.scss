@@ -1,5 +1,5 @@
-@use '../../styles/partials/mixins' as *;
-@use '../../styles/partials/variables' as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 $dialog-padding--vertical: 2.5rem;
 
@@ -12,7 +12,7 @@ dialog {
   padding: 3.75rem $padding-med;
   border-radius: 0.1875rem;
   justify-self: center;
-  
+
   @include tablet {
     top: $header-height--tablet;
     height: 16.375rem;
@@ -30,25 +30,41 @@ dialog {
   }
 }
 
-.modal{
+.modal {
   &__form {
     @include zero-spacing;
     width: 100%;
+
+    p {
+      @include p1;
+    }
   }
 
   &__body {
+    margin-bottom: $padding-med;
     @include p2;
   }
 
   &__buttons {
-    @include flex-mixin--row(auto);
-    position: fixed;
-    bottom: $padding-med;
+    width: 21.4375rem;
+    display: flex;
+    justify-content: flex-end;
+    bottom: $padding-large;
     gap: $padding-med;
+    position: fixed;
+
     @include tablet {
       position: absolute;
       bottom: $dialog-padding--vertical;
       right: 4rem;
+    }
+  }
+  .button-cancel {
+    margin-right: 0;
+    padding: 0;
+    cursor: pointer;
+    @include tablet {
+      padding: 0.5rem 1rem;
     }
   }
 }
