@@ -5,6 +5,7 @@
 
   @include tablet {
     display: flex;
+    align-items: baseline;
   }
 
   &__form {

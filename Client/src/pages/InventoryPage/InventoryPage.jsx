@@ -26,10 +26,10 @@ function InventoryPage() {
   return (
     <main>
       <section className="page-top-container">
-        <div className="page-top-wrapper">
+        
           <h1>Inventory</h1>
           <PageTop link="/inventory/add" buttonText="+ Add New Item" />
-        </div>
+        
       </section>
       <InventoryList
         inventoryArray={inventoryArray}
