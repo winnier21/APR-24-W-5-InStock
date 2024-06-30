@@ -59,8 +59,8 @@ function AddWarehouse() {
             <h1 className="addWarehouse__title">Add New Warehouse</h1>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="forms">
-          <section className="forms__container">
+        <form onSubmit={handleSubmit} className="form">
+          <section className="form__container">
             <WarehouseDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
