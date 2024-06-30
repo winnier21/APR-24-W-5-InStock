@@ -8,7 +8,15 @@ import Placeholder from '../../components/Placeholder/Placeholder';
 
 function WarehouseDetailsPage() {
   const warehouseId = useParams().warehouseId;
+  const [warehouseInventory, setWarehouseInventory] = useState(null);
   const [warehouseObject, setWarehouseObject] = useState(null);
+
+  const getWarehouseInventory = async () => {
+    const data = await apiInstance.getWarehouseItems(warehouseId);
+    if (data) {
+      setWarehouseInventory(data);
+    }
+  }
 
   const getWarehouseDetails = async (warehouseId) => {
     const data = await apiInstance.getItem('warehouses', warehouseId);
@@ -18,17 +26,25 @@ function WarehouseDetailsPage() {
   }
 
   useEffect(() => {
+    getWarehouseInventory();
+  }, [warehouseInventory])
+
+  useEffect(() => {
     getWarehouseDetails(warehouseId);
   }, []);
 
-  if (!warehouseObject) {
+  if (!warehouseObject || !warehouseInventory) {
     return <Placeholder/>
   }
 
   return (
     <main>
       <WarehouseDetails warehouseObject={warehouseObject} />
-      <InventoryList warehouseId={ warehouseId } />
+      <InventoryList
+        warehouseId={warehouseId}
+        inventoryArray={warehouseInventory}
+        setInventoryArray={setWarehouseInventory}
+      />
     </main>
   );
 }

@@ -2,21 +2,36 @@ import React from 'react';
 
 import './Modal.scss';
 import CloseIcon from '../CloseIcon/CloseIcon';
+import Button from '../Button/Button';
+import apiInstance from '../../utils/ApiClient';
+import CancelButton from "../Button/CancelButton/CancelButton";
+import AddButton from "../Button/AddButton/AddButton";
 
 const Modal = ({modalProps}) => {
   const {
-    name, type,
-    dialogRef
+    id, name, type, dialogRef,
+    totalEdits, setTotalEdits
   } = modalProps;
+
   const question = `Delete ${name} ${type}?`;
   let name2;
   let list;
+  let route;
   if (type === 'warehouse') {
     name2 = `the ${name}`;
-    list = `the list of ${type}s`;
+    route = 'warehouses';
+    list = `the list of ${type}`;
   } else {
     name2 = name;
-    list = `${type} list`
+    list = `${type} list`;
+    route = 'inventories';
+  }
+
+  const buttonHandler = async (event) => {
+    const response = await apiInstance.delete(route, id);
+    if (response) {
+      setTotalEdits(totalEdits + 1 )
+    }
   }
 
   const disclaimer = `
@@ -34,16 +49,12 @@ const Modal = ({modalProps}) => {
           {disclaimer}
         </p>
         <div className="modal__buttons">
-          <button 
-            className="button--cancel"
-          >
-            Cancel
-          </button>
-          <button 
-            className="button--delete"
-          >
-            Delete
-          </button>
+        <CancelButton className="button-cancel"/>
+          <Button 
+            className="button-delete"
+            text="Delete"
+            buttonHandler={buttonHandler}
+          />
         </div>
       </form>
       <CloseIcon dialogRef={dialogRef} />

@@ -25,9 +25,10 @@ function AddWarehouse() {
   };
 
   const handleSubmit = async (event) => {
+    const BASE_URL = import.meta.env.VITE_API_URL;
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/api/warehouse/add", {
+      const response = await fetch(`${BASE_URL}/api/warehouses/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(warehouseDetails),
@@ -47,7 +48,7 @@ function AddWarehouse() {
     <main className="addWarehouse__main">
       <section className="addWarehouse">
         <div className="addWarehouse__header">
-          <div className="addWarehouse__header-container">
+          <div className="page-top">
             <Link to="/warehouse">
               <img
                 className="arrow-back-icon"
@@ -58,8 +59,8 @@ function AddWarehouse() {
             <h1 className="addWarehouse__title">Add New Warehouse</h1>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="forms">
-          <section className="forms__container">
+        <form onSubmit={handleSubmit} className="form">
+          <section className="form__container">
             <WarehouseDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
