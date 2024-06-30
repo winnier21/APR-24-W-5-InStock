@@ -1,7 +1,7 @@
 import React from 'react';
 import './ItemNameForm.scss';
 
-const ItemNameForm = ({ formData, setFormData, setActiveField, errors }) => {
+const ItemNameForm = ({ formData, setFormData, setActiveField, errors, itemNamePlaceholder }) => {
   return (
     <div className="item-detail">
       <label className='label-text'>Item Name </label>
@@ -14,7 +14,7 @@ const ItemNameForm = ({ formData, setFormData, setActiveField, errors }) => {
           onChange={(e) => setFormData({...formData, item_name: e.target.value })}
           onFocus={() => setActiveField('item_name')}
           onBlur={() => setActiveField(null)}
-          placeholder="Item Name" 
+          placeholder={itemNamePlaceholder}
         />
         {errors.item_name && <div className="error">{errors.item_name}</div>}
       </div>
