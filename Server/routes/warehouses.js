@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const warehouseId = req.params.id;
-  const errorMessage = `Item with id ${id} in ${warehouseId} does not exist.`;
+  const errorMessage = `Warehouse with id ${warehouseId} does not exist.`;
   try {
     const data = await knex
       .from("warehouses")
@@ -59,7 +59,7 @@ router.get("/:id", async (req, res) => {
 
 router.get("/:id/inventories", async (req, res) => {
   const warehouseId = req.params.id;
-  const errorMessage = `Error with getting inventory for warehouse ${id}`;
+  const errorMessage = `Error with getting inventory for warehouse ${warehouseId}`;
   try {
     const data = await knex
       .from("inventories")
