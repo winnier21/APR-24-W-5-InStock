@@ -125,42 +125,79 @@ router.put("/:id/edit", async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
-  try {
-    let requestBody = req.body;
+router.post("/", async (req, res) => {
+  const {
+    warehouseName,
+    address,
+    city,
+    country,
+    contactName,
+    contactPosition,
+    contactPhone,
+    contactEmail,
+  } = req.body;
 
-    const propertiesToValidateWithRegex = ['contact_phone', 'contact_email'];
-    const remainingProperties = [
-      'warehouse_name', 'address', 'city', 'country',
-      'contact_name', 'contact_position',
-    ]
-    const requiredProperties = propertiesToValidateWithRegex.concat(remainingProperties);
-    const newObject = {};
-
-    // Validate email address
-    if (!isValidEmailAddress(requestBody.contact_email)) {
-      res.status(400).send(`Invalid email value.`);
-      return;
-    }
-
-    // Validate form values and add to new object for insertion
-    for (let i = 0; i < requiredProperties.length; i++) {
-      const property = requiredProperties[i];
-      const value = requestBody[property]
-      if (value && value.length > 2) {
-        newObject[property] = requestBody[property];
-      } else {
-        res.status(400).send(`Invalid ${property} value.`);
-        return;
-      }
-    }
-    const newId = await knex('warehouses').insert(newObject);
-    newObject.id = newId[0];
-    res.status(201).json(newObject);
-  } catch (error) {
-    res.status(400).send(`Unable to post new warehouse`);
+  if (!isValidEmailAddress(contactEmail)) {
+    console.log("Invalid email detected"); 
+    res.status(400).send('Invalid email value.');
+    return;
   }
-})
+  try {
+    console.log("Received data:", req.body);
+    const [id] = await knex("warehouses").insert({
+      warehouse_name: warehouseName,
+      address,
+      city,
+      country,
+      contact_name: contactName,
+      contact_position: contactPosition,
+      contact_phone: contactPhone,
+      contact_email: contactEmail,
+    });
+
+    console.log("Inserted warehouse ID:", id);
+    res.status(201).json({ message: "Warehouse added successfully", id });
+  } catch (error) {
+    console.error("Error adding warehouse:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+// router.post('/', async (req, res) => {
+//   try {
+//     let requestBody = req.body;
+
+//     const propertiesToValidateWithRegex = ['contact_phone', 'contact_email'];
+//     const remainingProperties = [
+//       'warehouse_name', 'address', 'city', 'country',
+//       'contact_name', 'contact_position',
+//     ]
+//     const requiredProperties = propertiesToValidateWithRegex.concat(remainingProperties);
+//     const newObject = {};
+
+//     // Validate email address
+//     if (!isValidEmailAddress(requestBody.contact_email)) {
+//       res.status(400).send(`Invalid email value.`);
+//       return;
+//     }
+
+//     // Validate form values and add to new object for insertion
+//     for (let i = 0; i < requiredProperties.length; i++) {
+//       const property = requiredProperties[i];
+//       const value = requestBody[property]
+//       if (value && value.length > 2) {
+//         newObject[property] = requestBody[property];
+//       } else {
+//         res.status(400).send(`Invalid ${property} value.`);
+//         return;
+//       }
+//     }
+//     const newId = await knex('warehouses').insert(newObject);
+//     newObject.id = newId[0];
+//     res.status(201).json(newObject);
+//   } catch (error) {
+//     res.status(400).send(`Unable to post new warehouse`);
+//   }
+// })
 
 router.delete("/:id", async (req, res) => {
   try {
