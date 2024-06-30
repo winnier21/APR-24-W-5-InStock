@@ -9,7 +9,8 @@ import ItemDetailsForm from '../ItemDetailsForm/ItemDetailsForm';
 import ItemAvailability from '../ItemAvailability/ItemAvailability';
 import './AddItemForm.scss';
 
-function AddItemForm() {
+function AddItemForm({warehousesProps}) {
+  const warehouses = warehousesProps.warehousesArray.map(object => object.warehouse_name);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     item_name: "",
@@ -26,7 +27,6 @@ function AddItemForm() {
   const [category, setCategory] = useState("");
   const [warehouse, setWarehouse] = useState("");
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
-  const warehouses = ['Manhattan', 'Washington', 'Jersey', 'SF', 'Santa Monica', 'Seattle', 'Miami', 'Boston'];
 
   const handleBlur = (name) => {
     setActiveField(null);

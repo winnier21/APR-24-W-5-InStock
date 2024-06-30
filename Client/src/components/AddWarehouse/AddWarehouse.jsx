@@ -25,8 +25,15 @@ function AddWarehouse() {
   };
 
   const handleSubmit = async (event) => {
-    const BASE_URL = import.meta.env.VITE_API_URL;
     event.preventDefault();
+    const { contact_email } = warehouseDetails;
+
+    // Client-side validation for the email address
+    if (!isValidEmailAddress(contact_email)) {
+      alert("Invalid email address format.");
+      return;
+    }
+    const BASE_URL = import.meta.env.VITE_API_URL;
     try {
       const response = await fetch(`${BASE_URL}/api/warehouses/add`, {
         method: "POST",
