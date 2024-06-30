@@ -1,5 +1,6 @@
 import React from 'react';
 import './ItemSelect.scss';
+import DropDownArrow from '../../../assets/icons/arrow_drop_down-24px.svg';
 
 const ItemSelect = ({ formData, setFormData, options, label, id }) => {
   const handleChange = (event) => {

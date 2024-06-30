@@ -10,7 +10,8 @@ const QuantityForm = ({ formData, setFormData, activeField, setActiveField, erro
           type="number"
           className="item-input--quantity"
           id="quantity"
-          value={formData.quantity}
+          value=""
+          placeholder="0"
           onChange={(e) => {
             const quantity = parseInt(e.target.value, 10);
             setFormData({
