@@ -109,7 +109,8 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
               <label className='label-text'>Item Name </label>
               <div className="item-input">
                 <input
-                  className='item-input--name item-input--name-placeholder'
+                  className={`item-input--name form-input ${errors.item_name ? 'error' : ''} `}
+                  // className='form-input item-input--name item-input--name-placeholder'
                   type="text"
                   id="item_name"
                   name="item_name"
@@ -122,7 +123,8 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
               <label className='label-text'>Description </label>
               <div className="item-input">
                 <textarea
-                  className='item-input--description item-input--description-placeholder '
+                  // className='form-input item-input--description item-input--description-placeholder '
+                  className={`item-input--description form-input ${errors.description ? 'error' : ''} `}
                   id="description"
                   defaultValue={description}
                   placeholder="Please enter a brief item description..."
@@ -133,7 +135,8 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
               <label className='label-text'>Category </label>
               <div className="item-select">   
                 <select
-                  className='item-select--category item-select--category-placeholder'
+                  // className='form-select item-select--category item-select--category-placeholder'
+                  className={`item-select--category form-input ${errors.category? 'error' : ''} `}
                   id="category"
                   value={selectedCategory || undefined}
                   name="category"
@@ -188,7 +191,8 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                 <div className="item-input">
                   <input
                     type="number"
-                    className="item-input--quantity"
+                    // className="form-input item-input--quantity"
+                    className={`item-input--quantity form-input ${errors.quantity? 'error' : ''}`}
                     id="quantity"
                     name="quantity"
                     defaultValue={quantity}
@@ -200,7 +204,8 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
               <label className='label-text'>Warehouse</label>
               <div className="item-select">
                 <select
-                  className="item-select--warehouse"
+                  // className="form-select item-select--warehouse"
+                  className={`item-select--warehouse form-input ${errors.warehouse? 'error' : ''}`}
                   id="warehouse"
                   name="warehouse_name"
                   defaultValue={selectedWarehouse}

@@ -46,6 +46,15 @@
         padding-top: 1.5rem;
       }
     }
+    .form-input {
+     &--error {
+      border:$red 0.0625rem solid;
+     } 
+     &:active{
+      color: $instock-indigo;
+     }
+
+    }
     .item-details {
       padding-left: 2.5rem;
       padding-right: 2.5rem;
@@ -68,7 +77,7 @@
         flex-direction: column;
 
         .item-input--name {
-          &.item-input--name-placeholder {
+          &::placeholder{
             @include p2;
             @include input-select-placeholders;
           }
