@@ -89,6 +89,7 @@ $icons-width: 4.2rem;
   &__heading {
     @include table-heading;
     margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
 
     @include tablet {
       display: none;
@@ -148,26 +149,6 @@ $icons-width: 4.2rem;
   &__category {
     @include tablet {
       width: $column-width--category;
-    }
-  }
-
-  &__status {
-    @extend h4;
-    border-radius: $status-radius;
-    text-transform: uppercase;
-    width: fit-content;
-    padding: .25rem .5rem;
-
-    &--green {
-      @extend .inventory__status;
-      background-color: $green-background;
-      color: $green;
-    }
-
-    &--red {
-      @extend .inventory__status;
-      background-color: $red-background;
-      color: $red;
     }
   }
 

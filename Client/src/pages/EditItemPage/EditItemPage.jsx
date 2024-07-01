@@ -5,9 +5,9 @@ import Placeholder from '../../components/Placeholder/Placeholder';
 import apiInstance from '../../utils/ApiClient';
 import FormHeader from '../../components/FormHeader/FormHeader';
 
-const EditItemPage = ({ warehousesProps }) => {
+const EditItemPage = ({ warehousesProps, itemDetailsObject }) => {
   const itemId = useParams().itemId;
-  const [itemObject, setItemObject] = useState(null);
+  const [itemObject, setItemObject] = useState(itemDetailsObject);
 
   const getInventoryItem = async () => {
     const data = await apiInstance.getItem('inventories', itemId);
@@ -17,7 +17,9 @@ const EditItemPage = ({ warehousesProps }) => {
   }
 
   useEffect(() => {
-    getInventoryItem();
+    if (!itemObject) {
+      getInventoryItem();
+    }
   }, [])
 
   if (!itemObject) {

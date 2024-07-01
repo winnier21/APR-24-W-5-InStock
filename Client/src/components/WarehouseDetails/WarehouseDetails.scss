@@ -4,7 +4,7 @@
 .warehouse-info {
   @include flex-mixin--column(auto);
   @include card-padding;
-  gap: 2.25rem;
+  gap: $section-gap;
   @include tablet {
     flex-direction: row;
   }
@@ -23,10 +23,6 @@
   &__contact-div {
     @include flex-mixin--row(100%);
   }
-
-  // &__left, &__right {
-    
-  // }
 
   &__contact-info {
     width: 70%;
