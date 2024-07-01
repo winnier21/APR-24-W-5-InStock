@@ -151,9 +151,9 @@
         @include p2;
         color: $slate;
         &-check{
-         &:active{
-          color:$instock-black;
-        } 
+          input[type="radio"]:checked + label{
+            color: $instock-black;
+          }
         }
         @include tablet{
             gap:4rem;
