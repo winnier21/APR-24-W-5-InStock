@@ -3,7 +3,7 @@ import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 import express from "express";
 import { isValidEmailAddress } from "../../Client/src/utils/utils.js";
-
+import { isValidPhoneNumber } from "../../Client/src/utils/utils.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -23,13 +23,15 @@ router.get("/", async (req, res) => {
       );
     res.status(200).json(data);
   } catch (error) {
-    res.status(400).send(`Error with getting data: ${error}`);
+    const errorMessage = `Error with getting warehouses data.`;
+    res.status(400).send(errorMessage);
   }
 });
 
 router.get("/:id", async (req, res) => {
+  const warehouseId = req.params.id;
+  const errorMessage = `Warehouse with id ${warehouseId} does not exist.`;
   try {
-    const warehouseId = req.params.id;
     const data = await knex
       .from("warehouses")
       .select(
@@ -45,24 +47,30 @@ router.get("/:id", async (req, res) => {
       )
       .where({ id: warehouseId })
       .first();
-    res.status(200).json(data);
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(400).send(errorMessage);
+    }
   } catch (error) {
-    res.status(400).send(`Error with getting data: ${error}`);
+    res.status(400).send(`Error with getting data: ${errorMessage}`);
   }
 });
 
 router.get("/:id/inventories", async (req, res) => {
+  const warehouseId = req.params.id;
+  const errorMessage = `Error with getting inventory for warehouse ${warehouseId}`;
   try {
-    const warehouseId = req.params.id;
     const data = await knex
       .from("inventories")
       .select("id", "item_name", "category", "status", "quantity")
       .where({ warehouse_id: warehouseId });
     res.status(200).json(data);
   } catch (error) {
-    res.status(400).send(`Error with getting data: ${error}`);
+    res.status(400).send(errorMessage);
   }
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const warehouseId = req.params.id;
@@ -89,115 +97,101 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-router.put("/:id/edit", async (req, res) => {
+
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const {
-    warehouseName,
+    warehouse_name,
     address,
     city,
     country,
-    contactName,
-    contactPosition,
-    contactPhone,
-    contactEmail,
+    contact_name,
+    contact_position,
+    contact_phone,
+    contact_email,
   } = req.body;
 
-  try {
-    const result = await knex("warehouses").where({ id }).update({
-      warehouse_name: warehouseName,
-      address,
-      city,
-      country,
-      contact_name: contactName,
-      contact_position: contactPosition,
-      contact_phone: contactPhone,
-      contact_email: contactEmail,
-    });
+  // Validation logic for required fields
+  if (!warehouse_name || !address || !city || !country || !contact_name || !contact_position || !contact_phone || !contact_email) {
+    return res.status(400).json({ error: "All fields are required." });
+  }
 
-    if (result) {
-      res.status(200).json({ message: "Warehouse updated successfully" });
+// Validate email and phone number
+if (!isValidEmailAddress(contact_email)) {
+  return res.status(400).json({ error: "Invalid email address format." });
+}
+
+if (!isValidPhoneNumber(contact_phone)) {
+  return res.status(400).json({ error: "Invalid phone number format." });
+}
+
+    
+  try {
+    const result = await knex("warehouses")
+      .where({ id })
+      .update({
+        warehouse_name,
+        address,
+        city,
+        country,
+        contact_name,
+        contact_position,
+        contact_phone,
+        contact_email
+      });
+
+    if (result === 0) {  // No rows were updated, meaning the warehouse was not found
+      return res.status(404).json({ error: "Warehouse not found." });
+    }
+
+    const updatedWarehouse = await knex("warehouses").where({ id }).first();
+    if (updatedWarehouse) {
+      res.status(200).json(updatedWarehouse);
     } else {
-      res.status(404).json({ error: "Warehouse not found" });
+      res.status(404).json({ error: "Warehouse not found after update." });
     }
   } catch (error) {
     console.error("Error updating warehouse:", error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error." });
   }
 });
 
-router.post("/", async (req, res) => {
-  const {
-    warehouseName,
-    address,
-    city,
-    country,
-    contactName,
-    contactPosition,
-    contactPhone,
-    contactEmail,
-  } = req.body;
-
-  if (!isValidEmailAddress(contactEmail)) {
-    console.log("Invalid email detected"); 
-    res.status(400).send('Invalid email value.');
-    return;
-  }
+router.post('/', async (req, res) => {
   try {
-    console.log("Received data:", req.body);
-    const [id] = await knex("warehouses").insert({
-      warehouse_name: warehouseName,
-      address,
-      city,
-      country,
-      contact_name: contactName,
-      contact_position: contactPosition,
-      contact_phone: contactPhone,
-      contact_email: contactEmail,
-    });
+    let requestBody = req.body;
 
-    console.log("Inserted warehouse ID:", id);
-    res.status(201).json({ message: "Warehouse added successfully", id });
+    const propertiesToValidateWithRegex = ['contact_phone', 'contact_email'];
+    const remainingProperties = [
+      'warehouse_name', 'address', 'city', 'country',
+      'contact_name', 'contact_position',
+    ]
+    const requiredProperties = propertiesToValidateWithRegex.concat(remainingProperties);
+    const newObject = {};
+
+    // Validate email address
+    if (!isValidEmailAddress(requestBody.contact_email)) {
+      res.status(400).send(`Invalid email value.`);
+      return;
+    }
+
+    // Validate form values and add to new object for insertion
+    for (let i = 0; i < requiredProperties.length; i++) {
+      const property = requiredProperties[i];
+      const value = requestBody[property]
+      if (value && value.length > 2) {
+        newObject[property] = requestBody[property];
+      } else {
+        res.status(400).send(`Invalid ${property} value.`);
+        return;
+      }
+    }
+    const newId = await knex('warehouses').insert(newObject);
+    newObject.id = newId[0];
+    res.status(201).json(newObject);
   } catch (error) {
-    console.error("Error adding warehouse:", error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(400).send(`Unable to post new warehouse`);
   }
-});
-// router.post('/', async (req, res) => {
-//   try {
-//     let requestBody = req.body;
-
-//     const propertiesToValidateWithRegex = ['contact_phone', 'contact_email'];
-//     const remainingProperties = [
-//       'warehouse_name', 'address', 'city', 'country',
-//       'contact_name', 'contact_position',
-//     ]
-//     const requiredProperties = propertiesToValidateWithRegex.concat(remainingProperties);
-//     const newObject = {};
-
-//     // Validate email address
-//     if (!isValidEmailAddress(requestBody.contact_email)) {
-//       res.status(400).send(`Invalid email value.`);
-//       return;
-//     }
-
-//     // Validate form values and add to new object for insertion
-//     for (let i = 0; i < requiredProperties.length; i++) {
-//       const property = requiredProperties[i];
-//       const value = requestBody[property]
-//       if (value && value.length > 2) {
-//         newObject[property] = requestBody[property];
-//       } else {
-//         res.status(400).send(`Invalid ${property} value.`);
-//         return;
-//       }
-//     }
-//     const newId = await knex('warehouses').insert(newObject);
-//     newObject.id = newId[0];
-//     res.status(201).json(newObject);
-//   } catch (error) {
-//     res.status(400).send(`Unable to post new warehouse`);
-//   }
-// })
+})
 
 router.delete("/:id", async (req, res) => {
   try {
@@ -270,3 +264,40 @@ export default router;
 // const contact_phone = requestBody.contact_phone;
 // const contact_email = requestBody.contact_email;
 // const requestBodyKeys = new Set(Object.keys(requestBody));
+
+
+// router.put("/:id/edit", async (req, res) => {
+//   const { id } = req.params;
+//   const {
+//     warehouseName,
+//     address,
+//     city,
+//     country,
+//     contactName,
+//     contactPosition,
+//     contactPhone,
+//     contactEmail,
+//   } = req.body;
+
+//   try {
+//     const result = await knex("warehouses").where({ id }).update({
+//       warehouse_name: warehouseName,
+//       address,
+//       city,
+//       country,
+//       contact_name: contactName,
+//       contact_position: contactPosition,
+//       contact_phone: contactPhone,
+//       contact_email: contactEmail,
+//     });
+
+//     if (result) {
+//       res.status(200).json({ message: "Warehouse updated successfully" });
+//     } else {
+//       res.status(404).json({ error: "Warehouse not found" });
+//     }
+//   } catch (error) {
+//     console.error("Error updating warehouse:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
