@@ -32,7 +32,7 @@ function ContactDetailsForm({ onChange, details }) {
           type="text"
           name="contact_name"
           placeholder="Contact Name"
-          value={contactDetails.contactName}
+          value={contactDetails.contact_name}
           onChange={handleChange}
         />
         <h3>Position</h3>
@@ -41,7 +41,7 @@ function ContactDetailsForm({ onChange, details }) {
           type="text"
           name="contact_position"
           placeholder="Position"
-          value={contactDetails.contactPosition}
+          value={contactDetails.contact_position}
           onChange={handleChange}
         />
         <h3>Phone Number</h3>
@@ -50,7 +50,7 @@ function ContactDetailsForm({ onChange, details }) {
           type="text"
           name="contact_phone"
           placeholder="Phone Number"
-          value={contactDetails.contactPhone}
+          value={contactDetails.contact_phone}
           onChange={handleChange}
         />
         <h3>Email</h3>
@@ -59,7 +59,7 @@ function ContactDetailsForm({ onChange, details }) {
           type="text"
           name="contact_email"
           placeholder="Email"
-          value={contactDetails.contactEmail}
+          value={contactDetails.contact_email}
           onChange={handleChange}
         />
       </div>

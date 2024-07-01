@@ -1,10 +1,10 @@
 import React from 'react';
 import EditWarehouse from '../../components/EditWarehouse/EditWarehouse';
 
-const EditWarehousePage = () => {
+const EditWarehousePage = ({ warehousesProps }) => {
   return (
     <>
-    <EditWarehouse />
+    <EditWarehouse warehousesProps={warehousesProps} />
     </>
   )
 }

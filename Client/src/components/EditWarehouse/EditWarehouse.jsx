@@ -8,24 +8,27 @@ import CancelButton from "../Button/CancelButton/CancelButton";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import Placeholder from "../Placeholder/Placeholder";
 
-function EditWarehouse() {
+function EditWarehouse({ warehousesProps }) {
   const { warehouseId } = useParams();
   const navigate = useNavigate();
+  const { totalEdits, setTotalEdits } = warehousesProps;
   const [warehouseDetails, setWarehouseDetails] = useState({
-    warehouseName: "",
+    warehouse_name: "",
     address: "",
     city: "",
     country: "",
-    contactName: "",
-    contactPosition: "",
-    contactPhone: "",
-    contactEmail: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const [setIsLoading] = useState(true);
-
+  // Fetching initial warehouse data
   useEffect(() => {
     const fetchWarehouse = async () => {
+      setLoading(true);
       const BASE_URL = import.meta.env.VITE_API_URL;
       try {
         const response = await fetch(
@@ -36,24 +39,27 @@ function EditWarehouse() {
         }
         const data = await response.json();
         setWarehouseDetails({
-          warehouseName: data.warehouse_name,
+          warehouse_name: data.warehouse_name,
           address: data.address,
           city: data.city,
           country: data.country,
-          contactName: data.contact_name,
-          contactPosition: data.contact_position,
-          contactPhone: data.contact_phone,
-          contactEmail: data.contact_email,
+          contact_name: data.contact_name,
+          contact_position: data.contact_position,
+          contact_phone: data.contact_phone,
+          contact_email: data.contact_email,
         });
-        setIsLoading(false);
-      } catch (error) {}
-      
+        setError(""); // Clear any previous errors
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
 
     if (warehouseId) {
       fetchWarehouse();
     }
-  }, [warehouseId]);
+  }, [warehouseId]); // Depend on warehouseId to refetch when it changes
 
   const handleWarehouseDetailsChange = (details) => {
     setWarehouseDetails((prevDetails) => ({ ...prevDetails, ...details }));
@@ -61,16 +67,31 @@ function EditWarehouse() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+
+    const BASE_URL = import.meta.env.VITE_API_URL;
+    setLoading(true);
+
     try {
       const response = await fetch(
-        `http://localhost:8080/api/warehouses/${warehouseId}/edit`,
+        `${BASE_URL}/api/warehouses/${warehouseId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(warehouseDetails),
+          body: JSON.stringify({
+            warehouseName: warehouseDetails.warehouse_name,
+            address: warehouseDetails.address,
+            city: warehouseDetails.city,
+            country: warehouseDetails.country,
+            contactName: warehouseDetails.contact_name,
+            contactPosition: warehouseDetails.contact_position,
+            contactPhone: warehouseDetails.contact_phone,
+            contactEmail: warehouseDetails.contact_email,
+          }),
         }
       );
       if (response.ok) {
+        setTotalEdits(totalEdits + 1);
         alert("Warehouse updated successfully!");
         navigate("/warehouse");
       } else {
@@ -80,9 +101,14 @@ function EditWarehouse() {
       alert(error.message);
     }
   };
-  if (!warehouseDetails) {
-    return <Placeholder/>
+
+  if (loading) {
+    return <Placeholder />; // Render the Placeholder component while loading
   }
+  // if (error) {
+  //   return <div>Error: {error}</div>; // Display errors if any
+  // }
+
   return (
     <main className="editWarehouse__main">
       <section className="editWarehouse">

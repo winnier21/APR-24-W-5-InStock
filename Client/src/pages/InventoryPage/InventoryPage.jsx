@@ -29,9 +29,9 @@ function InventoryPage() {
       <section className="page-top-container">
         
           <h1>Inventory</h1>
-        <NavLink to='/inventory/add'>
+        {/* <NavLink to='/inventory/add'> */}
               <PageTop link="/inventory/add" buttonText="+ Add New Item" />
-          </NavLink>
+          {/* </NavLink> */}
       </section>
       <InventoryList
         inventoryArray={inventoryArray}
