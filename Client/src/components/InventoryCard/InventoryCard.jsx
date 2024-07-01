@@ -4,7 +4,11 @@ import ActionIcons from '../ActionIcons/ActionIcons';
 import Cardlink from '../CardLink/CardLink';
 import Modal from '../../components/Modal/Modal';
 
-const InventoryCard = ({ itemObject, sectionWidth, editPath }) => {
+const InventoryCard = (props) => {
+  const {
+    itemObject, sectionWidth, editPath,
+    inventoryArray, setInventoryArray
+  } = props;
   const leftSectionClass = `inventory__left${sectionWidth}`;
   const rightSectionClass = `inventory__right${sectionWidth}`
 
@@ -91,7 +95,10 @@ const InventoryCard = ({ itemObject, sectionWidth, editPath }) => {
   const modalProps = {
     name: item_name,
     type: 'inventory item',
-    dialogRef: dialogRef
+    dialogRef: dialogRef,
+    id: id,
+    inventoryArray: inventoryArray,
+    setInventoryArray: setInventoryArray
   }
   
   return (

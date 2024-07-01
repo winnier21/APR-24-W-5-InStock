@@ -8,8 +8,11 @@ import CancelButton from "../Button/CancelButton/CancelButton";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import { isValidEmailAddress } from "../../utils/utils";
 
-function AddWarehouse() {
+function AddWarehouse({warehousesProps}) {
   const navigate = useNavigate();
+  const {
+    warehousesArray, totalEdits, setTotalEdits
+  } = warehousesProps;
   const [warehouseDetails, setWarehouseDetails] = useState({
     warehouse_name: "",
     address: "",
@@ -43,13 +46,14 @@ function AddWarehouse() {
       });
 
       if (response.ok) {
+        setTotalEdits(totalEdits + 1);
         alert("Warehouse added successfully!");
         navigate("/warehouse");
       } else {
         throw new Error("Failed to add warehouse");
       }
     } catch (error) {
-      alert(error.message);
+      alert("Failed to add warehouse");
     }
   };
 

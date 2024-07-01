@@ -30,6 +30,8 @@ const InventoryList = (props) => {
             itemObject={itemObject}
             sectionWidth={sectionWidth}
             editPath={editPath}
+            inventoryArray={inventoryArray}
+            setInventoryArray={setInventoryArray}
             />
           }
         )

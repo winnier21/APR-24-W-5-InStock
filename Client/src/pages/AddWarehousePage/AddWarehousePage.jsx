@@ -3,9 +3,9 @@ import AddWarehouse from '../../components/AddWarehouse/AddWarehouse';
 
 
 
-function AddWarehousePage() {
+function AddWarehousePage({warehousesProps}) {
   return (
-    <AddWarehouse />
+    <AddWarehouse warehousesProps={warehousesProps} />
   )
 }
 
