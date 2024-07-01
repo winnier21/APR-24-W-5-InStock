@@ -101,6 +101,9 @@
           // font-family: 'Titillium Web' ;
           padding-left: 1rem;
           box-sizing: border-box;
+          &:hover{
+            border: 0.0625rem solid $instock-indigo;
+          }
       
           @include tablet {
             width: 100%;
@@ -194,6 +197,9 @@
             }
             &:active:after {
               background-color: $instock-indigo;;
+            }
+            &:hover{
+              border: 0.0625rem solid $instock-indigo;
             }
             // 
             // .error{
