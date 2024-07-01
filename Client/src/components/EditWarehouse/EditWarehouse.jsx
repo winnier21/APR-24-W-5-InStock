@@ -75,7 +75,6 @@ function EditWarehouse({ warehousesProps }) {
     try {
       const response = await fetch(
         `${BASE_URL}/api/warehouses/${warehouseId}`,
-        `${BASE_URL}/api/warehouses/${warehouseId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
