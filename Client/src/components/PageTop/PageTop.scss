@@ -22,6 +22,10 @@
     height: 2.25rem;
     border-radius: 1.25rem;
     border: 1px solid $cloud;
+    &:active{
+      color: $instock-black;
+      border: .0625rem $instock-indigo solid;
+    }
   }
 
   &__search {

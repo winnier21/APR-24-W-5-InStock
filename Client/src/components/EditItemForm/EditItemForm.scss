@@ -139,7 +139,7 @@
         }
         .form__status {
           & label {
-            padding-left: .25rem;
+            padding-left: .5rem;
         }
           &--instock-label{
             padding-right: 0.5rem;
@@ -147,7 +147,7 @@
         display: flex;
         justify-content: flex-start;
         gap:10rem;
-        padding-top: .25rem;;
+        padding-top: .25rem;
         @include p2;
         color: $slate;
         &-check{
