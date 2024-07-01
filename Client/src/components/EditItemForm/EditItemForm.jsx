@@ -60,7 +60,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
     })
     const isValid = !Object.values(errors).includes(true);
     if (!isValid) {
-      alert(`Invalid input for ${propertiesWithErrors.join(', ')}. Quantity must be non-negative. Text values have 3+ characters.`
+      alert(`Invalid input for ${propertiesWithErrors.join(', ')}. \n\nQuantity must be non-negative. Text values have 3+ characters.`
       )
     }
     return isValid
