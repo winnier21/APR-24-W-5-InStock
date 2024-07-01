@@ -17,13 +17,11 @@ function Header() {
         </div>
         <section className="header__wrapper">
           <Link 
-            className={`header__link ${location.pathname === "/warehouse" ? "active" : ""}`}
-            to="/warehouse">
+          className={`header__link ${location.pathname === "/warehouse" || location.pathname.startsWith("/warehouse/") ? "active" : ""}`}            to="/warehouse">
             <h3>Warehouse</h3>
           </Link>
           <Link 
-            className={`header__link ${location.pathname === "/inventory" ? "active" : ""}`}
-            to="/inventory">
+          className={`header__link ${location.pathname === "/inventory" || location.pathname.startsWith("/inventory/") ? "active" : ""}`}            to="/inventory">
             <h3>Inventory</h3>
           </Link>
         </section>
