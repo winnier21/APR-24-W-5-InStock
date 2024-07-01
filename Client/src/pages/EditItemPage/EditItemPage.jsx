@@ -28,7 +28,7 @@ const EditItemPage = ({ warehousesProps, itemDetailsObject }) => {
 
 
   return (
-    <main className="main-edititem">
+    <main>
       <FormHeader title="Edit Inventory Item" />
       <EditItemForm
         warehousesProps={warehousesProps}

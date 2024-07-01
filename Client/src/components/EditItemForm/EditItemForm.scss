@@ -5,22 +5,22 @@
 @use "../FormHeader/FormHeader.scss" as *;
 
 
-.main-edititem {
-  margin-left: 0rem;
-  margin-right: 0rem;
-  .main-header {
-    padding-bottom: 1.5rem;
-    padding-top: 1.5rem;
-    border-bottom: 0.0625rem solid $cloud;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+// .main-edititem {
+//   margin-left: 0rem;
+//   margin-right: 0rem;
+//   .main-header {
+//     padding-bottom: 1.5rem;
+//     padding-top: 1.5rem;
+//     border-bottom: 0.0625rem solid $cloud;
+//     padding-left: 2.5rem;
+//     padding-right: 2.5rem;
     
-    .arrow-back-icon {
-      font-size: 1.5rem;
-      margin-right: 0.625rem;
-    }    
-  }
-}
+//     .arrow-back-icon {
+//       font-size: 1.5rem;
+//       margin-right: 0.625rem;
+//     }    
+//   }
+// }
   .form {
     font-family: 'Titillium Web';
     display: flex;
