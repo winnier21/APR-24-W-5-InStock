@@ -54,7 +54,10 @@ const Modal = ({modalProps}) => {
           {disclaimer}
         </p>
         <div className="modal__buttons">
-        <CancelButton className="button-cancel"/>
+          <CancelButton
+            className="button-cancel"
+            dialogRef={dialogRef}
+          />
           <Button 
             className="button-delete"
             text="Delete"
