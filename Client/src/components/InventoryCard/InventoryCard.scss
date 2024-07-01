@@ -26,7 +26,7 @@ $icons-width: 4.2rem;
     @include card-mixin;
     &:hover{
       background-color:rgba(46, 102, 229, 0.07);
-      color: $instock-indigo;
+      color: $instock-black;
     }
   }
 
