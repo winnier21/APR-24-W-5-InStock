@@ -1,7 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 @use "../AddWarehouse/AddWarehouse.scss" as *;
-@use "../AddItemForm/AddItemForm.scss" as *;
 
 .form-header {
   &__title {

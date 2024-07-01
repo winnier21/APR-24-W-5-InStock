@@ -114,9 +114,9 @@
             font-family: 'Titillium Web' ;
             height: 7.5rem;
             width: 100%;
-            padding-top:0.25rem;
+            padding-top:0.5rem;
             resize: none;
-            padding-right: 0.25rem;
+            padding-right: 0.5rem;
 
           }
          &--quantity{
@@ -175,7 +175,7 @@
         appearance: none; 
         -webkit-appearance: none; 
         background: url('../../assets/icons/arrow_drop_down-24px.svg') no-repeat right 1rem center;
-
+        
             @include tablet{
               height: 2.375rem;
               width:100%;
@@ -184,19 +184,15 @@
               height: 2.375rem;
               width:100%;
             }
+            
             &:active{
              color:$instock-black;
              border: 0.0625rem solid $instock-indigo;
             }
-            &::-webkit-select-arrow {
-              right: 2rem;
-              }
-             @include tablet{
-                  width: 100%;
-              }
-              @include desktop{
-                  width: 100%;
-              }
+            &:active:after {
+              background-color: $instock-indigo;;
+            }
+            // 
             // .error{
             //   border: 0.0625rem solid $red;
             //   color:$slate;
