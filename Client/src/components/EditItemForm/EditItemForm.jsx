@@ -107,9 +107,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
             <h2>Item Details</h2>
             <div className="form__divider-detail">
               <label className='label-text'>Item Name </label>
-              {/* <div className="form-input"> */}
                 <input
-                  // className='form-input item-input--name item-input--name-placeholder'
                   className='form-input'
                   type="text"
                   id="item_name"
@@ -117,26 +115,20 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                   defaultValue={item_name}
                   placeholder="Item Name"
                 />
-              {/* </div> */}
             </div>
             <div className="form__divider-detail">
               <label className='label-text'>Description </label>
-              {/* <div className="form-input"> */}
                 <textarea
-                  // className='form-input item-input--description item-input--description-placeholder '
                   className='form-input form-input--description'
                   id="description"
                   defaultValue={description}
                   placeholder="Please enter a brief item description..."
                 />
-              {/* </div> */}
             </div>
             <div className="form__divider-detail form__divider-detail--last">
               <label className='label-text'>Category </label>
-              {/* <div className="form-select">    */}
                 <select
                   className='form-select'
-                  // className={`item-select--category form-input ${errors.category? 'error' : ''} `}
                   id="category"
                   value={selectedCategory || undefined}
                   name="category"
@@ -149,14 +141,13 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                     </option>
                   ))}
                 </select>
-              {/* </div> */}
             </div>
           </section>
           <section className="form__divider form__divider--right">
             <h2>Item Availability</h2>
             <div className="form__divider-detail">
               <label className='label-text'>Status</label>
-              <div className="form-status">
+              <div className="form__status">
                 <div className="form__status-check">
                   <input
                     type="radio"
@@ -189,24 +180,19 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
             {selectedStatus === 'In Stock' && (
               <div className="form__divider-detail">
                 <label className='label-text'>Quantity</label>
-                {/* <div className="form-input"> */}
                   <input
                     type="number"
                     className="form-input form-input--quantity"
-                    // className={`item-input--quantity form-input ${errors.quantity? 'error' : ''}`}
                     id="quantity"
                     name="quantity"
                     defaultValue={quantity}
                   />
-                {/* </div> */}
               </div>
             )}
             <div className="form__divider-detail form__divider-detail--last">
               <label className='label-text'>Warehouse</label>
-              {/* <div className="form-select"> */}
                 <select
                   className="form-select "
-                  // className={`item-select--warehouse form-input ${errors.warehouse? 'error' : ''}`}
                   id="warehouse"
                   name="warehouse_name"
                   defaultValue={selectedWarehouse}
@@ -219,7 +205,6 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                     </option>
                   ))}
                 </select>
-              {/* </div> */}
             </div>
           </section>
         </div>

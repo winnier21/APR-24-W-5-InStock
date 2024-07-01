@@ -27,6 +27,7 @@
       margin-right: 0.625rem;
     }    
   }
+}
   .form {
     display: flex;
     flex-direction: column;
@@ -125,7 +126,7 @@
           }
         }
             &:active{
-             color:$instock-black;
+             color: $instock-black;
              border: 0.0625rem solid $instock-indigo;
             }
             // .error{
@@ -136,7 +137,7 @@
         &--last{
           padding-bottom: 1.5rem;
         }
-        .form-status {
+        .form__status {
           & label {
             padding-left: .25rem;
         }
@@ -149,8 +150,10 @@
         padding-top: .25rem;;
         @include p2;
         color: $slate;
-        &:active{
+        &-check{
+         &:active{
           color:$instock-black;
+        } 
         }
         @include tablet{
             gap:4rem;
@@ -179,8 +182,6 @@
               height: 2.375rem;
               width:100%;
             }
-            
-            
             &:active{
              color:$instock-black;
              border: 0.0625rem solid $instock-indigo;
@@ -203,173 +204,3 @@
       }
 }
   }
-}
-//       // h2 {
-//       //   padding-bottom: 1.5rem;
-//       //   padding-top: 1.5rem;
-//       //   @include tablet {
-//       //     padding-top: 0rem;
-//       //   }
-//       //   @include desktop {
-//       //     padding-top: 0rem;
-//       //   }
-//       // }
-//       .label-text{
-//         padding-bottom: .25rem;
-//     }
-//       .item-detail {
-//         display: flex;
-//         flex-direction: column;
-
-//         .item-input--name {
-//           height: 2.25rem;
-//             width: 100%;
-//             border: .0625rem solid $cloud;
-//             border-radius: 1.25rem;
-//             @include p2;
-//             @include tablet{
-//                 height: 2.375rem;
-//                 width:100%;
-//             }
-//             @include desktop{
-//                 height: 2.375rem;
-//                 width:100%;
-//             }
-          
-//         }
-//         .item-input--description {
-//           border: 0.0625rem solid $cloud;
-//           border-radius: 1.25rem;
-//           height: 7.5rem;
-//           width: 100%;
-          
-//           @include tablet {
-//             width: 17.9375rem;
-//           }
-//           @include desktop {
-//             width: 17.9375rem;
-//           }
-//           &.item-input--description-placeholder {
-//             font-family: 'Titillium Web ';
-//             // @include input-select-placeholders;
-//             @include p2;
-//           }
-//         }
-//         .item-select {
-//           .item-select--category {
-//             // @include input-select-placeholders;
-            
-//             &::-webkit-select-arrow {
-//               right: 1rem;
-//             }
-//           }
-//           border-bottom: 0.0625rem solid $cloud;
-//           @include tablet {
-//             border-bottom: none;
-//           }
-//           @include desktop {
-//             border-bottom: none;
-//           }
-//         }
-//       }
-//     }
-//     .item-availability {
-//       padding-left: 2.5rem;
-//       padding-right: 2.5rem;
-//       border-top: .0625rem solid $cloud;
-//     @include tablet{
-//       padding-left: 2rem;  
-//       padding-right: 2rem;
-//       border-top: none;
-//       width: 100%;
-//     }
-//     @include desktop{
-//       padding-left: 2rem; 
-//       padding-right: 2rem;; 
-//       border-top: none;
-//       width: 100%;
-//     }
-//       h2 {
-//         padding-bottom: 1.5rem;
-//         padding-top: 1.5rem;
-//         @include tablet {
-//           padding-top: 0rem;
-//         }
-//         @include desktop {
-//           padding-top: 0rem;
-//         }
-//       }
-//       // .item-availability-status {
-//         .item-status {
-//           display: flex;
-//           justify-content: flex-start;
-//           gap:10rem;
-         
-//           @include tablet {
-//             gap: 4rem;
-//           }
-//           @include desktop {
-//             gap: 4rem;
-//           }
-//           .item-status option:not(:checked) {
-//             color: $slate;}
-//           & .item-status__check {
-//             display: flex;
-//             gap: 0.25rem;
-            
-//           }
-//           .label-text{
-//             padding-bottom: .25rem;
-//         }
-//         }
-//       // }
-//       // .item-quantity {
-
-//       //   .item-input--quantity {
-//       //     // @include input-select-placeholders;
-//       //   }
-//       // }
-//       .item-warehouse {
-//         .item-select {
-//           @include tablet {
-//             padding-bottom: 0rem;
-//           }
-//           @include desktop{
-//           padding-bottom: 0rem;
-//           }
-//         }
-//         // .item-select--warehouses {
-//         //   // @include input-select-placeholders;
-//         // } 
-//       }   
-//     }
-//   }
-// }
-
-
-
-// .form__divider {
-//   display: flex;
-//   flex-direction: column;
-//   @include tablet {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: center;
-//     padding-top: 1.5rem;
-//     padding-bottom: 1rem;
-//   }
-//   @include desktop {
-//     display: flex;
-//     flex-direction: row;
-//     padding-top: 1.5rem;
-//   }
-// // }
-// .form-input {
-//  &--error {
-//   border:$red 0.0625rem solid;
-//  } 
-//  &:active{
-//   color: $instock-indigo;
-//  }
-
-// }

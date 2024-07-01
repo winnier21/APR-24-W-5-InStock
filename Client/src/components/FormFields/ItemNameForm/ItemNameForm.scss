@@ -1,38 +1,38 @@
-@use "../../../styles/partials/globals" as *;
-@use "../../../styles/partials/typography" as *;
-@use "../../../styles/partials/variables" as *;
-@use "../../../styles/partials/mixins" as *;
+// @use "../../../styles/partials/globals" as *;
+// @use "../../../styles/partials/typography" as *;
+// @use "../../../styles/partials/variables" as *;
+// @use "../../../styles/partials/mixins" as *;
 
-.item-detail{
-    // display: flex;
-    // flex-direction: column;
-    // padding-bottom: 1rem;
+// .item-detail{
+//     // display: flex;
+//     // flex-direction: column;
+//     // padding-bottom: 1rem;
 
-        .item-input--name{
-            // height: 2.25rem;
-            // width: 100%;
-            // border: .0625rem solid $cloud;
-            // border-radius: 1.25rem;
-            // @include p2;
-            // @include tablet{
-            //     height: 2.375rem;
-            //     width:100%;
-            // }
-            // @include desktop{
-            //     height: 2.375rem;
-            //     width:100%;
-            // }
-            // &::placeholder{
-            //     @include p2;
-            //     @include input-select-placeholders;
-            // }
-            &:active{
-                color: $instock-indigo;
-            }
-            .error{
-                color:$red;
-            }
-        }
-    }
+//         .item-input--name{
+//             // height: 2.25rem;
+//             // width: 100%;
+//             // border: .0625rem solid $cloud;
+//             // border-radius: 1.25rem;
+//             // @include p2;
+//             // @include tablet{
+//             //     height: 2.375rem;
+//             //     width:100%;
+//             // }
+//             // @include desktop{
+//             //     height: 2.375rem;
+//             //     width:100%;
+//             // }
+//             // &::placeholder{
+//             //     @include p2;
+//             //     @include input-select-placeholders;
+//             // }
+//             &:active{
+//                 color: $instock-indigo;
+//             }
+//             .error{
+//                 color:$red;
+//             }
+//         }
+//     }
 
  
