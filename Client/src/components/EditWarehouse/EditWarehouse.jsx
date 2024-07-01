@@ -105,9 +105,9 @@ function EditWarehouse({ warehousesProps }) {
   if (loading) {
     return <Placeholder />; // Render the Placeholder component while loading
   }
-  if (error) {
-    return <div>Error: {error}</div>; // Display errors if any
-  }
+  // if (error) {
+  //   return <div>Error: {error}</div>; // Display errors if any
+  // }
 
   return (
     <main className="editWarehouse__main">
