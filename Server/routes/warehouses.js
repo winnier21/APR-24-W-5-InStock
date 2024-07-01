@@ -121,11 +121,6 @@ if (!isValidEmailAddress(contact_email)) {
   return res.status(400).json({ error: "Invalid email address format." });
 }
 
-if (!isValidPhoneNumber(contact_phone)) {
-  return res.status(400).json({ error: "Invalid phone number format." });
-}
-
-    
   try {
     const result = await knex("warehouses")
       .where({ id })

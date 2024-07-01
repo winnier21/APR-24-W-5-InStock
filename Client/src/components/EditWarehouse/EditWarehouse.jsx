@@ -9,10 +9,9 @@ import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import Placeholder from "../Placeholder/Placeholder";
 
 function EditWarehouse() {
-  const { id } = useParams();
+  const { warehouseId } = useParams();
   const navigate = useNavigate();
-  
-  const [warehouse, setWarehouse] = useState({
+  const [warehouseDetails, setWarehouseDetails] = useState({
     warehouseName: "",
     address: "",
     city: "",
@@ -22,58 +21,59 @@ function EditWarehouse() {
     contactPhone: "",
     contactEmail: "",
   });
+
   const [setIsLoading] = useState(true);
-  const [setError] = useState("");
 
   useEffect(() => {
     const fetchWarehouse = async () => {
       const BASE_URL = import.meta.env.VITE_API_URL;
       try {
-        const response = await fetch(`${BASE_URL}/api/warehouses/${id}`);
-        const data = await response.json();
-        if (response.ok) {
-          setWarehouse({
-            warehouseName: data.warehouse_name,
-            address: data.address,
-            city: data.city,
-            country: data.country,
-            contactName: data.contact_name,
-            contactPosition: data.contact_position,
-            contactPhone: data.contact_phone,
-            contactEmail: data.contact_email,
-          });
-        } else {
-          throw new Error("Failed to fetch warehouse details");
+        const response = await fetch(
+          `${BASE_URL}/api/warehouses/${warehouseId}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch warehouse");
         }
-      } catch (error) {
-        setError(error.message);
-      }
-      setIsLoading(false);
+        const data = await response.json();
+        setWarehouseDetails({
+          warehouseName: data.warehouse_name,
+          address: data.address,
+          city: data.city,
+          country: data.country,
+          contactName: data.contact_name,
+          contactPosition: data.contact_position,
+          contactPhone: data.contact_phone,
+          contactEmail: data.contact_email,
+        });
+        setIsLoading(false);
+      } catch (error) {}
+      
     };
 
-    fetchWarehouse();
-  }, [id]);
+    if (warehouseId) {
+      fetchWarehouse();
+    }
+  }, [warehouseId]);
 
   const handleWarehouseDetailsChange = (details) => {
-    setWarehouse((prev) => ({ ...prev, ...details }));
-  };
-
-  const handleContactDetailsChange = (details) => {
-    setWarehouse((prev) => ({ ...prev, ...details }));
+    setWarehouseDetails((prevDetails) => ({ ...prevDetails, ...details }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const BASE_URL = import.meta.env.VITE_API_URL;
     try {
-      const response = await fetch(`${BASE_URL}/api/warehouses/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(warehouse),
-      });
+      const response = await fetch(
+        `${BASE_URL}/api/warehouses/${warehouseId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(warehouseDetails),
+        }
+      );
       if (response.ok) {
         alert("Warehouse updated successfully!");
-        navigate("/warehouse"); // Adjust the redirect as necessary
+        navigate("/warehouse");
       } else {
         throw new Error("Failed to update warehouse");
       }
@@ -81,10 +81,9 @@ function EditWarehouse() {
       alert(error.message);
     }
   };
-  if (loading) {
-    return <Placeholder />; // Render the Placeholder component while loading
+  if (!warehouseDetails) {
+    return <Placeholder/>
   }
-
   return (
     <main className="editWarehouse__main">
       <section className="editWarehouse">
@@ -104,11 +103,11 @@ function EditWarehouse() {
           <section className="form__container">
             <WarehouseDetailsForm
               onChange={handleWarehouseDetailsChange}
-              details={warehouse}
+              details={warehouseDetails}
             />
             <ContactDetailsForm
-              onChange={handleContactDetailsChange}
-              details={warehouse}
+              onChange={handleWarehouseDetailsChange}
+              details={warehouseDetails}
             />
           </section>
           <div className="button">
