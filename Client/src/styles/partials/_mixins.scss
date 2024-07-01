@@ -95,10 +95,6 @@
   }
 }
 
-@mixin input-select-placeholders{
-    color: $slate; 
-    padding-left: 0.5rem;  
-}
 
 @mixin align-left-top {
   flex-direction: row;

@@ -101,9 +101,16 @@
       text-decoration: none;
       &:hover {
         color: $white;
+        // background-color: $instock-black;
+        // border-radius: 1.5625rem;
+        text-decoration: underline;
+      }
+      &.active {
+        color: $white;
         background-color: $instock-black;
         border-radius: 1.5625rem;
       }
+      
     }
   }
 }

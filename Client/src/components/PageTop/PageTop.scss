@@ -24,8 +24,12 @@
     align-items: center;
     height: 2.25rem;
     border-radius: 1.25rem;
-    border: .0625rem solid $cloud;
+    border: 1px solid $cloud;
 
+  &.active{
+    color: $instock-black;
+    border: .0625rem $instock-indigo solid;
+  }
     @include desktop {
       width: 17.125rem;
       height: 2.375rem;
@@ -40,6 +44,9 @@
     padding: 0.5rem 0 0.5rem 1rem;
     background-color: transparent;
     flex-grow: 1;
+    &:focus {
+      outline: none;
+    }
   }
 
   &__icon {

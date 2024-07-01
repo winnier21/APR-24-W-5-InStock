@@ -1,10 +1,7 @@
 import React from 'react';
-import './AddItemPage.scss';
-// import AddItem from '../../components/AddItemForm/AddItemForm'
-// import AddItemForm2 from '../../components/AddItemForm/AddItemForm2';
-import EditItemForm from '../../components/EditItemForm/EditItemForm';
 import FormHeader from '../../components/FormHeader/FormHeader';
-import apiInstance from '../../utils/ApiClient';
+import EditItemForm from '../../components/EditItemForm/EditItemForm';
+
 
 function AddItemPage({ warehousesProps }) {
   const itemObject = {
@@ -23,10 +20,7 @@ function AddItemPage({ warehousesProps }) {
       <EditItemForm
         warehousesProps={warehousesProps}
         itemObject={itemObject}
-        // requestCallback={apiInstance.}
       />
-      {/* <AddItemForm2 warehousesProps={warehousesProps} /> */}
-      {/* <AddItem warehousesProps={warehousesProps} /> */}
     </main>
   );
 }

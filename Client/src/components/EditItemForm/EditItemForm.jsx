@@ -102,38 +102,33 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
   return (
     <section>            
       <form className="form" onSubmit={handleSubmit}>
-        <div className='forms__container'>
-          <section className="item-details">
+        <div className='form__container'>
+          <section className="form__divider">
             <h2>Item Details</h2>
-            <div className="item-detail">
+            <div className="form__divider-detail">
               <label className='label-text'>Item Name </label>
-              <div className="item-input">
                 <input
-                  className='item-input--name item-input--name-placeholder'
+                  className='form-input'
                   type="text"
                   id="item_name"
                   name="item_name"
                   defaultValue={item_name}
                   placeholder="Item Name"
                 />
-              </div>
             </div>
-            <div className="item-input">
+            <div className="form__divider-detail">
               <label className='label-text'>Description </label>
-              <div className="item-input">
                 <textarea
-                  className='item-input--description item-input--description-placeholder '
+                  className='form-input form-input--description'
                   id="description"
                   defaultValue={description}
                   placeholder="Please enter a brief item description..."
                 />
-              </div>
             </div>
-            <div className="item-detail">
+            <div className="form__divider-detail form__divider-detail--last">
               <label className='label-text'>Category </label>
-              <div className="item-select">   
                 <select
-                  className='item-select--category item-select--category-placeholder'
+                  className='form-select'
                   id="category"
                   value={selectedCategory || undefined}
                   name="category"
@@ -146,31 +141,31 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                     </option>
                   ))}
                 </select>
-              </div>
             </div>
           </section>
-          <section className="item-availability">
+          <section className="form__divider form__divider--right">
             <h2>Item Availability</h2>
-            <div className="item-availability-status">
+            <div className="form__divider-detail">
               <label className='label-text'>Status</label>
-              <div className="item-status">
-                <div className="item-status__check">
+              <div className="form__status">
+                <div className="form__status-check">
                   <input
                     type="radio"
-                    className="item-status__check--instock"
+                    className="form-status--instock"
                     id="in_stock"
                     value="In Stock"
                     checked={selectedStatus === "In Stock"}
                     onChange={handleStatusChange}
                   />
-                  <label className="item-status__check--instock-label" htmlFor="in_stock">
+                  <label className="form-status--instock-label" htmlFor="in_stock">
                     In stock
                   </label>
                 </div>
-               <div className="item-status__check">
+               <div className="form__status-check">
+                
                   <input
                     type="radio"
-                    className="item-status__check--outofstock"
+                    className="form-status--outofstock"
                     id="out_of_stock"
                     value="Out of Stock"
                     checked={selectedStatus === "Out of Stock"}
@@ -183,24 +178,21 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
               </div>
             </div>
             {selectedStatus === 'In Stock' && (
-              <div className="item-quantity">
+              <div className="form__divider-detail">
                 <label className='label-text'>Quantity</label>
-                <div className="item-input">
                   <input
                     type="number"
-                    className="item-input--quantity"
+                    className="form-input form-input--quantity"
                     id="quantity"
                     name="quantity"
                     defaultValue={quantity}
                   />
-                </div>
               </div>
             )}
-            <div className="item-warehouse">
+            <div className="form__divider-detail form__divider-detail--last">
               <label className='label-text'>Warehouse</label>
-              <div className="item-select">
                 <select
-                  className="item-select--warehouse"
+                  className="form-select "
                   id="warehouse"
                   name="warehouse_name"
                   defaultValue={selectedWarehouse}
@@ -213,7 +205,6 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                     </option>
                   ))}
                 </select>
-              </div>
             </div>
           </section>
         </div>

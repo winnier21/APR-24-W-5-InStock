@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import './EditItemPage.scss';
 import EditItemForm from '../../components/EditItemForm/EditItemForm'
 import Placeholder from '../../components/Placeholder/Placeholder';
 import apiInstance from '../../utils/ApiClient';

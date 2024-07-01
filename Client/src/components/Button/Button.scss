@@ -37,5 +37,9 @@ button {
       padding-right: 1rem;
       width: auto;
     }
+    &:hover{
+        background-color: $graphite;
+        border: 0.0625rem solid $graphite;
+    }
 }
   
