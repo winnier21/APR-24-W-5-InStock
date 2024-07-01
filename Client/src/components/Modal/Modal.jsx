@@ -10,7 +10,8 @@ import AddButton from "../Button/AddButton/AddButton";
 const Modal = ({modalProps}) => {
   const {
     id, name, type, dialogRef,
-    totalEdits, setTotalEdits
+    totalEdits, setTotalEdits,
+    inventoryArray, setInventoryArray
   } = modalProps;
 
   const question = `Delete ${name} ${type}?`;
@@ -29,8 +30,12 @@ const Modal = ({modalProps}) => {
 
   const buttonHandler = async (event) => {
     const response = await apiInstance.delete(route, id);
-    if (response) {
+    if (response && setTotalEdits) {
       setTotalEdits(totalEdits + 1 )
+    } else if (response) {
+      setInventoryArray(inventoryArray.filter(
+        object => object.id !== id)
+      )
     }
   }
 

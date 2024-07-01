@@ -16,7 +16,7 @@ export class ApiClient {
     // Helper method to perform console.log() on API response objects.
     // Not invoked when submitted for grading by TAs.
     console.log(`${verb} API response status for "${endpoint}" endpoint: \n${response.status} - ${response.statusText}.`);
-    console.log(response);
+    console.log(`Data:`, response.data);
   }
   
   async get(endpoint) {
@@ -25,9 +25,11 @@ export class ApiClient {
     try {
       const response = await axios.get(requestUrl);
       const data = response.data;
+      // this.logResponse(response, endpoint, 'GET');
       return data;
     } catch (error) {
-      this.logResponse(data, endpoint, 'GET');
+      const responseMessage = error.response.data;
+      console.log(responseMessage, typeof responseMessage);
       return false;
     }
   }
@@ -66,9 +68,12 @@ export class ApiClient {
     const headers = {'Content-Type': 'application/json'};
     try {
       const response = await axios.post(requestUrl, bodyObject, headers);
-      return response
+      if (Math.floor(response.status / 100) === 2) {
+        return response.data;
+      }
     } catch (error) {
-      return false;
+      const responseMessage = error.response.data;
+      return responseMessage;
     }
   }
   
@@ -84,9 +89,12 @@ export class ApiClient {
       const endpoint = `api/${route}/${id}`;
       const requestUrl = this.createRequestUrl(endpoint);
       const response = await axios.put(requestUrl, bodyObject);
-      return response;
+      if (Math.floor(response.status / 100) === 2) {
+        return response.data;
+      }
     } catch (error) {
-      return false;
+      const responseMessage = error.response.data;
+      return responseMessage;
     }
   }
 
