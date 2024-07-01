@@ -3,7 +3,7 @@ import "./WarehouseDetailsForm.scss";
 
 const WarehouseDetailsForm = ({ onChange, details }) => {
   const [localDetails, setLocalDetails] = useState({
-    warehouseName: "",
+    warehouse_name: "",
     address: "",
     city: "",
     country: "",
@@ -12,7 +12,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
 
   useEffect(() => {
     setLocalDetails({
-      warehouseName: "",
+      warehouse_name: "",
       address: "",
       city: "",
       country: "",
@@ -40,7 +40,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
             name="warehouse_name"
             type="text"
             placeholder="Warehouse Name"
-            value={localDetails.warehousenName}
+            value={localDetails.warehouse_name}
             onChange={handleChange}
           />
           <h3>Street Address</h3>

@@ -97,7 +97,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-router.put("/:id/edit", async (req, res) => {
+router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const {
     warehouseName,
