@@ -12,115 +12,77 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
   } = itemObject;
   const { warehousesArray } = warehousesProps;
   const warehouses = warehousesArray.map(object => object.warehouse_name);
-  const warehouseId = warehousesArray.find(
-    warehouseObject => warehouseObject.warehouse_name === warehouse_name
-  )?.id || null;
   
   const [formData, setFormData] = useState({
-    warehouse_id: warehouseId,
+    warehouse_name: warehouse_name,
     item_name: item_name,
     description: description,
     category: category,
     status: status || 'In Stock',
-    // status: status || (quantity > 0 ? 'In Stock' : 'Out of Stock'),
     quantity: quantity || 0
   });
   const [errorState, setErrorState] = useState({
-    warehouse_id: null,
+    warehouse_name: null,
     item_name: null,
     description: null,
     category: null,
     status: null,
     quantity: null
   });
-  // const [selectedCategory, setSelectedCategory] = useState(category || null);
-  const [formQuantity, setFormQuantity] = useState(formData.quantity || 0);
-  // const [selectedStatus, setSelectedStatus] = useState(
-  //   formQuantity > 0 ? 'In Stock' : 'Out of Stock'
-  // );
-  // const [selectedWarehouse, setSelectedWarehouse] = useState(warehouse_name);
   
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
   const errorClassName = "error";
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
-    console.log(name)
     setFormData({
       ...formData, [name]: value
     })
+    setErrorState({
+      ...errorState, [name]: null
+    });
   }
-  console.log(formData)
 
-  const validateForm = async () => {
+  const validateForm = async (enteredQuantity) => {
     let errors = {};
-    let enteredQuantity = formData.quantity;
-    if (formData.status === 'Out of Stock') {
-      enteredQuantity = 0;
-      setFormData({ ...formData, quantity: 0 });
-    }
+    const quantityErrorState = enteredQuantity < 0 || typeof enteredQuantity !== 'number';
     errors = {
-      "warehouse name": !formData.warehouse_name,
-      "item name": formData.item_name?.length < 3 || !formData.item_name,
+      warehouse_name: !formData.warehouse_name,
+      item_name: formData.item_name?.length < 3 || !formData.item_name,
       description: formData.description?.length < 3 || !formData.description,
       category: formData.category?.length < 3 || !formData.category,
-      quantity: enteredQuantity < 0 || typeof enteredQuantity !== 'number'
+      quantity: quantityErrorState
     };
+    console.log(errors);
     setErrorState(errors);
     const propertiesWithErrors = Object.keys(errors).filter(key => {
       return errors[key] == true;
     })
-    alert(`Invalid input for ${propertiesWithErrors.join(', ')}`)
-
-    return !Object.values(errors).includes(true);
+    const isValid = !Object.values(errors).includes(true);
+    if (!isValid) {
+      alert(`Invalid input for ${propertiesWithErrors.join(', ')}. Quantity must be non-negative. Text values have 3+ characters.`
+      )
+    }
+    return isValid
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const validFormSubmission = await validateForm();
-    
-    // const category = event.target.category.value;
-    // if (!category) {
-    //   alert('Please select a category.');
-    // }
-    // const warehouse_name = event.target.warehouse_name.value;
-    // if (!warehouse_name) {
-    //   alert('Please select a warehouse');
-    // }
-    // const quantity = parseInt(event.target.quantity?.value) || 0;
-    // if (quantity < 1 && formData.status === 'In Stock') {
-    //   alert('Please enter a non-zero number.');
-    // }
-    // const item_name = event.target.item_name.value;
-    // const description = event.target.description.value;
-
-    // const formTextFields = [
-    //   'item_name', 'description', 'category'
-    // ]
-    // const warehouseId = warehousesArray.find(
-    //   warehouseObject => warehouseObject.warehouse_name === warehouse_name
-    // )?.id;
-    // const submittedItem = {
-    //   warehouse_id: warehouseId,
-    //   item_name: item_name,
-    //   description: description,
-    //   category: category,
-    //   status: status,
-    //   quantity: quantity
-    // }
-    // for (let i = 0; i < formTextFields.length; i++) {
-    //   const key = formTextFields[i];
-    //   const value = submittedItem[key];
-    //   if (!value || value.length < 3) {
-    //     setErrorState({ ...errorState, [key]: value });
-    //     console.log(`error with ${key} field`)
-    //     alert('Please enter at least 2 characters');
-    //     return;
-    //   }
-
-    // }
+    let enteredQuantity = formData.quantity;
+    enteredQuantity = parseInt(enteredQuantity);
+    if (formData.status === 'Out of Stock') {
+      enteredQuantity = 0;
+      formData.quantity = 0;
+    }
+    const validFormSubmission = await validateForm(enteredQuantity);
     if (validFormSubmission) {
-      const submittedItem = formData;
+      const { warehouse_name, ...submittedItem } = formData;
+      const warehouseId = warehousesArray.find(
+        warehouseObject => warehouseObject.warehouse_name === warehouse_name
+      )?.id || null;
+      submittedItem.warehouse_id = warehouseId;
+      submittedItem.quantity = enteredQuantity;
+
       let responseData;
       if (requestMethod === 'put') {
         responseData = await apiInstance.put('inventories', id, submittedItem);
@@ -128,7 +90,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
         responseData = await apiInstance.post('inventories', submittedItem);
       }
       if (typeof responseData === 'object') {
-        alert(`${item_name} successfully ${requestMethod === 'put' ? 'edited' : 'added'}`);
+        alert(`${formData.item_name} successfully ${requestMethod === 'put' ? 'edited' : 'added'}`);
         navigate(-1);
       } else {
         const message = `Failed to ${requestMethod === 'put' ? 'edit' : 'add'}: ${responseData}`;
@@ -153,12 +115,12 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
             <div className="inventory-form__divider-detail">
               <label htmlFor="item_name" className='label-text'>Item Name </label>
               <input
-                className="form-input"
+                className={errorState.item_name ? `form-input ${errorClassName}` : "form-input"}
                 type="text"
                 id="item_name"
                 name="item_name"
                 defaultValue={formData.item_name}
-                placeholder="Item Name"
+                placeholder="item name"
                 onChange={handleChange}
               />
             </div>
@@ -230,7 +192,9 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                 <label htmlFor="quantity" className='label-text'>Quantity</label>
                 <input
                   type="number"
-                  className="form-input form-input--quantity"
+                  className={
+                    errorState.quantity ? `form-input form-input--quantity ${errorClassName}`: "form-input form-input--quantity"
+                  }
                   id="quantity"
                   name="quantity"
                   defaultValue={formData.quantity}
@@ -241,7 +205,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
             <div className="inventory-form__divider-detail inventory-form__divider-detail--last">
               <label className='label-text'>Warehouse</label>
               <select
-                className={errorState["warehouse name"] ? `form-select ${errorClassName}` : "form-select"}
+                className={errorState.warehouse_name ? `form-select ${errorClassName}` : "form-select"}
                 id="warehouse"
                 name="warehouse_name"
                 defaultValue={formData.warehouse_name}

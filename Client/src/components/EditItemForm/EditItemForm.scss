@@ -158,9 +158,10 @@
     color: $instock-black;
     border: 0.0625rem solid $instock-indigo;
   }
-  &:focus{
+  &:focus, &:focus-visible, &:focus-within {
     color: $instock-black;
     border: 0.0625rem solid $instock-indigo;
+    outline: none;
   }
 }
 
