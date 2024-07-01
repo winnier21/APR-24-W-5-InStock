@@ -53,7 +53,8 @@ router.post('/', async (req, res) => {
   let itemToInsert = {};
 
   if (typeof quantity !== 'number' || quantity < 0) {
-    res.status(400).send('"Quantity" must be numeric value.')
+    res.status(400).send('"Quantity" must be a non-negative numeric value.')
+    return;
   } else if (quantity === 0) {
     itemToInsert.quantity = 0;
   }
