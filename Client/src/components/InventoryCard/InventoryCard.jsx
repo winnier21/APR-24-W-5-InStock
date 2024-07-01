@@ -3,6 +3,7 @@ import './InventoryCard.scss';
 import ActionIcons from '../ActionIcons/ActionIcons';
 import Cardlink from '../CardLink/CardLink';
 import Modal from '../../components/Modal/Modal';
+import StatusTag from '../StatusTag/StatusTag';
 
 const InventoryCard = (props) => {
   const {
@@ -129,9 +130,7 @@ const InventoryCard = (props) => {
             Status
             </h4>
           <div className="inventory__text-container--status">
-            <div className={statusClassName}>
-              {status}
-            </div>  
+            <StatusTag status={status} />
           </div>
           <h4 className="inventory__heading">
             Qty
