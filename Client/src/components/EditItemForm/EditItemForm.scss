@@ -3,14 +3,14 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 @use "../FormHeader/FormHeader.scss" as *;
-@use "../AddItemForm/AddItemForm.scss" as *;
-@use '../ItemDetailsForm/ItemDetailsForm.scss' as *;
-@use '../ItemAvailability/ItemAvailability.scss' as *;
-@use '../FormFields/ItemNameForm/ItemNameForm.scss' as *;
-@use '../FormFields/ItemDescriptionForm/ItemDescriptionForm.scss' as*;
-@use '../FormFields/ItemSelect/ItemSelect.scss' as *;
-@use '../FormFields/ItemSelect/ItemSelect.scss' as *;
-@use '../FormFields/QuantityForm/QuantityForm.scss' as *;
+// @use "../AddItemForm/AddItemForm.scss" as *;
+// @use '../ItemDetailsForm/ItemDetailsForm.scss' as *;
+// @use '../ItemAvailability/ItemAvailability.scss' as *;
+// @use '../FormFields/ItemNameForm/ItemNameForm.scss' as *;
+// @use '../FormFields/ItemDescriptionForm/ItemDescriptionForm.scss' as*;
+// @use '../FormFields/ItemSelect/ItemSelect.scss' as *;
+// @use '../FormFields/ItemSelect/ItemSelect.scss' as *;
+// @use '../FormFields/QuantityForm/QuantityForm.scss' as *;
 
 .main-edititem {
   margin-left: 0rem;
@@ -30,40 +30,49 @@
   .form {
     display: flex;
     flex-direction: column;
-    .form__divider {
-      display: flex;
-      flex-direction: column;
-      @include tablet {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding-top: 1.5rem;
-        padding-bottom: 1rem;
-      }
-      @include desktop {
-        display: flex;
-        flex-direction: row;
-        padding-top: 1.5rem;
-      }
+    &__container{
+        align-content: center;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        @include tablet {
+          display: flex;
+          justify-content: center;
+          padding-top: 1.5rem;
+          padding-bottom: 1.5rem;
+          padding-right: 0rem;
+          padding-left: 0rem;
+        }
     }
-    .form-input {
-     &--error {
-      border:$red 0.0625rem solid;
-     } 
-     &:active{
-      color: $instock-indigo;
-     }
-
-    }
-    .item-details {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
+    &__divider{
       @include tablet {
         border-right: 0.0625rem solid $cloud;
+        padding-left: 1.5rem;
+        padding-right: 2rem;
+        width: 100%;
       }
-      
+      @include desktop{
+        padding-left: 2rem; 
+        padding-right: 2rem;; 
+        border-top: none;
+        width: 100%;
+        border-right:0.0625rem solid $cloud;
+      }
+      &--right {
+        border-top: .0625rem solid $cloud;
+      @include tablet{
+        padding-left: 1.5rem;  
+        padding-right: 2rem;
+        border-top: none;
+        width: 100%;
+      }
+      @include desktop{
+        padding-left: 2rem; 
+        padding-right: 2rem;; 
+        border-top: none;
+        width: 100%;
+      }
+    }
       h2 {
-        padding-bottom: 1.5rem;
         padding-top: 1.5rem;
         @include tablet {
           padding-top: 0rem;
@@ -72,108 +81,295 @@
           padding-top: 0rem;
         }
       }
-      .item-detail {
+      &-detail{
         display: flex;
         flex-direction: column;
-
-        .item-input--name {
-          &::placeholder{
-            @include p2;
-            @include input-select-placeholders;
-          }
+        padding-top: 1rem;
+        @include tablet{
+          padding-top: 1.5rem;
         }
-        .item-input--description {
-          border: 0.0625rem solid $cloud;
-          border-radius: 1.25rem;
-          height: 7.5rem;
+        @include desktop{
+          padding-top: 1.5rem;
+        }
+        .form-input{
+          color: $slate;
           width: 100%;
-          
-          @include tablet {
-            width: 17.9375rem;
-          }
-          @include desktop {
-            width: 17.9375rem;
-          }
-          &.item-input--description-placeholder {
-            font-family: 'Titillium Web ';
-            @include input-select-placeholders;
-            @include p2;
-          }
-        }
-        .item-select {
-          .item-select--category {
-            @include input-select-placeholders;
-            
-            &::-webkit-select-arrow {
-              right: 1rem;
-            }
-          }
-          
-          border-bottom: 0.0625rem solid $cloud;
-          @include tablet {
-            border-bottom: none;
-          }
-          @include desktop {
-            border-bottom: none;
-          }
-        }
-      }
-    }
-    .item-availability {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
+          height: 2.25rem;
+          border-radius: 1.25rem;
+          border: 1px solid $cloud;
+          background-color: $white;
+          font-size: 0.8125rem;
+          // font-family: 'Titillium Web' ;
+          padding-left: 1rem;
+          box-sizing: border-box;
       
-      h2 {
-        padding-bottom: 1.5rem;
-        padding-top: 1.5rem;
-        @include tablet {
-          padding-top: 0rem;
-        }
-        @include desktop {
-          padding-top: 0rem;
-        }
-      }
-      .item-availability-status {
-        .item-status {
-          display: flex;
-          justify-content: flex-start;
-          gap:10rem;
-         
           @include tablet {
-            gap: 4rem;
+            width: 100%;
+            height: 2.375rem;
           }
           @include desktop {
-            gap: 4rem;
+            width: 100%;
+            height: 2.375rem;
           }
-          .item-status option:not(:checked) {
-            color: $slate;}
-          & .item-status__check {
-            display: flex;
-            gap: 0.25rem;
-            
+          &--description{
+            font-family: 'Titillium Web' ;
+            height: 7.5rem;
+            width: 100%;
+            padding-top:0.25rem;
           }
-        }
-      }
-      .item-quantity {
-
-        .item-input--quantity {
-          @include input-select-placeholders;
-        }
-      }
-      .item-warehouse {
-        .item-select {
-          @include tablet {
-            padding-bottom: 0rem;
-          }
+         &--quantity{
+          color: $instock-black;
+          @include p2;
           @include desktop{
-          padding-bottom: 0rem;
+            width: 7.625rem;
           }
         }
-        .item-select--warehouses {
-          @include input-select-placeholders;
-        } 
-      }   
-    }
+            &:active{
+             color:$instock-black;
+             border: 0.0625rem solid $instock-indigo;
+            }
+            // .error{
+            //   border: 0.0625rem solid $red;
+            //   color:$slate;
+            // }
+        }
+        &--last{
+          padding-bottom: 1.5rem;
+        }
+        .form-status {
+          & label {
+            padding-left: .25rem;
+        }
+          &--instock-label{
+            padding-right: 0.5rem;
+          }
+        display: flex;
+        justify-content: flex-start;
+        gap:10rem;
+        padding-top: .25rem;;
+        @include p2;
+        color: $slate;
+        &:active{
+          color:$instock-black;
+        }
+        @include tablet{
+            gap:4rem;
+        }
+        @include desktop{
+            gap:4rem;
+        }
+      }
+      .form-select{
+        height: 2.25rem;
+        width: 100%;
+        border: .0625rem solid $cloud;
+        color: $slate;
+        border-radius: 1.25rem;
+        @include p2;
+        padding-left: 1rem;
+        appearance: none; 
+        -webkit-appearance: none; 
+        background: url('../../assets/icons/arrow_drop_down-24px.svg') no-repeat right 1rem center;
+
+            @include tablet{
+              height: 2.375rem;
+              width:100%;
+            }
+            @include desktop{
+              height: 2.375rem;
+              width:100%;
+            }
+            
+            
+            &:active{
+             color:$instock-black;
+             border: 0.0625rem solid $instock-indigo;
+            }
+            &::-webkit-select-arrow {
+              right: 2rem;
+              }
+             @include tablet{
+                  width: 100%;
+              }
+              @include desktop{
+                  width: 100%;
+              }
+            // .error{
+            //   border: 0.0625rem solid $red;
+            //   color:$slate;
+            // }
+
+            }
+      }
+}
   }
 }
+//       // h2 {
+//       //   padding-bottom: 1.5rem;
+//       //   padding-top: 1.5rem;
+//       //   @include tablet {
+//       //     padding-top: 0rem;
+//       //   }
+//       //   @include desktop {
+//       //     padding-top: 0rem;
+//       //   }
+//       // }
+//       .label-text{
+//         padding-bottom: .25rem;
+//     }
+//       .item-detail {
+//         display: flex;
+//         flex-direction: column;
 
+//         .item-input--name {
+//           height: 2.25rem;
+//             width: 100%;
+//             border: .0625rem solid $cloud;
+//             border-radius: 1.25rem;
+//             @include p2;
+//             @include tablet{
+//                 height: 2.375rem;
+//                 width:100%;
+//             }
+//             @include desktop{
+//                 height: 2.375rem;
+//                 width:100%;
+//             }
+          
+//         }
+//         .item-input--description {
+//           border: 0.0625rem solid $cloud;
+//           border-radius: 1.25rem;
+//           height: 7.5rem;
+//           width: 100%;
+          
+//           @include tablet {
+//             width: 17.9375rem;
+//           }
+//           @include desktop {
+//             width: 17.9375rem;
+//           }
+//           &.item-input--description-placeholder {
+//             font-family: 'Titillium Web ';
+//             // @include input-select-placeholders;
+//             @include p2;
+//           }
+//         }
+//         .item-select {
+//           .item-select--category {
+//             // @include input-select-placeholders;
+            
+//             &::-webkit-select-arrow {
+//               right: 1rem;
+//             }
+//           }
+//           border-bottom: 0.0625rem solid $cloud;
+//           @include tablet {
+//             border-bottom: none;
+//           }
+//           @include desktop {
+//             border-bottom: none;
+//           }
+//         }
+//       }
+//     }
+//     .item-availability {
+//       padding-left: 2.5rem;
+//       padding-right: 2.5rem;
+//       border-top: .0625rem solid $cloud;
+//     @include tablet{
+//       padding-left: 2rem;  
+//       padding-right: 2rem;
+//       border-top: none;
+//       width: 100%;
+//     }
+//     @include desktop{
+//       padding-left: 2rem; 
+//       padding-right: 2rem;; 
+//       border-top: none;
+//       width: 100%;
+//     }
+//       h2 {
+//         padding-bottom: 1.5rem;
+//         padding-top: 1.5rem;
+//         @include tablet {
+//           padding-top: 0rem;
+//         }
+//         @include desktop {
+//           padding-top: 0rem;
+//         }
+//       }
+//       // .item-availability-status {
+//         .item-status {
+//           display: flex;
+//           justify-content: flex-start;
+//           gap:10rem;
+         
+//           @include tablet {
+//             gap: 4rem;
+//           }
+//           @include desktop {
+//             gap: 4rem;
+//           }
+//           .item-status option:not(:checked) {
+//             color: $slate;}
+//           & .item-status__check {
+//             display: flex;
+//             gap: 0.25rem;
+            
+//           }
+//           .label-text{
+//             padding-bottom: .25rem;
+//         }
+//         }
+//       // }
+//       // .item-quantity {
+
+//       //   .item-input--quantity {
+//       //     // @include input-select-placeholders;
+//       //   }
+//       // }
+//       .item-warehouse {
+//         .item-select {
+//           @include tablet {
+//             padding-bottom: 0rem;
+//           }
+//           @include desktop{
+//           padding-bottom: 0rem;
+//           }
+//         }
+//         // .item-select--warehouses {
+//         //   // @include input-select-placeholders;
+//         // } 
+//       }   
+//     }
+//   }
+// }
+
+
+
+// .form__divider {
+//   display: flex;
+//   flex-direction: column;
+//   @include tablet {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: center;
+//     padding-top: 1.5rem;
+//     padding-bottom: 1rem;
+//   }
+//   @include desktop {
+//     display: flex;
+//     flex-direction: row;
+//     padding-top: 1.5rem;
+//   }
+// // }
+// .form-input {
+//  &--error {
+//   border:$red 0.0625rem solid;
+//  } 
+//  &:active{
+//   color: $instock-indigo;
+//  }
+
+// }

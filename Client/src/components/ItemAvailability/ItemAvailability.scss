@@ -3,49 +3,49 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.item-availability{
-    border-top: .0625rem solid $cloud;
-    @include tablet{
-      padding-left: 2rem;  
-      padding-right: 2rem;
-      border-top: none;
-      width: 100%;
-    }
-    @include desktop{
-      padding-left: 2rem; 
-      padding-right: 2rem;; 
-      border-top: none;
-      width: 100%;
-    }
-    h2{
-        padding-bottom: 1.5rem;
-        padding-top: 1.5rem;
-        @include tablet{
-            padding-top: 0rem;
-        }
-        @include desktop{
-            padding-top: 0rem;
-        }
-    }
-    .item-status{
-        display: flex;
-        justify-content: flex-start;
-        gap:4rem;
-        padding-top: .25rem;;
-        padding-bottom: 1rem;
-        @include tablet{
-            gap:4rem;
-        }
-        @include desktop{
-            gap:4rem;
-        }
-        & .item-status__check{
-            display: flex;
-            gap: .25rem;
-            @include p2;
-        }
-    }
-    .label-text{
-        padding-bottom: .25rem;
-    }
-}
+// .item-availability{
+    // border-top: .0625rem solid $cloud;
+    // @include tablet{
+    //   padding-left: 2rem;  
+    //   padding-right: 2rem;
+    //   border-top: none;
+    //   width: 100%;
+    // }
+    // @include desktop{
+    //   padding-left: 2rem; 
+    //   padding-right: 2rem;; 
+    //   border-top: none;
+    //   width: 100%;
+    // }
+    // h2{
+    //     padding-bottom: 1.5rem;
+    //     padding-top: 1.5rem;
+    //     @include tablet{
+    //         padding-top: 0rem;
+    //     }
+    //     @include desktop{
+    //         padding-top: 0rem;
+        // }
+    // }
+    // .item-status{
+    //     display: flex;
+    //     justify-content: flex-start;
+    //     gap:4rem;
+    //     padding-top: .25rem;;
+    //     padding-bottom: 1rem;
+    //     @include tablet{
+    //         gap:4rem;
+    //     }
+    //     @include desktop{
+    //         gap:4rem;
+    //     }
+    //     & .item-status__check{
+    //         display: flex;
+    //         gap: .25rem;
+    //         @include p2;
+    //     }
+    // }
+    // .label-text{
+    //     padding-bottom: .25rem;
+    // }
+// }
