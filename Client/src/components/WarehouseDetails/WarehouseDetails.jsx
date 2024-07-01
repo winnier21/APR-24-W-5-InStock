@@ -1,5 +1,6 @@
 import React from 'react';
 import './WarehouseDetails.scss';
+import FormHeader from '../FormHeader/FormHeader';
 
 function WarehouseDetails({ warehouseObject }) {
   const {
@@ -9,9 +10,10 @@ function WarehouseDetails({ warehouseObject }) {
 
   return (
     <>
-      <section className="page-top page-top__divider">
-        <h1>{warehouse_name}</h1>
-      </section>
+      <FormHeader
+        title={warehouse_name}
+        editPath="warehouse"
+      />
       <section className="warehouse-info">
         <div className="warehouse-info__address-div">
           <h4 className="warehouse-info__heading">

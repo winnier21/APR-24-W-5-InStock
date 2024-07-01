@@ -13,6 +13,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import apiInstance from "./utils/ApiClient";
 import Placeholder from "./components/Placeholder/Placeholder";
+import FormHeader from "./components/FormHeader/FormHeader";
 
 function App() {
   const [warehousesArray, setWarehousesArray] = useState(null);
@@ -29,9 +30,9 @@ function App() {
     getWarehouses();
   }, [totalEdits]);
 
-  if (!warehousesArray) {
-    return <Placeholder />;
-  }
+  // if (!warehousesArray) {
+  //   return <Placeholder />;
+  // }
 
   const warehousesProps = {
     warehousesArray: warehousesArray,
@@ -42,54 +43,68 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <WarehousePage
-              warehousesArray={warehousesArray}
-              totalEdits={totalEdits}
-              setTotalEdits={setTotalEdits}
+      {
+        (warehousesArray) ?
+          < Routes >
+            <Route
+              path="/"
+              element={
+                <WarehousePage
+                  warehousesArray={warehousesArray}
+                  totalEdits={totalEdits}
+                  setTotalEdits={setTotalEdits}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/warehouse"
-          element={
-            <WarehousePage
-              warehousesArray={warehousesArray}
-              totalEdits={totalEdits}
-              setTotalEdits={setTotalEdits}
+            <Route
+              path="/warehouse"
+              element={
+                <WarehousePage
+                  warehousesArray={warehousesArray}
+                  totalEdits={totalEdits}
+                  setTotalEdits={setTotalEdits}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/warehouse/:warehouseId"
-          element={<WarehouseDetailsPage />}
-        />
-        <Route
-          path="/warehouse/:warehouseId/edit"
-          element={<EditWarehousePage warehousesProps={warehousesProps} />}
-        />
-        <Route
-          path="/warehouse/add"
-          element={<AddWarehousePage warehousesProps={warehousesProps} />}
-        />
-        <Route path="/inventory" element={<InventoryPage />} />
-        <Route path="/inventory/:itemId" element={<ItemDetailsPage />} />
-        <Route
-          path="/warehouse/:warehouseId/:itemId/edit"
-          element={<EditItemPage warehousesProps={warehousesProps} />}
-        />
-        <Route
-          path="/inventory/:itemId/edit"
-          element={<EditItemPage warehousesProps={warehousesProps} />}
-        />
-        <Route
-          path="/inventory/add"
-          element={<AddItemPage warehousesProps={warehousesProps} />}
-        />
-      </Routes>
+            <Route
+              path="/warehouse/:warehouseId"
+              element={<WarehouseDetailsPage />}
+            />
+            <Route
+              path="/warehouse/:warehouseId/edit"
+              element={<EditWarehousePage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/warehouse/add"
+              element={<AddWarehousePage warehousesProps={warehousesProps} />}
+            />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/inventory/:itemId" element={<ItemDetailsPage />} />
+            <Route
+              path="/warehouse/:warehouseId/:itemId/edit"
+              element={<EditItemPage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/inventory/:itemId/edit"
+              element={<EditItemPage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/inventory/add"
+              element={<AddItemPage warehousesProps={warehousesProps} />}
+            />
+          </Routes>
+          :
+          <main>
+            {/* <section className="Page-top">
+                <h1></h1>
+            </section>*/}
+            <FormHeader
+              title="Welcome"
+              plain={true}
+            />
+            <Placeholder />
+          </main>
+      }
       <Footer />
     </BrowserRouter>
   );

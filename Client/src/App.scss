@@ -46,6 +46,10 @@ main {
   @include tablet {
     height: $top-overlap--tablet;
   }
+  &__left {
+    @include flex-mixin--row(auto);
+  }
+  
   &__divider {
     border-bottom: $divider;
   }
