@@ -1,14 +1,25 @@
 import "./PageTop.scss";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import searchIcon from "../../assets/icons/search-24px.svg";
-import React from "react";
 import AddButton from "../Button/AddButton/AddButton";
 
 function PageTop({ link, buttonText }) {
+  const [isContainerActive, setIsContainerActive] = useState(false);
+
+  const handleInputFocus = () => {
+    setIsContainerActive(true);
+  };
+  const handleInputBlur = () => {
+    setIsContainerActive(false);
+  };
   return (
     <section className="pagetop">
       <form className="pagetop__form">
-        <div className="pagetop__container">
+        <div 
+        className={`pagetop__container ${isContainerActive ? "active" : ""}`}
+        onFocus={handleInputFocus} onBlur={handleInputBlur}
+        >
           <input
             className="pagetop__search"
             type="text"

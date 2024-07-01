@@ -22,10 +22,14 @@
     height: 2.25rem;
     border-radius: 1.25rem;
     border: 1px solid $cloud;
-    &:active{
-      color: $instock-black;
-      border: .0625rem $instock-indigo solid;
-    }
+    // &:active{
+    //   color: $instock-black;
+    //   border: .0625rem $instock-indigo solid;
+    // }
+  &.active{
+    color: $instock-black;
+    border: .0625rem $instock-indigo solid;
+  }
   }
 
   &__search {
@@ -35,6 +39,9 @@
     padding: 0.5rem 0 0.5rem 1rem;
     background-color: transparent;
     flex-grow: 1;
+    &:focus {
+      outline: none;
+    }
   }
 
   &__icon {
