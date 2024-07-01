@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './EditItemForm.scss';
-import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
 import AddButton from '../Button/AddButton/AddButton';
 import CancelButton from '../Button/CancelButton/CancelButton';
 import apiInstance from '../../utils/ApiClient';
@@ -13,12 +12,9 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
   } = itemObject;
   const { warehousesArray } = warehousesProps;
   const warehouses = warehousesArray.map(object => object.warehouse_name);
-  const warehouseId = warehousesArray.find(
-    object => object.warehouse_name === warehouse_name
-  );
-  const [errors, setErrors] = useState({});
+  
+  const [errorState, setErrorState] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(category || null);
-  const [editedItem, setEditItem] = useState(null);
   const [formQuantity, setFormQuantity] = useState(quantity || 0);
   const [selectedStatus, setSelectedStatus] = useState(
     formQuantity > 0 ? 'In Stock' : 'Out of Stock'
@@ -26,11 +22,13 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
   const [selectedWarehouse, setSelectedWarehouse] = useState(warehouse_name);
   
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
+  const errorClassName = "error";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const category = event.target.category.value;
     if (!category) {
+      setErrorState(errorClassName);
       alert('Please select a category.');
     }
     const warehouse_name = event.target.warehouse_name.value;
@@ -102,13 +100,13 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
   return (
     <section>            
       <form className="form" onSubmit={handleSubmit}>
-        <div className='form__container'>
-          <section className="form__divider">
+        <div className='inventory-form__container'>
+          <section className="inventory-form__divider inventory-form__divider--left">
             <h2>Item Details</h2>
-            <div className="form__divider-detail">
+            <div className="inventory-form__divider-detail">
               <label className='label-text'>Item Name </label>
                 <input
-                  className='form-input'
+                  className="form-input"
                   type="text"
                   id="item_name"
                   name="item_name"
@@ -116,19 +114,19 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                   placeholder="Item Name"
                 />
             </div>
-            <div className="form__divider-detail">
+            <div className="inventory-form__divider-detail">
               <label className='label-text'>Description </label>
                 <textarea
-                  className='form-input form-input--description'
+                  className='form-input form-input--description error'
                   id="description"
                   defaultValue={description}
                   placeholder="Please enter a brief item description..."
                 />
             </div>
-            <div className="form__divider-detail form__divider-detail--last">
+            <div className="inventory-form__divider-detail inventory-form__divider-detail--last">
               <label className='label-text'>Category </label>
                 <select
-                  className='form-select'
+                  className={errorState ? `form-select ${errorClassName}` : 'form-select'}
                   id="category"
                   value={selectedCategory || undefined}
                   name="category"
@@ -143,12 +141,12 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                 </select>
             </div>
           </section>
-          <section className="form__divider form__divider--right">
+          <section className="inventory-form__divider inventory-form__divider--right">
             <h2>Item Availability</h2>
-            <div className="form__divider-detail">
+            <div className="inventory-form__divider-detail">
               <label className='label-text'>Status</label>
-              <div className="form__status">
-                <div className="form__status-check">
+              <div className="inventory-form__status">
+                <div className="inventory-form__status-check">
                   <input
                     type="radio"
                     className="form-status--instock"
@@ -161,7 +159,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                     In stock
                   </label>
                 </div>
-               <div className="form__status-check">
+               <div className="inventory-form__status-check">
                 
                   <input
                     type="radio"
@@ -178,7 +176,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
               </div>
             </div>
             {selectedStatus === 'In Stock' && (
-              <div className="form__divider-detail">
+              <div className="inventory-form__divider-detail">
                 <label className='label-text'>Quantity</label>
                   <input
                     type="number"
@@ -189,7 +187,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                   />
               </div>
             )}
-            <div className="form__divider-detail form__divider-detail--last">
+            <div className="inventory-form__divider-detail inventory-form__divider-detail--last">
               <label className='label-text'>Warehouse</label>
                 <select
                   className="form-select "

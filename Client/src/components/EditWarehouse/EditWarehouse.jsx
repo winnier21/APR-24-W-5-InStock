@@ -103,11 +103,8 @@ function EditWarehouse({ warehousesProps }) {
   };
 
   if (loading) {
-    return <Placeholder />; // Render the Placeholder component while loading
+    return <Placeholder />; 
   }
-  // if (error) {
-  //   return <div>Error: {error}</div>; // Display errors if any
-  // }
 
   return (
     <main className="editWarehouse__main">
