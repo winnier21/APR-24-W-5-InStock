@@ -1,0 +1,24 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use '../../components/InventoryCard/InventoryCard' as *;
+
+.item {
+  @include flex-mixin--column(100%);
+  @include card-padding;
+  @include tablet {
+    flex-direction: row;
+  }
+
+  &__section {
+    @include flex-mixin--column(100%);
+
+  }
+
+  &__subsection {
+    @include flex-mixin--row(100%);
+  }
+
+  &__heading {
+    @extend .inventory__heading;
+  }
+}
