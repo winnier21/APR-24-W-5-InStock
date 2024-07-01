@@ -5,20 +5,42 @@
 .item {
   @include flex-mixin--column(100%);
   @include card-padding;
+  box-sizing: border-box;
   @include tablet {
     flex-direction: row;
+    align-items: flex-start;
   }
 
   &__section {
     @include flex-mixin--column(100%);
+    align-items: flex-start;
 
+    &--left {
+      @include tablet {
+        padding-right: $section-gap;
+        border-right: $divider;
+      }
+    }
+
+    &--right {
+      @include tablet {
+        padding-left: $section-gap;
+        justify-content: space-between;
+      }
+    }
   }
 
   &__subsection {
     @include flex-mixin--row(100%);
+    gap: $section-gap;
+  }
+
+  &__property-div {
+    width: 50%;
   }
 
   &__heading {
     @extend .inventory__heading;
+    display: flex;
   }
 }

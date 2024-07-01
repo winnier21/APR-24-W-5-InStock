@@ -3,8 +3,8 @@ import './FormHeader.scss';
 import BackArrowNav from '../BackArrowNav/BackArrowNav';
 import DetailsEditButton from '../DetailsEditButton/DetailsEditButton';
 
-const FormHeader = ({ title, editPath, monster }) => {
-  console.log(monster)
+const FormHeader = ({ title, editPath }) => {
+  console.log(editPath)
   return ( 
     <section className="page-top page-top__divider">
       <div className="page-top__left">
@@ -13,7 +13,7 @@ const FormHeader = ({ title, editPath, monster }) => {
           {title}
         </h1>
       </div>
-      {editPath ? <DetailsEditButton /> : 'hello'}
+      {editPath ? <DetailsEditButton /> : null}
     </section>
   )
 }
