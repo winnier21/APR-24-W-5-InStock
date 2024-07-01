@@ -155,6 +155,45 @@ if (!isValidPhoneNumber(contact_phone)) {
     res.status(500).json({ error: "Internal server error." });
   }
 });
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { warehouseName, address, city, country, contactName, contactPosition, contactPhone, contactEmail } = req.body;
+
+  // Validation: Check for all required fields
+  if (!warehouseName || !address || !city || !country || !contactName || !contactPosition || !contactPhone || !contactEmail) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  try {
+    const result = await knex('warehouses')
+      .where({ id })
+      .update({
+        warehouse_name: warehouseName,
+        address,
+        city,
+        country,
+        contact_name: contactName,
+        contact_position: contactPosition,
+        contact_phone: contactPhone,
+        contact_email: contactEmail
+      });
+
+    if (result === 0) {  // Explicitly check for no updates
+      return res.status(404).json({ error: 'Warehouse not found' });
+    }
+
+    // Fetch and return the updated warehouse data
+    const updatedWarehouse = await knex('warehouses').where({ id }).first();
+    if (updatedWarehouse) {
+      res.status(200).json(updatedWarehouse);
+    } else {
+      res.status(404).json({ error: 'Warehouse not found after update' });
+    }
+  } catch (error) {
+    console.error('Error updating warehouse:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 router.post('/', async (req, res) => {
   try {
@@ -215,44 +254,6 @@ router.delete("/:id", async (req, res) => {
 });
 
 export default router;
-
-// router.post("/", async (req, res) => {
-//   const {
-//     warehouse_name,
-//     address,
-//     city,
-//     country,
-//     contact_name,
-//     contact_position,
-//     contact_phone,
-//     contact_email,
-//   } = req.body;
-
-//   if (!isValidEmailAddress(contact_email)) {
-//     console.log("Invalid email detected");
-//     res.status(400).send(`Invalid email value.`);
-//     return;
-//   }
-//   try {
-//     console.log("Received data:", req.body);
-//     const [id] = await knex("warehouses").insert({
-//       warehouse_name,
-//       address,
-//       city,
-//       country,
-//       contact_name,
-//       contact_position,
-//       contact_phone,
-//       contact_email,
-//     });
-
-//     console.log("Inserted warehouse ID:", id);
-//     res.status(201).json({ message: "Warehouse added successfully", id });
-//   } catch (error) {
-//     console.error("Error adding warehouse:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
 
 
 // const warehouse_name = requestBody.warehouse_name;
