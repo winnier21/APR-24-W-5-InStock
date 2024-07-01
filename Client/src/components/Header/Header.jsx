@@ -1,9 +1,11 @@
 import React from "react";
 import "./Header.scss";
 import logo from "../../assets/logo/InStock-Logo_1x.png";
-import { Link } from "react-router-dom";
+import { Link ,useLocation} from "react-router-dom";
 
 function Header() {
+  const location = useLocation();
+  
   return (
     <header>
     <nav className="header">
@@ -14,10 +16,14 @@ function Header() {
           </Link>
         </div>
         <section className="header__wrapper">
-          <Link className="header__link" to="/warehouse">
+          <Link 
+            className={`header__link ${location.pathname === "/warehouse" ? "active" : ""}`}
+            to="/warehouse">
             <h3>Warehouse</h3>
           </Link>
-          <Link className="header__link" to="/inventory">
+          <Link 
+            className={`header__link ${location.pathname === "/inventory" ? "active" : ""}`}
+            to="/inventory">
             <h3>Inventory</h3>
           </Link>
         </section>
