@@ -28,6 +28,7 @@
 
     &:hover {
       border: 0.0625rem solid $instock-indigo;
+      outline: none;
     }
     &.active {
       color: $instock-black;
