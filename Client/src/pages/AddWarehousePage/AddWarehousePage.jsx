@@ -10,3 +10,4 @@ function AddWarehousePage({warehousesProps}) {
 }
 
 export default AddWarehousePage
+

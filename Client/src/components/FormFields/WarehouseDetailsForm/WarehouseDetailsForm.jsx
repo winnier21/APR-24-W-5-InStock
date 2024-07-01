@@ -2,11 +2,25 @@ import React, { useEffect, useState } from "react";
 import "./WarehouseDetailsForm.scss";
 
 const WarehouseDetailsForm = ({ onChange, details }) => {
-  const [localDetails, setLocalDetails] = useState(details);
+  const [localDetails, setLocalDetails] = useState({
+    warehouseName: "",
+    address: "",
+    city: "",
+    country: "",
+    ...details
+  });
 
   useEffect(() => {
-    setLocalDetails(details);
+    setLocalDetails({
+      warehouseName: "",
+      address: "",
+      city: "",
+      country: "",
+      ...details 
+    });
   }, [details]);
+
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +40,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
             name="warehouse_name"
             type="text"
             placeholder="Warehouse Name"
-            value={localDetails.warehouseName}
+            value={localDetails.warehousenName}
             onChange={handleChange}
           />
           <h3>Street Address</h3>

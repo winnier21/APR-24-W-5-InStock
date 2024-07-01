@@ -61,9 +61,10 @@ function EditWarehouse() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const BASE_URL = import.meta.env.VITE_API_URL;
     try {
       const response = await fetch(
-        `http://localhost:8080/api/warehouses/${warehouseId}/edit`,
+        `${BASE_URL}/api/warehouses/${warehouseId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
