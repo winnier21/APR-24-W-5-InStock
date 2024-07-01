@@ -7,13 +7,10 @@ import './ActionIcons.scss';
 
 const ActionIcons = ({ warehouseId, itemId, dialogRef, editPath }) => {
   let id;
-  // let route;
   if (itemId) {
     id = itemId
-    // route = 'inventory';
   } else {
     id = warehouseId
-    // route = 'warehouse';
   }
 
   const deleteHandler = (event) => {
