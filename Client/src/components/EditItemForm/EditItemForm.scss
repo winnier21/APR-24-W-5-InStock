@@ -117,7 +117,6 @@
             padding-top:0.5rem;
             resize: none;
             padding-right: 0.5rem;
-
           }
          &--quantity{
           color: $instock-black;
@@ -126,10 +125,14 @@
             width: 7.625rem;
           }
         }
-            &:active{
-             color: $instock-black;
-             border: 0.0625rem solid $instock-indigo;
-            }
+        &:active{
+          color: $instock-black;
+          border: 0.0625rem solid $instock-indigo;
+        }
+        &:focus{
+          color: $instock-black;
+          border: 0.0625rem solid $instock-indigo;
+        }
             // .error{
             //   border: 0.0625rem solid $red;
             //   color:$slate;
