@@ -1,5 +1,5 @@
-import React from "react";
-import AddWarehouse from "../../components/AddWarehouse/AddWarehouse";
+import React from 'react';
+import AddWarehouse from '../../components/AddWarehouse/AddWarehouse';
 
 
 
@@ -9,5 +9,5 @@ function AddWarehousePage({warehousesProps}) {
   )
 }
 
-export default AddWarehousePage;
+export default AddWarehousePage
 

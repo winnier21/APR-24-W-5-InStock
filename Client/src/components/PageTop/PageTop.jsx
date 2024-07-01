@@ -19,7 +19,7 @@ function PageTop({ link, buttonText }) {
         </div>
       </form>
       <Link to={link}>
-        <AddButton buttonText={buttonText} />
+        <AddButton className="pagetop__button" buttonText={buttonText} />
       </Link>
     </section>
   );
