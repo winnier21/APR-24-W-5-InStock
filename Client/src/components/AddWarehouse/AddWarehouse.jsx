@@ -7,19 +7,21 @@ import AddButton from "../Button/AddButton/AddButton";
 import CancelButton from "../Button/CancelButton/CancelButton";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import { isValidEmailAddress } from "../../utils/utils";
-import Placeholder from "../../components/Placeholder/Placeholder"
 
-function AddWarehouse() {
+function AddWarehouse({warehousesProps}) {
   const navigate = useNavigate();
+  const {
+    warehousesArray, totalEdits, setTotalEdits
+  } = warehousesProps;
   const [warehouseDetails, setWarehouseDetails] = useState({
-    warehouseName: "",
+    warehouse_name: "",
     address: "",
     city: "",
     country: "",
-    contactName: "",
-    contactPosition: "",
-    contactPhone: "",
-    contactEmail: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
   });
   const [loading, setLoading] = useState(false);
   const handleWarehouseDetailsChange = (details) => {
@@ -42,16 +44,16 @@ function AddWarehouse() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(warehouseDetails),
       });
+
       if (response.ok) {
+        setTotalEdits(totalEdits + 1);
         alert("Warehouse added successfully!");
         navigate("/warehouse");
       } else {
         throw new Error("Failed to add warehouse");
       }
     } catch (error) {
-      alert(error.message);
-    } finally {
-      setLoading(false); // Set loading to false after the submission is complete
+      alert("Failed to add warehouse");
     }
   };
 

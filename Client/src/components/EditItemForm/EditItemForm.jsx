@@ -1,22 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './EditItemForm.scss';
 import ArrowBackIcon from '../../assets/icons/arrow_back-24px.svg';
-import axios from 'axios';
 import AddButton from '../Button/AddButton/AddButton';
 import CancelButton from '../Button/CancelButton/CancelButton';
-
-// const EditForm = ({ id, itemId, warehousesProps }) => {
-  // const warehouses = warehousesProps.warehousesArray.map(object => object.warehouse_name);
-  // const [item_name, setItemName] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [category, setCategory] = useState('Electronics');
-  // const [warehouse, setWarehouse] = useState('Manhattan'); 
-  // const [status, setStatus] = useState('in_stock');
-  // const [quantity, setQuantity] = useState(1);
-
-  // const [warehouseId, setWarehouseId] = useState(''); // assuming warehouse ID is 1
+import apiInstance from '../../utils/ApiClient';
   
-const EditForm = ({ itemObject, warehousesProps }) => {
+const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
+  const navigate = useNavigate();
   const {
     id, warehouse_name, item_name, description, category, status, quantity
   } = itemObject;
@@ -26,12 +17,17 @@ const EditForm = ({ itemObject, warehousesProps }) => {
     object => object.warehouse_name === warehouse_name
   );
   const [errors, setErrors] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState(category || null);
   const [editedItem, setEditItem] = useState(null);
-  const [instockStatus, setInstockStatus] = useState(status);
-  const [formQuantity, setFormQuantity] = useState(1);
+  const [formQuantity, setFormQuantity] = useState(quantity || 0);
+  const [selectedStatus, setSelectedStatus] = useState(
+    formQuantity > 0 ? 'In Stock' : 'Out of Stock'
+  );
+  const [selectedWarehouse, setSelectedWarehouse] = useState(warehouse_name);
+  
   const categories = ['Electronics', 'Apparel', 'Accessories', 'Health', 'Gear'];
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const category = event.target.category.value;
     if (!category) {
@@ -41,19 +37,25 @@ const EditForm = ({ itemObject, warehousesProps }) => {
     if (!warehouse_name) {
       alert('Please select a warehouse');
     }
+    const quantity = parseInt(event.target.quantity?.value) || 0;
+    if (quantity < 1 && selectedStatus === 'In Stock') {
+      alert('Please enter a non-zero number.');
+    }
     const item_name = event.target.item_name.value;
     const description = event.target.description.value;
-    const quantity = event.target.quantity?.value || 0;
 
     const formTextFields = [
-      warehouse_name, item_name, description, category
+      'item_name', 'description', 'category'
     ]
+    const warehouseId = warehousesArray.find(
+      warehouseObject => warehouseObject.warehouse_name === warehouse_name
+    ).id;
     const submittedItem = {
-      id: id,
-      warehouse_name: warehouse_name,
+      warehouse_id: warehouseId,
       item_name: item_name,
       description: description,
       category: category,
+      status: selectedStatus,
       quantity: quantity
     }
     for (let i = 0; i < formTextFields.length; i++) {
@@ -65,47 +67,42 @@ const EditForm = ({ itemObject, warehousesProps }) => {
       }
 
     }
-    const warehouseId = warehousesArray.find(
-      warehouseObject => warehouseObject.warehouse_name === warehouse_name
-    )
-    const formData = {
-      warehouse_id: warehouseId,
-      item_name: item_name,
-      description,
-      category,
-      status,
-      quantity: instockStatus === 'in_stock' ? quantity : null,
-    };
-    try {
-      // const response = await axios.put(`/inventories/${itemId}`, formData);
-      // console.log('Item updated successfully:', response.data);
-      event.target.reset();
-    } catch (error) {
-      console.error('Error updating item:', error);
-      setErrors({ error: 'Error updating item' });
+    let responseData;
+    if (requestMethod === 'put') {
+      responseData = await apiInstance.put('inventories', id, submittedItem);
+    } else {
+      responseData = await apiInstance.post('inventories', submittedItem);
+    }
+    if (typeof responseData === 'object') {
+      alert(`${item_name} successfully ${requestMethod === 'put' ? 'edited' : 'added'}`);
+      navigate(-1);
+    } else {
+      const message = `Failed to ${requestMethod === 'put' ? 'edit' : 'add'}: ${responseData}`;
+      alert(message);
     }
   };
 
   const handleStatusChange = (event) => {
-    // setStatus(event.target.value);
-    setInstockStatus(event.target.value)
-    if (event.target.value === 'out_of_stock') {
-      setFormQuantity(null);
-    }
+    const newStatus = event.target.value;
+    setSelectedStatus(newStatus);
+    if (newStatus === 'Out of Stock') {
+      setFormQuantity(0);
+    } 
   };
 
-  const handleCancel = () => {
-    resetForm();
-  };
+  const handleWarehouseChange = (event) => {
+    const selectedWarehouse = event.target.value;
+    setSelectedWarehouse(selectedWarehouse);
+  }
 
+  const handleCategoryChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedCategory(selectedValue);
+  }
   return (
-    <main className="main-edititem">            
-      <h1 className='main-header'>
-        <img src={ArrowBackIcon} className='arrow-back-icon'/>
-        Edit Inventory Item
-      </h1>
+    <section>            
       <form className="form" onSubmit={handleSubmit}>
-        <div className='form__divider'>
+        <div className='forms__container'>
           <section className="item-details">
             <h2>Item Details</h2>
             <div className="item-detail">
@@ -116,21 +113,19 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                   type="text"
                   id="item_name"
                   name="item_name"
-                  // value={item_name}
-                  // onChange={(e) => setItemName(e.target.value)}
-                  placeholder="Television" 
+                  defaultValue={item_name}
+                  placeholder="Item Name"
                 />
               </div>
             </div>
-            <div className="item-detail">
+            <div className="item-input">
               <label className='label-text'>Description </label>
               <div className="item-input">
                 <textarea
                   className='item-input--description item-input--description-placeholder '
                   id="description"
-                  // value={description}
-                  // onChange={(e) => setDescription(e.target.value)}
-                  placeholder='This 50", 4K LED TV provides a crystal-clear picture and vivid colors.'
+                  defaultValue={description}
+                  placeholder="Please enter a brief item description..."
                 />
               </div>
             </div>
@@ -140,8 +135,9 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                 <select
                   className='item-select--category item-select--category-placeholder'
                   id="category"
-                  // value={category}
-                  // onChange={(e) => setCategory(e.target.value)}
+                  value={selectedCategory || undefined}
+                  name="category"
+                  onChange={handleCategoryChange}
                 >
                   <option value="" placeholder="Please select"> Please select </option>
                   {categories.map((category, index) => (
@@ -163,10 +159,9 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                     type="radio"
                     className="item-status__check--instock"
                     id="in_stock"
-                    value="in_stock"
-                    checked={instockStatus === 'in_stock'}
-                    // checked={status === 'in_stock'}
-                    onChange={() => setInstockStatus('in_stock')}
+                    value="In Stock"
+                    checked={selectedStatus === "In Stock"}
+                    onChange={handleStatusChange}
                   />
                   <label className="item-status__check--instock-label" htmlFor="in_stock">
                     In stock
@@ -177,10 +172,9 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                     type="radio"
                     className="item-status__check--outofstock"
                     id="out_of_stock"
-                    value="out_of_stock"
-                    checked={instockStatus === 'out_of_stock'}
-                    // checked={status === 'out_of_stock'}
-                    onChange={() => setInstockStatus('out_of_stock')}
+                    value="Out of Stock"
+                    checked={selectedStatus === "Out of Stock"}
+                    onChange={handleStatusChange}
                   />
                   <label className="item-status__check--outofstock-label" htmlFor="out_of_stock">
                     Out of stock
@@ -188,7 +182,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                 </div>
               </div>
             </div>
-            {instockStatus === 'in_stock' && (
+            {selectedStatus === 'In Stock' && (
               <div className="item-quantity">
                 <label className='label-text'>Quantity</label>
                 <div className="item-input">
@@ -197,8 +191,7 @@ const EditForm = ({ itemObject, warehousesProps }) => {
                     className="item-input--quantity"
                     id="quantity"
                     name="quantity"
-                    // value={quantity}
-                    // onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
+                    defaultValue={quantity}
                   />
                 </div>
               </div>
@@ -207,13 +200,13 @@ const EditForm = ({ itemObject, warehousesProps }) => {
               <label className='label-text'>Warehouse</label>
               <div className="item-select">
                 <select
-                  className="item-select--warehouses"
+                  className="item-select--warehouse"
                   id="warehouse"
                   name="warehouse_name"
-                  // value={warehouseId}
-                  // onChange={(e) => setWarehouseId(e.target.value)}
+                  defaultValue={selectedWarehouse}
+                  onChange={handleWarehouseChange}
                 >
-                  <option value="">Please select</option>
+                  <option>Please select</option>
                   {warehouses.map((warehouse, index) => (
                     <option key={`warehouse-${index}`} value={warehouse}>
                       {warehouse}
@@ -225,25 +218,12 @@ const EditForm = ({ itemObject, warehousesProps }) => {
           </section>
         </div>
         <div className="button">
-          <CancelButton onClick={handleCancel} />
-          <button type="submit">
-            Save
-          </button>
-            {/* <AddButton buttonText="Save"/> */}
+          <CancelButton />
+          <AddButton buttonText="Save"/>
         </div>
       </form>
-    </main>
+    </section>
   );
 };
 
 export default EditForm;
-
-// const resetForm = () => {
-  // setItemName('');
-  // setDescription('');
-  // setCategory('');
-  // setStatus('in_stock');
-  // setQuantity(1);
-  // setWarehouseId(1);
-  // setErrors({});
-// };

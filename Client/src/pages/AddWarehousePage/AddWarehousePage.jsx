@@ -1,13 +1,13 @@
 import React from "react";
 import AddWarehouse from "../../components/AddWarehouse/AddWarehouse";
 
-const AddWarehousePage = ({ setWarehousesArray }) => {
+
+
+function AddWarehousePage({warehousesProps}) {
   return (
-    <>
-      <AddWarehouse />
-    </>
-  );
-};
+    <AddWarehouse warehousesProps={warehousesProps} />
+  )
+}
 
 export default AddWarehousePage;
 
