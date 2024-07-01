@@ -126,7 +126,8 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
             <div className="inventory-form__divider-detail inventory-form__divider-detail--last">
               <label className='label-text'>Category </label>
                 <select
-                  className={errorState ? `form-select ${errorClassName}` : 'form-select'}
+                  // className={errorState ? `form-select ${errorClassName}` : 'form-select'}
+                  className="form-select error"
                   id="category"
                   value={selectedCategory || undefined}
                   name="category"
@@ -134,7 +135,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                 >
                   <option value="" placeholder="Please select"> Please select </option>
                   {categories.map((category, index) => (
-                    <option key={`category-${index}`} value={category}>
+                    <option key={`category-${index}`} value={category} className="">
                       {category}
                     </option>
                   ))}
