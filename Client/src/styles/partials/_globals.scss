@@ -7,8 +7,8 @@ html {
 }
 
 body {
-    font-family: 'Titillium Web', sans-serif;
-    color: $instock-black;
+  font-family: "Titillium Web", sans-serif;
+  color: $instock-black;
 }
 * {
   margin: 0;
@@ -43,8 +43,6 @@ h4 {
   color: $cloud;
   text-transform: uppercase;
 }
-
-
 
 @media (min-width: $tablet-breakpoint) {
   h1 {

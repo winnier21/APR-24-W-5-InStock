@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import Placeholder from "../../components/Placeholder/Placeholder";
 import apiInstance from "../../utils/ApiClient";
@@ -17,7 +17,7 @@ function InventoryPage() {
 
   useEffect(() => {
     getAllInventory();
-  }, [])
+  }, []);
 
   if (!inventoryArray) {
     return <Placeholder />;
@@ -26,9 +26,8 @@ function InventoryPage() {
   return (
     <main>
       <section className="page-top-container">
-        
-          <h1>Inventory</h1>
-              <PageTop link="/inventory/add" buttonText="+ Add New Item" />
+        <h1>Inventory</h1>
+        <PageTop link="/inventory/add" buttonText="+ Add New Item" />
       </section>
       <InventoryList
         inventoryArray={inventoryArray}

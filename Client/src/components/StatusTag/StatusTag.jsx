@@ -1,14 +1,13 @@
-import React from 'react';
-import './StatusTag.scss';
+import React from "react";
+import "./StatusTag.scss";
 
 const StatusTag = (props) => {
   const { status } = props;
-  const statusClassName = status.toLowerCase() === 'in stock' ? 'status-tag--green' : 'status-tag--red';
-  return (
-    <div className={statusClassName}>
-      {status}
-    </div>  
-  )
-}
+  const statusClassName =
+    status.toLowerCase() === "in stock"
+      ? "status-tag--green"
+      : "status-tag--red";
+  return <div className={statusClassName}>{status}</div>;
+};
 
-export default StatusTag
+export default StatusTag;

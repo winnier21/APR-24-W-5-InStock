@@ -33,7 +33,7 @@
     border: 1px solid $cloud;
     background-color: $white;
     font-size: 0.8125rem;
-    font-family: 'Titillium Web' ;
+    font-family: "Titillium Web";
     padding-left: 1rem;
     box-sizing: border-box;
     outline: none;
@@ -42,7 +42,7 @@
     }
 
     &::after {
-      content: "This field is required"
+      content: "This field is required";
     }
 
     @include tablet {

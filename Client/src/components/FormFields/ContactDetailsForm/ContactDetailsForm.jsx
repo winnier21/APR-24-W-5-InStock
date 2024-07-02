@@ -3,7 +3,7 @@ import "./ContactDetailsForm.scss";
 import FormErrorNotification from "../../FormErrorNotification/FormErrorNotification";
 
 function ContactDetailsForm({ onChange, details, errorState, setErrorState }) {
-  const inputClassName = "contact__form-input"
+  const inputClassName = "contact__form-input";
   const errorClassName = `${inputClassName} error`;
   const [contactDetails, setContactDetails] = useState({
     contact_name: "",
@@ -39,24 +39,24 @@ function ContactDetailsForm({ onChange, details, errorState, setErrorState }) {
           value={contactDetails.contact_name}
           onChange={handleChange}
         />
-        <FormErrorNotification
-          inError={errorState?.contact_name }
-        />
+        <FormErrorNotification inError={errorState?.contact_name} />
         <h3>Position</h3>
         <input
-          className={errorState?.contact_position ? errorClassName : inputClassName}
+          className={
+            errorState?.contact_position ? errorClassName : inputClassName
+          }
           type="text"
           name="contact_position"
           placeholder="Position"
           value={errorState?.contact_position}
           onChange={handleChange}
         />
-        <FormErrorNotification
-          inError={errorState?.country}
-        />
+        <FormErrorNotification inError={errorState?.country} />
         <h3>Phone Number</h3>
         <input
-          className={errorState?.contact_phone ? errorClassName : inputClassName}
+          className={
+            errorState?.contact_phone ? errorClassName : inputClassName
+          }
           type="text"
           name="contact_phone"
           placeholder="Phone Number"
@@ -69,7 +69,9 @@ function ContactDetailsForm({ onChange, details, errorState, setErrorState }) {
         />
         <h3>Email</h3>
         <input
-          className={errorState?.contact_email ? errorClassName : inputClassName}
+          className={
+            errorState?.contact_email ? errorClassName : inputClassName
+          }
           type="text"
           name="contact_email"
           placeholder="Email"

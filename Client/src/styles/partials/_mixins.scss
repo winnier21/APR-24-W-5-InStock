@@ -1,7 +1,6 @@
 @use "./variables" as *;
 @use "./globals" as *;
 
-
 @mixin tablet {
   @media (min-width: 768px) {
     @content;
@@ -57,45 +56,43 @@
   }
 }
 
-@mixin p1{
+@mixin p1 {
   font-size: 0.9375rem;
   line-height: 1.625rem;
   font-weight: 400;
-  @include tablet{
+  @include tablet {
     font-size: 1rem;
     line-height: 1.75rem;
     font-weight: 400;
   }
 }
 
-@mixin p2{
+@mixin p2 {
   font-size: 0.8125rem;
   line-height: 1.25rem;
   font-weight: 400;
-  @include tablet{
+  @include tablet {
     font-size: 0.875rem;
     line-height: 1.375rem;
     font-weight: 400;
   }
 }
 
-@mixin p3{
+@mixin p3 {
   font-size: 0.6875rem;
   line-height: 1rem;
   font-weight: 400;
-  @include tablet{
+  @include tablet {
     font-size: 0.75rem;
     line-height: 1.125rem;
     font-weight: 400;
   }
 }
 
-
 @mixin align-left-top {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-
 }
 
 @mixin card-mixin {
@@ -108,9 +105,9 @@
     flex-direction: row;
     width: $card-width--tablet;
     justify-content: space-between;
-    padding-top: .6875rem;
-    padding-bottom: .6875rem;
-    
+    padding-top: 0.6875rem;
+    padding-bottom: 0.6875rem;
+
     &:first-of-type {
       border-top: none;
     }
@@ -129,5 +126,5 @@
 
 @mixin error-state {
   border: 0.0625rem solid $red;
-  color:$slate;
+  color: $slate;
 }
