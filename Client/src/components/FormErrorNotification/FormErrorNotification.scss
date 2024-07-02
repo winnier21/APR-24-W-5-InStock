@@ -1,20 +1,19 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-
 .error {
-  @include error-state;  
-  
+  @include error-state;
+
   &__text {
     @include p3;
     position: relative;
     color: $red;
-    
+
     &:before {
-      content: '';
+      content: "";
       display: inline-block;
-      background-image: url('../../assets/icons/error-24px.svg');
-      height: .75rem;
+      background-image: url("../../assets/icons/error-24px.svg");
+      height: 0.75rem;
       width: 0.75rem;
       background-size: contain;
     }

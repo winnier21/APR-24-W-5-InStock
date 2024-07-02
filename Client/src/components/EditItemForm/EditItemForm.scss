@@ -4,19 +4,18 @@
 @use "../../styles/partials/mixins" as *;
 @use "../FormHeader/FormHeader.scss" as *;
 
-
 .inventory-form {
-  font-family: 'Titillium Web';
+  font-family: "Titillium Web";
   display: flex;
   flex-direction: column;
-  
-  &__container{
+
+  &__container {
     align-content: center;
     @include tablet {
       display: flex;
     }
   }
-  &__divider{
+  &__divider {
     padding: $padding-med $padding-large;
     @include tablet {
       width: 100%;
@@ -24,8 +23,8 @@
       margin: 1.125rem 0;
       padding: 0 $main-side-padding--tablet;
     }
-    @include desktop{
-      padding-left: 2rem; 
+    @include desktop {
+      padding-left: 2rem;
       padding-right: 2rem;
       border-top: none;
       width: 100%;
@@ -39,92 +38,95 @@
     }
     &--right {
       border-top: $divider;
-      @include tablet{
-        padding-left: $main-side-padding--tablet;  
+      @include tablet {
+        padding-left: $main-side-padding--tablet;
         border-top: none;
         width: 100%;
       }
     }
-    &-detail{
+    &-detail {
       display: flex;
       flex-direction: column;
       padding-top: 1rem;
-      @include tablet{
+      @include tablet {
         padding-top: 1.5rem;
       }
-      @include desktop{
+      @include desktop {
         padding-top: 1.5rem;
       }
-      &--last{
+      &--last {
         padding-bottom: 1.5rem;
       }
       .inventory-form__status {
         & label {
-          padding-left: .5rem;
+          padding-left: 0.5rem;
         }
-        &--instock-label{
+        &--instock-label {
           padding-right: 0.5rem;
         }
         display: flex;
         justify-content: flex-start;
-        gap:10rem;
-        padding-top: .25rem;
+        gap: 10rem;
+        padding-top: 0.25rem;
         @include p2;
         color: $slate;
-        &-check{
-          input[type="radio"]:checked + label{
+        &-check {
+          input[type="radio"]:checked + label {
             color: $instock-black;
           }
         }
-        @include tablet{
-          gap:4rem;
+        @include tablet {
+          gap: 4rem;
         }
-        @include desktop{
-          gap:4rem;
+        @include desktop {
+          gap: 4rem;
         }
       }
     }
   }
 }
 
-.form-select{
-  font-family: 'Titillium Web' ;
+.form-select {
+  font-family: "Titillium Web";
   height: 2.25rem;
   width: 100%;
-  border: .0625rem solid $cloud;
+  border: 0.0625rem solid $cloud;
   color: $slate;
   border-radius: 1.25rem;
   @include p2;
   padding-left: 1rem;
-  appearance: none; 
-  -webkit-appearance: none; 
-  background: url('../../assets/icons/arrow_drop_down-24px.svg') no-repeat right 1rem center;
-  
-  @include tablet{
+  appearance: none;
+  -webkit-appearance: none;
+  background: url("../../assets/icons/arrow_drop_down-24px.svg") no-repeat right
+    1rem center;
+
+  @include tablet {
     height: 2.375rem;
-    width:100%;
+    width: 100%;
   }
-  @include desktop{
+  @include desktop {
     height: 2.375rem;
-    width:100%;
+    width: 100%;
   }
-  
-  &:active{
-    color:$instock-black;
+
+  &:active {
+    color: $instock-black;
     border: 0.0625rem solid $instock-indigo;
   }
   &:active:after {
-    background-color: $instock-indigo;;
+    background-color: $instock-indigo;
   }
-  &:focus, &:focus-visible, &:focus-within {
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
     color: $instock-black;
     border: 0.0625rem solid $instock-indigo;
     outline: none;
   }
 }
 
-.form-input{
-  font-family:'Titillium Web' ;
+.form-input {
+  font-family: "Titillium Web";
   @include p2;
   color: $slate;
   width: 100%;
@@ -135,7 +137,7 @@
   font-size: 0.8125rem;
   padding-left: 1rem;
   box-sizing: border-box;
-  
+
   @include tablet {
     width: 100%;
     height: 2.375rem;
@@ -144,26 +146,28 @@
     width: 100%;
     height: 2.375rem;
   }
-  &--description{
-    font-family: 'Titillium Web' ;
+  &--description {
+    font-family: "Titillium Web";
     height: 7.5rem;
     width: 100%;
-    padding-top:0.5rem;
+    padding-top: 0.5rem;
     resize: none;
     padding-right: 0.5rem;
   }
-  &--quantity{
+  &--quantity {
     color: $instock-black;
     @include p2;
-    @include desktop{
+    @include desktop {
       width: 7.625rem;
     }
   }
-  &:active{
+  &:active {
     color: $instock-black;
     border: 0.0625rem solid $instock-indigo;
   }
-  &:focus, &:focus-visible, &:focus-within {
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
     color: $instock-black;
     border: 0.0625rem solid $instock-indigo;
     outline: none;

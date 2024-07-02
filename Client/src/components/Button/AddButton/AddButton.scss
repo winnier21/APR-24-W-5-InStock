@@ -28,7 +28,7 @@
     border: 0.0625rem solid $instock-indigo;
     background-color: $instock-indigo;
     color: $white;
-    font-family: 'Titillium Web';
+    font-family: "Titillium Web";
     font-size: 0.8125rem;
     font-weight: 600;
     display: flex;
@@ -49,7 +49,7 @@
       padding-right: 1rem;
       width: auto;
     }
-    &:hover{
+    &:hover {
       background-color: $graphite;
       border: 0.0625rem solid $graphite;
     }

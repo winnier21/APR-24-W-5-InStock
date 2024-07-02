@@ -9,7 +9,6 @@
   background-color: $graphite;
   align-items: center;
   justify-content: center;
-  
 
   @include tablet {
     height: $header-height--tablet;
@@ -26,13 +25,12 @@
 
     @include tablet {
       display: flex;
-      padding-top:2rem;
+      padding-top: 2rem;
     }
 
     @include desktop {
       display: flex;
-      padding-top:2rem;
-      
+      padding-top: 2rem;
     }
   }
   &__logo {
@@ -42,12 +40,12 @@
     margin-right: 7.71rem;
 
     @include tablet {
-      padding:0;
-      margin:0;
+      padding: 0;
+      margin: 0;
     }
     @include desktop {
-      padding:0;
-      margin:0;
+      padding: 0;
+      margin: 0;
     }
 
     a {
@@ -64,12 +62,10 @@
     @include tablet {
       justify-content: start;
       padding-left: 2rem;
-      
     }
     @include desktop {
       justify-content: start;
       padding-left: 8.12rem;
-      
     }
   }
 
@@ -78,13 +74,12 @@
     justify-content: center;
     margin-left: $padding-med;
     margin-right: $padding-med;
-    @include tablet{
-      padding-right:1rem;
+    @include tablet {
+      padding-right: 1rem;
     }
-    @include desktop{
-      padding-right:7.12rem;
+    @include desktop {
+      padding-right: 7.12rem;
     }
-  
 
     h3 {
       color: $white;
@@ -108,7 +103,6 @@
         background-color: $instock-black;
         border-radius: 1.5625rem;
       }
-      
     }
   }
 }

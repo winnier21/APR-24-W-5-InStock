@@ -49,7 +49,7 @@ main {
   &__left {
     @include flex-mixin--row(auto);
   }
-  
+
   &__divider {
     border-bottom: $divider;
   }

@@ -9,7 +9,7 @@
     padding-right: 0;
     width: 100%;
   }
-  @include desktop{
+  @include desktop {
     width: 100%;
     padding-left: 2.5rem;
   }
@@ -33,10 +33,10 @@
     border: 1px solid $cloud;
     background-color: $white;
     font-size: 0.8125rem;
-    font-family: 'Titillium Web' ;
+    font-family: "Titillium Web";
     padding-left: 1rem;
     box-sizing: border-box;
-    outline: none; 
+    outline: none;
     &:focus {
       border: 0.0625rem solid $instock-indigo;
     }

@@ -2,8 +2,8 @@
 @use "../../styles/partials/mixins" as *;
 
 .card-link {
-    @extend h3;
-    &:hover{
-        text-decoration: underline;
-    }
+  @extend h3;
+  &:hover {
+    text-decoration: underline;
+  }
 }
