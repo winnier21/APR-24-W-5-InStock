@@ -30,10 +30,6 @@ function App() {
     getWarehouses();
   }, [totalEdits]);
 
-  // if (!warehousesArray) {
-  //   return <Placeholder />;
-  // }
-
   const warehousesProps = {
     warehousesArray: warehousesArray,
     totalEdits: totalEdits,
@@ -95,9 +91,7 @@ function App() {
           </Routes>
           :
           <main>
-            {/* <section className="Page-top">
-                <h1></h1>
-            </section>*/}
+            
             <FormHeader
               title="Welcome"
               plain={true}

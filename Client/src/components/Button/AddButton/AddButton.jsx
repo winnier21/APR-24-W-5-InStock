@@ -1,4 +1,3 @@
-// AddButton.jsx
 import React from "react";
 import "./AddButton.scss";
 
