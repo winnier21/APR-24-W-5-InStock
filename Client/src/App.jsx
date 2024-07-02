@@ -39,61 +39,78 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      {warehousesArray ? (
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <WarehousePage
-                warehousesArray={warehousesArray}
-                totalEdits={totalEdits}
-                setTotalEdits={setTotalEdits}
-              />
-            }
-          />
-          <Route
-            path="/warehouse"
-            element={
-              <WarehousePage
-                warehousesArray={warehousesArray}
-                totalEdits={totalEdits}
-                setTotalEdits={setTotalEdits}
-              />
-            }
-          />
-          <Route
-            path="/warehouse/:warehouseId"
-            element={<WarehouseDetailsPage />}
-          />
-          <Route
-            path="/warehouse/:warehouseId/edit"
-            element={<EditWarehousePage warehousesProps={warehousesProps} />}
-          />
-          <Route
-            path="/warehouse/add"
-            element={<AddWarehousePage warehousesProps={warehousesProps} />}
-          />
-          <Route path="/inventory" element={<InventoryPage />} />
-          <Route path="/inventory/:itemId" element={<ItemDetailsPage />} />
-          <Route
-            path="/warehouse/:warehouseId/:itemId/edit"
-            element={<EditItemPage warehousesProps={warehousesProps} />}
-          />
-          <Route
-            path="/inventory/:itemId/edit"
-            element={<EditItemPage warehousesProps={warehousesProps} />}
-          />
-          <Route
-            path="/inventory/add"
-            element={<AddItemPage warehousesProps={warehousesProps} />}
-          />
-        </Routes>
-      ) : (
-        <main>
-          <FormHeader title="Welcome" plain={true} />
-          <Placeholder />
-        </main>
-      )}
+      {
+        (warehousesArray) ?
+          < Routes >
+            <Route
+              path="/"
+              element={
+                <WarehousePage
+                  warehousesArray={warehousesArray}
+                  totalEdits={totalEdits}
+                  setTotalEdits={setTotalEdits}
+                />
+              }
+            />
+            <Route
+              path="/warehouse"
+              element={
+                <WarehousePage
+                  warehousesArray={warehousesArray}
+                  totalEdits={totalEdits}
+                  setTotalEdits={setTotalEdits}
+                />
+              }
+            />
+            <Route
+              path="/warehouse/:warehouseId"
+              element={<WarehouseDetailsPage />}
+            />
+            <Route
+              path="/warehouse/:warehouseId/edit"
+              element={<EditWarehousePage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/warehouse/add"
+              element={<AddWarehousePage warehousesProps={warehousesProps} />}
+            />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/inventory/:itemId" element={<ItemDetailsPage />} />
+            <Route
+              path="/warehouse/:warehouseId/:itemId/edit"
+              element={<EditItemPage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/inventory/:itemId/edit"
+              element={<EditItemPage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/inventory/add"
+              element={<AddItemPage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
+            <Route
+              path="/warehouse/*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
+            <Route
+              path="/inventory/*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
+          </Routes>
+          :
+          <main>
+            
+            <FormHeader
+              title="Welcome"
+              plain={true}
+            />
+            <Placeholder />
+          </main>
+      }
       <Footer />
     </BrowserRouter>
   );

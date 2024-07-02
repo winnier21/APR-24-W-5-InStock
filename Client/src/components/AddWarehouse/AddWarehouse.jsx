@@ -42,11 +42,6 @@ function AddWarehouse({ warehousesProps }) {
       ...previousDetails,
       ...details,
     }));
-    const { name, value } = details.target;
-    setErrorState({
-      ...errorState,
-      [name]: null,
-    });
   };
 
   const handleSubmit = async (event) => {

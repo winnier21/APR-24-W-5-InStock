@@ -48,7 +48,7 @@ function ContactDetailsForm({ onChange, details, errorState, setErrorState }) {
           type="text"
           name="contact_position"
           placeholder="Position"
-          value={errorState?.contact_position}
+          value={contactDetails?.contact_position}
           onChange={handleChange}
         />
         <FormErrorNotification inError={errorState?.country} />

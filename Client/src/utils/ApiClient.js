@@ -29,7 +29,6 @@ export class ApiClient {
       return data;
     } catch (error) {
       const responseMessage = await error.response.data;
-      console.log(responseMessage, typeof responseMessage);
       return false;
     }
   }

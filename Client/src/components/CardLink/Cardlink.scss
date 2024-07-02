@@ -2,8 +2,13 @@
 @use "../../styles/partials/mixins" as *;
 
 .card-link {
-  @extend h3;
-  &:hover {
-    text-decoration: underline;
-  }
+    @extend h3;
+    &:hover{
+        text-decoration: underline;
+    }
+
+    &__arrow {
+        @include flex-mixin--row(auto);
+        justify-content: flex-start;
+    }
 }

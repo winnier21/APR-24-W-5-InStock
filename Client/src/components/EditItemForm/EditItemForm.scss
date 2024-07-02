@@ -173,3 +173,8 @@
     outline: none;
   }
 }
+
+// This is required because otherwise it is over-written by other styles
+.error {
+  @include error-state;  
+}
