@@ -1,0 +1,165 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+$details-width: 100%;
+$details-width--left: 40%;
+$details-width--right: calc(100% - $details-width--left);
+
+$column-gap: calc($main-side-padding--tablet * 2);
+$column-gap: calc($main-side-padding--tablet * 2);
+$column-width--index: 60%;
+$column-width--category: calc((100% - $column-width--index));
+
+$column-width--third: calc((33% - $main-side-padding--tablet));
+$column-width--status: calc((48% - $main-side-padding--tablet));
+$column-width--qty: calc((19% - $main-side-padding--tablet));
+$column-width--third: calc((33% - $main-side-padding--tablet));
+$column-width--status: calc((48% - $main-side-padding--tablet));
+$column-width--qty: calc((19% - $main-side-padding--tablet));
+$column-width--third: 33%;
+$column-width--status: 48%;
+$column-width--qty: 19%;
+$icons-width: 4.2rem;
+
+.inventory {
+  &__card {
+    @include card-mixin;
+    &:hover {
+      background-color: rgba(46, 102, 229, 0.07);
+      color: $instock-black;
+    }
+  }
+
+  &__header-row {
+    @include header-row;
+  }
+
+  &__details {
+    @include flex-mixin--row(auto);
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    @include tablet {
+      width: $details-width;
+      justify-content: space-between;
+    }
+  }
+
+  &__left {
+    @include flex-mixin--column(100%);
+    @include tablet {
+      width: $details-width--left;
+      @include align-left-top;
+    }
+
+    & .inventory__heading--table,
+    & .inventory__text-container {
+      @include tablet {
+        width: $column-width--category;
+      }
+      &:first-child {
+        @include tablet {
+          width: $column-width--index;
+        }
+      }
+    }
+
+    &--wide {
+      @extend .inventory__left;
+      @include tablet {
+        width: 50%;
+      }
+    }
+  }
+
+  &__right {
+    @include flex-mixin--column(100%);
+    @include tablet {
+      width: $details-width--right;
+      @include align-left-top;
+    }
+
+    &--wide {
+      @extend .inventory__right;
+      @include tablet {
+        width: 50%;
+      }
+    }
+  }
+
+  &__heading {
+    @include table-heading;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+
+    @include tablet {
+      display: none;
+    }
+
+    &:first-of-type {
+      margin-top: none;
+    }
+
+    &--table {
+      display: none;
+      @include tablet {
+        display: flex;
+        position: relative;
+        color: $slate;
+        top: 0.25rem;
+
+        &:after {
+          content: url("../../assets/icons/sort-24px.svg");
+          position: relative;
+          top: -0.25rem;
+        }
+      }
+    }
+    &--no-scroll {
+      @extend .inventory__heading--table;
+      color: $slate;
+      width: $icons-width;
+      justify-content: flex-end;
+      &:after {
+        content: "";
+      }
+    }
+  }
+
+  &__item-name {
+    @include row-name;
+    width: $column-width--index;
+  }
+
+  &__text-container {
+    align-items: flex-start;
+
+    &--status {
+      @include tablet {
+        width: $column-width--status;
+      }
+    }
+  }
+
+  &__name {
+    @include tablet {
+      width: $column-width--index;
+    }
+  }
+
+  &__category {
+    @include tablet {
+      width: $column-width--category;
+    }
+  }
+
+  &__qty {
+    @include tablet {
+      width: $column-width--qty;
+    }
+  }
+
+  &__icons {
+    justify-content: flex-end;
+  }
+}

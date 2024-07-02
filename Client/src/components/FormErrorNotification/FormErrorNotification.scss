@@ -1,0 +1,25 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.error {
+  @include error-state;
+
+  &__text {
+    @include p3;
+    position: relative;
+    color: $red;
+
+    &:before {
+      content: "";
+      display: inline-block;
+      background-image: url("../../assets/icons/error-24px.svg");
+      height: 0.75rem;
+      width: 0.75rem;
+      background-size: contain;
+    }
+  }
+}
+
+.no-error {
+  display: none;
+}

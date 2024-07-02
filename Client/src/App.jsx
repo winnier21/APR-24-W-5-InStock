@@ -1,35 +1,119 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
+import WarehousePage from "./pages/WarehousePage/WarehousePage";
+import InventoryPage from "./pages/InventoryPage/InventoryPage";
+import ItemDetailsPage from "./pages/ItemDetailsPage/ItemDetailsPage";
+import EditWarehousePage from "./pages/EditWarehousePage/EditWarehousePage";
+import EditItemPage from "./pages/EditItemPage/EditItemPage";
+import AddWarehousePage from "./pages/AddWarehousePage/AddWarehousePage";
+import AddItemPage from "./pages/AddItemPage/AddItemPage";
+import "./App.scss";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import apiInstance from "./utils/ApiClient";
+import Placeholder from "./components/Placeholder/Placeholder";
+import FormHeader from "./components/FormHeader/FormHeader";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [warehousesArray, setWarehousesArray] = useState(null);
+  const [totalEdits, setTotalEdits] = useState(0);
+
+  const getWarehouses = async () => {
+    const data = await apiInstance.getItemsArray("warehouses");
+    if (data) {
+      setWarehousesArray(data);
+    }
+  };
+
+  useEffect(() => {
+    getWarehouses();
+  }, [totalEdits]);
+
+  const warehousesProps = {
+    warehousesArray: warehousesArray,
+    totalEdits: totalEdits,
+    setTotalEdits: setTotalEdits,
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Header />
+      {
+        (warehousesArray) ?
+          < Routes >
+            <Route
+              path="/"
+              element={
+                <WarehousePage
+                  warehousesArray={warehousesArray}
+                  totalEdits={totalEdits}
+                  setTotalEdits={setTotalEdits}
+                />
+              }
+            />
+            <Route
+              path="/warehouse"
+              element={
+                <WarehousePage
+                  warehousesArray={warehousesArray}
+                  totalEdits={totalEdits}
+                  setTotalEdits={setTotalEdits}
+                />
+              }
+            />
+            <Route
+              path="/warehouse/:warehouseId"
+              element={<WarehouseDetailsPage />}
+            />
+            <Route
+              path="/warehouse/:warehouseId/edit"
+              element={<EditWarehousePage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/warehouse/add"
+              element={<AddWarehousePage warehousesProps={warehousesProps} />}
+            />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/inventory/:itemId" element={<ItemDetailsPage />} />
+            <Route
+              path="/warehouse/:warehouseId/:itemId/edit"
+              element={<EditItemPage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/inventory/:itemId/edit"
+              element={<EditItemPage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="/inventory/add"
+              element={<AddItemPage warehousesProps={warehousesProps} />}
+            />
+            <Route
+              path="*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
+            <Route
+              path="/warehouse/*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
+            <Route
+              path="/inventory/*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
+          </Routes>
+          :
+          <main>
+            
+            <FormHeader
+              title="Welcome"
+              plain={true}
+            />
+            <Placeholder />
+          </main>
+      }
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

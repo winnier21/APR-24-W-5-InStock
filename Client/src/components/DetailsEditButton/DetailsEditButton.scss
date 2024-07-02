@@ -1,0 +1,28 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../Button/AddButton/AddButton" as *;
+
+.edit-link {
+  @include flex-mixin--row(auto);
+  @extend .button-add;
+  height: 2.25rem;
+  width: 2.25rem;
+  box-sizing: border-box;
+  justify-content: center;
+
+  @include tablet {
+    width: auto;
+  }
+
+  &__icon {
+    height: 1.25rem;
+  }
+
+  &__text {
+    display: none;
+
+    @include tablet {
+      display: flex;
+    }
+  }
+}

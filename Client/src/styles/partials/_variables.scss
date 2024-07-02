@@ -1,0 +1,34 @@
+//Primary Colors
+$instock-black: #13182c;
+$instock-indigo: #2e66e5;
+$white: #ffffff;
+
+//Secondary Colors
+$slate: #5c667e;
+$cloud: #bdc5d5;
+
+//Background Colors
+$graphite: #232940;
+$light-grey: #f7f8f9;
+
+// Supporting Colors
+$green: #158463;
+$red: #c94515;
+$green-background: rgb(21, 132, 99, 0.07);
+$red-background: rgb(201, 69, 21, 0.07);
+
+$mobile-breakpoint: 23.5rem;
+$tablet-breakpoint: 48rem;
+$desktop-breakpoint: 80rem;
+
+$status-radius: 1.25rem;
+$divider: 0.0625rem solid $cloud;
+$main-side-padding--tablet: 2.5rem;
+$card-width--tablet: calc(100% - 2 * $main-side-padding--tablet);
+
+$padding-sm: 0.5rem;
+$padding-med: 1rem;
+$padding-large: 1.5rem;
+
+$header-height--tablet: 11.625rem;
+$section-gap: 2.25rem;

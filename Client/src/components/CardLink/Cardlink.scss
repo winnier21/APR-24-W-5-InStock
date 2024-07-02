@@ -1,0 +1,14 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.card-link {
+    @extend h3;
+    &:hover{
+        text-decoration: underline;
+    }
+
+    &__arrow {
+        @include flex-mixin--row(auto);
+        justify-content: flex-start;
+    }
+}

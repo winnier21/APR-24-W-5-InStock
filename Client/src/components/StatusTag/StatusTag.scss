@@ -1,0 +1,22 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.status-tag {
+  @extend h4;
+  border-radius: $status-radius;
+  text-transform: uppercase;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+
+  &--green {
+    @extend .status-tag;
+    background-color: $green-background;
+    color: $green;
+  }
+
+  &--red {
+    @extend .status-tag;
+    background-color: $red-background;
+    color: $red;
+  }
+}

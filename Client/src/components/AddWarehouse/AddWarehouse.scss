@@ -1,0 +1,51 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.addWarehouse {
+  &__header {
+    border-bottom: 0.0625rem solid $cloud;
+
+    .page-top {
+      justify-content: flex-start;
+    }
+    &-container {
+      display: flex;
+      align-items: center;
+    }
+    .arrow-back-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    a {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+  &__title {
+    padding-left: 0.5rem;
+    padding-bottom: 0;
+  }
+
+  &__button {
+    margin-right: 1.44rem;
+  }
+}
+
+.form {
+  &__container {
+    align-content: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    @include tablet {
+      display: flex;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @include desktop {
+      width: 100%;
+      padding-left: 0rem;
+      padding-right: 0rem;
+    }
+  }
+}

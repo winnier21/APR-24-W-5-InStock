@@ -1,0 +1,16 @@
+@use "../../styles/partials/mixins" as *;
+
+.action-icons {
+  @include flex-mixin--row(auto);
+  gap: 1.1875rem;
+  align-items: space-between;
+  @include tablet {
+    align-items: flex-start;
+  }
+}
+
+.delete-icon {
+  &:hover {
+    cursor: pointer;
+  }
+}

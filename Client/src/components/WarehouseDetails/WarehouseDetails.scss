@@ -1,0 +1,30 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.warehouse-info {
+  @include flex-mixin--column(auto);
+  @include card-padding;
+  gap: $section-gap;
+  @include tablet {
+    flex-direction: row;
+  }
+
+  &__address-div {
+    @include tablet {
+      width: 80%;
+      border-right: $divider;
+    }
+  }
+
+  &__heading {
+    @include table-heading;
+  }
+
+  &__contact-div {
+    @include flex-mixin--row(100%);
+  }
+
+  &__contact-info {
+    width: 70%;
+  }
+}
