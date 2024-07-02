@@ -41,6 +41,10 @@
       border: 0.0625rem solid $instock-indigo;
     }
 
+    &::after {
+      content: "This field is required"
+    }
+
     @include tablet {
       width: 100%;
       height: 2.375rem;

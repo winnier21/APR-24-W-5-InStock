@@ -28,7 +28,7 @@ export class ApiClient {
       // this.logResponse(response, endpoint, 'GET');
       return data;
     } catch (error) {
-      const responseMessage = error.response.data;
+      const responseMessage = await error.response.data;
       console.log(responseMessage, typeof responseMessage);
       return false;
     }
@@ -76,7 +76,7 @@ export class ApiClient {
         return response.data;
       }
     } catch (error) {
-      const responseMessage = error.response.data;
+      const responseMessage = await error.response.data;
       return responseMessage;
     }
   }
@@ -99,7 +99,7 @@ export class ApiClient {
         return response.data;
       }
     } catch (error) {
-      const responseMessage = error.response.data;
+      const responseMessage = await error.response.data;
       return responseMessage;
     }
   }

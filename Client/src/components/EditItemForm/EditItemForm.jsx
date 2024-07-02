@@ -4,6 +4,7 @@ import './EditItemForm.scss';
 import AddButton from '../Button/AddButton/AddButton';
 import CancelButton from '../Button/CancelButton/CancelButton';
 import apiInstance from '../../utils/ApiClient';
+import FormErrorNotification from '../FormErrorNotification/FormErrorNotification';
   
 const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
   const navigate = useNavigate();
@@ -46,11 +47,14 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
   const validateForm = async (enteredQuantity) => {
     let errors = {};
     const quantityErrorState = enteredQuantity < 0 || typeof enteredQuantity !== 'number';
+    const warehouseId = warehousesArray.find(
+      warehouseObject => warehouseObject.warehouse_name === formData.warehouse_name
+    )?.id || null;
     errors = {
-      warehouse_name: !formData.warehouse_name,
+      warehouse_name: !warehouseId,
       item_name: formData.item_name?.length < 3 || !formData.item_name,
       description: formData.description?.length < 3 || !formData.description,
-      category: formData.category?.length < 3 || !formData.category,
+      category: !formData.category,
       quantity: quantityErrorState
     };
     setErrorState(errors);
@@ -59,7 +63,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
     })
     const isValid = !Object.values(errors).includes(true);
     if (!isValid) {
-      alert(`Invalid input for ${propertiesWithErrors.join(', ')}. \n\nQuantity must be non-negative. Text values have 3+ characters.`
+      alert(`Invalid input for ${propertiesWithErrors.join(', ')}. \n\nQuantity must be non-negative. Text values have 3+ characters. Drop-down selections cannot be blank.`
       )
     }
     return isValid
@@ -77,9 +81,6 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
     const validFormSubmission = await validateForm(enteredQuantity);
     if (validFormSubmission) {
       const { warehouse_name, ...submittedItem } = formData;
-      const warehouseId = warehousesArray.find(
-        warehouseObject => warehouseObject.warehouse_name === warehouse_name
-      )?.id || null;
       submittedItem.warehouse_id = warehouseId;
       submittedItem.quantity = enteredQuantity;
 
@@ -123,6 +124,9 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                 placeholder="item name"
                 onChange={handleChange}
               />
+              <FormErrorNotification
+                inError={errorState.item_name}
+              />
             </div>
             <div className="inventory-form__divider-detail">
               <label htmlFor="description" className='label-text'>Description </label>
@@ -133,6 +137,9 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                 defaultValue={formData.description}
                 placeholder="Please enter a brief item description..."
                 onChange={handleChange}
+              />
+              <FormErrorNotification
+                inError={errorState.description}
               />
             </div>
             <div className="inventory-form__divider-detail inventory-form__divider-detail--last">
@@ -151,6 +158,9 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                   </option>
                 ))}
               </select>
+              <FormErrorNotification
+                inError={errorState.category}
+              />
             </div>
           </section>
           <section className="inventory-form__divider inventory-form__divider--right">
@@ -200,6 +210,10 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                   defaultValue={formData.quantity}
                   onChange={handleChange}
                 />
+                <FormErrorNotification
+                  inError={errorState.quantity}
+                  text="Number must be greater than zero"
+                />
               </div>
             )}
             <div className="inventory-form__divider-detail inventory-form__divider-detail--last">
@@ -222,6 +236,9 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
                   </option>
                 ))}
               </select>
+              <FormErrorNotification
+                inError={errorState.warehouse_name}
+              />
             </div>
           </section>
         </div>
