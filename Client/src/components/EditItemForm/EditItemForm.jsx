@@ -101,6 +101,11 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
     const validFormSubmission = await validateForm(enteredQuantity);
     if (validFormSubmission) {
       const { warehouse_name, ...submittedItem } = formData;
+      const warehouseId =
+        warehousesArray.find(
+          (warehouseObject) =>
+            warehouseObject.warehouse_name === formData.warehouse_name
+        )?.id || null;
       submittedItem.warehouse_id = warehouseId;
       submittedItem.quantity = enteredQuantity;
 
