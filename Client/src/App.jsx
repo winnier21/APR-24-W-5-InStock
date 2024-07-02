@@ -88,6 +88,10 @@ function App() {
               path="/inventory/add"
               element={<AddItemPage warehousesProps={warehousesProps} />}
             />
+            <Route
+              path="*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
           </Routes>
           :
           <main>
