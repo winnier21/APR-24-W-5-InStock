@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./WarehouseDetailsForm.scss";
+import FormErrorNotification from "../../FormErrorNotification/FormErrorNotification";
 
 const WarehouseDetailsForm = ({ onChange, details, errorState, setErrorState }) => {
   const inputClassName = "warehouse__form-input"
@@ -44,6 +45,9 @@ const WarehouseDetailsForm = ({ onChange, details, errorState, setErrorState }) 
             value={localDetails.warehouse_name}
             onChange={handleChange}
           />
+          <FormErrorNotification
+            inError={errorState?.warehouse_name}
+          />
           <h3>Street Address</h3>
           <input
             className={errorState?.address ? errorClassName : inputClassName}
@@ -52,6 +56,9 @@ const WarehouseDetailsForm = ({ onChange, details, errorState, setErrorState }) 
             placeholder="Street Address"
             value={localDetails.address}
             onChange={handleChange}
+          />
+          <FormErrorNotification
+            inError={errorState?.address}
           />
           <h3>City</h3>
           <input
@@ -62,6 +69,9 @@ const WarehouseDetailsForm = ({ onChange, details, errorState, setErrorState }) 
             value={localDetails.city}
             onChange={handleChange}
           />
+          <FormErrorNotification
+            inError={errorState?.city}
+          />
           <h3>Country</h3>
           <input
             className={errorState?.country ? errorClassName : inputClassName}
@@ -70,6 +80,9 @@ const WarehouseDetailsForm = ({ onChange, details, errorState, setErrorState }) 
             placeholder="Country"
             value={localDetails.country}
             onChange={handleChange}
+          />
+          <FormErrorNotification
+            inError={errorState?.country}
           />
         </div>
       </div>
