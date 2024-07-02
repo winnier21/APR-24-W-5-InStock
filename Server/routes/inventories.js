@@ -44,10 +44,10 @@ router.get("/:id", async (req, res) => {
     if (data) {
       res.status(200).json(data);
     } else {
-      res.status(404).json({ error: "Inventory item not found" });
+      res.status(404).send(`Item with id ${itemId} not found`);
     }
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).send("Internal server error");
   }
 });
 

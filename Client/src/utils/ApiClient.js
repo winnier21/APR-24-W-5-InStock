@@ -29,6 +29,7 @@ export class ApiClient {
       return data;
     } catch (error) {
       const responseMessage = await error.response.data;
+      alert(responseMessage);
       return false;
     }
   }
@@ -110,7 +111,6 @@ export class ApiClient {
       const response = await axios.delete(requestUrl);
       return response;
     } catch (error) {
-      console.error(error);
       return false;
     }
   }
