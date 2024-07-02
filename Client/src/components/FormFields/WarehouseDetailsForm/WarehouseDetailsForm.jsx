@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./WarehouseDetailsForm.scss";
 
-const WarehouseDetailsForm = ({ onChange, details, errorState }) => {
+const WarehouseDetailsForm = ({ onChange, details, errorState, setErrorState }) => {
   const inputClassName = "warehouse__form-input"
   const errorClassName = `${inputClassName} error`;
   const [localDetails, setLocalDetails] = useState({
@@ -22,13 +22,12 @@ const WarehouseDetailsForm = ({ onChange, details, errorState }) => {
     });
   }, [details]);
 
-  
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     const updatedDetails = { ...localDetails, [name]: value };
     setLocalDetails(updatedDetails);
     onChange(updatedDetails);
+    setErrorState({ ...errorState, [name]: null });
   };
 
   return (

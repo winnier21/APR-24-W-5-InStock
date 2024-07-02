@@ -16,6 +16,7 @@ export function isValidEmailAddress(emailAddress) {
 export const validateForm = async (
   errors, setErrorState
 ) => {
+  setErrorState({});
   setErrorState(errors);
   const propertiesWithErrors = Object.keys(errors).filter(key => {
     return errors[key] == true;

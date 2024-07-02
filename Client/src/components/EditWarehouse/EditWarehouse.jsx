@@ -55,7 +55,6 @@ function EditWarehouse({ warehousesProps }) {
       contact_phone: !isValidPhoneNumber(warehouseDetails.contact_phone)
     }
     const validFormSubmission = await validateForm(errors, setErrorState); // function to validate form
-    console.log(validFormSubmission);
     if (validFormSubmission) {
       const responseData = await apiInstance.put('warehouses', warehouseId, warehouseDetails);
       if (typeof responseData === 'object') {
@@ -94,11 +93,13 @@ function EditWarehouse({ warehousesProps }) {
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
               errorState={errorState}
+              setErrorState={setErrorState}
             />
             <ContactDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
               errorState={errorState}
+              setErrorState={setErrorState}
             />
           </section>
           <div className="button">

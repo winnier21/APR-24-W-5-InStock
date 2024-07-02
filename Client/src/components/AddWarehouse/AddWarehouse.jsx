@@ -35,6 +35,10 @@ function AddWarehouse({warehousesProps}) {
 
   const handleWarehouseDetailsChange = (details) => {
     setWarehouseDetails((previousDetails) => ({ ...previousDetails, ...details }));
+    const { name, value } = details.target;
+    setErrorState({
+      ...errorState, [name]: null
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -84,11 +88,13 @@ function AddWarehouse({warehousesProps}) {
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
               errorState={errorState}
+              setErrorState={setErrorState}
             />
             <ContactDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
               errorState={errorState}
+              setErrorState={setErrorState}
             />
           </section>
           <div className="button">

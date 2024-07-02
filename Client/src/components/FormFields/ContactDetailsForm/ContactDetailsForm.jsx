@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ContactDetailsForm.scss";
 
-function ContactDetailsForm({ onChange, details, errorState }) {
+function ContactDetailsForm({ onChange, details, errorState, setErrorState }) {
   const inputClassName = "contact__form-input"
   const errorClassName = `${inputClassName} error`;
   const [contactDetails, setContactDetails] = useState({
@@ -22,6 +22,7 @@ function ContactDetailsForm({ onChange, details, errorState }) {
     const updatedDetails = { ...contactDetails, [name]: value };
     setContactDetails(updatedDetails);
     onChange(updatedDetails);
+    setErrorState({ ...errorState, [name]: null });
   };
 
   return (

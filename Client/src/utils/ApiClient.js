@@ -42,6 +42,8 @@ export class ApiClient {
   
   async getItem(route, id) {
     /* 
+    This is a docstring for how to use the function.
+
     A24W5-26 API to GET a Single Inventory Item 
     */
     const endpoint = `api/${route}/${id}`
@@ -57,6 +59,8 @@ export class ApiClient {
   
   async post(route, bodyObject) {
     /* 
+    This is a docstring for how to use the function.
+
     A24W5-28 API to POST/CREATE a New Inventory Item
       const response = apiInstance.postItem('inventories', itemObject);
 
@@ -79,6 +83,8 @@ export class ApiClient {
   
   async put(route, id, bodyObject) {
     /* 
+    This is a docstring for how to use the function.
+    
     A24W5-18 PUT/EDIT a Warehouse 
       const data = apiInstance.put('warehouses', warehouseId, warehouseObject);
 
@@ -103,7 +109,6 @@ export class ApiClient {
       const endpoint = `api/${route}/${id}`;
       const requestUrl = this.createRequestUrl(endpoint);
       const response = await axios.delete(requestUrl);
-      // this.logResponse(response, endpoint, 'DELETE');
       return response;
     } catch (error) {
       console.error(error);
