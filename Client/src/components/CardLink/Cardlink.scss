@@ -6,4 +6,9 @@
     &:hover{
         text-decoration: underline;
     }
+
+    &__arrow {
+        @include flex-mixin--row(auto);
+        justify-content: flex-start;
+    }
 }
