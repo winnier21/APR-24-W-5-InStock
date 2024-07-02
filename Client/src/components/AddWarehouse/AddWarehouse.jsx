@@ -6,14 +6,23 @@ import ContactDetailsForm from "../FormFields/ContactDetailsForm/ContactDetailsF
 import AddButton from "../Button/AddButton/AddButton";
 import CancelButton from "../Button/CancelButton/CancelButton";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
-import { isValidEmailAddress } from "../../utils/utils";
+import { isValidEmailAddress, isValidPhoneNumber, validateForm } from "../../utils/utils";
+import apiInstance from "../../utils/ApiClient";
 
 function AddWarehouse({warehousesProps}) {
   const navigate = useNavigate();
-  const {
-    totalEdits, setTotalEdits
-  } = warehousesProps;
+  const { totalEdits, setTotalEdits } = warehousesProps;
   const [warehouseDetails, setWarehouseDetails] = useState({
+    warehouse_name: "",
+    address: "",
+    city: "",
+    country: "",
+    contact_name: "",
+    contact_position: "",
+    contact_phone: "",
+    contact_email: "",
+  });
+  const [errorState, setErrorState] = useState({
     warehouse_name: "",
     address: "",
     city: "",
@@ -25,35 +34,32 @@ function AddWarehouse({warehousesProps}) {
   });
 
   const handleWarehouseDetailsChange = (details) => {
-    setWarehouseDetails((prevDetails) => ({ ...prevDetails, ...details }));
+    setWarehouseDetails((previousDetails) => ({ ...previousDetails, ...details }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { contact_email } = warehouseDetails;
-
-    // Client-side validation for the email address
-    if (!isValidEmailAddress(contact_email)) {
-      alert("Invalid email address format.");
-      return;
+    const errors = {
+      warehouse_name: !warehouseDetails.warehouse_name,
+      address: warehouseDetails.address?.length < 3 || !warehouseDetails.address,
+      city: warehouseDetails.city?.length < 3 || !warehouseDetails.city,
+      country: warehouseDetails.country?.length < 3 || !warehouseDetails.country,
+      contact_name: warehouseDetails.contact_name?.length < 3 || !warehouseDetails.contact_name,
+      contact_position: warehouseDetails.contact_position?.length < 3 || !warehouseDetails.contact_position,
+      contact_email: !isValidEmailAddress(warehouseDetails.contact_email),
+      contact_phone: !isValidPhoneNumber(warehouseDetails.contact_phone)
     }
-    const BASE_URL = import.meta.env.VITE_API_URL;
-    try {
-      const response = await fetch(`${BASE_URL}/api/warehouses`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(warehouseDetails),
-      });
-
-      if (response.ok) {
+    const validFormSubmission = await validateForm(errors, setErrorState); // function to validate form
+    if (validFormSubmission) {
+      const responseData = await apiInstance.post('warehouses', warehouseDetails);
+      if (typeof responseData === 'object') {
+        alert(`${warehouseDetails.warehouse_name} successfully added`);
         setTotalEdits(totalEdits + 1);
-        alert("Warehouse added successfully!");
-        navigate("/warehouse");
+        navigate(-1);
       } else {
-        throw new Error("Failed to add warehouse");
+        const message = `Failed to add ${warehouseDetails.warehouse_name}: ${responseData}`;
+        alert(message);
       }
-    } catch (error) {
-      alert("Failed to add warehouse");
     }
   };
 
@@ -77,10 +83,12 @@ function AddWarehouse({warehousesProps}) {
             <WarehouseDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
+              errorState={errorState}
             />
             <ContactDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
+              errorState={errorState}
             />
           </section>
           <div className="button">

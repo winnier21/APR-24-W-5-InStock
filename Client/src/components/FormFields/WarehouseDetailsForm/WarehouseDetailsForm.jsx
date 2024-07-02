@@ -38,7 +38,7 @@ const WarehouseDetailsForm = ({ onChange, details, errorState }) => {
           <h2>Warehouse Details</h2>
           <h3>Warehouse Name</h3>
           <input
-            className={errorState.warehouse_name ? errorClassName : inputClassName}
+            className={errorState?.warehouse_name ? errorClassName : inputClassName}
             name="warehouse_name"
             type="text"
             placeholder="Warehouse Name"
@@ -47,7 +47,7 @@ const WarehouseDetailsForm = ({ onChange, details, errorState }) => {
           />
           <h3>Street Address</h3>
           <input
-            className={errorState.address ? errorClassName : inputClassName}
+            className={errorState?.address ? errorClassName : inputClassName}
             name="address"
             type="text"
             placeholder="Street Address"
@@ -56,7 +56,7 @@ const WarehouseDetailsForm = ({ onChange, details, errorState }) => {
           />
           <h3>City</h3>
           <input
-            className={errorState.city ? errorClassName : inputClassName}
+            className={errorState?.city ? errorClassName : inputClassName}
             name="city"
             type="text"
             placeholder="City"
@@ -65,7 +65,7 @@ const WarehouseDetailsForm = ({ onChange, details, errorState }) => {
           />
           <h3>Country</h3>
           <input
-            className={errorState.country ? errorClassName : inputClassName}
+            className={errorState?.country ? errorClassName : inputClassName}
             name="country"
             type="text"
             placeholder="Country"

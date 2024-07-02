@@ -30,7 +30,7 @@ function ContactDetailsForm({ onChange, details, errorState }) {
         <h2>Contact Details</h2>
         <h3>Contact Name</h3>
         <input
-          className={errorState.contact_name ? errorClassName : inputClassName}
+          className={errorState?.contact_name ? errorClassName : inputClassName}
           type="text"
           name="contact_name"
           placeholder="Contact Name"
@@ -39,7 +39,7 @@ function ContactDetailsForm({ onChange, details, errorState }) {
         />
         <h3>Position</h3>
         <input
-          className={errorState.contact_position ? errorClassName : inputClassName}
+          className={errorState?.contact_position ? errorClassName : inputClassName}
           type="text"
           name="contact_position"
           placeholder="Position"
@@ -48,7 +48,7 @@ function ContactDetailsForm({ onChange, details, errorState }) {
         />
         <h3>Phone Number</h3>
         <input
-          className={errorState.contact_phone ? errorClassName : inputClassName}
+          className={errorState?.contact_phone ? errorClassName : inputClassName}
           type="text"
           name="contact_phone"
           placeholder="Phone Number"
@@ -57,7 +57,7 @@ function ContactDetailsForm({ onChange, details, errorState }) {
         />
         <h3>Email</h3>
         <input
-          className={errorState.contact_email ? errorClassName : inputClassName}
+          className={errorState?.contact_email ? errorClassName : inputClassName}
           type="text"
           name="contact_email"
           placeholder="Email"
