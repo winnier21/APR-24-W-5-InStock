@@ -41,7 +41,6 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ error: "Inventory item not found" });
     }
   } catch (error) {
-    console.log(error)
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -72,7 +71,6 @@ router.post('/', async (req, res) => {
     const property = requiredProperties[i];
     const value = requestBody?.[property];
     if (!value && property !== 'quantity') {
-      console.log('missing value', property)
       const message = `Missing "${property}" property in request body.`
       res.status(400).send(message);
       return;
@@ -89,7 +87,6 @@ router.post('/', async (req, res) => {
     res.status(400).send(message)
   }
   try {
-    console.log("Received data:", req.body); 
     const [id] = await knex("inventories").insert(itemToInsert);
 
     const responseObject = { id: id, ...itemToInsert };
@@ -100,7 +97,6 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-  console.log(req.body);
   const id = parseInt(req.params.id, 10);
   const { warehouse_id, item_name, description, category, status, quantity } = req.body;
   if (quantity < 0) {
