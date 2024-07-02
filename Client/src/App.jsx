@@ -92,6 +92,14 @@ function App() {
               path="*"
               element={<Placeholder text="Page not found. Please use the navigation links above." />}
             />
+            <Route
+              path="/warehouse/*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
+            <Route
+              path="/inventory/*"
+              element={<Placeholder text="Page not found. Please use the navigation links above." />}
+            />
           </Routes>
           :
           <main>
