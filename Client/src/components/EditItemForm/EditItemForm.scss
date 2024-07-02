@@ -173,12 +173,3 @@
 .error {
   @include error-state;
 }
-// h2 {
-//   padding-top: 1.5rem;
-//   @include tablet {
-//     padding-top: 0rem;
-//   }
-//   @include desktop {
-//     padding-top: 0rem;
-//   }
-// }

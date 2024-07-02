@@ -145,7 +145,7 @@ router.put('/:id', async (req, res) => {
         "category", "status", "quantity"
       )
       .where({ id }).first();
-    res.json(inventory);
+    res.status(201).json(inventory);
   } catch (err) {
     res.status(400).send(`Unable to update inventory item with ID of ${id}.`);
   }
