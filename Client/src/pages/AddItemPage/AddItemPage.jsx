@@ -1,7 +1,6 @@
-import React from 'react';
-import FormHeader from '../../components/FormHeader/FormHeader';
-import EditItemForm from '../../components/EditItemForm/EditItemForm';
-
+import React from "react";
+import FormHeader from "../../components/FormHeader/FormHeader";
+import EditItemForm from "../../components/EditItemForm/EditItemForm";
 
 function AddItemPage({ warehousesProps }) {
   const itemObject = {
@@ -11,16 +10,13 @@ function AddItemPage({ warehousesProps }) {
     description: null,
     category: null,
     status: null,
-    quantity: 0
-  }
+    quantity: 0,
+  };
 
   return (
     <main>
       <FormHeader title="Add New Inventory Item" />
-      <EditItemForm
-        warehousesProps={warehousesProps}
-        itemObject={itemObject}
-      />
+      <EditItemForm warehousesProps={warehousesProps} itemObject={itemObject} />
     </main>
   );
 }

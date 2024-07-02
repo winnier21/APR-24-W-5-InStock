@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import InventoryList from '../../components/InventoryList/InventoryList';
-import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails';
-import apiInstance from '../../utils/ApiClient';
-import Placeholder from '../../components/Placeholder/Placeholder';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import InventoryList from "../../components/InventoryList/InventoryList";
+import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails";
+import apiInstance from "../../utils/ApiClient";
+import Placeholder from "../../components/Placeholder/Placeholder";
 
 function WarehouseDetailsPage() {
   const warehouseId = useParams().warehouseId;
@@ -15,25 +15,25 @@ function WarehouseDetailsPage() {
     if (data) {
       setWarehouseInventory(data);
     }
-  }
+  };
 
   const getWarehouseDetails = async (warehouseId) => {
-    const data = await apiInstance.getItem('warehouses', warehouseId);
+    const data = await apiInstance.getItem("warehouses", warehouseId);
     if (data) {
       setWarehouseObject(data);
     }
-  }
+  };
 
   useEffect(() => {
     getWarehouseInventory();
-  }, [])
+  }, []);
 
   useEffect(() => {
     getWarehouseDetails(warehouseId);
   }, []);
 
   if (!warehouseObject || !warehouseInventory) {
-    return <Placeholder/>
+    return <Placeholder />;
   }
 
   return (
@@ -48,4 +48,4 @@ function WarehouseDetailsPage() {
   );
 }
 
-export default WarehouseDetailsPage; 
+export default WarehouseDetailsPage;

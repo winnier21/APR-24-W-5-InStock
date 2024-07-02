@@ -1,13 +1,12 @@
-import React from 'react';
-import './CloseIcon.scss';
-import closeIcon from '../../assets/icons/close-24px.svg';
+import React from "react";
+import "./CloseIcon.scss";
+import closeIcon from "../../assets/icons/close-24px.svg";
 
 const CloseIcon = ({ dialogRef }) => {
-
   const clickHandler = (event) => {
     dialogRef.current.close();
-  }
-  
+  };
+
   return (
     <img
       src={closeIcon}
@@ -15,7 +14,7 @@ const CloseIcon = ({ dialogRef }) => {
       onClick={clickHandler}
       className="close-icon"
     />
-  )
-}
+  );
+};
 
-export default CloseIcon
+export default CloseIcon;

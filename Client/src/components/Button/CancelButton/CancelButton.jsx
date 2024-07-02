@@ -1,13 +1,13 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './CancelButton.scss';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./CancelButton.scss";
 
-const CancelButton = ({dialogRef}) => {
+const CancelButton = ({ dialogRef }) => {
   const navigate = useNavigate();
 
   const handleCancel = () => {
     if (dialogRef) {
-      dialogRef.current.close()
+      dialogRef.current.close();
     } else {
       navigate(-1);
     }

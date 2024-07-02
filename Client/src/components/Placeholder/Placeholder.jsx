@@ -1,5 +1,5 @@
-import React from 'react'; 
-import './Placeholder.scss';
+import React from "react";
+import "./Placeholder.scss";
 
 const Placeholder = ({text}) => {
   const placeholderText = text || "Loading";
@@ -7,7 +7,7 @@ const Placeholder = ({text}) => {
     <section className="api-data-placeholder">
       <p className="table-text">{placeholderText}</p>
     </section>
-  )
-}
+  );
+};
 
-export default Placeholder
+export default Placeholder;

@@ -1,5 +1,4 @@
-@use '../../styles/partials/mixins' as *;
-
+@use "../../styles/partials/mixins" as *;
 
 .action-icons {
   @include flex-mixin--row(auto);
@@ -8,7 +7,7 @@
   @include tablet {
     align-items: flex-start;
   }
-} 
+}
 
 .delete-icon {
   &:hover {

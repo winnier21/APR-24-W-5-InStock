@@ -16,9 +16,10 @@ function PageTop({ link, buttonText }) {
   return (
     <section className="pagetop">
       <form className="pagetop__form">
-        <div 
-        className={`pagetop__container ${isContainerActive ? "active" : ""}`}
-        onFocus={handleInputFocus} onBlur={handleInputBlur}
+        <div
+          className={`pagetop__container ${isContainerActive ? "active" : ""}`}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
         >
           <input
             className="pagetop__search"

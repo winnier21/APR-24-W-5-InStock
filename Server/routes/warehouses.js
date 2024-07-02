@@ -2,7 +2,10 @@ import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 import express from "express";
-import { isValidEmailAddress, isValidPhoneNumber } from "../../Client/src/utils/utils.js";
+import {
+  isValidEmailAddress,
+  isValidPhoneNumber,
+} from "../../Client/src/utils/utils.js";
 
 const router = express.Router();
 
@@ -124,9 +127,13 @@ router.put("/:id", async (req, res) => {
     return;
   }
   const remainingProperties = [
-    'warehouse_name', 'address', 'city', 'country',
-    'contact_name', 'contact_position',
-  ]
+    "warehouse_name",
+    "address",
+    "city",
+    "country",
+    "contact_name",
+    "contact_position",
+  ];
   // Validate form values to have at least 2 characters
   for (let i = 0; i < remainingProperties.length; i++) {
     const property = remainingProperties[i];
@@ -139,7 +146,7 @@ router.put("/:id", async (req, res) => {
   try {
     const result = await knex("warehouses").where({ id }).update(req.body);
     if (!result) {
-      const message = `Warehouse ${id} not found.`
+      const message = `Warehouse ${id} not found.`;
       res.status(404).send(message);
       return;
     }
@@ -151,16 +158,21 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     let requestBody = req.body;
 
-    const propertiesToValidateWithRegex = ['contact_phone', 'contact_email'];
+    const propertiesToValidateWithRegex = ["contact_phone", "contact_email"];
     const remainingProperties = [
-      'warehouse_name', 'address', 'city', 'country',
-      'contact_name', 'contact_position',
-    ]
-    const requiredProperties = propertiesToValidateWithRegex.concat(remainingProperties);
+      "warehouse_name",
+      "address",
+      "city",
+      "country",
+      "contact_name",
+      "contact_position",
+    ];
+    const requiredProperties =
+      propertiesToValidateWithRegex.concat(remainingProperties);
     const newObject = {};
 
     // Validate email address
@@ -178,7 +190,7 @@ router.post('/', async (req, res) => {
     // Validate form values and add to new object for insertion
     for (let i = 0; i < requiredProperties.length; i++) {
       const property = requiredProperties[i];
-      const value = requestBody[property]
+      const value = requestBody[property];
       if (value && value.length > 2) {
         newObject[property] = requestBody[property];
       } else {
@@ -186,13 +198,13 @@ router.post('/', async (req, res) => {
         return;
       }
     }
-    const newId = await knex('warehouses').insert(newObject);
+    const newId = await knex("warehouses").insert(newObject);
     newObject.id = newId[0];
     res.status(201).json(newObject);
   } catch (error) {
     res.status(400).send(`Unable to post new warehouse`);
   }
-})
+});
 
 router.delete("/:id", async (req, res) => {
   try {
