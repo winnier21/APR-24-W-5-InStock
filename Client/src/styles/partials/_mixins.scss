@@ -1,11 +1,6 @@
 @use "./variables" as *;
 @use "./globals" as *;
 
-@mixin mobile {
-  @media (min-width: 375px) {
-    @content;
-  }
-}
 
 @mixin tablet {
   @media (min-width: 768px) {

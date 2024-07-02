@@ -4,7 +4,6 @@ import InventoryList from '../../components/InventoryList/InventoryList';
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails';
 import apiInstance from '../../utils/ApiClient';
 import Placeholder from '../../components/Placeholder/Placeholder';
-// import './WarehouseDetailsPage.scss';
 
 function WarehouseDetailsPage() {
   const warehouseId = useParams().warehouseId;
