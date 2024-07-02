@@ -53,7 +53,6 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
       category: formData.category?.length < 3 || !formData.category,
       quantity: quantityErrorState
     };
-    console.log(errors);
     setErrorState(errors);
     const propertiesWithErrors = Object.keys(errors).filter(key => {
       return errors[key] == true;
@@ -68,6 +67,7 @@ const EditForm = ({ itemObject, warehousesProps, requestMethod }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // If status is set to "Out of Stock", quantity is transformed to 0.
     let enteredQuantity = formData.quantity;
     enteredQuantity = parseInt(enteredQuantity);
     if (formData.status === 'Out of Stock') {

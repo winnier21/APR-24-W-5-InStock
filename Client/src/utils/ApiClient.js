@@ -80,10 +80,10 @@ export class ApiClient {
   async put(route, id, bodyObject) {
     /* 
     A24W5-18 PUT/EDIT a Warehouse 
-      const response = apiInstance.put('warehouses', warehouseId, warehouseObject);
+      const data = apiInstance.put('warehouses', warehouseId, warehouseObject);
 
     A24W5-29 API to PUT/EDIT an Inventory Item
-      const response = apiInstance.put('inventories', itemId, itemObject);
+      const data = apiInstance.put('inventories', itemId, itemObject);
     */
     try {
       const endpoint = `api/${route}/${id}`;

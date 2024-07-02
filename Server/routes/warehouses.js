@@ -2,7 +2,7 @@ import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 import express from "express";
-import { isValidEmailAddress } from "../../Client/src/utils/utils.js";
+import { isValidEmailAddress, isValidPhoneNumber } from "../../Client/src/utils/utils.js";
 
 const router = express.Router();
 
@@ -97,39 +97,57 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
+  const requestBody = req.body;
   const {
-    warehouseName,
+    warehouse_name,
     address,
     city,
     country,
-    contactName,
-    contactPosition,
-    contactPhone,
-    contactEmail,
-  } = req.body;
+    contact_name,
+    contact_position,
+    contact_phone,
+    contact_email,
+  } = requestBody;
 
-  try {
-    const result = await knex("warehouses").where({ id }).update({
-      warehouse_name: warehouseName,
-      address,
-      city,
-      country,
-      contact_name: contactName,
-      contact_position: contactPosition,
-      contact_phone: contactPhone,
-      contact_email: contactEmail,
-    });
+  // Validate email address
+  if (!isValidEmailAddress(requestBody.contact_email)) {
+    res.status(404).send(`Invalid email value.`);
+    return;
+  }
 
-    if (result) {
-      res.status(200).json({ message: "Warehouse updated successfully" });
-    } else {
-      res.status(404).json({ error: "Warehouse not found" });
+  // Validate phone number
+  if (!isValidPhoneNumber(requestBody.contact_phone)) {
+    res.status(404).send(`Invalid phone number format.`);
+    return;
+  }
+  const remainingProperties = [
+    'warehouse_name', 'address', 'city', 'country',
+    'contact_name', 'contact_position',
+  ]
+  // Validate form values to have at least 2 characters
+  for (let i = 0; i < remainingProperties.length; i++) {
+    const property = remainingProperties[i];
+    const value = requestBody[property];
+    if (!value || value?.length < 3) {
+      res.status(400).send(`Invalid ${property} value.`);
+      return;
     }
+  }
+  try {
+    const result = await knex("warehouses").where({ id }).update(req.body);
+    if (!result) {
+      const message = `Warehouse ${id} not found.`
+      res.status(404).send(message);
+      return;
+    }
+    requestBody.id = id;
+    res.status(201).json(requestBody);
   } catch (error) {
-    console.error("Error updating warehouse:", error);
-    res.status(500).json({ error: "Internal server error" });
+    const message = `Unable to update warehouse ${id}`;
+    res.status(500).send(message);
   }
 });
 
@@ -148,6 +166,12 @@ router.post('/', async (req, res) => {
     // Validate email address
     if (!isValidEmailAddress(requestBody.contact_email)) {
       res.status(400).send(`Invalid email value.`);
+      return;
+    }
+
+    // Validate phone number
+    if (!isValidPhoneNumber(requestBody.contact_phone)) {
+      res.status(404).send(`Invalid phone number format.`);
       return;
     }
 
@@ -192,52 +216,3 @@ router.delete("/:id", async (req, res) => {
 });
 
 export default router;
-
-// router.post("/", async (req, res) => {
-//   const {
-//     warehouse_name,
-//     address,
-//     city,
-//     country,
-//     contact_name,
-//     contact_position,
-//     contact_phone,
-//     contact_email,
-//   } = req.body;
-
-//   if (!isValidEmailAddress(contact_email)) {
-//     console.log("Invalid email detected");
-//     res.status(400).send(`Invalid email value.`);
-//     return;
-//   }
-//   try {
-//     console.log("Received data:", req.body);
-//     const [id] = await knex("warehouses").insert({
-//       warehouse_name,
-//       address,
-//       city,
-//       country,
-//       contact_name,
-//       contact_position,
-//       contact_phone,
-//       contact_email,
-//     });
-
-//     console.log("Inserted warehouse ID:", id);
-//     res.status(201).json({ message: "Warehouse added successfully", id });
-//   } catch (error) {
-//     console.error("Error adding warehouse:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
-
-
-// const warehouse_name = requestBody.warehouse_name;
-// const address = requestBody.address;
-// const city = requestBody.city;
-// const country = requestBody.country;
-// const contact_name = requestBody.contact_name;
-// const contact_position = requestBody.contact_position;
-// const contact_phone = requestBody.contact_phone;
-// const contact_email = requestBody.contact_email;
-// const requestBodyKeys = new Set(Object.keys(requestBody));

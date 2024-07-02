@@ -11,7 +11,7 @@ import { isValidEmailAddress } from "../../utils/utils";
 function AddWarehouse({warehousesProps}) {
   const navigate = useNavigate();
   const {
-    warehousesArray, totalEdits, setTotalEdits
+    totalEdits, setTotalEdits
   } = warehousesProps;
   const [warehouseDetails, setWarehouseDetails] = useState({
     warehouse_name: "",
