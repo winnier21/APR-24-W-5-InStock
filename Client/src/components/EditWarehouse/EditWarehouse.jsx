@@ -25,53 +25,12 @@ function EditWarehouse({ warehousesProps }) {
     contact_phone: "",
     contact_email: "",
   });
-  // const [warehouseDetails, setWarehouseDetails] = useState({
-  //   warehouse_name: "",
-  //   address: "",
-  //   city: "",
-  //   country: "",
-  //   contact_name: "",
-  //   contact_position: "",
-  //   contact_phone: "",
-  //   contact_email: "",
-  // });
-  // const [loading, setLoading] = useState(false);
-
-  // Fetching initial warehouse data
   useEffect(() => {
     const fetchWarehouse = async () => {
       const data = await apiInstance.getItem('warehouses', warehouseId);
       if (data) {
         setWarehouseDetails(data);
       }
-      
-      // setLoading(true);
-      // const BASE_URL = import.meta.env.VITE_API_URL;
-      // try {
-      //   const response = await fetch(
-      //     `${BASE_URL}/api/warehouses/${warehouseId}`
-      //   );
-      //   if (!response.ok) {
-      //     throw new Error("Failed to fetch warehouse");
-      //   }
-      //   const data = await response.json();
-      //   setWarehouseDetails({
-      //     warehouse_name: data.warehouse_name,
-      //     address: data.address,
-      //     city: data.city,
-      //     country: data.country,
-      //     contact_name: data.contact_name,
-      //     contact_position: data.contact_position,
-      //     contact_phone: data.contact_phone,
-      //     contact_email: data.contact_email,
-      //   });
-      //   setError(""); // Clear any previous errors
-      // } catch (error) {
-      //   setError(error.message);
-      // } finally {
-      //   setLoading(false);
-      // }
-
     };
 
     if (warehouseId) {
@@ -82,8 +41,6 @@ function EditWarehouse({ warehousesProps }) {
   const handleWarehouseDetailsChange = (details) => {
     setWarehouseDetails((previousDetails) => ({ ...previousDetails, ...details }));
   };
-
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -110,41 +67,6 @@ function EditWarehouse({ warehousesProps }) {
         alert(message);
       }
     }
-
-
-    // setLoading(true);
-
-    // const BASE_URL = import.meta.env.VITE_API_URL;
-    // setLoading(true);
-
-    // try {
-    //   const response = await fetch(
-    //     `${BASE_URL}/api/warehouses/${warehouseId}`,
-    //     {
-    //       method: "PUT",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify({
-    //         warehouseName: warehouseDetails.warehouse_name,
-    //         address: warehouseDetails.address,
-    //         city: warehouseDetails.city,
-    //         country: warehouseDetails.country,
-    //         contactName: warehouseDetails.contact_name,
-    //         contactPosition: warehouseDetails.contact_position,
-    //         contactPhone: warehouseDetails.contact_phone,
-    //         contactEmail: warehouseDetails.contact_email,
-    //       }),
-    //     }
-    //   );
-    //   if (response.ok) {
-    //     setTotalEdits(totalEdits + 1);
-    //     alert("Warehouse updated successfully!");
-    //     navigate("/warehouse");
-    //   } else {
-    //     throw new Error("Failed to update warehouse");
-    //   }
-    // } catch (error) {
-    //   alert(error.message);
-    // }
   };
 
   if (!warehouseDetails) {
@@ -171,10 +93,12 @@ function EditWarehouse({ warehousesProps }) {
             <WarehouseDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
+              errorState={errorState}
             />
             <ContactDetailsForm
               onChange={handleWarehouseDetailsChange}
               details={warehouseDetails}
+              errorState={errorState}
             />
           </section>
           <div className="button">

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./WarehouseDetailsForm.scss";
 
-const WarehouseDetailsForm = ({ onChange, details }) => {
+const WarehouseDetailsForm = ({ onChange, details, errorState }) => {
+  const inputClassName = "warehouse__form-input"
+  const errorClassName = `${inputClassName} error`;
   const [localDetails, setLocalDetails] = useState({
     warehouse_name: "",
     address: "",
@@ -36,7 +38,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
           <h2>Warehouse Details</h2>
           <h3>Warehouse Name</h3>
           <input
-            className="warehouse__form-input"
+            className={errorState.warehouse_name ? errorClassName : inputClassName}
             name="warehouse_name"
             type="text"
             placeholder="Warehouse Name"
@@ -45,7 +47,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
           />
           <h3>Street Address</h3>
           <input
-            className="warehouse__form-input"
+            className={errorState.address ? errorClassName : inputClassName}
             name="address"
             type="text"
             placeholder="Street Address"
@@ -54,7 +56,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
           />
           <h3>City</h3>
           <input
-            className="warehouse__form-input"
+            className={errorState.city ? errorClassName : inputClassName}
             name="city"
             type="text"
             placeholder="City"
@@ -63,7 +65,7 @@ const WarehouseDetailsForm = ({ onChange, details }) => {
           />
           <h3>Country</h3>
           <input
-            className="warehouse__form-input"
+            className={errorState.country ? errorClassName : inputClassName}
             name="country"
             type="text"
             placeholder="Country"

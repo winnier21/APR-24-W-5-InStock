@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./ContactDetailsForm.scss";
 
-function ContactDetailsForm({ onChange, details }) {
+function ContactDetailsForm({ onChange, details, errorState }) {
+  const inputClassName = "contact__form-input"
+  const errorClassName = `${inputClassName} error`;
   const [contactDetails, setContactDetails] = useState({
     contact_name: "",
     contact_position: "",
@@ -28,7 +30,7 @@ function ContactDetailsForm({ onChange, details }) {
         <h2>Contact Details</h2>
         <h3>Contact Name</h3>
         <input
-          className="contact__form-input"
+          className={errorState.contact_name ? errorClassName : inputClassName}
           type="text"
           name="contact_name"
           placeholder="Contact Name"
@@ -37,7 +39,7 @@ function ContactDetailsForm({ onChange, details }) {
         />
         <h3>Position</h3>
         <input
-          className="contact__form-input"
+          className={errorState.contact_position ? errorClassName : inputClassName}
           type="text"
           name="contact_position"
           placeholder="Position"
@@ -46,7 +48,7 @@ function ContactDetailsForm({ onChange, details }) {
         />
         <h3>Phone Number</h3>
         <input
-          className="contact__form-input"
+          className={errorState.contact_phone ? errorClassName : inputClassName}
           type="text"
           name="contact_phone"
           placeholder="Phone Number"
@@ -55,7 +57,7 @@ function ContactDetailsForm({ onChange, details }) {
         />
         <h3>Email</h3>
         <input
-          className="contact__form-input"
+          className={errorState.contact_email ? errorClassName : inputClassName}
           type="text"
           name="contact_email"
           placeholder="Email"
